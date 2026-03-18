@@ -32,6 +32,18 @@
         "haulage": "External Haulage",
         "added_by": "Nick",
         "timestamp": "18/03/2026 13:14"
+      },
+      {
+        "customer": "Joe Bloggs",
+        "postcode": "PR4",
+        "type": "On Hire",
+        "units": {
+          "Mobile Welfare": 2
+        },
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "added_by": "Nick",
+        "timestamp": "18/03/2026 13:14"
       }
     ]
   }
