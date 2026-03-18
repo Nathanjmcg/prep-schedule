@@ -64,6 +64,24 @@
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:53"
       }
+    ],
+    "2026-03-20": [
+      {
+        "customer": "Manchester & Cheshire",
+        "postcode": "M90",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "18/03/2026 13:53"
+      }
     ]
   }
 }
