@@ -156,7 +156,8 @@ def get_bank_holidays():
 # ── Session state ─────────────────────────────────────────────────────────────
 for k, v in [("week_offset", 0), ("n_weeks", 4),
              ("modal_date", None), ("modal_edit_idx", None),
-             ("expand_date", None), ("expand_idx", None)]:
+             ("expand_date", None), ("expand_idx", None),
+             ("day_view_date", None)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
@@ -178,7 +179,7 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
 
 /* Day cards */
 .day-card{{border:1px solid {K_LGREY};border-radius:10px;overflow:hidden;
-           min-height:170px;background:{K_WHITE};margin:2px;}}
+           min-height:130px;background:{K_WHITE};margin:2px;}}
 .day-card.is-today{{border-color:{K_GREEN};border-width:2px;}}
 .day-card.is-weekend{{background:#fafafa;}}
 .day-head{{padding:7px 9px 5px;border-bottom:1px solid {K_LGREY};}}
@@ -187,6 +188,31 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
 .day-date{{font-size:17px;font-weight:800;color:{K_GREY};}}
 .day-date.is-today{{color:{K_GREEN};}}
 .day-body{{padding:5px;}}
+
+/* Day summary pills inside card */
+.day-sum-pill{{display:flex;align-items:center;gap:5px;padding:3px 5px;
+               border-radius:5px;margin-bottom:2px;font-size:11px;font-weight:600;}}
+.day-sum-dot{{width:8px;height:8px;border-radius:50%;flex-shrink:0;}}
+.day-sum-label{{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}}
+.day-sum-haul{{font-size:9px;opacity:.65;margin-left:2px;}}
+.day-empty{{font-size:10px;color:{K_GREY};opacity:.3;padding:4px 5px;font-style:italic;}}
+
+/* Day click button — invisible, covers body */
+.ks-day-btn button {{
+  background: transparent !important;
+  border: none !important;
+  color: {K_GREEN} !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  width: 100% !important;
+  padding: 2px 4px !important;
+  border-radius: 4px !important;
+  opacity: 0.6;
+}}
+.ks-day-btn button:hover {{
+  background: {K_GREEN_PALE} !important;
+  opacity: 1;
+}}
 
 /* Job chips */
 .jchip{{border-radius:6px;padding:5px 8px;margin-bottom:3px;
@@ -273,6 +299,88 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
              display: inline-block; margin-top: 2px; }}
 </style>
 """, unsafe_allow_html=True)
+
+# ── DAY VIEW DIALOG (all jobs for a day) ─────────────────────────────────────
+@st.dialog("Day Schedule", width="large")
+def day_view_dialog(date_key):
+    day_label = datetime.strptime(date_key, "%Y-%m-%d").strftime("%A %-d %B %Y")
+    bh = bank_holidays.get(date_key, "")
+    header_extra = f"  ·  🏴󠁧󠁢󠁥󠁮󠁧󠁿 {bh}" if bh else ""
+    st.markdown(
+        f"<div style='font-size:14px;font-weight:700;color:{K_GREEN};"
+        f"margin-bottom:1rem;'>📅 {day_label}{header_extra}</div>",
+        unsafe_allow_html=True)
+
+    day_jobs = jobs.get(date_key, [])
+
+    if not day_jobs:
+        st.info("No jobs booked for this day.")
+    else:
+        for ji, job in enumerate(day_jobs):
+            bg, fg, _ = TYPE_STYLE[job["type"]]
+            haulage    = job.get("haulage", "None")
+            border_col = K_GREEN if haulage == "Internal Haulage" else ("#c0392b" if haulage == "External Haulage" else "transparent")
+
+            units_html = ""
+            if job.get("units"):
+                unit_items = "".join(
+                    f'<span style="display:inline-block;background:{bg};color:{fg};'
+                    f'border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;'
+                    f'margin:2px 2px 0 0;">{u} ×{q}</span>'
+                    for u, q in job["units"].items() if q
+                )
+                units_html = f"<div style='margin-top:6px;'>{unit_items}</div>"
+
+            tags = f'<span style="background:rgba(0,0,0,.09);border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">{job["type"]}</span>'
+            if job.get("install_dismantle"):
+                tags += f' <span style="background:{K_GREEN};color:white;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">I/D</span>'
+            if haulage != "None":
+                haul_bg   = K_GREEN_PALE if haulage == "Internal Haulage" else "#fdecea"
+                haul_fg   = K_GREEN_DARK if haulage == "Internal Haulage" else "#7b1a1a"
+                haul_icon = "🚛" if haulage == "Internal Haulage" else "🚚"
+                tags += (f' <span style="background:{haul_bg};color:{haul_fg};border-radius:4px;'
+                         f'padding:2px 8px;font-size:11px;font-weight:700;">{haul_icon} {haulage}</span>')
+
+            ts_line = ""
+            if job.get("added_by") or job.get("timestamp"):
+                ts_line = (f'<div style="font-size:10px;opacity:.5;margin-top:6px;">'
+                           f'🕐 {job.get("added_by","")} · {job.get("timestamp","")}</div>')
+            if job.get("edited_at"):
+                ts_line += (f'<div style="font-size:10px;opacity:.5;">'
+                            f'✏️ {job.get("edited_by","")} · {job["edited_at"]}</div>')
+
+            rc1, rc2 = st.columns([5, 1])
+            with rc1:
+                st.markdown(f"""
+                <div style="background:{bg};color:{fg};border-radius:10px;
+                            border-left:5px solid {border_col};padding:12px 14px;margin-bottom:4px;">
+                  <div style="font-size:17px;font-weight:800;margin-bottom:2px;">{job.get("customer","")}</div>
+                  <div style="font-size:12px;opacity:.65;margin-bottom:6px;">{job.get("postcode","")}</div>
+                  <div>{tags}</div>
+                  {units_html}
+                  {ts_line}
+                </div>
+                """, unsafe_allow_html=True)
+            with rc2:
+                if st.button("✏️ Edit", key=f"dv_edit_{date_key}_{ji}",
+                             use_container_width=True):
+                    st.session_state["modal_date"]     = date_key
+                    st.session_state["modal_edit_idx"] = ji
+                    st.session_state["day_view_date"]  = None
+                    st.rerun()
+
+    st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
+    ac1, ac2 = st.columns(2)
+    with ac1:
+        if st.button("＋ Add job to this day", use_container_width=True, type="primary"):
+            st.session_state["modal_date"]     = date_key
+            st.session_state["modal_edit_idx"] = None
+            st.session_state["day_view_date"]  = None
+            st.rerun()
+    with ac2:
+        if st.button("Close", use_container_width=True):
+            st.session_state["day_view_date"] = None
+            st.rerun()
 
 # ── EXPAND CHIP DIALOG (view details + open edit) ────────────────────────────
 @st.dialog("Job Details", width="small")
@@ -473,7 +581,9 @@ def job_modal(date_key, edit_idx=None):
                 st.rerun()
 
 # ── Trigger dialogs ───────────────────────────────────────────────────────────
-if st.session_state.expand_date is not None and st.session_state.expand_idx is not None:
+if st.session_state.day_view_date:
+    day_view_dialog(st.session_state.day_view_date)
+elif st.session_state.expand_date is not None and st.session_state.expand_idx is not None:
     expand_chip_dialog(st.session_state.expand_date, st.session_state.expand_idx)
 elif st.session_state.modal_date:
     job_modal(st.session_state.modal_date, st.session_state.modal_edit_idx)
@@ -633,41 +743,62 @@ for w in range(n_weeks):
         date_cls = "is-today" if is_today else ""
 
         with cols[d]:
-            # Day card header
+            # Build day summary HTML
+            day_jobs = jobs.get(dk, [])
+            summary_html = ""
+            if day_jobs:
+                # Count by type
+                type_counts = {}
+                for job in day_jobs:
+                    t = job.get("type", "On Hire")
+                    type_counts[t] = type_counts.get(t, 0) + 1
+
+                for t, cnt in type_counts.items():
+                    bg, fg, _ = TYPE_STYLE[t]
+                    label = f"{cnt} × {t}"
+                    summary_html += (
+                        f'<div class="day-sum-pill" style="background:{bg};color:{fg};">'
+                        f'<div class="day-sum-dot" style="background:{fg};opacity:.5;"></div>'
+                        f'<span class="day-sum-label">{label}</span>'
+                        f'</div>'
+                    )
+                # Haulage indicators
+                haul_icons = []
+                for job in day_jobs:
+                    h = job.get("haulage", "None")
+                    if h == "Internal Haulage" and "🚛" not in haul_icons:
+                        haul_icons.append("🚛")
+                    elif h == "External Haulage" and "🚚" not in haul_icons:
+                        haul_icons.append("🚚")
+                if haul_icons:
+                    summary_html += (
+                        f'<div style="font-size:10px;padding:2px 5px;opacity:.6;">'
+                        f'{" ".join(haul_icons)}</div>'
+                    )
+            else:
+                summary_html = "<div class='day-empty'>No jobs</div>"
+
+            # Day card — header + summary
             bh_tag = (f"<div class='bh-label'>🏴󠁧󠁢󠁥󠁮󠁧󠁿 {bh_name}</div>" if is_bh else "")
             st.markdown(
                 f"<div class='day-card {card_cls}'>"
                 f"<div class='day-head'>"
                 f"<div class='day-name'>{day.strftime('%a')}</div>"
-                f"<div class='day-date {date_cls}'>"
-                f"{day.strftime('%-d %b')}</div>"
-                f"{bh_tag}"
-                f"</div>"
-                f"<div class='day-body'>",
+                f"<div class='day-date {date_cls}'>{day.strftime('%-d %b')}</div>"
+                f"{bh_tag}</div>"
+                f"<div class='day-body'>{summary_html}</div>"
+                f"</div>",
                 unsafe_allow_html=True)
 
-            # Job chips — click to expand, then edit from expanded view
-            for ji, job in enumerate(jobs.get(dk, [])):
-                chip_html = render_chip(job, chip_id=f"chip_{dk}_{ji}")
-                btn_key = f"chip_{dk}_{ji}"
-                st.markdown(
-                    f"<div class='ks-chip-btn' id='wrap_{btn_key}'>",
-                    unsafe_allow_html=True)
-                st.markdown(chip_html, unsafe_allow_html=True)
-                if st.button("👁 View / Edit", key=btn_key,
-                             use_container_width=True):
-                    st.session_state["expand_date"] = dk
-                    st.session_state["expand_idx"]  = ji
-                    st.rerun()
-                st.markdown("</div>", unsafe_allow_html=True)
-
-            st.markdown("</div></div>", unsafe_allow_html=True)
-
-            # Green Add button
-            st.markdown("<div class='ks-add-btn'>", unsafe_allow_html=True)
-            if st.button("＋ Add", key=f"add_{dk}", use_container_width=True):
-                st.session_state["modal_date"]     = dk
-                st.session_state["modal_edit_idx"] = None
+            # Single button per day — opens Day View dialog
+            st.markdown("<div class='ks-day-btn'>", unsafe_allow_html=True)
+            btn_label = f"{'👁 View' if day_jobs else '＋ Add'}"
+            if st.button(btn_label, key=f"day_{dk}", use_container_width=True):
+                if day_jobs:
+                    st.session_state["day_view_date"] = dk
+                else:
+                    st.session_state["modal_date"]     = dk
+                    st.session_state["modal_edit_idx"] = None
                 st.rerun()
             st.markdown("</div>", unsafe_allow_html=True)
 
