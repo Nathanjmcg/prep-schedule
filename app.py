@@ -28,6 +28,10 @@ UNIT_TYPES = [
     "Tank", "Steps", "IBC", "Generator",
 ]
 
+# AV units that support configuration breakdown
+AV_UNITS = {"32ft AV", "24ft AV", "20ft AV", "10ft AV"}
+AV_CONFIGS = ["Canteen", "Office", "Drying Room", "Changing Room", "Welfare", "Meeting Room", "Other"]
+
 JOB_TYPES = ["On Hire", "Off Hire", "Site Move"]
 TEAM_MEMBERS = ["Jake", "Ewa", "Klaudia", "Chris", "Nick", "Chloe", "Peter", "Callum", "Nathan"]
 TYPE_STYLE = {
@@ -331,6 +335,25 @@ def day_view_dialog(date_key):
                 )
                 units_html = f"<div style='margin-top:6px;'>{unit_items}</div>"
 
+            # AV config breakdown
+            av_cfg_html = ""
+            av_cfgs = job.get("av_configs", {})
+            if av_cfgs:
+                cfg_lines = []
+                for av_unit, cfgs in av_cfgs.items():
+                    if cfgs:
+                        parts = ", ".join(f"{c} ×{n}" for c, n in cfgs.items())
+                        cfg_lines.append(
+                            f'<div style="font-size:10.5px;opacity:.75;margin-top:3px;">'
+                            f'<b>{av_unit}:</b> {parts}</div>'
+                        )
+                if cfg_lines:
+                    av_cfg_html = (
+                        f'<div style="margin-top:6px;padding-top:6px;'
+                        f'border-top:1px solid rgba(0,0,0,.08);">'
+                        + "".join(cfg_lines) + "</div>"
+                    )
+
             tags = f'<span style="background:rgba(0,0,0,.09);border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">{job["type"]}</span>'
             if job.get("install_dismantle"):
                 tags += f' <span style="background:{K_GREEN};color:white;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">I/D</span>'
@@ -367,6 +390,7 @@ def day_view_dialog(date_key):
                   <div style="font-size:12px;opacity:.65;margin-bottom:6px;">{job.get("postcode","")}</div>
                   <div>{tags}</div>
                   {units_html}
+                  {av_cfg_html}
                   {ts_line}
                 </div>
                 """, unsafe_allow_html=True)
@@ -503,12 +527,56 @@ def job_modal(date_key, edit_idx=None):
                 f"margin:1rem 0 .5rem;'>Units</div>", unsafe_allow_html=True)
 
     unit_vals = {}
+    av_configs = {}   # { "32ft AV": {"Office": 2, "Canteen": 1}, ... }
+
     u_cols = st.columns(4)
     for i, u in enumerate(UNIT_TYPES):
         with u_cols[i % 4]:
             def_qty = int(edit_job.get("units", {}).get(u, 0)) if edit_job else 0
             unit_vals[u] = st.number_input(u, min_value=0, max_value=99,
                                            value=def_qty, step=1, key=f"mu_{u}")
+
+    # AV configuration breakdown — shown for any AV unit with qty > 0
+    av_units_with_qty = [u for u in AV_UNITS if unit_vals.get(u, 0) > 0]
+    if av_units_with_qty:
+        st.markdown(
+            f"<div style='font-size:12px;font-weight:700;color:{K_GREEN};"
+            f"background:{K_GREEN_PALE};border-radius:6px;padding:6px 10px;"
+            f"margin:.75rem 0 .5rem;'>AV Unit Configuration</div>",
+            unsafe_allow_html=True)
+
+        for u in av_units_with_qty:
+            qty = unit_vals[u]
+            st.markdown(
+                f"<div style='font-size:12px;font-weight:600;color:{K_GREY};"
+                f"margin:.5rem 0 .25rem;'>{u} — {qty} unit{'s' if qty > 1 else ''}"
+                f" <span style='font-weight:400;opacity:.6;'>(assign configurations below)</span></div>",
+                unsafe_allow_html=True)
+
+            saved_cfg = (edit_job.get("av_configs", {}).get(u, {}) if edit_job else {})
+            cfg_vals  = {}
+            cfg_cols  = st.columns(4)
+            for j, cfg in enumerate(AV_CONFIGS):
+                with cfg_cols[j % 4]:
+                    def_cfg = int(saved_cfg.get(cfg, 0))
+                    cfg_vals[cfg] = st.number_input(
+                        cfg, min_value=0, max_value=int(qty),
+                        value=def_cfg, step=1, key=f"cfg_{u}_{cfg}")
+
+            # Validation hint
+            cfg_total = sum(cfg_vals.values())
+            if cfg_total > 0:
+                if cfg_total == qty:
+                    st.markdown(
+                        f"<div style='font-size:10px;color:{K_GREEN};margin-top:2px;'>"
+                        f"✓ {cfg_total}/{qty} assigned</div>", unsafe_allow_html=True)
+                else:
+                    st.markdown(
+                        f"<div style='font-size:10px;color:#c0392b;margin-top:2px;'>"
+                        f"⚠ {cfg_total}/{qty} assigned — totals don't match</div>",
+                        unsafe_allow_html=True)
+
+            av_configs[u] = {cfg: v for cfg, v in cfg_vals.items() if v > 0}
 
     def_id = edit_job.get("install_dismantle", False) if edit_job else False
     install_dismantle = st.checkbox("Install / Dismantle", value=def_id)
@@ -570,6 +638,7 @@ def job_modal(date_key, edit_idx=None):
                     "postcode":          postcode.strip().upper(),
                     "type":              job_type,
                     "units":             {u: v for u, v in unit_vals.items() if v > 0},
+                    "av_configs":        av_configs,
                     "install_dismantle": install_dismantle,
                     "haulage":           haulage,
                     "livery":            livery,
@@ -950,6 +1019,10 @@ with st.expander("📥 Export to Excel / CSV"):
         d = datetime.strptime(dk, "%Y-%m-%d").date()
         for j in jlist:
             unit_str = ", ".join(f'{u}×{q}' for u, q in j.get("units", {}).items() if q)
+            av_cfg_str = " | ".join(
+                f'{u}: {", ".join(f"{c}×{n}" for c,n in cfgs.items())}'
+                for u, cfgs in j.get("av_configs", {}).items() if cfgs
+            )
             rows.append({
                 "Date":              d.strftime("%d/%m/%Y"),
                 "Day":               d.strftime("%A"),
@@ -957,6 +1030,7 @@ with st.expander("📥 Export to Excel / CSV"):
                 "Postcode":          j.get("postcode", ""),
                 "Type":              j["type"],
                 "Units":             unit_str,
+                "AV Configs":        av_cfg_str,
                 "Install/Dismantle": "Yes" if j.get("install_dismantle") else "",
                 "Haulage":           j.get("haulage", ""),
                 "Livery":            j.get("livery", "Standard Livery"),
