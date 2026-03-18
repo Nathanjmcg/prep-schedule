@@ -133,6 +133,31 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:55"
+      },
+      {
+        "customer": "Think Hire",
+        "postcode": "HA1",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 4,
+          "3+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1,
+            "Office": 2,
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "18/03/2026 13:56"
       }
     ]
   }
