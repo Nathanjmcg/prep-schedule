@@ -14,9 +14,7 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:37"
-      }
-    ],
-    "2026-03-19": [
+      },
       {
         "customer": "Bethell Construction",
         "postcode": "M22",
@@ -41,9 +39,11 @@
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:46",
         "moved_by": "\u2014",
-        "moved_from": "2026-03-18",
-        "edited_at": "18/03/2026 13:47"
-      },
+        "moved_from": "2026-03-19",
+        "edited_at": "18/03/2026 15:34"
+      }
+    ],
+    "2026-03-19": [
       {
         "customer": "William Pye",
         "postcode": "PR7",
