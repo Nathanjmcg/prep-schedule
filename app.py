@@ -106,18 +106,22 @@ def gh_put(path, obj, sha=None, msg="Update schedule"):
     requests.put(url, headers=HEADERS, json=payload).raise_for_status()
 
 @st.cache_data(ttl=30)
-def load_jobs():
+def load_data():
     data, sha = gh_get(DATA_FILE)
     if data is None:
-        return {}, None
-    return data.get("jobs", {}), sha
+        return {}, {}, None
+    return data.get("jobs", {}), data.get("mcs", {}), sha
 
-def save_jobs(jobs_dict, _sha_hint=None):
+def save_data(jobs_dict, mcs_dict, _sha_hint=None):
     """Always fetch the latest SHA before writing to avoid 409 conflicts."""
     _, fresh_sha = gh_get(DATA_FILE)
     sha_to_use = fresh_sha or _sha_hint
-    gh_put(DATA_FILE, {"jobs": jobs_dict}, sha=sha_to_use)
+    gh_put(DATA_FILE, {"jobs": jobs_dict, "mcs": mcs_dict}, sha=sha_to_use)
     st.cache_data.clear()
+
+# Keep save_jobs as a convenience wrapper
+def save_jobs(jobs_dict, _sha_hint=None):
+    save_data(jobs_dict, mcs, _sha_hint)
 
 # ── Date helpers ──────────────────────────────────────────────────────────────
 def get_monday(d): return d - timedelta(days=d.weekday())
@@ -167,7 +171,7 @@ for k, v in [("week_offset", 0), ("n_weeks", 4),
     if k not in st.session_state:
         st.session_state[k] = v
 
-jobs, sha = load_jobs()
+jobs, mcs, sha = load_data()
 bank_holidays = get_bank_holidays()
 
 # ── Global CSS ────────────────────────────────────────────────────────────────
@@ -303,6 +307,34 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
 .bh-label {{ font-size: 9px; font-weight: 700; color: #7a6000;
              background: #fff3b0; border-radius: 3px; padding: 1px 5px;
              display: inline-block; margin-top: 2px; }}
+
+/* MCS tick sparkle animation */
+@keyframes mcs-sparkle {{
+  0%   {{ transform: scale(1);   opacity: 1; }}
+  20%  {{ transform: scale(1.35); opacity: 1; }}
+  40%  {{ transform: scale(0.9);  opacity: 1; }}
+  60%  {{ transform: scale(1.15); opacity: 1; }}
+  100% {{ transform: scale(1);   opacity: 1; }}
+}}
+@keyframes mcs-stars {{
+  0%   {{ opacity: 0; transform: scale(0) rotate(0deg); }}
+  50%  {{ opacity: 1; transform: scale(1.4) rotate(180deg); }}
+  100% {{ opacity: 0; transform: scale(0) rotate(360deg); }}
+}}
+.mcs-done {{
+  animation: mcs-sparkle 0.5s ease;
+  display: inline-flex; align-items: center; gap: 5px;
+  background: {K_GREEN_PALE}; color: {K_GREEN_DARK};
+  border-radius: 6px; padding: 4px 10px;
+  font-size: 12px; font-weight: 700;
+}}
+.mcs-done-red {{
+  animation: mcs-sparkle 0.5s ease;
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #fdecea; color: #7b1a1a;
+  border-radius: 6px; padding: 4px 10px;
+  font-size: 12px; font-weight: 700;
+}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -389,8 +421,22 @@ def day_view_dialog(date_key):
                 ts_line += (f'<div style="font-size:10px;opacity:.5;">'
                             f'✏️ {job.get("edited_by","")} · {job["edited_at"]}</div>')
 
+            # MCS key — unique per date + job index
+            mcs_key = f"{date_key}_{ji}"
+            mcs_status = mcs.get(mcs_key, "")
+            job_type_val = job["type"]
+
             rc1, rc2, rc3 = st.columns([5, 1, 1])
             with rc1:
+                # MCS status badge shown inside card if ticked
+                mcs_badge = ""
+                if mcs_status == "picked" and job_type_val == "On Hire":
+                    mcs_badge = (f'<div class="mcs-done" style="margin-top:8px;">'
+                                 f'✅ Picked on MCS</div>')
+                elif mcs_status == "checked" and job_type_val == "Off Hire":
+                    mcs_badge = (f'<div class="mcs-done-red" style="margin-top:8px;">'
+                                 f'✅ Checked in on MCS</div>')
+
                 st.markdown(f"""
                 <div style="background:{bg};color:{fg};border-radius:10px;
                             border-left:5px solid {border_col};padding:12px 14px;margin-bottom:4px;">
@@ -400,8 +446,38 @@ def day_view_dialog(date_key):
                   {units_html}
                   {av_cfg_html}
                   {ts_line}
+                  {mcs_badge}
                 </div>
                 """, unsafe_allow_html=True)
+
+                # MCS action button — shown only for On Hire / Off Hire
+                if job_type_val == "On Hire":
+                    if mcs_status != "picked":
+                        if st.button("☐  Picked on MCS", key=f"mcs_{mcs_key}",
+                                     use_container_width=True):
+                            mcs[mcs_key] = "picked"
+                            save_data(jobs, mcs)
+                            st.rerun()
+                    else:
+                        if st.button("✅ Picked on MCS — undo", key=f"mcs_{mcs_key}",
+                                     use_container_width=True):
+                            mcs.pop(mcs_key, None)
+                            save_data(jobs, mcs)
+                            st.rerun()
+
+                elif job_type_val == "Off Hire":
+                    if mcs_status != "checked":
+                        if st.button("☐  Checked in on MCS", key=f"mcs_{mcs_key}",
+                                     use_container_width=True):
+                            mcs[mcs_key] = "checked"
+                            save_data(jobs, mcs)
+                            st.rerun()
+                    else:
+                        if st.button("✅ Checked in on MCS — undo", key=f"mcs_{mcs_key}",
+                                     use_container_width=True):
+                            mcs.pop(mcs_key, None)
+                            save_data(jobs, mcs)
+                            st.rerun()
             with rc2:
                 if st.button("✏️", key=f"dv_edit_{date_key}_{ji}",
                              use_container_width=True, help="Edit this job"):
@@ -960,6 +1036,21 @@ for w in range(n_weeks):
                         f'<span class="day-sum-label">{label}</span>'
                         f'</div>'
                     )
+                # MCS progress
+                on_hire_jobs  = [j for j in day_jobs if j.get("type") == "On Hire"]
+                off_hire_jobs = [j for j in day_jobs if j.get("type") == "Off Hire"]
+                picked  = sum(1 for ji, j in enumerate(on_hire_jobs)
+                              if mcs.get(f"{dk}_{jobs.get(dk,[]).index(j) if j in jobs.get(dk,[]) else ji}", "") == "picked")
+                checked = sum(1 for ji, j in enumerate(off_hire_jobs)
+                              if mcs.get(f"{dk}_{jobs.get(dk,[]).index(j) if j in jobs.get(dk,[]) else ji}", "") == "checked")
+                if on_hire_jobs and picked == len(on_hire_jobs):
+                    summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};font-weight:700;padding:1px 5px;">✅ All picked on MCS</div>'
+                elif picked > 0:
+                    summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ {picked}/{len(on_hire_jobs)} picked MCS</div>'
+                if off_hire_jobs and checked == len(off_hire_jobs):
+                    summary_html += f'<div style="font-size:9px;color:#7b1a1a;font-weight:700;padding:1px 5px;">✅ All checked in MCS</div>'
+                elif checked > 0:
+                    summary_html += f'<div style="font-size:9px;color:#7b1a1a;padding:1px 5px;">✅ {checked}/{len(off_hire_jobs)} checked MCS</div>'
                 haul_icons = []
                 for job in day_jobs:
                     h = job.get("haulage", "None")
