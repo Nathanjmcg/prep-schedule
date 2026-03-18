@@ -116,6 +116,24 @@
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:55"
       }
+    ],
+    "2026-03-24": [
+      {
+        "customer": "Muir Housing",
+        "postcode": "FY3",
+        "type": "Site Move",
+        "site_move_type": "Movement to New Site",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "18/03/2026 13:55"
+      }
     ]
   }
 }
