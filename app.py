@@ -115,13 +115,48 @@ def get_monday(d): return d - timedelta(days=d.weekday())
 def fmt_key(d):    return d.strftime("%Y-%m-%d")
 def week_num(d):   return d.isocalendar()[1]
 
+# ── Bank holidays (England) ───────────────────────────────────────────────────
+@st.cache_data(ttl=86400)
+def get_bank_holidays():
+    """Fetch England bank holidays from gov.uk API. Cache for 24 hours."""
+    try:
+        r = requests.get(
+            "https://www.gov.uk/bank-holidays.json",
+            timeout=5
+        )
+        r.raise_for_status()
+        data = r.json()
+        events = data.get("england-and-wales", {}).get("events", [])
+        return {e["date"]: e["title"] for e in events}
+    except Exception:
+        # Fallback: hardcoded 2025-2026 England bank holidays
+        return {
+            "2025-01-01": "New Year's Day",
+            "2025-04-18": "Good Friday",
+            "2025-04-21": "Easter Monday",
+            "2025-05-05": "Early May Bank Holiday",
+            "2025-05-26": "Spring Bank Holiday",
+            "2025-08-25": "Summer Bank Holiday",
+            "2025-12-25": "Christmas Day",
+            "2025-12-26": "Boxing Day",
+            "2026-01-01": "New Year's Day",
+            "2026-04-03": "Good Friday",
+            "2026-04-06": "Easter Monday",
+            "2026-05-04": "Early May Bank Holiday",
+            "2026-05-25": "Spring Bank Holiday",
+            "2026-08-31": "Summer Bank Holiday",
+            "2026-12-25": "Christmas Day",
+            "2026-12-28": "Boxing Day (substitute)",
+        }
+
 # ── Session state ─────────────────────────────────────────────────────────────
-for k, v in [("week_offset", 0), ("n_weeks", 3),
+for k, v in [("week_offset", 0), ("n_weeks", 4),
              ("modal_date", None), ("modal_edit_idx", None)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
 jobs, sha = load_jobs()
+bank_holidays = get_bank_holidays()
 
 # ── Global CSS ────────────────────────────────────────────────────────────────
 st.markdown(f"""
@@ -158,30 +193,26 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
 .jchip-idtag{{display:inline-block;font-size:9.5px;font-weight:700;
               background:rgba(0,0,0,.08);border-radius:3px;padding:1px 5px;margin-top:2px;}}
 
-/* Green Add buttons */
-div[data-testid="stButton"] button[kind="secondary"] {{
-  border-radius:6px !important;
-}}
-/* Target all add_ prefixed buttons to make them green */
-div[data-testid="stButton"]:has(button[data-testid="baseButton-secondary"]) button {{
-  border-radius:6px !important;
-}}
-.stButton button[id*="add_"] {{
-  background-color:{K_GREEN} !important;
-  color:white !important;
-  border:none !important;
-  font-weight:600 !important;
-}}
-/* Broad green override for add buttons via container class */
+/* Add buttons — white background, green text/border */
 .ks-add-btn button {{
-  background-color:{K_GREEN} !important;
-  color:white !important;
-  border:none !important;
-  font-weight:700 !important;
-  border-radius:6px !important;
+  background-color: white !important;
+  color: {K_GREEN} !important;
+  border: 1.5px solid {K_GREEN} !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
 }}
 .ks-add-btn button:hover {{
-  background-color:{K_GREEN_DARK} !important;
+  background-color: {K_GREEN_PALE} !important;
+}}
+
+/* Edit buttons — small and subtle */
+.ks-edit-btn button {{
+  background-color: transparent !important;
+  color: {K_GREY} !important;
+  border: 1px solid {K_LGREY} !important;
+  font-size: 11px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
 }}
 
 /* Week bar */
@@ -219,16 +250,11 @@ div[data-testid="stButton"]:has(button[data-testid="baseButton-secondary"]) butt
               border-top:none;border-radius:0 0 10px 10px;
               font-size:10px;color:{K_GREY};opacity:.6;text-align:right;}}
 
-/* Primary buttons — Kensite green globally */
-button[data-testid="baseButton-primary"] {{
-  background-color:{K_GREEN} !important;
-  border-color:{K_GREEN} !important;
-  color:white !important;
-}}
-button[data-testid="baseButton-primary"]:hover {{
-  background-color:{K_GREEN_DARK} !important;
-  border-color:{K_GREEN_DARK} !important;
-}}
+/* Day card bank holiday highlight */
+.day-card.is-bh {{ background: #fffbea !important; border-color: #e6c200 !important; }}
+.bh-label {{ font-size: 9px; font-weight: 700; color: #7a6000;
+             background: #fff3b0; border-radius: 3px; padding: 1px 5px;
+             display: inline-block; margin-top: 2px; }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -336,9 +362,12 @@ with n3:
     if st.button("Next Week ▶", use_container_width=True):
         st.session_state.week_offset += 1; st.rerun()
 with n4:
-    nw = st.selectbox("", [3, 4], index=[3, 4].index(st.session_state.n_weeks),
+    week_opts = [1, 2, 3, 4, 5, 6]
+    nw = st.selectbox("", week_opts,
+                      index=week_opts.index(st.session_state.n_weeks)
+                            if st.session_state.n_weeks in week_opts else 3,
                       label_visibility="collapsed",
-                      format_func=lambda x: f"{x} wks")
+                      format_func=lambda x: f"{x} {'week' if x == 1 else 'weeks'}")
     if nw != st.session_state.n_weeks:
         st.session_state.n_weeks = nw; st.rerun()
 with n6:
@@ -435,34 +464,42 @@ for w in range(n_weeks):
         dk         = fmt_key(day)
         is_today   = day == today
         is_weekend = day.weekday() >= 5
-        dc         = "is-today" if is_today else ("is-weekend" if is_weekend else "")
+        is_bh      = dk in bank_holidays
+        bh_name    = bank_holidays.get(dk, "")
+
+        card_cls = "is-today" if is_today else ("is-bh" if is_bh else ("is-weekend" if is_weekend else ""))
+        date_cls = "is-today" if is_today else ""
 
         with cols[d]:
             # Day card header
+            bh_tag = (f"<div class='bh-label'>🏴󠁧󠁢󠁥󠁮󠁧󠁿 {bh_name}</div>" if is_bh else "")
             st.markdown(
-                f"<div class='day-card {dc}'>"
+                f"<div class='day-card {card_cls}'>"
                 f"<div class='day-head'>"
                 f"<div class='day-name'>{day.strftime('%a')}</div>"
-                f"<div class='day-date {'is-today' if is_today else ''}'>"
-                f"{day.strftime('%-d %b')}</div></div>"
+                f"<div class='day-date {date_cls}'>"
+                f"{day.strftime('%-d %b')}</div>"
+                f"{bh_tag}"
+                f"</div>"
                 f"<div class='day-body'>",
                 unsafe_allow_html=True)
 
             # Job chips — clicking opens edit modal
             for ji, job in enumerate(jobs.get(dk, [])):
                 st.markdown(render_chip(job), unsafe_allow_html=True)
+                st.markdown("<div class='ks-edit-btn'>", unsafe_allow_html=True)
                 if st.button("✏️ Edit", key=f"edit_{dk}_{ji}",
                              use_container_width=True):
                     st.session_state["modal_date"]     = dk
                     st.session_state["modal_edit_idx"] = ji
                     st.rerun()
+                st.markdown("</div>", unsafe_allow_html=True)
 
             st.markdown("</div></div>", unsafe_allow_html=True)
 
             # Green Add button
             st.markdown("<div class='ks-add-btn'>", unsafe_allow_html=True)
-            if st.button("＋ Add", key=f"add_{dk}", use_container_width=True,
-                         type="primary"):
+            if st.button("＋ Add", key=f"add_{dk}", use_container_width=True):
                 st.session_state["modal_date"]     = dk
                 st.session_state["modal_edit_idx"] = None
                 st.rerun()
