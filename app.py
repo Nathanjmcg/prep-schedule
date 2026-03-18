@@ -152,7 +152,8 @@ def get_bank_holidays():
 
 # ── Session state ─────────────────────────────────────────────────────────────
 for k, v in [("week_offset", 0), ("n_weeks", 4),
-             ("modal_date", None), ("modal_edit_idx", None)]:
+             ("modal_date", None), ("modal_edit_idx", None),
+             ("expand_date", None), ("expand_idx", None)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
@@ -207,14 +208,24 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
   background-color: {K_GREEN_PALE} !important;
 }}
 
-/* Edit buttons — small and subtle */
-.ks-edit-btn button {{
-  background-color: transparent !important;
-  color: {K_GREY} !important;
-  border: 1px solid {K_LGREY} !important;
-  font-size: 11px !important;
-  padding: 2px 6px !important;
+/* Chip button wrapper — hides the button, chip is the visual trigger */
+.ks-chip-btn {{ margin-bottom: 4px; }}
+.ks-chip-btn button {{
+  background: transparent !important;
+  border: none !important;
+  color: {K_GREEN} !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  padding: 1px 4px !important;
+  margin-top: -2px !important;
   border-radius: 4px !important;
+  height: auto !important;
+  min-height: unset !important;
+  opacity: 0.7;
+}}
+.ks-chip-btn button:hover {{
+  background: {K_GREEN_PALE} !important;
+  opacity: 1;
 }}
 
 /* Week bar */
@@ -259,6 +270,72 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
              display: inline-block; margin-top: 2px; }}
 </style>
 """, unsafe_allow_html=True)
+
+# ── EXPAND CHIP DIALOG (view details + open edit) ────────────────────────────
+@st.dialog("Job Details", width="small")
+def expand_chip_dialog(date_key, job_idx):
+    if date_key not in jobs or job_idx >= len(jobs[date_key]):
+        st.warning("Job not found."); return
+    job = jobs[date_key][job_idx]
+    bg, fg, _ = TYPE_STYLE[job["type"]]
+
+    haulage = job.get("haulage", "None")
+    border_col = K_GREEN if haulage == "Internal Haulage" else ("#c0392b" if haulage == "External Haulage" else K_LGREY)
+
+    day_label = datetime.strptime(date_key, "%Y-%m-%d").strftime("%A %-d %B %Y")
+    st.markdown(f"<div style='font-size:12px;color:{K_GREY};opacity:.5;margin-bottom:.5rem;'>📅 {day_label}</div>", unsafe_allow_html=True)
+
+    # Big detail card
+    units_html = ""
+    if job.get("units"):
+        unit_items = "".join(
+            f'<span style="display:inline-block;background:{bg};color:{fg};'
+            f'border-radius:4px;padding:2px 8px;font-size:11px;font-weight:600;'
+            f'margin:2px;">{u} ×{q}</span>'
+            for u, q in job["units"].items() if q
+        )
+        units_html = f"<div style='margin-top:8px;'>{unit_items}</div>"
+
+    tags = f'<span style="background:rgba(0,0,0,.08);border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">{job["type"]}</span>'
+    if job.get("install_dismantle"):
+        tags += f' <span style="background:{K_GREEN};color:white;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">I/D</span>'
+    if haulage != "None":
+        haul_bg = K_GREEN_PALE if haulage == "Internal Haulage" else "#fdecea"
+        haul_fg = K_GREEN_DARK if haulage == "Internal Haulage" else "#7b1a1a"
+        haul_icon = "🚛" if haulage == "Internal Haulage" else "🚚"
+        tags += f' <span style="background:{haul_bg};color:{haul_fg};border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">{haul_icon} {haulage}</span>'
+
+    st.markdown(f"""
+    <div style="background:{bg};color:{fg};border-radius:10px;
+                border-left:5px solid {border_col};padding:14px 16px;">
+      <div style="font-size:20px;font-weight:800;margin-bottom:4px;">{job.get("customer","")}</div>
+      <div style="font-size:13px;opacity:.7;margin-bottom:10px;">{job.get("postcode","")}</div>
+      <div style="margin-bottom:8px;">{tags}</div>
+      {units_html}
+    </div>
+    """, unsafe_allow_html=True)
+
+    if job.get("added_by") or job.get("timestamp"):
+        who = job.get("added_by","")
+        ts  = job.get("timestamp","")
+        st.markdown(f"<div style='font-size:11px;color:{K_GREY};opacity:.5;margin-top:8px;'>🕐 Added by <b>{who}</b> · {ts}</div>", unsafe_allow_html=True)
+    if job.get("edited_at"):
+        st.markdown(f"<div style='font-size:11px;color:{K_GREY};opacity:.5;'>✏️ Edited by <b>{job.get('edited_by','')}</b> · {job['edited_at']}</div>", unsafe_allow_html=True)
+
+    st.markdown("<div style='margin-top:1rem'></div>", unsafe_allow_html=True)
+    ec1, ec2 = st.columns(2)
+    with ec1:
+        if st.button("✏️ Edit this job", use_container_width=True, type="primary"):
+            st.session_state["modal_date"]     = date_key
+            st.session_state["modal_edit_idx"] = job_idx
+            st.session_state["expand_date"]    = None
+            st.session_state["expand_idx"]     = None
+            st.rerun()
+    with ec2:
+        if st.button("Close", use_container_width=True):
+            st.session_state["expand_date"] = None
+            st.session_state["expand_idx"]  = None
+            st.rerun()
 
 # ── MODAL DIALOG ──────────────────────────────────────────────────────────────
 @st.dialog("Add / Edit Job", width="large")
@@ -316,6 +393,14 @@ def job_modal(date_key, edit_idx=None):
     def_id = edit_job.get("install_dismantle", False) if edit_job else False
     install_dismantle = st.checkbox("Install / Dismantle", value=def_id)
 
+    haulage_opts = ["None", "Internal Haulage", "External Haulage"]
+    def_haulage  = edit_job.get("haulage", "None") if edit_job else "None"
+    if def_haulage not in haulage_opts:
+        def_haulage = "None"
+    haulage = st.radio("Haulage", haulage_opts,
+                       index=haulage_opts.index(def_haulage),
+                       horizontal=True)
+
     st.markdown("<div style='margin-top:1rem'></div>", unsafe_allow_html=True)
     ba1, ba2, ba3 = st.columns([2, 2, 2])
 
@@ -348,6 +433,7 @@ def job_modal(date_key, edit_idx=None):
                     "type":              job_type,
                     "units":             {u: v for u, v in unit_vals.items() if v > 0},
                     "install_dismantle": install_dismantle,
+                    "haulage":           haulage,
                     "added_by":          orig_by,
                     "timestamp":         orig_ts,
                 }
@@ -383,10 +469,11 @@ def job_modal(date_key, edit_idx=None):
                 st.session_state["modal_edit_idx"] = None
                 st.rerun()
 
-# ── Trigger modal if state is set ────────────────────────────────────────────
-if st.session_state.modal_date:
-    job_modal(st.session_state.modal_date,
-              st.session_state.modal_edit_idx)
+# ── Trigger dialogs ───────────────────────────────────────────────────────────
+if st.session_state.expand_date is not None and st.session_state.expand_idx is not None:
+    expand_chip_dialog(st.session_state.expand_date, st.session_state.expand_idx)
+elif st.session_state.modal_date:
+    job_modal(st.session_state.modal_date, st.session_state.modal_edit_idx)
 
 # ── HEADER ────────────────────────────────────────────────────────────────────
 st.markdown(f"""
@@ -467,7 +554,7 @@ def render_week_bar(on_u, off_u):
     html += "</div></div>"
     return html
 
-def render_chip(job):
+def render_chip(job, chip_id=""):
     bg, fg, dot = TYPE_STYLE[job["type"]]
     name     = job.get("customer", "(no name)")
     postcode = job.get("postcode", "")
@@ -478,6 +565,18 @@ def render_chip(job):
         id_tag = (f'<span class="jchip-idtag" style="background:{K_GREEN};'
                   f'color:white;margin-left:3px;">I/D</span>')
 
+    # Haulage border
+    haulage = job.get("haulage", "None")
+    if haulage == "Internal Haulage":
+        border_style = f"border-left:4px solid {K_GREEN};"
+        haul_tag = f'<span class="jchip-idtag" style="background:{K_GREEN_PALE};color:{K_GREEN_DARK};margin-left:3px;">🚛 Internal</span>'
+    elif haulage == "External Haulage":
+        border_style = "border-left:4px solid #c0392b;"
+        haul_tag = '<span class="jchip-idtag" style="background:#fdecea;color:#7b1a1a;margin-left:3px;">🚚 External</span>'
+    else:
+        border_style = ""
+        haul_tag = ""
+
     # Timestamp line
     ts_parts = []
     if job.get("added_by"):
@@ -486,16 +585,16 @@ def render_chip(job):
         ts_parts.append(job["timestamp"])
     ts_html = ""
     if ts_parts:
-        ts_html = (f'<span class="jchip-ts">🕐 {" · ".join(ts_parts)}</span>')
+        ts_html = f'<span class="jchip-ts">🕐 {" · ".join(ts_parts)}</span>'
     if job.get("edited_at"):
-        ts_html += (f'<span class="jchip-ts">✏️ {job.get("edited_by","")} · {job["edited_at"]}</span>')
+        ts_html += f'<span class="jchip-ts">✏️ {job.get("edited_by","")} · {job["edited_at"]}</span>'
 
     return (
-        f'<div class="jchip" style="background:{bg};color:{fg}">'
+        f'<div class="jchip" id="{chip_id}" style="background:{bg};color:{fg};{border_style}">'
         f'<span class="jchip-name">{name}</span>'
         + (f'<span class="jchip-sub">{postcode}</span>' if postcode else "")
         + (f'<span class="jchip-units">{unit_str}</span>' if unit_str else "")
-        + f'<div style="margin-top:2px;">{type_tag}{id_tag}</div>'
+        + f'<div style="margin-top:2px;">{type_tag}{id_tag}{haul_tag}</div>'
         + ts_html
         + "</div>"
     )
@@ -544,14 +643,18 @@ for w in range(n_weeks):
                 f"<div class='day-body'>",
                 unsafe_allow_html=True)
 
-            # Job chips — clicking opens edit modal
+            # Job chips — click to expand, then edit from expanded view
             for ji, job in enumerate(jobs.get(dk, [])):
-                st.markdown(render_chip(job), unsafe_allow_html=True)
-                st.markdown("<div class='ks-edit-btn'>", unsafe_allow_html=True)
-                if st.button("✏️ Edit", key=f"edit_{dk}_{ji}",
+                chip_html = render_chip(job, chip_id=f"chip_{dk}_{ji}")
+                btn_key = f"chip_{dk}_{ji}"
+                st.markdown(
+                    f"<div class='ks-chip-btn' id='wrap_{btn_key}'>",
+                    unsafe_allow_html=True)
+                st.markdown(chip_html, unsafe_allow_html=True)
+                if st.button("👁 View / Edit", key=btn_key,
                              use_container_width=True):
-                    st.session_state["modal_date"]     = dk
-                    st.session_state["modal_edit_idx"] = ji
+                    st.session_state["expand_date"] = dk
+                    st.session_state["expand_idx"]  = ji
                     st.rerun()
                 st.markdown("</div>", unsafe_allow_html=True)
 
