@@ -34,6 +34,20 @@
         "added_by": "Nick",
         "timestamp": "18/03/2026 13:09"
       }
+    ],
+    "2026-03-20": [
+      {
+        "customer": "A Connoly",
+        "postcode": "M13",
+        "type": "Site Move",
+        "units": {
+          "20ft Store": 2
+        },
+        "install_dismantle": true,
+        "haulage": "Internal Haulage",
+        "added_by": "Nathan",
+        "timestamp": "18/03/2026 13:10"
+      }
     ]
   }
 }
