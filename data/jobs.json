@@ -20,6 +20,20 @@
         "edited_by": "Nathan",
         "edited_at": "18/03/2026 13:08"
       }
+    ],
+    "2026-03-19": [
+      {
+        "customer": "Joanne Bloggs",
+        "postcode": "WN1",
+        "type": "Off Hire",
+        "units": {
+          "32ft AV": 2
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "added_by": "Nick",
+        "timestamp": "18/03/2026 13:09"
+      }
     ]
   }
 }
