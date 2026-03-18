@@ -32,7 +32,7 @@ JOB_TYPES = ["On Hire", "Off Hire", "Site Move"]
 TEAM_MEMBERS = ["Jake", "Ewa", "Klaudia", "Chris", "Nick", "Chloe", "Peter", "Callum", "Nathan"]
 TYPE_STYLE = {
     "On Hire":   (K_GREEN_PALE, K_GREEN_DARK, "●"),
-    "Off Hire":  ("#fff3e8",    "#7a3a00",    "●"),
+    "Off Hire":  ("#fdecea",    "#7b1a1a",    "●"),
     "Site Move": ("#eef2ff",    "#2d3a8c",    "●"),
 }
 
@@ -107,8 +107,11 @@ def load_jobs():
         return {}, None
     return data.get("jobs", {}), sha
 
-def save_jobs(jobs_dict, sha):
-    gh_put(DATA_FILE, {"jobs": jobs_dict}, sha=sha)
+def save_jobs(jobs_dict, _sha_hint=None):
+    """Always fetch the latest SHA before writing to avoid 409 conflicts."""
+    _, fresh_sha = gh_get(DATA_FILE)
+    sha_to_use = fresh_sha or _sha_hint
+    gh_put(DATA_FILE, {"jobs": jobs_dict}, sha=sha_to_use)
     st.cache_data.clear()
 
 # ── Date helpers ──────────────────────────────────────────────────────────────
@@ -447,7 +450,7 @@ def job_modal(date_key, edit_idx=None):
                     jobs[date_key][edit_idx] = new_job
                 else:
                     jobs[date_key].append(new_job)
-                save_jobs(jobs, sha)
+                save_jobs(jobs)
                 st.session_state["modal_date"]     = None
                 st.session_state["modal_edit_idx"] = None
                 st.rerun()
@@ -464,7 +467,7 @@ def job_modal(date_key, edit_idx=None):
                 jobs[date_key].pop(edit_idx)
                 if not jobs[date_key]:
                     del jobs[date_key]
-                save_jobs(jobs, sha)
+                save_jobs(jobs)
                 st.session_state["modal_date"]     = None
                 st.session_state["modal_edit_idx"] = None
                 st.rerun()
