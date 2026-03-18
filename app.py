@@ -910,24 +910,59 @@ pills    = "".join(
 )
 pills += (f'<span class="pill" style="background:#f0f0f0;color:{K_GREY}">'
           f'📦 {sum(counts.values())} Total</span>')
+
+# MCS unpicked / unchecked counts (across all visible dates in schedule window)
+total_on_hire  = sum(1 for dk, jl in jobs.items()
+                     for ji, j in enumerate(jl) if j.get("type") == "On Hire")
+total_off_hire = sum(1 for dk, jl in jobs.items()
+                     for ji, j in enumerate(jl) if j.get("type") == "Off Hire")
+picked_count   = sum(1 for k, v in mcs.items() if v == "picked")
+checked_count  = sum(1 for k, v in mcs.items() if v == "checked")
+unpicked   = total_on_hire  - picked_count
+unchecked  = total_off_hire - checked_count
+
+if unpicked > 0:
+    pills += (f'<span class="pill" style="background:#fff3cd;color:#7a5c00;'
+              f'border:1px solid #e6c200;">'
+              f'⚠ {unpicked} On Hire Unpicked</span>')
+else:
+    pills += (f'<span class="pill" style="background:{K_GREEN_PALE};color:{K_GREEN_DARK};">'
+              f'✅ All On Hires Picked</span>')
+
+if unchecked > 0:
+    pills += (f'<span class="pill" style="background:#fff3cd;color:#7a5c00;'
+              f'border:1px solid #e6c200;">'
+              f'⚠ {unchecked} Off Hire Unchecked</span>')
+else:
+    pills += (f'<span class="pill" style="background:#fdecea;color:#7b1a1a;">'
+              f'✅ All Off Hires Checked</span>')
+
 st.markdown(pills, unsafe_allow_html=True)
 st.markdown("<div style='margin-bottom:.5rem'></div>", unsafe_allow_html=True)
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
 def week_unit_summary(ws):
     on_u, off_u = {}, {}
+    on_total = off_total = 0
     for d in range(7):
         dk = fmt_key(ws + timedelta(days=d))
         for job in jobs.get(dk, []):
-            target = off_u if job["type"] == "Off Hire" else on_u
+            is_off = job["type"] == "Off Hire"
+            target = off_u if is_off else on_u
             for u, q in job.get("units", {}).items():
-                if q: target[u] = target.get(u, 0) + q
-    return on_u, off_u
+                if q:
+                    target[u] = target.get(u, 0) + q
+                    if is_off:
+                        off_total += q
+                    else:
+                        on_total += q
+    return on_u, off_u, on_total, off_total
 
-def render_week_bar(on_u, off_u):
+def render_week_bar(on_u, off_u, on_total, off_total):
     if not on_u and not off_u:
         return ""
-    html = "<div class='wk-bar'><div class='wk-bar-title'>Week totals</div><div class='wk-unit-row'>"
+    html = "<div class='wk-bar'><div style='display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;'>"
+    html += "<div style='flex:1;min-width:0;'><div class='wk-bar-title'>Week totals</div><div class='wk-unit-row'>"
     if on_u:
         html += (f"<span style='font-size:10px;font-weight:700;color:{K_GREEN_DARK};"
                  f"margin-right:3px;'>ON:</span>")
@@ -936,6 +971,16 @@ def render_week_bar(on_u, off_u):
         html += (f"<span style='font-size:10px;font-weight:700;color:#7a3a00;"
                  f"margin:0 3px;'>OFF:</span>")
         html += "".join(f'<span class="wku off">{u} ×{q}</span>' for u, q in off_u.items())
+    html += "</div></div>"
+    # Asset totals on the right
+    html += (
+        f"<div style='text-align:right;flex-shrink:0;white-space:nowrap;'>"
+        f"<div style='font-size:10px;font-weight:700;color:{K_GREEN_DARK};margin-bottom:2px;'>"
+        f"📦 {on_total} assets on hire</div>"
+        f"<div style='font-size:10px;font-weight:700;color:#7b1a1a;'>"
+        f"📦 {off_total} assets off hire</div>"
+        f"</div>"
+    )
     html += "</div></div>"
     return html
 
@@ -1003,8 +1048,8 @@ for i, col in enumerate(hcols):
 
 for w in range(n_weeks):
     ws = start_date + timedelta(weeks=w)
-    on_u, off_u = week_unit_summary(ws)
-    st.markdown(render_week_bar(on_u, off_u), unsafe_allow_html=True)
+    on_u, off_u, on_total, off_total = week_unit_summary(ws)
+    st.markdown(render_week_bar(on_u, off_u, on_total, off_total), unsafe_allow_html=True)
     cols = st.columns(7)
 
     for d in range(7):
@@ -1107,7 +1152,7 @@ with st.expander("📸 Snapshot — export current view"):
     """
     for w in range(n_weeks):
         ws = start_date + timedelta(weeks=w)
-        on_u, off_u = week_unit_summary(ws)
+        on_u, off_u, on_total, off_total = week_unit_summary(ws)
         parts = []
         if on_u:
             parts.append("ON: " + ", ".join(f"{u}×{q}" for u, q in on_u.items()))
