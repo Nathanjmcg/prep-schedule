@@ -238,6 +238,32 @@
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:59"
       }
+    ],
+    "2026-04-10": [
+      {
+        "customer": "Argent Energy",
+        "postcode": "CH65",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 3,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1,
+            "Meeting Room": 2
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "18/03/2026 14:00"
+      }
     ]
   }
 }
