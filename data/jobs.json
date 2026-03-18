@@ -3,18 +3,6 @@
     "2026-03-19": [
       {
         "customer": "Joe Bloggs",
-        "postcode": "M30",
-        "type": "Off Hire",
-        "units": {
-          "24ft AV": 2
-        },
-        "install_dismantle": false,
-        "haulage": "External Haulage",
-        "added_by": "Nick",
-        "timestamp": "18/03/2026 13:14"
-      },
-      {
-        "customer": "Joe Bloggs",
         "postcode": "PR4",
         "type": "On Hire",
         "units": {
