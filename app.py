@@ -356,6 +356,12 @@ def day_view_dialog(date_key):
                     )
 
             tags = f'<span style="background:rgba(0,0,0,.09);border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">{job["type"]}</span>'
+            # Site Move sub-type
+            if job.get("site_move_type"):
+                sm_icon = "🔄" if job["site_move_type"] == "Movement on Same Site" else "🚚"
+                tags += (f' <span style="background:#eef2ff;color:#2d3a8c;border-radius:4px;'
+                         f'padding:2px 8px;font-size:11px;font-weight:700;">'
+                         f'{sm_icon} {job["site_move_type"]}</span>')
             if job.get("install_dismantle"):
                 tags += f' <span style="background:{K_GREEN};color:white;border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;">I/D</span>'
             if haulage != "None":
@@ -575,6 +581,20 @@ def job_modal(date_key, edit_idx=None):
         def_type = edit_job.get("type", "On Hire") if edit_job else "On Hire"
         job_type = st.selectbox("Type *", JOB_TYPES, index=JOB_TYPES.index(def_type))
 
+    # Site Move sub-type
+    site_move_type = None
+    if job_type == "Site Move":
+        sm_opts = ["Movement on Same Site", "Movement to New Site"]
+        def_sm  = edit_job.get("site_move_type", sm_opts[0]) if edit_job else sm_opts[0]
+        if def_sm not in sm_opts:
+            def_sm = sm_opts[0]
+        site_move_type = st.radio(
+            "Movement type",
+            sm_opts,
+            index=sm_opts.index(def_sm),
+            horizontal=True,
+        )
+
     # Mandatory Added By — always shown, pre-selected if editing
     name_opts = ["— Select your name *"] + TEAM_MEMBERS
     if edit_job and edit_job.get("added_by") in TEAM_MEMBERS:
@@ -711,6 +731,7 @@ def job_modal(date_key, edit_idx=None):
                     "customer":          customer.strip(),
                     "postcode":          postcode.strip().upper(),
                     "type":              job_type,
+                    "site_move_type":    site_move_type or "",
                     "units":             {u: v for u, v in unit_vals.items() if v > 0},
                     "av_configs":        av_configs,
                     "install_dismantle": install_dismantle,
@@ -847,6 +868,10 @@ def render_chip(job, chip_id=""):
     postcode = job.get("postcode", "")
     unit_str = "  ".join(f'{u}×{q}' for u, q in job.get("units", {}).items() if q)
     type_tag = f'<span class="jchip-idtag">{job["type"]}</span>'
+    if job.get("site_move_type"):
+        sm_icon = "🔄" if job["site_move_type"] == "Movement on Same Site" else "🚛"
+        type_tag += (f'<span class="jchip-idtag" style="margin-left:3px;">'
+                     f'{sm_icon} {job["site_move_type"]}</span>')
     id_tag   = ""
     if job.get("install_dismantle"):
         id_tag = (f'<span class="jchip-idtag" style="background:{K_GREEN};'
@@ -1105,6 +1130,7 @@ with st.expander("📥 Export to Excel / CSV"):
                 "Customer":          j.get("customer", ""),
                 "Postcode":          j.get("postcode", ""),
                 "Type":              j["type"],
+                "Site Move Type":    j.get("site_move_type", ""),
                 "Units":             unit_str,
                 "AV Configs":        av_cfg_str,
                 "Install/Dismantle": "Yes" if j.get("install_dismantle") else "",
