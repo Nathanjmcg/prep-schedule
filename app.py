@@ -5,6 +5,7 @@ import requests
 import pandas as pd
 from datetime import date, timedelta, datetime
 import io
+from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(page_title="Kensite Prep Schedule", layout="wide", page_icon="🏗️")
 
@@ -78,6 +79,10 @@ def check_password():
 
 if not check_password():
     st.stop()
+
+# Auto-refresh every 30 seconds for authenticated users — keeps all users in sync
+# limit=0 means refresh indefinitely; interval is in milliseconds
+st_autorefresh(interval=30_000, limit=0, key="schedule_autorefresh")
 
 # ── GitHub config ─────────────────────────────────────────────────────────────
 GITHUB_TOKEN  = st.secrets["GITHUB_TOKEN"]
