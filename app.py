@@ -340,6 +340,15 @@ def day_view_dialog(date_key):
                 haul_icon = "🚛" if haulage == "Internal Haulage" else "🚚"
                 tags += (f' <span style="background:{haul_bg};color:{haul_fg};border-radius:4px;'
                          f'padding:2px 8px;font-size:11px;font-weight:700;">{haul_icon} {haulage}</span>')
+            livery = job.get("livery", "Standard Livery")
+            if livery == "Customer Livery — Specify":
+                livery_note = job.get("livery_note", "")
+                livery_label = f"🎨 {livery_note}" if livery_note else "🎨 Customer Livery"
+                tags += (f' <span style="background:#f3e8ff;color:#5b21b6;border-radius:4px;'
+                         f'padding:2px 8px;font-size:11px;font-weight:700;">{livery_label}</span>')
+            else:
+                tags += (f' <span style="background:#f0f0f0;color:{K_GREY};border-radius:4px;'
+                         f'padding:2px 8px;font-size:11px;font-weight:700;">🏭 Standard Livery</span>')
 
             ts_line = ""
             if job.get("added_by") or job.get("timestamp"):
@@ -512,6 +521,24 @@ def job_modal(date_key, edit_idx=None):
                        index=haulage_opts.index(def_haulage),
                        horizontal=True)
 
+    st.markdown(f"<div style='font-size:13px;font-weight:700;color:{K_GREY};"
+                f"margin:1rem 0 .5rem;'>Cabin Livery</div>", unsafe_allow_html=True)
+    livery_opts = ["Standard Livery", "Customer Livery — Specify"]
+    def_livery  = edit_job.get("livery", "Standard Livery") if edit_job else "Standard Livery"
+    if def_livery not in livery_opts:
+        def_livery = "Standard Livery"
+    livery = st.radio("Cabin livery", livery_opts,
+                      index=livery_opts.index(def_livery),
+                      horizontal=True,
+                      label_visibility="collapsed")
+    livery_note = ""
+    if livery == "Customer Livery — Specify":
+        livery_note = st.text_input(
+            "Paint colour or RAL code",
+            value=edit_job.get("livery_note", "") if edit_job else "",
+            placeholder="e.g. RAL 5010, British Racing Green, #1A2B3C…"
+        )
+
     st.markdown("<div style='margin-top:1rem'></div>", unsafe_allow_html=True)
     ba1, ba2, ba3 = st.columns([2, 2, 2])
 
@@ -545,6 +572,8 @@ def job_modal(date_key, edit_idx=None):
                     "units":             {u: v for u, v in unit_vals.items() if v > 0},
                     "install_dismantle": install_dismantle,
                     "haulage":           haulage,
+                    "livery":            livery,
+                    "livery_note":       livery_note.strip() if livery == "Customer Livery — Specify" else "",
                     "added_by":          orig_by,
                     "timestamp":         orig_ts,
                 }
@@ -929,6 +958,9 @@ with st.expander("📥 Export to Excel / CSV"):
                 "Type":              j["type"],
                 "Units":             unit_str,
                 "Install/Dismantle": "Yes" if j.get("install_dismantle") else "",
+                "Haulage":           j.get("haulage", ""),
+                "Livery":            j.get("livery", "Standard Livery"),
+                "Livery Note":       j.get("livery_note", ""),
                 "Added By":          j.get("added_by", ""),
                 "Added At":          j.get("timestamp", ""),
                 "Edited By":         j.get("edited_by", ""),
