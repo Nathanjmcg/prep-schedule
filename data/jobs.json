@@ -45,6 +45,20 @@
         "added_by": "Nick",
         "timestamp": "18/03/2026 13:14"
       }
+    ],
+    "2026-03-20": [
+      {
+        "customer": "Joe Bloggs",
+        "postcode": "PR4",
+        "type": "Site Move",
+        "units": {
+          "32ft AV": 1
+        },
+        "install_dismantle": true,
+        "haulage": "Internal Haulage",
+        "added_by": "Nick",
+        "timestamp": "18/03/2026 13:15"
+      }
     ]
   }
 }
