@@ -29,6 +29,7 @@ UNIT_TYPES = [
 ]
 
 JOB_TYPES = ["On Hire", "Off Hire", "Site Move"]
+TEAM_MEMBERS = ["Jake", "Ewa", "Klaudia", "Chris", "Nick", "Chloe", "Peter", "Callum", "Nathan"]
 TYPE_STYLE = {
     "On Hire":   (K_GREEN_PALE, K_GREEN_DARK, "●"),
     "Off Hire":  ("#fff3e8",    "#7a3a00",    "●"),
@@ -192,6 +193,7 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
 .jchip-units{{font-size:10px;opacity:.6;display:block;margin-top:1px;}}
 .jchip-idtag{{display:inline-block;font-size:9.5px;font-weight:700;
               background:rgba(0,0,0,.08);border-radius:3px;padding:1px 5px;margin-top:2px;}}
+.jchip-ts{{display:block;font-size:9px;opacity:.55;margin-top:2px;font-style:italic;}}
 
 /* Add buttons — white background, green text/border */
 .ks-add-btn button {{
@@ -269,6 +271,18 @@ def job_modal(date_key, edit_idx=None):
     st.markdown(f"<div style='font-size:13px;color:{K_GREY};opacity:.6;"
                 f"margin-bottom:1rem;'>📅 {day_label}</div>", unsafe_allow_html=True)
 
+    # Show existing timestamp if editing
+    if edit_job and edit_job.get("added_by"):
+        ts  = edit_job.get("timestamp", "")
+        who = edit_job.get("added_by", "")
+        ts_str = f" at {ts}" if ts else ""
+        st.markdown(
+            f"<div style='font-size:11px;color:{K_GREY};opacity:.55;"
+            f"background:#f5f5f5;border-radius:5px;padding:4px 8px;"
+            f"margin-bottom:.75rem;display:inline-block;'>"
+            f"🕐 Added by <b>{who}</b>{ts_str}</div>",
+            unsafe_allow_html=True)
+
     fc1, fc2, fc3 = st.columns(3)
     with fc1:
         customer = st.text_input("Customer *",
@@ -279,6 +293,14 @@ def job_modal(date_key, edit_idx=None):
     with fc3:
         def_type = edit_job.get("type", "On Hire") if edit_job else "On Hire"
         job_type = st.selectbox("Type *", JOB_TYPES, index=JOB_TYPES.index(def_type))
+
+    # Mandatory Added By — always shown, pre-selected if editing
+    name_opts = ["— Select your name *"] + TEAM_MEMBERS
+    if edit_job and edit_job.get("added_by") in TEAM_MEMBERS:
+        name_default = name_opts.index(edit_job["added_by"])
+    else:
+        name_default = 0
+    added_by = st.selectbox("Added by *", name_opts, index=name_default)
 
     st.markdown(f"<div style='font-size:13px;font-weight:700;color:{K_GREY};"
                 f"margin:1rem 0 .5rem;'>Units</div>", unsafe_allow_html=True)
@@ -299,16 +321,40 @@ def job_modal(date_key, edit_idx=None):
 
     with ba1:
         if st.button("✅ Save Job", type="primary", use_container_width=True):
+            errors = []
             if not customer.strip():
-                st.warning("Please enter a customer name.")
+                errors.append("Please enter a customer name.")
+            if added_by == "— Select your name *":
+                errors.append("Please select who is adding this entry.")
+            if errors:
+                for e in errors:
+                    st.warning(e)
             else:
+                # Preserve original timestamp/added_by if editing, otherwise stamp now
+                if edit_job and edit_idx is not None:
+                    orig_ts      = edit_job.get("timestamp", "")
+                    orig_by      = edit_job.get("added_by", added_by)
+                    edited_ts    = datetime.now().strftime("%d/%m/%Y %H:%M")
+                    edited_by    = added_by
+                else:
+                    orig_ts   = datetime.now().strftime("%d/%m/%Y %H:%M")
+                    orig_by   = added_by
+                    edited_ts = None
+                    edited_by = None
+
                 new_job = {
                     "customer":          customer.strip(),
                     "postcode":          postcode.strip().upper(),
                     "type":              job_type,
                     "units":             {u: v for u, v in unit_vals.items() if v > 0},
                     "install_dismantle": install_dismantle,
+                    "added_by":          orig_by,
+                    "timestamp":         orig_ts,
                 }
+                if edited_ts:
+                    new_job["edited_by"] = edited_by
+                    new_job["edited_at"] = edited_ts
+
                 if date_key not in jobs:
                     jobs[date_key] = []
                 if edit_idx is not None:
@@ -426,17 +472,31 @@ def render_chip(job):
     name     = job.get("customer", "(no name)")
     postcode = job.get("postcode", "")
     unit_str = "  ".join(f'{u}×{q}' for u, q in job.get("units", {}).items() if q)
-    type_tag = (f'<span class="jchip-idtag">{job["type"]}</span>')
+    type_tag = f'<span class="jchip-idtag">{job["type"]}</span>'
     id_tag   = ""
     if job.get("install_dismantle"):
         id_tag = (f'<span class="jchip-idtag" style="background:{K_GREEN};'
                   f'color:white;margin-left:3px;">I/D</span>')
+
+    # Timestamp line
+    ts_parts = []
+    if job.get("added_by"):
+        ts_parts.append(job["added_by"])
+    if job.get("timestamp"):
+        ts_parts.append(job["timestamp"])
+    ts_html = ""
+    if ts_parts:
+        ts_html = (f'<span class="jchip-ts">🕐 {" · ".join(ts_parts)}</span>')
+    if job.get("edited_at"):
+        ts_html += (f'<span class="jchip-ts">✏️ {job.get("edited_by","")} · {job["edited_at"]}</span>')
+
     return (
         f'<div class="jchip" style="background:{bg};color:{fg}">'
         f'<span class="jchip-name">{name}</span>'
         + (f'<span class="jchip-sub">{postcode}</span>' if postcode else "")
         + (f'<span class="jchip-units">{unit_str}</span>' if unit_str else "")
         + f'<div style="margin-top:2px;">{type_tag}{id_tag}</div>'
+        + ts_html
         + "</div>"
     )
 
@@ -631,6 +691,10 @@ with st.expander("📥 Export to Excel / CSV"):
                 "Type":              j["type"],
                 "Units":             unit_str,
                 "Install/Dismantle": "Yes" if j.get("install_dismantle") else "",
+                "Added By":          j.get("added_by", ""),
+                "Added At":          j.get("timestamp", ""),
+                "Edited By":         j.get("edited_by", ""),
+                "Edited At":         j.get("edited_at", ""),
             })
     if rows:
         df = pd.DataFrame(rows)
