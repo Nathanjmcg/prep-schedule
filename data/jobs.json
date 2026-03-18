@@ -218,7 +218,8 @@
           "10ft Store": 1,
           "2+1": 1,
           "Tank": 1,
-          "Steps": 2
+          "Steps": 2,
+          "Solar Loo Single": 1
         },
         "av_configs": {
           "24ft AV": {
@@ -236,7 +237,9 @@
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Nathan",
-        "timestamp": "18/03/2026 13:59"
+        "timestamp": "18/03/2026 13:59",
+        "edited_by": "Nathan",
+        "edited_at": "18/03/2026 14:02"
       }
     ],
     "2026-04-10": [
