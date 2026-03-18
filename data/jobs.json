@@ -1,26 +1,5 @@
 {
   "jobs": {
-    "2026-03-18": [
-      {
-        "customer": "Joe Bloggs",
-        "postcode": "WN6",
-        "type": "On Hire",
-        "units": {
-          "32ft AV": 5,
-          "20ft Store": 1,
-          "2+1": 1,
-          "Tank": 1,
-          "Steps": 2,
-          "IBC": 1
-        },
-        "install_dismantle": true,
-        "haulage": "External Haulage",
-        "added_by": "Nathan",
-        "timestamp": "18/03/2026 13:08",
-        "edited_by": "Nathan",
-        "edited_at": "18/03/2026 13:08"
-      }
-    ],
     "2026-03-19": [
       {
         "customer": "Joanne Bloggs",
