@@ -14,6 +14,30 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:37"
+      },
+      {
+        "customer": "Bethell Construction",
+        "postcode": "M22",
+        "type": "On Hire",
+        "units": {
+          "32ft AV": 2,
+          "20ft AV": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1,
+            "Drying Room": 1
+          },
+          "20ft AV": {
+            "Office": 2
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Customer Livery \u2014 Specify",
+        "livery_note": "Bethell Blue",
+        "added_by": "Nathan",
+        "timestamp": "18/03/2026 13:46"
       }
     ]
   }
