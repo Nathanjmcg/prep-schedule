@@ -13,10 +13,12 @@
           "Steps": 2,
           "IBC": 1
         },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
+        "install_dismantle": true,
+        "haulage": "External Haulage",
         "added_by": "Nathan",
-        "timestamp": "18/03/2026 13:08"
+        "timestamp": "18/03/2026 13:08",
+        "edited_by": "Nathan",
+        "edited_at": "18/03/2026 13:08"
       }
     ]
   }
