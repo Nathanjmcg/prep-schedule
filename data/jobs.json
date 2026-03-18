@@ -18,6 +18,20 @@
         "haulage": "Internal Haulage",
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:13"
+      },
+      {
+        "customer": "chandos",
+        "postcode": "BB2",
+        "type": "On Hire",
+        "units": {
+          "32ft AV": 2,
+          "2+1": 1,
+          "IBC": 2
+        },
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "added_by": "Nick",
+        "timestamp": "18/03/2026 13:28"
       }
     ],
     "2026-03-19": [
