@@ -26,6 +26,7 @@ UNIT_TYPES = [
     "20ft Store", "10ft Store",
     "Stairs", "2+1", "3+1", "4+2",
     "Tank", "Steps", "IBC", "Generator",
+    "Solar Loo Single", "Solar Loo Double", "Chemiloo",
 ]
 
 # AV units that support configuration breakdown
