@@ -949,6 +949,7 @@ st.markdown("<div style='margin-bottom:.5rem'></div>", unsafe_allow_html=True)
 def week_unit_summary(ws):
     on_u, off_u = {}, {}
     on_total = off_total = 0
+    internal_dels = external_dels = 0
     for d in range(7):
         dk = fmt_key(ws + timedelta(days=d))
         for job in jobs.get(dk, []):
@@ -961,12 +962,18 @@ def week_unit_summary(ws):
                         off_total += q
                     else:
                         on_total += q
-    return on_u, off_u, on_total, off_total
+            h = job.get("haulage", "None")
+            if h == "Internal Haulage":
+                internal_dels += 1
+            elif h == "External Haulage":
+                external_dels += 1
+    return on_u, off_u, on_total, off_total, internal_dels, external_dels
 
-def render_week_bar(on_u, off_u, on_total, off_total):
-    if not on_u and not off_u:
+def render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_dels):
+    if not on_u and not off_u and not internal_dels and not external_dels:
         return ""
-    html = "<div class='wk-bar'><div style='display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;'>"
+    html = "<div class='wk-bar'><div style='display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;'>"
+    # Left — unit breakdown
     html += "<div style='flex:1;min-width:0;'><div class='wk-bar-title'>Week totals</div><div class='wk-unit-row'>"
     if on_u:
         html += (f"<span style='font-size:10px;font-weight:700;color:{K_GREEN_DARK};"
@@ -977,7 +984,18 @@ def render_week_bar(on_u, off_u, on_total, off_total):
                  f"margin:0 3px;'>OFF:</span>")
         html += "".join(f'<span class="wku off">{u} ×{q}</span>' for u, q in off_u.items())
     html += "</div></div>"
-    # Asset totals on the right
+    # Middle — delivery counters
+    html += (
+        f"<div style='flex-shrink:0;border-left:1px solid #c3dfc9;padding-left:10px;'>"
+        f"<div class='wk-bar-title'>Deliveries</div>"
+        f"<div style='display:flex;gap:6px;margin-top:2px;'>"
+        f"<span style='background:{K_GREEN};color:white;border-radius:4px;"
+        f"padding:2px 8px;font-size:10.5px;font-weight:600;'>🚛 {internal_dels} Internal</span>"
+        f"<span style='background:#c0392b;color:white;border-radius:4px;"
+        f"padding:2px 8px;font-size:10.5px;font-weight:600;'>🚚 {external_dels} External</span>"
+        f"</div></div>"
+    )
+    # Right — asset totals
     html += (
         f"<div style='text-align:right;flex-shrink:0;white-space:nowrap;'>"
         f"<div style='font-size:10px;font-weight:700;color:{K_GREEN_DARK};margin-bottom:2px;'>"
@@ -1053,8 +1071,8 @@ for i, col in enumerate(hcols):
 
 for w in range(n_weeks):
     ws = start_date + timedelta(weeks=w)
-    on_u, off_u, on_total, off_total = week_unit_summary(ws)
-    st.markdown(render_week_bar(on_u, off_u, on_total, off_total), unsafe_allow_html=True)
+    on_u, off_u, on_total, off_total, internal_dels, external_dels = week_unit_summary(ws)
+    st.markdown(render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_dels), unsafe_allow_html=True)
     cols = st.columns(7)
 
     for d in range(7):
@@ -1157,7 +1175,7 @@ with st.expander("📸 Snapshot — export current view"):
     """
     for w in range(n_weeks):
         ws = start_date + timedelta(weeks=w)
-        on_u, off_u, on_total, off_total = week_unit_summary(ws)
+        on_u, off_u, on_total, off_total, internal_dels, external_dels = week_unit_summary(ws)
         parts = []
         if on_u:
             parts.append("ON: " + ", ".join(f"{u}×{q}" for u, q in on_u.items()))
