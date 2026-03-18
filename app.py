@@ -16,17 +16,16 @@ K_GREY       = "#40424a"
 K_LGREY      = "#dadada"
 K_WHITE      = "#ffffff"
 
-KENSITE_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" height="32">
-  <rect width="120" height="40" rx="4" fill="#0d823b"/>
-  <text x="10" y="27" font-family="Figtree,Calibri,sans-serif" font-weight="800"
-        font-size="18" fill="white" letter-spacing="1">KENSITE</text>
-</svg>"""
+_SVG_RAW = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40"><rect width="120" height="40" rx="4" fill="#0d823b"/><text x="10" y="27" font-family="Figtree,Calibri,sans-serif" font-weight="800" font-size="18" fill="white" letter-spacing="1">KENSITE</text></svg>'
+_SVG_B64 = base64.b64encode(_SVG_RAW.encode()).decode()
+KENSITE_LOGO_HTML = f'<img src="data:image/svg+xml;base64,{_SVG_B64}" height="32" alt="Kensite"/>'
 
 UNIT_TYPES = [
     "32ft AV", "24ft AV", "20ft AV", "10ft AV",
     "Mobile Welfare", "Static Welfare",
+    "20ft Store", "10ft Store",
     "Stairs", "2+1", "3+1", "4+2",
-    "Tank", "Steps", "IBC",
+    "Tank", "Steps", "IBC", "Generator",
 ]
 
 JOB_TYPES = ["On Hire", "Off Hire", "Site Move"]
@@ -53,7 +52,7 @@ def check_password():
     </style>
     <div class="login-outer">
       <div class="login-card">
-        <div style="margin-bottom:12px;">{KENSITE_SVG}</div>
+        <div style="margin-bottom:12px;">{KENSITE_LOGO_HTML}</div>
         <h2>Prep Schedule</h2>
         <p>Enter your password to continue</p>
       </div>
@@ -159,18 +158,30 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
 .jchip-idtag{{display:inline-block;font-size:9.5px;font-weight:700;
               background:rgba(0,0,0,.08);border-radius:3px;padding:1px 5px;margin-top:2px;}}
 
-/* Green Add buttons — target Streamlit buttons inside day columns */
-button[data-testid="baseButton-secondary"]{{
+/* Green Add buttons */
+div[data-testid="stButton"] button[kind="secondary"] {{
   border-radius:6px !important;
 }}
-.green-add-btn > div > button {{
-  background-color: {K_GREEN} !important;
-  color: white !important;
-  border: none !important;
-  font-weight: 600 !important;
+/* Target all add_ prefixed buttons to make them green */
+div[data-testid="stButton"]:has(button[data-testid="baseButton-secondary"]) button {{
+  border-radius:6px !important;
 }}
-.green-add-btn > div > button:hover {{
-  background-color: {K_GREEN_DARK} !important;
+.stButton button[id*="add_"] {{
+  background-color:{K_GREEN} !important;
+  color:white !important;
+  border:none !important;
+  font-weight:600 !important;
+}}
+/* Broad green override for add buttons via container class */
+.ks-add-btn button {{
+  background-color:{K_GREEN} !important;
+  color:white !important;
+  border:none !important;
+  font-weight:700 !important;
+  border-radius:6px !important;
+}}
+.ks-add-btn button:hover {{
+  background-color:{K_GREEN_DARK} !important;
 }}
 
 /* Week bar */
@@ -207,6 +218,17 @@ button[data-testid="baseButton-secondary"]{{
 .snap-footer{{background:#f9f9f9;padding:8px 16px;border:1px solid {K_LGREY};
               border-top:none;border-radius:0 0 10px 10px;
               font-size:10px;color:{K_GREY};opacity:.6;text-align:right;}}
+
+/* Primary buttons — Kensite green globally */
+button[data-testid="baseButton-primary"] {{
+  background-color:{K_GREEN} !important;
+  border-color:{K_GREEN} !important;
+  color:white !important;
+}}
+button[data-testid="baseButton-primary"]:hover {{
+  background-color:{K_GREEN_DARK} !important;
+  border-color:{K_GREEN_DARK} !important;
+}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -297,9 +319,8 @@ if st.session_state.modal_date:
 # ── HEADER ────────────────────────────────────────────────────────────────────
 st.markdown(f"""
 <div class="ks-header">
-  {KENSITE_SVG}
+  {KENSITE_LOGO_HTML}
   <span class="ks-title">Prep Schedule</span>
-  <span class="ks-sub">Complete Site Solutions</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -439,8 +460,9 @@ for w in range(n_weeks):
             st.markdown("</div></div>", unsafe_allow_html=True)
 
             # Green Add button
-            st.markdown("<div class='green-add-btn'>", unsafe_allow_html=True)
-            if st.button("＋ Add", key=f"add_{dk}", use_container_width=True):
+            st.markdown("<div class='ks-add-btn'>", unsafe_allow_html=True)
+            if st.button("＋ Add", key=f"add_{dk}", use_container_width=True,
+                         type="primary"):
                 st.session_state["modal_date"]     = dk
                 st.session_state["modal_edit_idx"] = None
                 st.rerun()
