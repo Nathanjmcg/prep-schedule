@@ -14,6 +14,20 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:37"
+      },
+      {
+        "customer": "Joe Bloggs",
+        "postcode": "M1",
+        "type": "Site Move",
+        "site_move_type": "Movement on Same Site",
+        "units": {},
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "18/03/2026 15:10"
       }
     ],
     "2026-03-19": [
