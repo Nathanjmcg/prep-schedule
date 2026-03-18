@@ -747,12 +747,10 @@ for w in range(n_weeks):
             day_jobs = jobs.get(dk, [])
             summary_html = ""
             if day_jobs:
-                # Count by type
                 type_counts = {}
                 for job in day_jobs:
                     t = job.get("type", "On Hire")
                     type_counts[t] = type_counts.get(t, 0) + 1
-
                 for t, cnt in type_counts.items():
                     bg, fg, _ = TYPE_STYLE[t]
                     label = f"{cnt} × {t}"
@@ -762,7 +760,6 @@ for w in range(n_weeks):
                         f'<span class="day-sum-label">{label}</span>'
                         f'</div>'
                     )
-                # Haulage indicators
                 haul_icons = []
                 for job in day_jobs:
                     h = job.get("haulage", "None")
@@ -778,7 +775,6 @@ for w in range(n_weeks):
             else:
                 summary_html = "<div class='day-empty'>No jobs</div>"
 
-            # Day card — header + summary
             bh_tag = (f"<div class='bh-label'>🏴󠁧󠁢󠁥󠁮󠁧󠁿 {bh_name}</div>" if is_bh else "")
             st.markdown(
                 f"<div class='day-card {card_cls}'>"
@@ -790,10 +786,15 @@ for w in range(n_weeks):
                 f"</div>",
                 unsafe_allow_html=True)
 
-            # Single button per day — opens Day View dialog
-            st.markdown("<div class='ks-day-btn'>", unsafe_allow_html=True)
-            btn_label = f"{'👁 View' if day_jobs else '＋ Add'}"
-            if st.button(btn_label, key=f"day_{dk}", use_container_width=True):
+    # ── Button row — always flat, one per day, outside the card columns ──────
+    btn_cols = st.columns(7)
+    for d in range(7):
+        day      = ws + timedelta(days=d)
+        dk       = fmt_key(day)
+        day_jobs = jobs.get(dk, [])
+        with btn_cols[d]:
+            st.markdown("<div class='ks-add-btn'>", unsafe_allow_html=True)
+            if st.button("＋ Add / View", key=f"day_{dk}", use_container_width=True):
                 if day_jobs:
                     st.session_state["day_view_date"] = dk
                 else:
