@@ -161,7 +161,8 @@ def get_bank_holidays():
 for k, v in [("week_offset", 0), ("n_weeks", 4),
              ("modal_date", None), ("modal_edit_idx", None),
              ("expand_date", None), ("expand_idx", None),
-             ("day_view_date", None)]:
+             ("day_view_date", None),
+             ("move_from_date", None), ("move_job_idx", None)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
@@ -381,7 +382,7 @@ def day_view_dialog(date_key):
                 ts_line += (f'<div style="font-size:10px;opacity:.5;">'
                             f'✏️ {job.get("edited_by","")} · {job["edited_at"]}</div>')
 
-            rc1, rc2 = st.columns([5, 1])
+            rc1, rc2, rc3 = st.columns([5, 1, 1])
             with rc1:
                 st.markdown(f"""
                 <div style="background:{bg};color:{fg};border-radius:10px;
@@ -395,10 +396,17 @@ def day_view_dialog(date_key):
                 </div>
                 """, unsafe_allow_html=True)
             with rc2:
-                if st.button("✏️ Edit", key=f"dv_edit_{date_key}_{ji}",
-                             use_container_width=True):
+                if st.button("✏️", key=f"dv_edit_{date_key}_{ji}",
+                             use_container_width=True, help="Edit this job"):
                     st.session_state["modal_date"]     = date_key
                     st.session_state["modal_edit_idx"] = ji
+                    st.session_state["day_view_date"]  = None
+                    st.rerun()
+            with rc3:
+                if st.button("📅", key=f"dv_move_{date_key}_{ji}",
+                             use_container_width=True, help="Move to another day"):
+                    st.session_state["move_from_date"] = date_key
+                    st.session_state["move_job_idx"]   = ji
                     st.session_state["day_view_date"]  = None
                     st.rerun()
 
@@ -413,6 +421,58 @@ def day_view_dialog(date_key):
     with ac2:
         if st.button("Close", use_container_width=True):
             st.session_state["day_view_date"] = None
+            st.rerun()
+
+# ── MOVE JOB DIALOG ──────────────────────────────────────────────────────────
+@st.dialog("Move Job to Another Day", width="small")
+def move_job_dialog(from_date, job_idx):
+    if from_date not in jobs or job_idx >= len(jobs[from_date]):
+        st.warning("Job not found."); return
+
+    job       = jobs[from_date][job_idx]
+    from_dt   = datetime.strptime(from_date, "%Y-%m-%d").date()
+    from_label = from_dt.strftime("%A %-d %B %Y")
+    bg, fg, _ = TYPE_STYLE[job["type"]]
+
+    st.markdown(
+        f"<div style='background:{bg};color:{fg};border-radius:8px;"
+        f"padding:10px 14px;margin-bottom:1rem;font-weight:700;font-size:14px;'>"
+        f"{job.get('customer','')} &nbsp;·&nbsp; "
+        f"<span style='font-weight:400;font-size:12px;'>{from_label}</span></div>",
+        unsafe_allow_html=True)
+
+    st.markdown("**Move to:**")
+    to_date = st.date_input("New date", value=from_dt, key="move_to_date",
+                            label_visibility="collapsed")
+
+    if to_date == from_dt:
+        st.info("Pick a different date to move this job.")
+
+    mc1, mc2 = st.columns(2)
+    with mc1:
+        if st.button("✅ Confirm Move", type="primary", use_container_width=True,
+                     disabled=(to_date == from_dt)):
+            to_key = fmt_key(to_date)
+            # Remove from source
+            job_to_move = jobs[from_date].pop(job_idx)
+            if not jobs[from_date]:
+                del jobs[from_date]
+            # Stamp the move
+            job_to_move["moved_by"]   = "—"   # no user context here
+            job_to_move["moved_from"] = from_date
+            job_to_move["edited_at"]  = datetime.now().strftime("%d/%m/%Y %H:%M")
+            # Add to destination
+            jobs.setdefault(to_key, []).append(job_to_move)
+            save_jobs(jobs)
+            st.session_state["day_view_date"]  = None
+            st.session_state["move_from_date"] = None
+            st.session_state["move_job_idx"]   = None
+            st.success(f"Moved to {to_date.strftime('%a %-d %b')}.")
+            st.rerun()
+    with mc2:
+        if st.button("Cancel", use_container_width=True):
+            st.session_state["move_from_date"] = None
+            st.session_state["move_job_idx"]   = None
             st.rerun()
 
 # ── EXPAND CHIP DIALOG (view details + open edit) ────────────────────────────
@@ -617,6 +677,20 @@ def job_modal(date_key, edit_idx=None):
                 errors.append("Please enter a customer name.")
             if added_by == "— Select your name *":
                 errors.append("Please select who is adding this entry.")
+            # AV config validation — configs must equal unit qty if any configs entered
+            for av_u in av_units_with_qty:
+                qty       = unit_vals[av_u]
+                cfg_total = sum(av_configs.get(av_u, {}).values())
+                if cfg_total > 0 and cfg_total != qty:
+                    errors.append(
+                        f"{av_u}: {cfg_total} layout{'s' if cfg_total != 1 else ''} assigned "
+                        f"but {qty} unit{'s' if qty != 1 else ''} selected — please make them match."
+                    )
+                elif cfg_total == 0 and qty > 0:
+                    errors.append(
+                        f"{av_u}: please assign a layout configuration for "
+                        f"{'all' if qty > 1 else 'this'} {qty} unit{'s' if qty != 1 else ''}."
+                    )
             if errors:
                 for e in errors:
                     st.warning(e)
@@ -679,7 +753,9 @@ def job_modal(date_key, edit_idx=None):
                 st.rerun()
 
 # ── Trigger dialogs ───────────────────────────────────────────────────────────
-if st.session_state.day_view_date:
+if st.session_state.move_from_date is not None and st.session_state.move_job_idx is not None:
+    move_job_dialog(st.session_state.move_from_date, st.session_state.move_job_idx)
+elif st.session_state.day_view_date:
     day_view_dialog(st.session_state.day_view_date)
 elif st.session_state.expand_date is not None and st.session_state.expand_idx is not None:
     expand_chip_dialog(st.session_state.expand_date, st.session_state.expand_idx)
