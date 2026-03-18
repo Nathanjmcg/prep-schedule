@@ -29,9 +29,11 @@
           "IBC": 2
         },
         "install_dismantle": false,
-        "haulage": "External Haulage",
+        "haulage": "Internal Haulage",
         "added_by": "Nick",
-        "timestamp": "18/03/2026 13:28"
+        "timestamp": "18/03/2026 13:28",
+        "edited_by": "Nick",
+        "edited_at": "18/03/2026 13:28"
       }
     ],
     "2026-03-19": [
