@@ -283,6 +283,22 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "19/03/2026 14:50"
+      },
+      {
+        "customer": "A Connolly",
+        "postcode": "BL5",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "19/03/2026 14:51"
       }
     ],
     "2026-03-23": [
