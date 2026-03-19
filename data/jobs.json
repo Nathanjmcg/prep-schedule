@@ -73,9 +73,17 @@
         "type": "Off Hire",
         "site_move_type": "",
         "units": {
-          "24ft AV": 1
+          "24ft AV": 1,
+          "10ft AV": 1,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1
         },
         "av_configs": {
+          "10ft AV": {
+            "Office": 1
+          },
           "24ft AV": {
             "Office": 1
           }
@@ -85,7 +93,9 @@
         "livery": "Customer Livery \u2014 Specify",
         "livery_note": "Green",
         "added_by": "Nathan",
-        "timestamp": "19/03/2026 14:24"
+        "timestamp": "19/03/2026 14:24",
+        "edited_by": "Nathan",
+        "edited_at": "19/03/2026 14:24"
       }
     ],
     "2026-03-20": [
