@@ -258,6 +258,26 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "19/03/2026 14:45"
+      },
+      {
+        "customer": "Manchester and Cheshire",
+        "postcode": "CW1",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "19/03/2026 14:46"
       }
     ],
     "2026-03-23": [
