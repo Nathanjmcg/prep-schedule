@@ -242,6 +242,22 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "19/03/2026 14:40"
+      },
+      {
+        "customer": "Parklands",
+        "postcode": "",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "19/03/2026 14:45"
       }
     ],
     "2026-03-23": [
