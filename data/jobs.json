@@ -709,6 +709,32 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "19/03/2026 15:11"
+      },
+      {
+        "customer": "P Casey",
+        "postcode": "BB2",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 3,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 3
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1,
+            "Drying Room": 1,
+            "Meeting Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "19/03/2026 15:13"
       }
     ]
   },
