@@ -657,6 +657,35 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "19/03/2026 15:07"
+      },
+      {
+        "customer": "Think Hire",
+        "postcode": "B9",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1,
+          "24ft AV": 2,
+          "10ft Store": 2,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "Chemiloo": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Office": 2
+          },
+          "32ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "19/03/2026 15:09"
       }
     ]
   },
