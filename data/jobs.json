@@ -176,6 +176,22 @@
         "edited_at": "19/03/2026 14:38",
         "moved_by": "\u2014",
         "moved_from": "2026-03-20"
+      },
+      {
+        "customer": "CLC Contractors",
+        "postcode": "L8",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "19/03/2026 14:39"
       }
     ],
     "2026-03-20": [
