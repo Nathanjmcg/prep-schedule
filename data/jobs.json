@@ -96,6 +96,22 @@
         "timestamp": "19/03/2026 14:24",
         "edited_by": "Nathan",
         "edited_at": "19/03/2026 14:24"
+      },
+      {
+        "customer": "Northstone",
+        "postcode": "BL6",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 3
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "19/03/2026 14:25"
       }
     ],
     "2026-03-20": [
