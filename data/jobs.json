@@ -66,6 +66,26 @@
         "moved_by": "\u2014",
         "moved_from": "2026-03-18",
         "edited_at": "18/03/2026 16:02"
+      },
+      {
+        "customer": "John Reilly",
+        "postcode": "PR26",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Customer Livery \u2014 Specify",
+        "livery_note": "Green",
+        "added_by": "Nathan",
+        "timestamp": "19/03/2026 14:24"
       }
     ],
     "2026-03-20": [
