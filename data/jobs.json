@@ -267,6 +267,22 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "19/03/2026 14:49"
+      },
+      {
+        "customer": "Jones Homes",
+        "postcode": "CW1",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Solar Loo Single": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "19/03/2026 14:50"
       }
     ],
     "2026-03-23": [
