@@ -523,6 +523,31 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:58"
+      },
+      {
+        "customer": "Bethhel Construction",
+        "postcode": "BB4",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 3,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1,
+            "Office": 1,
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Customer Livery \u2014 Specify",
+        "livery_note": "Bethell Blue",
+        "added_by": "Nathan",
+        "timestamp": "19/03/2026 15:06"
       }
     ],
     "2026-03-31": [
