@@ -424,6 +424,22 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:56"
+      },
+      {
+        "customer": "A Connolly",
+        "postcode": "BL1",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Static Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "19/03/2026 14:59"
       }
     ],
     "2026-03-25": [
