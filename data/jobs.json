@@ -806,6 +806,28 @@
         "added_by": "Nathan",
         "timestamp": "20/03/2026 14:11"
       }
+    ],
+    "2026-03-30": [
+      {
+        "customer": "Duchy Homes Limited",
+        "postcode": "M24",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": true,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "20/03/2026 14:17"
+      }
     ]
   },
   "mcs": {
