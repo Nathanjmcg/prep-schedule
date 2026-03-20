@@ -397,6 +397,22 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "20/03/2026 14:37"
+      },
+      {
+        "customer": "Proservice Building Services Marketplace Plc",
+        "postcode": "M24",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": true,
+        "haulage": "External Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "20/03/2026 14:56"
       }
     ],
     "2026-03-24": [
