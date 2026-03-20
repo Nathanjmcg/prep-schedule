@@ -788,6 +788,24 @@
         "added_by": "Nathan",
         "timestamp": "20/03/2026 14:07"
       }
+    ],
+    "2026-04-07": [
+      {
+        "customer": "Manchester and Cheshire construction Company Ltd",
+        "postcode": "SK12 1NW",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "4+2": 1
+        },
+        "av_configs": {},
+        "install_dismantle": true,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "20/03/2026 14:10"
+      }
     ]
   },
   "mcs": {
