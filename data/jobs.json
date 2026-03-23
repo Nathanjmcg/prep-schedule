@@ -413,6 +413,22 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "20/03/2026 14:56"
+      },
+      {
+        "customer": "Elite Access Solutions (EAS) Ltd",
+        "postcode": "M30",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "23/03/2026 09:37"
       }
     ],
     "2026-03-24": [
