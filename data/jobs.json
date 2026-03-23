@@ -959,6 +959,37 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "20/03/2026 14:24"
+      },
+      {
+        "customer": "GRS Contractors",
+        "postcode": "WN6",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1,
+          "24ft AV": 1,
+          "10ft AV": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1
+        },
+        "av_configs": {
+          "10ft AV": {
+            "Office": 1
+          },
+          "24ft AV": {
+            "Canteen": 1
+          },
+          "32ft AV": {
+            "Other": 1
+          }
+        },
+        "install_dismantle": true,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "23/03/2026 13:54"
       }
     ]
   },
