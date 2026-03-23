@@ -568,16 +568,12 @@
         "site_move_type": "",
         "units": {
           "32ft AV": 4,
-          "24ft AV": 1,
           "4+2": 1,
           "Tank": 1,
           "Steps": 2,
           "IBC": 2
         },
         "av_configs": {
-          "24ft AV": {
-            "Welfare": 1
-          },
           "32ft AV": {
             "Canteen": 1,
             "Office": 1,
@@ -592,7 +588,7 @@
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:58",
         "edited_by": "Nathan",
-        "edited_at": "23/03/2026 09:51"
+        "edited_at": "23/03/2026 10:27"
       },
       {
         "customer": "Bethhel Construction",
