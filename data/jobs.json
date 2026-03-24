@@ -681,14 +681,14 @@
           "Solar Loo Single": 1
         },
         "av_configs": {
-          "24ft AV": {
-            "Canteen": 1
-          },
           "20ft AV": {
             "Canteen": 1
           },
           "10ft AV": {
             "Canteen": 1
+          },
+          "24ft AV": {
+            "Other": 1
           }
         },
         "install_dismantle": false,
@@ -698,7 +698,7 @@
         "added_by": "Nathan",
         "timestamp": "18/03/2026 13:59",
         "edited_by": "Nathan",
-        "edited_at": "18/03/2026 14:02"
+        "edited_at": "24/03/2026 11:30"
       },
       {
         "customer": "MWH",
