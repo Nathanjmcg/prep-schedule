@@ -646,6 +646,22 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "23/03/2026 09:46"
+      },
+      {
+        "customer": "Wright Build Ltd",
+        "postcode": "SK5",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": true,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "24/03/2026 11:19"
       }
     ],
     "2026-03-31": [
