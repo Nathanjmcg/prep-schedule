@@ -808,7 +808,7 @@
     "2026-04-13": [
       {
         "customer": "Kenny Waste Management",
-        "postcode": "M1",
+        "postcode": "M4",
         "type": "On Hire",
         "site_move_type": "",
         "units": {
@@ -817,12 +817,12 @@
           "4+2": 1
         },
         "av_configs": {
+          "20ft AV": {
+            "Drying Room": 1
+          },
           "32ft AV": {
             "Canteen": 1,
             "Office": 1
-          },
-          "20ft AV": {
-            "Drying Room": 1
           }
         },
         "install_dismantle": false,
@@ -830,7 +830,9 @@
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Nathan",
-        "timestamp": "19/03/2026 13:07"
+        "timestamp": "19/03/2026 13:07",
+        "edited_by": "Nathan",
+        "edited_at": "24/03/2026 11:40"
       }
     ],
     "2026-03-26": [
