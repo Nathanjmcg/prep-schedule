@@ -1123,5 +1123,19 @@
     "2026-03-23_5": "picked",
     "2026-03-23_6": "picked",
     "2026-03-26_2": "picked"
-  }
+  },
+  "site_visits": {
+    "2026-03-26": [
+      {
+        "customer": "CBG",
+        "site_contact": "Gary Bailey",
+        "site_address": "M3 6FT The Royal Apartments Salford",
+        "description": "Toilet access and compound configuration.",
+        "time_on_site": "14:00",
+        "requested_by": "Jake",
+        "timestamp": "25/03/2026 13:34"
+      }
+    ]
+  },
+  "svr_confirmed": {}
 }
