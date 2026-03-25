@@ -945,6 +945,30 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "19/03/2026 15:13"
+      },
+      {
+        "customer": "Proservice Building Services Marketplace Plc",
+        "postcode": "DN22",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 5,
+          "IBC": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 2,
+            "Office": 1,
+            "Drying Room": 1,
+            "Other": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "25/03/2026 09:21"
       }
     ],
     "2026-04-09": [
