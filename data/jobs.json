@@ -998,6 +998,22 @@
         "timestamp": "20/03/2026 14:07",
         "edited_by": "Nathan",
         "edited_at": "24/03/2026 11:34"
+      },
+      {
+        "customer": "Manchester and Cheshire Construction Company Ltd",
+        "postcode": "SK11",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "25/03/2026 09:32"
       }
     ],
     "2026-04-07": [
