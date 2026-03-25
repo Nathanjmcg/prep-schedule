@@ -37,10 +37,14 @@ AV_CONFIGS = ["Canteen", "Office", "Drying Room", "Changing Room", "Welfare", "M
 JOB_TYPES = ["On Hire", "Off Hire", "Site Move"]
 TEAM_MEMBERS = ["Jake", "Ewa", "Klaudia", "Chris", "Nick", "Chloe", "Peter", "Callum", "Nathan"]
 TYPE_STYLE = {
-    "On Hire":   (K_GREEN_PALE, K_GREEN_DARK, "●"),
-    "Off Hire":  ("#fdecea",    "#7b1a1a",    "●"),
-    "Site Move": ("#eef2ff",    "#2d3a8c",    "●"),
+    "On Hire":      (K_GREEN_PALE, K_GREEN_DARK, "●"),
+    "Off Hire":     ("#fdecea",    "#7b1a1a",    "●"),
+    "Site Move":    ("#eef2ff",    "#2d3a8c",    "●"),
+    "Site Visit":   ("#f3e8ff",    "#5b21b6",    "●"),
 }
+K_PURPLE      = "#7c3aed"
+K_PURPLE_PALE = "#f3e8ff"
+K_PURPLE_DARK = "#5b21b6"
 
 # ── Password protection ───────────────────────────────────────────────────────
 def check_password():
@@ -114,19 +118,24 @@ def gh_put(path, obj, sha=None, msg="Update schedule"):
 def load_data():
     data, sha = gh_get(DATA_FILE)
     if data is None:
-        return {}, {}, None
-    return data.get("jobs", {}), data.get("mcs", {}), sha
+        return {}, {}, {}, {}, None
+    return (data.get("jobs", {}), data.get("mcs", {}),
+            data.get("site_visits", {}), data.get("svr_confirmed", {}), sha)
 
-def save_data(jobs_dict, mcs_dict, _sha_hint=None):
+def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None, _sha_hint=None):
     """Always fetch the latest SHA before writing to avoid 409 conflicts."""
     _, fresh_sha = gh_get(DATA_FILE)
     sha_to_use = fresh_sha or _sha_hint
-    gh_put(DATA_FILE, {"jobs": jobs_dict, "mcs": mcs_dict}, sha=sha_to_use)
+    gh_put(DATA_FILE, {
+        "jobs":           jobs_dict,
+        "mcs":            mcs_dict,
+        "site_visits":    sv_dict   or {},
+        "svr_confirmed":  svr_dict  or {},
+    }, sha=sha_to_use)
     st.cache_data.clear()
 
-# Keep save_jobs as a convenience wrapper
 def save_jobs(jobs_dict, _sha_hint=None):
-    save_data(jobs_dict, mcs, _sha_hint)
+    save_data(jobs_dict, mcs, site_visits, svr_confirmed, _sha_hint)
 
 # ── Date helpers ──────────────────────────────────────────────────────────────
 def get_monday(d): return d - timedelta(days=d.weekday())
@@ -172,11 +181,12 @@ for k, v in [("week_offset", 0), ("n_weeks", 4),
              ("modal_date", None), ("modal_edit_idx", None),
              ("expand_date", None), ("expand_idx", None),
              ("day_view_date", None),
-             ("move_from_date", None), ("move_job_idx", None)]:
+             ("move_from_date", None), ("move_job_idx", None),
+             ("svr_modal_date", None), ("svr_modal_idx", None)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
-jobs, mcs, sha = load_data()
+jobs, mcs, site_visits, svr_confirmed, sha = load_data()
 bank_holidays = get_bank_holidays()
 
 # ── Global CSS ────────────────────────────────────────────────────────────────
@@ -461,13 +471,13 @@ def day_view_dialog(date_key):
                         if st.button("☐  Picked on MCS", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs[mcs_key] = "picked"
-                            save_data(jobs, mcs)
+                            save_data(jobs, mcs, site_visits, svr_confirmed)
                             st.rerun()
                     else:
                         if st.button("✅ Picked on MCS — undo", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs.pop(mcs_key, None)
-                            save_data(jobs, mcs)
+                            save_data(jobs, mcs, site_visits, svr_confirmed)
                             st.rerun()
 
                 elif job_type_val == "Off Hire":
@@ -475,13 +485,13 @@ def day_view_dialog(date_key):
                         if st.button("☐  Checked in on MCS", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs[mcs_key] = "checked"
-                            save_data(jobs, mcs)
+                            save_data(jobs, mcs, site_visits, svr_confirmed)
                             st.rerun()
                     else:
                         if st.button("✅ Checked in on MCS — undo", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs.pop(mcs_key, None)
-                            save_data(jobs, mcs)
+                            save_data(jobs, mcs, site_visits, svr_confirmed)
                             st.rerun()
             with rc2:
                 if st.button("✏️", key=f"dv_edit_{date_key}_{ji}",
@@ -499,7 +509,68 @@ def day_view_dialog(date_key):
                     st.rerun()
 
     st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
-    ac1, ac2 = st.columns(2)
+
+    # ── Site Visit Requests for this day ─────────────────────────────────────
+    sv_list = site_visits.get(date_key, [])
+    if sv_list:
+        st.markdown(
+            f"<div style='font-size:13px;font-weight:700;color:{K_PURPLE_DARK};"
+            f"margin-bottom:.5rem;'>🔍 Site Visit Requests</div>",
+            unsafe_allow_html=True)
+        for svi, sv in enumerate(sv_list):
+            svr_key       = f"{date_key}_{svi}"
+            is_confirmed  = svr_confirmed.get(svr_key, False)
+            conf_badge    = ""
+            if is_confirmed:
+                conf_badge = (f'<div style="margin-top:8px;display:inline-flex;'
+                              f'align-items:center;gap:6px;background:#f3e8ff;'
+                              f'color:{K_PURPLE_DARK};border-radius:6px;'
+                              f'padding:4px 10px;font-size:11px;font-weight:700;">'
+                              f'✅ Nathan Checked and Confirmed in Diary</div>')
+
+            time_str = f" — {sv['time_on_site']}" if sv.get("time_on_site") else ""
+            st.markdown(f"""
+            <div style="background:{K_PURPLE_PALE};color:{K_PURPLE_DARK};
+                        border-radius:10px;border-left:4px solid {K_PURPLE};
+                        padding:12px 14px;margin-bottom:6px;">
+              <div style="font-size:16px;font-weight:800;margin-bottom:2px;">
+                {sv.get("customer","")}{time_str}</div>
+              <div style="font-size:11px;opacity:.7;margin-bottom:4px;">
+                {sv.get("site_contact","")}{"  ·  " if sv.get("site_contact") else ""}
+                {sv.get("site_address","")}</div>
+              <div style="font-size:12px;margin-bottom:4px;">{sv.get("description","")}</div>
+              <div style="font-size:10px;opacity:.5;">
+                🕐 Requested by {sv.get("requested_by","")} · {sv.get("timestamp","")}</div>
+              {conf_badge}
+            </div>
+            """, unsafe_allow_html=True)
+
+            sc1, sc2, sc3 = st.columns([3, 2, 1])
+            with sc1:
+                if not is_confirmed:
+                    if st.button("✅ Nathan Checked and Confirmed in Diary",
+                                 key=f"svr_confirm_{svr_key}", use_container_width=True):
+                        svr_confirmed[svr_key] = True
+                        save_data(jobs, mcs, site_visits, svr_confirmed)
+                        st.rerun()
+                else:
+                    if st.button("↩ Unconfirm", key=f"svr_unconfirm_{svr_key}",
+                                 use_container_width=True):
+                        svr_confirmed.pop(svr_key, None)
+                        save_data(jobs, mcs, site_visits, svr_confirmed)
+                        st.rerun()
+            with sc2:
+                if st.button("✏️ Edit request", key=f"svr_edit_{svr_key}",
+                             use_container_width=True):
+                    st.session_state["svr_modal_date"] = date_key
+                    st.session_state["svr_modal_idx"]  = svi
+                    st.session_state["day_view_date"]  = None
+                    st.rerun()
+
+        st.markdown("<div style='margin-top:.5rem'></div>", unsafe_allow_html=True)
+
+    st.markdown("<hr style='margin:.75rem 0;'>", unsafe_allow_html=True)
+    ac1, ac2, ac3 = st.columns(3)
     with ac1:
         if st.button("＋ Add job to this day", use_container_width=True, type="primary"):
             st.session_state["modal_date"]     = date_key
@@ -507,9 +578,115 @@ def day_view_dialog(date_key):
             st.session_state["day_view_date"]  = None
             st.rerun()
     with ac2:
+        if st.button("🔍 Request Site Visit", use_container_width=True):
+            st.session_state["svr_modal_date"] = date_key
+            st.session_state["svr_modal_idx"]  = None
+            st.session_state["day_view_date"]  = None
+            st.rerun()
+    with ac3:
         if st.button("Close", use_container_width=True):
             st.session_state["day_view_date"] = None
             st.rerun()
+
+# ── SITE VISIT REQUEST DIALOG (add/edit) ─────────────────────────────────────
+@st.dialog("Site Visit Request", width="large")
+def site_visit_dialog(date_key, edit_svr_idx=None):
+    edit_sv = None
+    if edit_svr_idx is not None:
+        sv_list = site_visits.get(date_key, [])
+        if edit_svr_idx < len(sv_list):
+            edit_sv = sv_list[edit_svr_idx]
+
+    day_label = datetime.strptime(date_key, "%Y-%m-%d").strftime("%A %-d %B %Y")
+    st.markdown(
+        f"<div style='font-size:13px;color:{K_PURPLE_DARK};font-weight:700;"
+        f"background:{K_PURPLE_PALE};border-radius:6px;padding:6px 12px;"
+        f"margin-bottom:1rem;'>🔍 Site Visit Request — 📅 {day_label}</div>",
+        unsafe_allow_html=True)
+
+    if edit_sv and edit_sv.get("requested_by"):
+        st.markdown(
+            f"<div style='font-size:11px;color:{K_GREY};opacity:.55;"
+            f"background:#f5f5f5;border-radius:5px;padding:4px 8px;"
+            f"margin-bottom:.75rem;display:inline-block;'>"
+            f"🕐 Requested by <b>{edit_sv['requested_by']}</b>"
+            f"{' at ' + edit_sv.get('timestamp','') if edit_sv.get('timestamp') else ''}</div>",
+            unsafe_allow_html=True)
+
+    sv1, sv2 = st.columns(2)
+    with sv1:
+        customer = st.text_input("Customer *",
+                                 value=edit_sv.get("customer", "") if edit_sv else "")
+    with sv2:
+        site_contact = st.text_input("Site Contact",
+                                     value=edit_sv.get("site_contact", "") if edit_sv else "")
+
+    site_address = st.text_input("Site Address",
+                                 value=edit_sv.get("site_address", "") if edit_sv else "")
+
+    ta1, ta2 = st.columns([3, 1])
+    with ta1:
+        description = st.text_area("Description / Purpose of Visit",
+                                   value=edit_sv.get("description", "") if edit_sv else "",
+                                   height=100)
+    with ta2:
+        time_on_site = st.text_input("Time on Site",
+                                     value=edit_sv.get("time_on_site", "") if edit_sv else "",
+                                     placeholder="e.g. 10:30")
+
+    name_opts = ["— Select your name *"] + TEAM_MEMBERS
+    def_name  = edit_sv.get("requested_by", "—") if edit_sv else "—"
+    name_idx  = name_opts.index(def_name) if def_name in name_opts else 0
+    requested_by = st.selectbox("Requested by *", name_opts, index=name_idx)
+
+    st.markdown("<div style='margin-top:1rem'></div>", unsafe_allow_html=True)
+    sb1, sb2, sb3 = st.columns([2, 2, 2])
+    with sb1:
+        if st.button("✅ Save Request", type="primary", use_container_width=True):
+            errors = []
+            if not customer.strip():
+                errors.append("Please enter a customer name.")
+            if requested_by == "— Select your name *":
+                errors.append("Please select who is making this request.")
+            if errors:
+                for e in errors:
+                    st.warning(e)
+            else:
+                new_sv = {
+                    "customer":     customer.strip(),
+                    "site_contact": site_contact.strip(),
+                    "site_address": site_address.strip(),
+                    "description":  description.strip(),
+                    "time_on_site": time_on_site.strip(),
+                    "requested_by": requested_by,
+                    "timestamp":    edit_sv.get("timestamp", datetime.now().strftime("%d/%m/%Y %H:%M")) if edit_sv else datetime.now().strftime("%d/%m/%Y %H:%M"),
+                }
+                if date_key not in site_visits:
+                    site_visits[date_key] = []
+                if edit_svr_idx is not None:
+                    site_visits[date_key][edit_svr_idx] = new_sv
+                else:
+                    site_visits[date_key].append(new_sv)
+                save_data(jobs, mcs, site_visits, svr_confirmed)
+                st.session_state["day_view_date"]    = None
+                st.session_state["svr_modal_date"]   = None
+                st.session_state["svr_modal_idx"]    = None
+                st.rerun()
+    with sb2:
+        if st.button("Cancel", use_container_width=True):
+            st.session_state["svr_modal_date"] = None
+            st.session_state["svr_modal_idx"]  = None
+            st.rerun()
+    with sb3:
+        if edit_sv is not None:
+            if st.button("🗑 Delete", use_container_width=True):
+                site_visits[date_key].pop(edit_svr_idx)
+                if not site_visits[date_key]:
+                    del site_visits[date_key]
+                save_data(jobs, mcs, site_visits, svr_confirmed)
+                st.session_state["svr_modal_date"] = None
+                st.session_state["svr_modal_idx"]  = None
+                st.rerun()
 
 # ── MOVE JOB DIALOG ──────────────────────────────────────────────────────────
 @st.dialog("Move Job to Another Day", width="small")
@@ -856,7 +1033,9 @@ def job_modal(date_key, edit_idx=None):
                 st.rerun()
 
 # ── Trigger dialogs ───────────────────────────────────────────────────────────
-if st.session_state.move_from_date is not None and st.session_state.move_job_idx is not None:
+if st.session_state.svr_modal_date:
+    site_visit_dialog(st.session_state.svr_modal_date, st.session_state.svr_modal_idx)
+elif st.session_state.move_from_date is not None and st.session_state.move_job_idx is not None:
     move_job_dialog(st.session_state.move_from_date, st.session_state.move_job_idx)
 elif st.session_state.day_view_date:
     day_view_dialog(st.session_state.day_view_date)
@@ -1133,6 +1312,15 @@ for w in range(n_weeks):
                     )
             else:
                 summary_html = "<div class='day-empty'>No jobs</div>"
+
+            # Site visit indicator
+            sv_count = len(site_visits.get(dk, []))
+            if sv_count:
+                summary_html += (
+                    f'<div style="font-size:10px;font-weight:700;'
+                    f'color:{K_PURPLE_DARK};padding:2px 5px;margin-top:1px;">'
+                    f'🔍 {sv_count} Site Visit{"s" if sv_count > 1 else ""}</div>'
+                )
 
             bh_tag = (f"<div class='bh-label'>🏴󠁧󠁢󠁥󠁮󠁧󠁿 {bh_name}</div>" if is_bh else "")
             st.markdown(
