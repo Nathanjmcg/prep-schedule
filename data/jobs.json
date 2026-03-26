@@ -1120,24 +1120,6 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "26/03/2026 13:42"
-      }
-    ],
-    "2026-04-01": [
-      {
-        "customer": "Perfect Associates Ltd",
-        "postcode": "LL13",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "20ft Store": 1
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "added_by": "Nathan",
-        "timestamp": "25/03/2026 14:56"
       },
       {
         "customer": "GRS Contractors",
@@ -1170,8 +1152,26 @@
         "added_by": "Nathan",
         "timestamp": "23/03/2026 13:54",
         "moved_by": "\u2014",
-        "moved_from": "2026-03-30",
-        "edited_at": "26/03/2026 12:24"
+        "moved_from": "2026-04-01",
+        "edited_at": "26/03/2026 13:47"
+      }
+    ],
+    "2026-04-01": [
+      {
+        "customer": "Perfect Associates Ltd",
+        "postcode": "LL13",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "25/03/2026 14:56"
       }
     ],
     "2026-04-08": [
