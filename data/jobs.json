@@ -1167,6 +1167,24 @@
         "added_by": "Nathan",
         "timestamp": "25/03/2026 14:59"
       }
+    ],
+    "2026-04-02": [
+      {
+        "customer": "Persimmon Homes Limited  (Nottingham)",
+        "postcode": "DN21",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Solar Loo Single": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "26/03/2026 13:52"
+      }
     ]
   },
   "mcs": {
