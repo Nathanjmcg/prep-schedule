@@ -1048,6 +1048,28 @@
         "timestamp": "20/03/2026 14:11",
         "edited_by": "Nathan",
         "edited_at": "23/03/2026 09:57"
+      },
+      {
+        "customer": "Rosslee",
+        "postcode": "BB5 3AA",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1,
+          "10ft Store": 1,
+          "2+1": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Other": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Klaudia",
+        "timestamp": "27/03/2026 07:50"
       }
     ],
     "2026-03-30": [
