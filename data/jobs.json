@@ -1227,6 +1227,22 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "27/03/2026 13:20"
+      },
+      {
+        "customer": "PAS NW",
+        "postcode": "CW7",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "27/03/2026 13:25"
       }
     ],
     "2026-04-01": [
