@@ -781,6 +781,26 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "27/03/2026 08:28"
+      },
+      {
+        "customer": "GRS",
+        "postcode": "OL13 9PA",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 1
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Klaudia",
+        "timestamp": "27/03/2026 09:18"
       }
     ],
     "2026-04-10": [
