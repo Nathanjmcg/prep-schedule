@@ -1240,7 +1240,7 @@
     "2026-04-08": [
       {
         "customer": "Calore Homes Ltd",
-        "postcode": "WA4",
+        "postcode": "WA4 2TG",
         "type": "On Hire",
         "site_move_type": "",
         "units": {
@@ -1259,7 +1259,9 @@
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Nathan",
-        "timestamp": "25/03/2026 14:59"
+        "timestamp": "25/03/2026 14:59",
+        "edited_by": "Nathan",
+        "edited_at": "27/03/2026 10:35"
       }
     ],
     "2026-04-02": [
