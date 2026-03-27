@@ -765,6 +765,22 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "27/03/2026 08:27"
+      },
+      {
+        "customer": "PAS NW",
+        "postcode": "WA2",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "27/03/2026 08:27"
       }
     ],
     "2026-04-10": [
