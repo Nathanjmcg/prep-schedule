@@ -1375,6 +1375,29 @@
         "timestamp": "25/03/2026 14:59",
         "edited_by": "Nathan",
         "edited_at": "27/03/2026 10:35"
+      },
+      {
+        "customer": "CLC Contractors",
+        "postcode": "WA4",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "27/03/2026 13:37"
       }
     ],
     "2026-04-02": [
