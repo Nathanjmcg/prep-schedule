@@ -743,14 +743,14 @@
             "Other": 1
           }
         },
-        "install_dismantle": false,
+        "install_dismantle": true,
         "haulage": "Internal Haulage",
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "23/03/2026 14:04",
         "edited_by": "Nathan",
-        "edited_at": "25/03/2026 09:26"
+        "edited_at": "27/03/2026 09:46"
       },
       {
         "customer": "PAS NW",
