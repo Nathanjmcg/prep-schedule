@@ -1317,6 +1317,37 @@
         "moved_by": "\u2014",
         "moved_from": "2026-03-30",
         "edited_at": "27/03/2026 13:15"
+      },
+      {
+        "customer": "HSS",
+        "postcode": "LA1 4ZP",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 3,
+          "20ft AV": 2,
+          "20ft Store": 1,
+          "4+2": 1,
+          "Tank": 2,
+          "Steps": 2,
+          "IBC": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1,
+            "Office": 2
+          },
+          "20ft AV": {
+            "Office": 1,
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": true,
+        "haulage": "External Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "27/03/2026 13:28"
       }
     ],
     "2026-04-08": [
