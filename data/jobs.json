@@ -1200,11 +1200,13 @@
         },
         "av_configs": {},
         "install_dismantle": false,
-        "haulage": "None",
+        "haulage": "Internal Haulage",
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Nathan",
-        "timestamp": "27/03/2026 13:16"
+        "timestamp": "27/03/2026 13:16",
+        "edited_by": "Nathan",
+        "edited_at": "27/03/2026 13:17"
       }
     ],
     "2026-04-01": [
