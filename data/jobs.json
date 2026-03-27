@@ -769,7 +769,7 @@
       {
         "customer": "PAS NW",
         "postcode": "WA2",
-        "type": "Off Hire",
+        "type": "On Hire",
         "site_move_type": "",
         "units": {
           "20ft Store": 1
@@ -780,7 +780,9 @@
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Nathan",
-        "timestamp": "27/03/2026 08:28"
+        "timestamp": "27/03/2026 08:28",
+        "edited_by": "Nathan",
+        "edited_at": "27/03/2026 13:10"
       },
       {
         "customer": "GRS",
