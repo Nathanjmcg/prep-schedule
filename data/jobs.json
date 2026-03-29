@@ -1303,7 +1303,7 @@
         "edited_at": "27/03/2026 13:15"
       },
       {
-        "customer": "HSS",
+        "customer": "Proservice Building Services Marketplace Plc",
         "postcode": "LA1 4ZP",
         "type": "On Hire",
         "site_move_type": "",
@@ -1317,13 +1317,13 @@
           "IBC": 2
         },
         "av_configs": {
-          "32ft AV": {
-            "Canteen": 1,
-            "Office": 2
-          },
           "20ft AV": {
             "Office": 1,
             "Drying Room": 1
+          },
+          "32ft AV": {
+            "Canteen": 1,
+            "Office": 2
           }
         },
         "install_dismantle": true,
@@ -1331,7 +1331,9 @@
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Nathan",
-        "timestamp": "27/03/2026 13:28"
+        "timestamp": "27/03/2026 13:28",
+        "edited_by": "Nathan",
+        "edited_at": "29/03/2026 17:11"
       }
     ],
     "2026-04-08": [
