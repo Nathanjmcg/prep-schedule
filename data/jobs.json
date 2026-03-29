@@ -1408,16 +1408,30 @@
         "postcode": "DN22 0TF",
         "type": "On Hire",
         "site_move_type": "",
-        "units": {},
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "None",
+        "units": {
+          "32ft AV": 12,
+          "24ft AV": 1,
+          "Stairs": 5
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 4,
+            "Office": 5,
+            "Drying Room": 2,
+            "Other": 1
+          },
+          "24ft AV": {
+            "Canteen": 1
+          }
+        },
+        "install_dismantle": true,
+        "haulage": "External Haulage",
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "27/03/2026 10:27",
         "edited_by": "Nathan",
-        "edited_at": "27/03/2026 10:33"
+        "edited_at": "29/03/2026 17:10"
       },
       {
         "customer": "WPI Civil Engineering Ltd",
