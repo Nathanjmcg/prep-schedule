@@ -182,7 +182,8 @@ for k, v in [("week_offset", 0), ("n_weeks", 4),
              ("expand_date", None), ("expand_idx", None),
              ("day_view_date", None),
              ("move_from_date", None), ("move_job_idx", None),
-             ("svr_modal_date", None), ("svr_modal_idx", None)]:
+             ("svr_modal_date", None), ("svr_modal_idx", None),
+             ("msv_from_date", None), ("msv_idx", None)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
@@ -545,7 +546,7 @@ def day_view_dialog(date_key):
             </div>
             """, unsafe_allow_html=True)
 
-            sc1, sc2, sc3 = st.columns([3, 2, 1])
+            sc1, sc2, sc3, sc4 = st.columns([3, 2, 1, 1])
             with sc1:
                 if not is_confirmed:
                     if st.button("✅ Nathan Checked and Confirmed in Diary",
@@ -564,6 +565,13 @@ def day_view_dialog(date_key):
                              use_container_width=True):
                     st.session_state["svr_modal_date"] = date_key
                     st.session_state["svr_modal_idx"]  = svi
+                    st.session_state["day_view_date"]  = None
+                    st.rerun()
+            with sc3:
+                if st.button("📅", key=f"svr_move_{svr_key}",
+                             use_container_width=True, help="Move to another day"):
+                    st.session_state["msv_from_date"]  = date_key
+                    st.session_state["msv_idx"]        = svi
                     st.session_state["day_view_date"]  = None
                     st.rerun()
 
@@ -621,7 +629,7 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
         site_contact = st.text_input("Site Contact",
                                      value=edit_sv.get("site_contact", "") if edit_sv else "")
 
-    site_address = st.text_input("Site Address",
+    site_address = st.text_input("Site Address *",
                                  value=edit_sv.get("site_address", "") if edit_sv else "")
 
     ta1, ta2 = st.columns([3, 1])
@@ -646,6 +654,8 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
             errors = []
             if not customer.strip():
                 errors.append("Please enter a customer name.")
+            if not site_address.strip():
+                errors.append("Please enter a site address.")
             if requested_by == "— Select your name *":
                 errors.append("Please select who is making this request.")
             if errors:
@@ -687,6 +697,59 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
                 st.session_state["svr_modal_date"] = None
                 st.session_state["svr_modal_idx"]  = None
                 st.rerun()
+
+# ── MOVE SITE VISIT DIALOG ────────────────────────────────────────────────────
+@st.dialog("Move Site Visit to Another Day", width="small")
+def move_site_visit_dialog(from_date, sv_idx):
+    sv_list = site_visits.get(from_date, [])
+    if sv_idx >= len(sv_list):
+        st.warning("Site visit not found."); return
+
+    sv       = sv_list[sv_idx]
+    from_dt  = datetime.strptime(from_date, "%Y-%m-%d").date()
+
+    st.markdown(
+        f"<div style='background:{K_PURPLE_PALE};color:{K_PURPLE_DARK};border-radius:8px;"
+        f"padding:10px 14px;margin-bottom:1rem;font-weight:700;font-size:14px;"
+        f"border-left:4px solid {K_PURPLE};'>"
+        f"🔍 {sv.get('customer','')} &nbsp;·&nbsp; "
+        f"<span style='font-weight:400;font-size:12px;'>"
+        f"{from_dt.strftime('%A %-d %B %Y')}</span></div>",
+        unsafe_allow_html=True)
+
+    st.markdown("**Move to:**")
+    to_date = st.date_input("New date", value=from_dt, key="msv_to_date",
+                            label_visibility="collapsed")
+
+    if to_date == from_dt:
+        st.info("Pick a different date to move this visit.")
+
+    mc1, mc2 = st.columns(2)
+    with mc1:
+        if st.button("✅ Confirm Move", type="primary", use_container_width=True,
+                     disabled=(to_date == from_dt)):
+            to_key = fmt_key(to_date)
+            # Move the visit
+            sv_to_move = site_visits[from_date].pop(sv_idx)
+            if not site_visits[from_date]:
+                del site_visits[from_date]
+            site_visits.setdefault(to_key, []).append(sv_to_move)
+            # Move any confirmation status
+            old_svr_key = f"{from_date}_{sv_idx}"
+            new_svr_key = f"{to_key}_{len(site_visits[to_key]) - 1}"
+            if old_svr_key in svr_confirmed:
+                svr_confirmed[new_svr_key] = svr_confirmed.pop(old_svr_key)
+            save_data(jobs, mcs, site_visits, svr_confirmed)
+            st.session_state["msv_from_date"] = None
+            st.session_state["msv_idx"]       = None
+            st.session_state["day_view_date"] = None
+            st.success(f"Moved to {to_date.strftime('%a %-d %b')}.")
+            st.rerun()
+    with mc2:
+        if st.button("Cancel", use_container_width=True):
+            st.session_state["msv_from_date"] = None
+            st.session_state["msv_idx"]       = None
+            st.rerun()
 
 # ── MOVE JOB DIALOG ──────────────────────────────────────────────────────────
 @st.dialog("Move Job to Another Day", width="small")
@@ -1035,6 +1098,8 @@ def job_modal(date_key, edit_idx=None):
 # ── Trigger dialogs ───────────────────────────────────────────────────────────
 if st.session_state.svr_modal_date:
     site_visit_dialog(st.session_state.svr_modal_date, st.session_state.svr_modal_idx)
+elif st.session_state.msv_from_date is not None and st.session_state.msv_idx is not None:
+    move_site_visit_dialog(st.session_state.msv_from_date, st.session_state.msv_idx)
 elif st.session_state.move_from_date is not None and st.session_state.move_job_idx is not None:
     move_job_dialog(st.session_state.move_from_date, st.session_state.move_job_idx)
 elif st.session_state.day_view_date:
