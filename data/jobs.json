@@ -1463,6 +1463,22 @@
         "livery_note": "",
         "added_by": "Callum",
         "timestamp": "30/03/2026 15:19"
+      },
+      {
+        "customer": "A Connolly Ltd",
+        "postcode": "BL2 5BW",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Callum",
+        "timestamp": "30/03/2026 15:21"
       }
     ],
     "2026-04-08": [
