@@ -1135,6 +1135,29 @@
         "livery_note": "",
         "added_by": "Callum",
         "timestamp": "30/03/2026 14:55"
+      },
+      {
+        "customer": "Manchester and Cheshire construction Company Ltd",
+        "postcode": "SK11 9AY",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Callum",
+        "timestamp": "30/03/2026 15:00"
       }
     ],
     "2026-04-07": [
