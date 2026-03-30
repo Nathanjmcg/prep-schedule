@@ -1447,6 +1447,22 @@
         "livery_note": "",
         "added_by": "Callum",
         "timestamp": "30/03/2026 15:18"
+      },
+      {
+        "customer": "A Connolly Ltd",
+        "postcode": "PR1 9HB",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Callum",
+        "timestamp": "30/03/2026 15:19"
       }
     ],
     "2026-04-08": [
