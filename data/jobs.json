@@ -1555,6 +1555,23 @@
         "timestamp": "27/03/2026 10:28",
         "edited_by": "Nathan",
         "edited_at": "27/03/2026 10:34"
+      },
+      {
+        "customer": "DLP Services (Northern) Ltd",
+        "postcode": "PR7 3PB",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "10ft Store": 2,
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Callum",
+        "timestamp": "30/03/2026 15:09"
       }
     ]
   },
