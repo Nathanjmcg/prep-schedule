@@ -896,6 +896,32 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "27/03/2026 10:42"
+      },
+      {
+        "customer": "Bethell Constuction LTD",
+        "postcode": "M26 1GE",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1,
+          "24ft AV": 2,
+          "20ft Store": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          },
+          "32ft AV": {
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Peter",
+        "timestamp": "31/03/2026 10:22"
       }
     ],
     "2026-04-13": [
