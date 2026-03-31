@@ -916,12 +916,14 @@
             "Drying Room": 1
           }
         },
-        "install_dismantle": false,
+        "install_dismantle": true,
         "haulage": "External Haulage",
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Peter",
-        "timestamp": "31/03/2026 10:22"
+        "timestamp": "31/03/2026 10:22",
+        "edited_by": "Peter",
+        "edited_at": "31/03/2026 10:41"
       }
     ],
     "2026-04-13": [
