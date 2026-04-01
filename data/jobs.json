@@ -1975,7 +1975,8 @@
       "contracts": true,
       "pods": true,
       "collections": true,
-      "pocs": true
+      "pocs": true,
+      "partial": true
     }
   }
 }
