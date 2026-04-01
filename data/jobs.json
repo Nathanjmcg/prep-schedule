@@ -1936,7 +1936,7 @@
   },
   "checklist": {
     "2026-04-01": {
-      "contracts": false,
+      "contracts": true,
       "pods": false,
       "collections": false,
       "pocs": false
