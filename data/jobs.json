@@ -1848,6 +1848,29 @@
         "added_by": "Callum",
         "timestamp": "30/03/2026 15:17"
       }
+    ],
+    "2026-04-14": [
+      {
+        "customer": "David Wilson Homes",
+        "postcode": "SK10",
+        "type": "Site Move",
+        "site_move_type": "Movement on Same Site",
+        "units": {
+          "32ft AV": 2,
+          "20ft Store": 6
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Office": 2
+          }
+        },
+        "install_dismantle": true,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "01/04/2026 11:21"
+      }
     ]
   },
   "mcs": {
