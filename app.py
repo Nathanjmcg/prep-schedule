@@ -28,6 +28,7 @@ UNIT_TYPES = [
     "Stairs", "2+1", "3+1", "4+2",
     "Tank", "Steps", "IBC", "Generator",
     "Solar Loo Single", "Solar Loo Double", "Chemiloo",
+    "Smoking Shelter",
 ]
 
 # AV units that support configuration breakdown
@@ -124,17 +125,26 @@ def load_data():
             data.get("checklist", {}), sha)
 
 def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None, cl_dict=None, _sha_hint=None):
-    """Always fetch the latest SHA before writing to avoid 409 conflicts."""
-    _, fresh_sha = gh_get(DATA_FILE)
-    sha_to_use = fresh_sha or _sha_hint
-    gh_put(DATA_FILE, {
-        "jobs":           jobs_dict,
-        "mcs":            mcs_dict,
-        "site_visits":    sv_dict  or {},
-        "svr_confirmed":  svr_dict or {},
-        "checklist":      cl_dict  or {},
-    }, sha=sha_to_use)
+    """Fetch latest SHA immediately before writing. Retries once on 409."""
+    payload_obj = {
+        "jobs":          jobs_dict,
+        "mcs":           mcs_dict,
+        "site_visits":   sv_dict  or {},
+        "svr_confirmed": svr_dict or {},
+        "checklist":     cl_dict  or {},
+    }
+    # Clear cache first so any subsequent load_data() gets fresh data
     st.cache_data.clear()
+    for attempt in range(3):
+        _, fresh_sha = gh_get(DATA_FILE)
+        try:
+            gh_put(DATA_FILE, payload_obj, sha=fresh_sha)
+            return
+        except Exception as e:
+            if attempt == 2:
+                raise e
+            # Brief pause then retry with a fresh SHA on conflict
+            import time; time.sleep(0.5)
 
 def save_jobs(jobs_dict, _sha_hint=None):
     save_data(jobs_dict, mcs, site_visits, svr_confirmed, checklist, _sha_hint)
@@ -348,6 +358,17 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
              background: #fff3b0; border-radius: 3px; padding: 1px 5px;
              display: inline-block; margin-top: 2px; }}
 
+/* Day card fully processed — gold glow */
+@keyframes glow-pulse {{
+  0%, 100% {{ box-shadow: 0 0 0 2px #f0b429, 0 0 10px 2px rgba(240,180,41,.25); }}
+  50%       {{ box-shadow: 0 0 0 2px #f0b429, 0 0 18px 5px rgba(240,180,41,.4); }}
+}}
+.day-card.is-complete {{
+  border-color: #f0b429 !important;
+  border-width: 2px !important;
+  animation: glow-pulse 2.5s ease-in-out infinite;
+}}
+
 /* MCS tick sparkle animation */
 @keyframes mcs-sparkle {{
   0%   {{ transform: scale(1);   opacity: 1; }}
@@ -441,8 +462,10 @@ def day_view_dialog(date_key):
                 haul_bg   = K_GREEN_PALE if haulage == "Internal Haulage" else "#fdecea"
                 haul_fg   = K_GREEN_DARK if haulage == "Internal Haulage" else "#7b1a1a"
                 haul_icon = "🚛" if haulage == "Internal Haulage" else "🚚"
+                haul_who  = job.get("haulage_who", "")
+                haul_label = f"{haul_icon} {haulage}" + (f" — {haul_who}" if haul_who else "")
                 tags += (f' <span style="background:{haul_bg};color:{haul_fg};border-radius:4px;'
-                         f'padding:2px 8px;font-size:11px;font-weight:700;">{haul_icon} {haulage}</span>')
+                         f'padding:2px 8px;font-size:11px;font-weight:700;">{haul_label}</span>')
             livery = job.get("livery", "Standard Livery")
             if livery == "Customer Livery — Specify":
                 livery_note = job.get("livery_note", "")
@@ -541,10 +564,18 @@ def day_view_dialog(date_key):
         ("pods",         "📦 PODs Attached?"),
         ("collections",  "🔄 Collections Returned?"),
         ("pocs",         "📎 POCs Attached?"),
+        ("partial",      "📋 Partially Live Contracts Posted?"),
+        ("live_hire",    "☁️ Up to Date Live Hire Uploaded?"),
     ]
     cl_key   = date_key
     cl_state = checklist.get(cl_key, {})
-    all_done = all(cl_state.get(k, False) for k, _ in CHECKLIST_ITEMS)
+
+    # mcs_check is a counter (int), not bool — must be ≥ 1 for all_done
+    mcs_check_count = int(cl_state.get("mcs_check", 0))
+    all_done = (
+        all(cl_state.get(k, False) for k, _ in CHECKLIST_ITEMS)
+        and mcs_check_count >= 1
+    )
 
     st.markdown(
         f"<div style='font-size:13px;font-weight:700;color:{K_GREY};"
@@ -568,6 +599,30 @@ def day_view_dialog(date_key):
             if new_val != current:
                 cl_state[ck] = new_val
                 changed = True
+
+    # MCS match counter — separate row, full width
+    st.markdown("<div style='margin-top:.6rem'></div>", unsafe_allow_html=True)
+    mcs_c1, mcs_c2 = st.columns([5, 1])
+    with mcs_c1:
+        count_colour  = K_GREEN_DARK if mcs_check_count >= 2 else ("#b45309" if mcs_check_count == 1 else "#9ca3af")
+        count_bg      = K_GREEN_PALE if mcs_check_count >= 2 else ("#fef3c7" if mcs_check_count == 1 else "#f3f4f6")
+        count_label   = (f"✅ Checked {mcs_check_count}×" if mcs_check_count > 0
+                         else "☐  Not yet checked")
+        st.markdown(
+            f"<div style='display:flex;align-items:center;gap:10px;padding:6px 10px;"
+            f"background:{count_bg};border-radius:8px;'>"
+            f"<span style='font-size:13px;font-weight:600;color:{K_GREY};flex:1;'>"
+            f"🔍 Does Prep Schedule match MCS?</span>"
+            f"<span style='font-size:12px;font-weight:700;color:{count_colour};"
+            f"background:white;border-radius:5px;padding:2px 10px;"
+            f"border:1px solid {count_colour};white-space:nowrap;'>"
+            f"{count_label}</span>"
+            f"</div>",
+            unsafe_allow_html=True)
+    with mcs_c2:
+        if st.button("＋ Check", key=f"mcs_check_{cl_key}", use_container_width=True):
+            cl_state["mcs_check"] = mcs_check_count + 1
+            changed = True
 
     if changed:
         checklist[cl_key] = cl_state
@@ -1055,6 +1110,13 @@ def job_modal(date_key, edit_idx=None):
     haulage = st.radio("Haulage", haulage_opts,
                        index=haulage_opts.index(def_haulage),
                        horizontal=True)
+    haulage_who = ""
+    if haulage == "External Haulage":
+        haulage_who = st.text_input(
+            "Who is the haulage contractor? *",
+            value=edit_job.get("haulage_who", "") if edit_job else "",
+            placeholder="e.g. Stobbarts, Eddie Stobart, XYZ Haulage..."
+        )
 
     st.markdown(f"<div style='font-size:13px;font-weight:700;color:{K_GREY};"
                 f"margin:1rem 0 .5rem;'>Cabin Livery</div>", unsafe_allow_html=True)
@@ -1084,6 +1146,8 @@ def job_modal(date_key, edit_idx=None):
                 errors.append("Please enter a customer name.")
             if added_by == "— Select your name *":
                 errors.append("Please select who is adding this entry.")
+            if haulage == "External Haulage" and not haulage_who.strip():
+                errors.append("Please specify who the external haulage contractor is.")
             # AV config validation — configs must equal unit qty if any configs entered
             for av_u in av_units_with_qty:
                 qty       = unit_vals[av_u]
@@ -1123,6 +1187,7 @@ def job_modal(date_key, edit_idx=None):
                     "av_configs":        av_configs,
                     "install_dismantle": install_dismantle,
                     "haulage":           haulage,
+                    "haulage_who":       haulage_who.strip() if haulage == "External Haulage" else "",
                     "livery":            livery,
                     "livery_note":       livery_note.strip() if livery == "Customer Livery — Specify" else "",
                     "added_by":          orig_by,
@@ -1338,7 +1403,9 @@ def render_chip(job, chip_id=""):
         haul_tag = f'<span class="jchip-idtag" style="background:{K_GREEN_PALE};color:{K_GREEN_DARK};margin-left:3px;">🚛 Internal</span>'
     elif haulage == "External Haulage":
         border_style = "border-left:4px solid #c0392b;"
-        haul_tag = '<span class="jchip-idtag" style="background:#fdecea;color:#7b1a1a;margin-left:3px;">🚚 External</span>'
+        haul_who = job.get("haulage_who", "")
+        haul_label = f"🚚 {haul_who}" if haul_who else "🚚 External"
+        haul_tag = f'<span class="jchip-idtag" style="background:#fdecea;color:#7b1a1a;margin-left:3px;">{haul_label}</span>'
     else:
         border_style = ""
         haul_tag = ""
@@ -1393,6 +1460,14 @@ for w in range(n_weeks):
         bh_name    = bank_holidays.get(dk, "")
 
         card_cls = "is-today" if is_today else ("is-bh" if is_bh else ("is-weekend" if is_weekend else ""))
+
+        # Check if day is fully processed — gold glow
+        CL_KEYS  = ["contracts", "pods", "collections", "pocs", "partial", "live_hire"]
+        cl_state_day = checklist.get(dk, {})
+        if (all(cl_state_day.get(k) for k in CL_KEYS)
+                and int(cl_state_day.get("mcs_check", 0)) >= 1
+                and not is_today and not is_bh):
+            card_cls = "is-complete"
         date_cls = "is-today" if is_today else ""
 
         with cols[d]:
@@ -1444,10 +1519,13 @@ for w in range(n_weeks):
                 summary_html = "<div class='day-empty'>No jobs</div>"
 
             # Checklist progress indicator
+            CL_KEYS = ["contracts", "pods", "collections", "pocs", "partial", "live_hire"]
             cl_state = checklist.get(dk, {})
-            cl_done  = sum(1 for k, _ in [("contracts",""),("pods",""),
-                                           ("collections",""),("pocs","")] if cl_state.get(k))
-            if cl_done == 4:
+            cl_done  = sum(1 for k in CL_KEYS if cl_state.get(k))
+            mcs_chk  = int(cl_state.get("mcs_check", 0))
+            cl_total = len(CL_KEYS) + 1  # +1 for mcs_check
+            cl_done += 1 if mcs_chk >= 1 else 0
+            if cl_done == cl_total:
                 summary_html += (
                     f'<div style="font-size:9px;font-weight:700;color:{K_GREEN_DARK};"'
                     f'padding:1px 5px;">🎉 Day Complete</div>'
@@ -1455,7 +1533,7 @@ for w in range(n_weeks):
             elif cl_done > 0:
                 summary_html += (
                     f'<div style="font-size:9px;color:{K_GREY};opacity:.6;padding:1px 5px;">'
-                    f'✅ {cl_done}/4 checklist</div>'
+                    f'✅ {cl_done}/{cl_total} checklist</div>'
                 )
             sv_count = len(site_visits.get(dk, []))
             if sv_count:
