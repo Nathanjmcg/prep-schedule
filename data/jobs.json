@@ -1939,7 +1939,7 @@
       "contracts": true,
       "pods": true,
       "collections": true,
-      "pocs": false
+      "pocs": true
     }
   }
 }
