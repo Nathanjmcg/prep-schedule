@@ -1937,7 +1937,7 @@
   "checklist": {
     "2026-04-01": {
       "contracts": true,
-      "pods": false,
+      "pods": true,
       "collections": false,
       "pocs": false
     }
