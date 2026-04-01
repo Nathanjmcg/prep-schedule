@@ -1968,6 +1968,9 @@
       "pods": false,
       "collections": false,
       "pocs": false
+    },
+    "2026-04-02": {
+      "live_hire": true
     }
   }
 }
