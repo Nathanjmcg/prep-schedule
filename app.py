@@ -118,24 +118,26 @@ def gh_put(path, obj, sha=None, msg="Update schedule"):
 def load_data():
     data, sha = gh_get(DATA_FILE)
     if data is None:
-        return {}, {}, {}, {}, None
+        return {}, {}, {}, {}, {}, None
     return (data.get("jobs", {}), data.get("mcs", {}),
-            data.get("site_visits", {}), data.get("svr_confirmed", {}), sha)
+            data.get("site_visits", {}), data.get("svr_confirmed", {}),
+            data.get("checklist", {}), sha)
 
-def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None, _sha_hint=None):
+def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None, cl_dict=None, _sha_hint=None):
     """Always fetch the latest SHA before writing to avoid 409 conflicts."""
     _, fresh_sha = gh_get(DATA_FILE)
     sha_to_use = fresh_sha or _sha_hint
     gh_put(DATA_FILE, {
         "jobs":           jobs_dict,
         "mcs":            mcs_dict,
-        "site_visits":    sv_dict   or {},
-        "svr_confirmed":  svr_dict  or {},
+        "site_visits":    sv_dict  or {},
+        "svr_confirmed":  svr_dict or {},
+        "checklist":      cl_dict  or {},
     }, sha=sha_to_use)
     st.cache_data.clear()
 
 def save_jobs(jobs_dict, _sha_hint=None):
-    save_data(jobs_dict, mcs, site_visits, svr_confirmed, _sha_hint)
+    save_data(jobs_dict, mcs, site_visits, svr_confirmed, checklist, _sha_hint)
 
 # ── Date helpers ──────────────────────────────────────────────────────────────
 def get_monday(d): return d - timedelta(days=d.weekday())
@@ -187,7 +189,7 @@ for k, v in [("week_offset", 0), ("n_weeks", 4),
     if k not in st.session_state:
         st.session_state[k] = v
 
-jobs, mcs, site_visits, svr_confirmed, sha = load_data()
+jobs, mcs, site_visits, svr_confirmed, checklist, sha = load_data()
 bank_holidays = get_bank_holidays()
 
 # ── Global CSS ────────────────────────────────────────────────────────────────
@@ -318,7 +320,29 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
               border-top:none;border-radius:0 0 10px 10px;
               font-size:10px;color:{K_GREY};opacity:.6;text-align:right;}}
 
-/* Day card bank holiday highlight */
+/* Day Complete animation */
+@keyframes day-complete {{
+  0%   {{ transform: scale(0.8); opacity: 0; }}
+  50%  {{ transform: scale(1.08); opacity: 1; }}
+  70%  {{ transform: scale(0.97); }}
+  100% {{ transform: scale(1); opacity: 1; }}
+}}
+@keyframes confetti-spin {{
+  0%   {{ transform: rotate(0deg) translateY(0);   opacity: 1; }}
+  100% {{ transform: rotate(720deg) translateY(-20px); opacity: 0; }}
+}}
+.day-complete-banner {{
+  animation: day-complete 0.6s cubic-bezier(.34,1.56,.64,1) forwards;
+  background: linear-gradient(135deg, {K_GREEN} 0%, {K_GREEN_DARK} 100%);
+  color: white; border-radius: 12px; padding: 16px 20px;
+  text-align: center; margin: 1rem 0;
+}}
+.day-complete-title {{
+  font-size: 20px; font-weight: 800; letter-spacing: -.3px; margin-bottom: 2px;
+}}
+.day-complete-sub {{
+  font-size: 13px; opacity: .85;
+}}
 .day-card.is-bh {{ background: #fffbea !important; border-color: #e6c200 !important; }}
 .bh-label {{ font-size: 9px; font-weight: 700; color: #7a6000;
              background: #fff3b0; border-radius: 3px; padding: 1px 5px;
@@ -451,7 +475,7 @@ def day_view_dialog(date_key):
                                  f'✅ Picked on MCS</div>')
                 elif mcs_status == "checked" and job_type_val == "Off Hire":
                     mcs_badge = (f'<div class="mcs-done-red" style="margin-top:8px;">'
-                                 f'✅ Checked in on MCS</div>')
+                                 f'✅ Collection Processed on MCS</div>')
 
                 st.markdown(f"""
                 <div style="background:{bg};color:{fg};border-radius:10px;
@@ -472,27 +496,27 @@ def day_view_dialog(date_key):
                         if st.button("☐  Picked on MCS", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs[mcs_key] = "picked"
-                            save_data(jobs, mcs, site_visits, svr_confirmed)
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
                             st.rerun()
                     else:
                         if st.button("✅ Picked on MCS — undo", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs.pop(mcs_key, None)
-                            save_data(jobs, mcs, site_visits, svr_confirmed)
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
                             st.rerun()
 
                 elif job_type_val == "Off Hire":
                     if mcs_status != "checked":
-                        if st.button("☐  Checked in on MCS", key=f"mcs_{mcs_key}",
+                        if st.button("☐  Collection Processed on MCS", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs[mcs_key] = "checked"
-                            save_data(jobs, mcs, site_visits, svr_confirmed)
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
                             st.rerun()
                     else:
-                        if st.button("✅ Checked in on MCS — undo", key=f"mcs_{mcs_key}",
+                        if st.button("✅ Collection Processed on MCS — undo", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs.pop(mcs_key, None)
-                            save_data(jobs, mcs, site_visits, svr_confirmed)
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
                             st.rerun()
             with rc2:
                 if st.button("✏️", key=f"dv_edit_{date_key}_{ji}",
@@ -508,6 +532,47 @@ def day_view_dialog(date_key):
                     st.session_state["move_job_idx"]   = ji
                     st.session_state["day_view_date"]  = None
                     st.rerun()
+
+    st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
+
+    # ── Fulfilment Checklist ──────────────────────────────────────────────────
+    CHECKLIST_ITEMS = [
+        ("contracts",    "📄 Contracts Posted?"),
+        ("pods",         "📦 PODs Attached?"),
+        ("collections",  "🔄 Collections Returned?"),
+        ("pocs",         "📎 POCs Attached?"),
+    ]
+    cl_key   = date_key
+    cl_state = checklist.get(cl_key, {})
+    all_done = all(cl_state.get(k, False) for k, _ in CHECKLIST_ITEMS)
+
+    st.markdown(
+        f"<div style='font-size:13px;font-weight:700;color:{K_GREY};"
+        f"margin-bottom:.6rem;'>✅ Fulfilment Checklist</div>",
+        unsafe_allow_html=True)
+
+    if all_done:
+        st.markdown("""
+        <div class="day-complete-banner">
+          <div class="day-complete-title">🎉 Day Complete!</div>
+          <div class="day-complete-sub">All fulfilment tasks done for this day.</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    cl_cols = st.columns(len(CHECKLIST_ITEMS))
+    changed = False
+    for ci, (ck, label) in enumerate(CHECKLIST_ITEMS):
+        with cl_cols[ci]:
+            current = cl_state.get(ck, False)
+            new_val = st.checkbox(label, value=current, key=f"cl_{cl_key}_{ck}")
+            if new_val != current:
+                cl_state[ck] = new_val
+                changed = True
+
+    if changed:
+        checklist[cl_key] = cl_state
+        save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
+        st.rerun()
 
     st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
 
@@ -552,13 +617,13 @@ def day_view_dialog(date_key):
                     if st.button("✅ Nathan Checked and Confirmed in Diary",
                                  key=f"svr_confirm_{svr_key}", use_container_width=True):
                         svr_confirmed[svr_key] = True
-                        save_data(jobs, mcs, site_visits, svr_confirmed)
+                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
                         st.rerun()
                 else:
                     if st.button("↩ Unconfirm", key=f"svr_unconfirm_{svr_key}",
                                  use_container_width=True):
                         svr_confirmed.pop(svr_key, None)
-                        save_data(jobs, mcs, site_visits, svr_confirmed)
+                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
                         st.rerun()
             with sc2:
                 if st.button("✏️ Edit request", key=f"svr_edit_{svr_key}",
@@ -677,7 +742,7 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
                     site_visits[date_key][edit_svr_idx] = new_sv
                 else:
                     site_visits[date_key].append(new_sv)
-                save_data(jobs, mcs, site_visits, svr_confirmed)
+                save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
                 st.session_state["day_view_date"]    = None
                 st.session_state["svr_modal_date"]   = None
                 st.session_state["svr_modal_idx"]    = None
@@ -693,7 +758,7 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
                 site_visits[date_key].pop(edit_svr_idx)
                 if not site_visits[date_key]:
                     del site_visits[date_key]
-                save_data(jobs, mcs, site_visits, svr_confirmed)
+                save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
                 st.session_state["svr_modal_date"] = None
                 st.session_state["svr_modal_idx"]  = None
                 st.rerun()
@@ -739,7 +804,7 @@ def move_site_visit_dialog(from_date, sv_idx):
             new_svr_key = f"{to_key}_{len(site_visits[to_key]) - 1}"
             if old_svr_key in svr_confirmed:
                 svr_confirmed[new_svr_key] = svr_confirmed.pop(old_svr_key)
-            save_data(jobs, mcs, site_visits, svr_confirmed)
+            save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
             st.session_state["msv_from_date"] = None
             st.session_state["msv_idx"]       = None
             st.session_state["day_view_date"] = None
@@ -1378,7 +1443,20 @@ for w in range(n_weeks):
             else:
                 summary_html = "<div class='day-empty'>No jobs</div>"
 
-            # Site visit indicator
+            # Checklist progress indicator
+            cl_state = checklist.get(dk, {})
+            cl_done  = sum(1 for k, _ in [("contracts",""),("pods",""),
+                                           ("collections",""),("pocs","")] if cl_state.get(k))
+            if cl_done == 4:
+                summary_html += (
+                    f'<div style="font-size:9px;font-weight:700;color:{K_GREEN_DARK};"'
+                    f'padding:1px 5px;">🎉 Day Complete</div>'
+                )
+            elif cl_done > 0:
+                summary_html += (
+                    f'<div style="font-size:9px;color:{K_GREY};opacity:.6;padding:1px 5px;">'
+                    f'✅ {cl_done}/4 checklist</div>'
+                )
             sv_count = len(site_visits.get(dk, []))
             if sv_count:
                 summary_html += (
