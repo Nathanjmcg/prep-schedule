@@ -1974,7 +1974,7 @@
       "mcs_check": 1,
       "contracts": false,
       "pods": false,
-      "collections": true,
+      "collections": false,
       "pocs": true,
       "partial": true
     }
