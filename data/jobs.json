@@ -1980,9 +1980,21 @@
     }
   },
   "live_hire": {
-    "total_weekly_revenue": 79186.89,
-    "line_count": 2991,
-    "uploaded_at": "02/04/2026 08:05",
-    "filename": "Equipment On Hire 310326.xlsx"
+    "latest": {
+      "revenue": 79186.89,
+      "lines": 2991,
+      "at": "02/04/2026 08:08",
+      "filename": "Equipment On Hire 310326.xlsx",
+      "date": "2026-04-02"
+    },
+    "history": [
+      {
+        "date": "2026-04-02",
+        "revenue": 79186.89,
+        "lines": 2991,
+        "at": "02/04/2026 08:08",
+        "filename": "Equipment On Hire 310326.xlsx"
+      }
+    ]
   }
 }
