@@ -85,9 +85,10 @@ def check_password():
 if not check_password():
     st.stop()
 
-# Auto-refresh every 30 seconds for authenticated users — keeps all users in sync
-# limit=0 means refresh indefinitely; interval is in milliseconds
-st_autorefresh(interval=30_000, limit=0, key="schedule_autorefresh")
+# Auto-refresh every 30 seconds — paused when a file is being uploaded to avoid loop
+_file_uploading = st.session_state.get("lh_uploader") is not None
+if not _file_uploading:
+    st_autorefresh(interval=30_000, limit=0, key="schedule_autorefresh")
 
 # ── GitHub config ─────────────────────────────────────────────────────────────
 GITHUB_TOKEN  = st.secrets["GITHUB_TOKEN"]
@@ -1260,39 +1261,42 @@ with st.sidebar:
     )
 
     if uploaded_file is not None:
-        try:
-            import pandas as pd
-            df_lh = pd.read_excel(uploaded_file)
-            if "WeekChg" not in df_lh.columns:
-                st.error("Could not find 'WeekChg' column — is this the right report?")
-            else:
-                total_rev  = round(float(df_lh["WeekChg"].sum()), 2)
-                row_count  = int(df_lh["WeekChg"].notna().sum())
-                upload_ts  = datetime.now().strftime("%d/%m/%Y %H:%M")
-                upload_dt  = datetime.now().strftime("%Y-%m-%d")
+        # Use filename as a key to avoid re-processing the same file on every rerun
+        last_processed = st.session_state.get("lh_last_processed", "")
+        if uploaded_file.name != last_processed:
+            try:
+                import pandas as pd
+                df_lh = pd.read_excel(uploaded_file)
+                if "WeekChg" not in df_lh.columns:
+                    st.error("Could not find 'WeekChg' column — is this the right report?")
+                else:
+                    total_rev  = round(float(df_lh["WeekChg"].sum()), 2)
+                    row_count  = int(df_lh["WeekChg"].notna().sum())
+                    upload_ts  = datetime.now().strftime("%d/%m/%Y %H:%M")
+                    upload_dt  = datetime.now().strftime("%Y-%m-%d")
 
-                # Keep history — list of {date, revenue, line_count, uploaded_at, filename}
-                history = live_hire.get("history", []) if isinstance(live_hire, dict) else []
-                # Append new entry (keep up to 60 days of history)
-                history.append({
-                    "date":     upload_dt,
-                    "revenue":  total_rev,
-                    "lines":    row_count,
-                    "at":       upload_ts,
-                    "filename": uploaded_file.name,
-                })
-                history = history[-60:]
-                new_lh = {
-                    "latest":  {"revenue": total_rev, "lines": row_count,
-                                "at": upload_ts, "filename": uploaded_file.name,
-                                "date": upload_dt},
-                    "history": history,
-                }
-                save_data(jobs, mcs, site_visits, svr_confirmed, checklist, new_lh)
-                st.success(f"Updated — £{total_rev:,.2f}/wk across {row_count} lines")
-                st.rerun()
-        except Exception as e:
-            st.error(f"Error reading file: {e}")
+                    history = live_hire.get("history", []) if isinstance(live_hire, dict) else []
+                    history.append({
+                        "date":     upload_dt,
+                        "revenue":  total_rev,
+                        "lines":    row_count,
+                        "at":       upload_ts,
+                        "filename": uploaded_file.name,
+                    })
+                    history = history[-60:]
+                    new_lh = {
+                        "latest":  {"revenue": total_rev, "lines": row_count,
+                                    "at": upload_ts, "filename": uploaded_file.name,
+                                    "date": upload_dt},
+                        "history": history,
+                    }
+                    save_data(jobs, mcs, site_visits, svr_confirmed, checklist, new_lh)
+                    st.session_state["lh_last_processed"] = uploaded_file.name
+                    st.success(f"✅ Updated — £{total_rev:,.2f}/wk across {row_count} lines")
+            except Exception as e:
+                st.error(f"Error reading file: {e}")
+        else:
+            st.success(f"✅ Already processed — £{live_hire['latest']['revenue']:,.2f}/wk")
 
     # Show current snapshot in sidebar
     if live_hire and live_hire.get("latest"):
