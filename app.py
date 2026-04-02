@@ -485,13 +485,34 @@ def day_view_dialog(date_key):
                             f'✏️ {job.get("edited_by","")} · {job["edited_at"]}</div>')
 
             # MCS key — unique per date + job index
-            mcs_key = f"{date_key}_{ji}"
-            mcs_status = mcs.get(mcs_key, "")
+            mcs_key      = f"{date_key}_{ji}"
+            mcs_status   = mcs.get(mcs_key, "")
             job_type_val = job["type"]
+
+            # Per-job fulfilment checks
+            JOB_CHECK_LABELS = {
+                "On Hire":  [("pod", "📦 POD Attached?"), ("contract", "📄 Contract Posted?")],
+                "Off Hire": [("poc", "📎 POC Attached?"), ("returns",  "🔄 Lines Returned?")],
+            }
+            job_checks   = JOB_CHECK_LABELS.get(job_type_val, [])
+            base_ck      = f"job_{date_key}_{ji}"
+            all_job_done = bool(job_checks) and all(
+                checklist.get(f"{base_ck}_{ck}", False) for ck, _ in job_checks
+            )
+            # Shiny gold border when all checks done
+            card_border = (
+                "border:2px solid #f0b429;box-shadow:0 0 10px rgba(240,180,41,.35);"
+                if all_job_done else f"border-left:5px solid {border_col};"
+            )
+            done_badge = (
+                ' <span style="font-size:10px;font-weight:700;background:#f0b429;'
+                'color:#7a5c00;border-radius:3px;padding:1px 6px;margin-left:4px;">✨ Done</span>'
+                if all_job_done else ""
+            )
 
             rc1, rc2, rc3 = st.columns([5, 1, 1])
             with rc1:
-                # MCS status badge shown inside card if ticked
+                # MCS status badge
                 mcs_badge = ""
                 if mcs_status == "picked" and job_type_val == "On Hire":
                     mcs_badge = (f'<div class="mcs-done" style="margin-top:8px;">'
@@ -502,8 +523,9 @@ def day_view_dialog(date_key):
 
                 st.markdown(f"""
                 <div style="background:{bg};color:{fg};border-radius:10px;
-                            border-left:5px solid {border_col};padding:12px 14px;margin-bottom:4px;">
-                  <div style="font-size:17px;font-weight:800;margin-bottom:2px;">{job.get("customer","")}</div>
+                            {card_border}padding:12px 14px;margin-bottom:4px;">
+                  <div style="font-size:17px;font-weight:800;margin-bottom:2px;">
+                    {job.get("customer","")}{done_badge}</div>
                   <div style="font-size:12px;opacity:.65;margin-bottom:6px;">{job.get("postcode","")}</div>
                   <div>{tags}</div>
                   {units_html}
@@ -513,7 +535,7 @@ def day_view_dialog(date_key):
                 </div>
                 """, unsafe_allow_html=True)
 
-                # MCS action button — shown only for On Hire / Off Hire
+                # MCS action button
                 if job_type_val == "On Hire":
                     if mcs_status != "picked":
                         if st.button("☐  Picked on MCS", key=f"mcs_{mcs_key}",
@@ -527,7 +549,6 @@ def day_view_dialog(date_key):
                             mcs.pop(mcs_key, None)
                             save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                             st.rerun()
-
                 elif job_type_val == "Off Hire":
                     if mcs_status != "checked":
                         if st.button("☐  Collection Processed on MCS", key=f"mcs_{mcs_key}",
@@ -541,6 +562,26 @@ def day_view_dialog(date_key):
                             mcs.pop(mcs_key, None)
                             save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                             st.rerun()
+
+                # Per-job fulfilment checkboxes — inside the card column
+                if job_checks:
+                    st.markdown(
+                        f"<div style='margin-top:6px;padding-top:6px;"
+                        f"border-top:1px solid rgba(0,0,0,.1);'></div>",
+                        unsafe_allow_html=True)
+                    jc_cols = st.columns(len(job_checks))
+                    job_ck_changed = False
+                    for ci_jc, (ck, label) in enumerate(job_checks):
+                        with jc_cols[ci_jc]:
+                            key    = f"{base_ck}_{ck}"
+                            cur    = checklist.get(key, False)
+                            newval = st.checkbox(label, value=cur, key=f"jchk_{key}")
+                            if newval != cur:
+                                checklist[key] = newval
+                                job_ck_changed = True
+                    if job_ck_changed:
+                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+                        st.rerun()
             with rc2:
                 if st.button("✏️", key=f"dv_edit_{date_key}_{ji}",
                              use_container_width=True, help="Edit this job"):
@@ -555,49 +596,6 @@ def day_view_dialog(date_key):
                     st.session_state["move_job_idx"]   = ji
                     st.session_state["day_view_date"]  = None
                     st.rerun()
-
-    st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
-
-    # ── Per-job fulfilment checks ─────────────────────────────────────────────
-    JOB_CHECK_LABELS = {
-        "On Hire":  [("pod", "📦 POD Attached?"), ("contract", "📄 Contract Posted?")],
-        "Off Hire": [("poc", "📎 POC Attached?"), ("returns",  "🔄 Lines Returned?")],
-    }
-    job_check_changed = False
-    for ji, job in enumerate(jobs.get(date_key, [])):
-        jtype = job["type"]
-        checks = JOB_CHECK_LABELS.get(jtype)
-        if not checks:
-            continue
-        base = f"job_{date_key}_{ji}"
-        haulage    = job.get("haulage", "None")
-        border_col = K_GREEN if haulage == "Internal Haulage" else ("#c0392b" if haulage == "External Haulage" else "transparent")
-        bg, fg, _  = TYPE_STYLE[jtype]
-        all_j_done = all(checklist.get(f"{base}_{ck}", False) for ck, _ in checks)
-        shine_border = f"border:2px solid #f0b429;box-shadow:0 0 8px rgba(240,180,41,.4);" if all_j_done else f"border-left:4px solid {border_col};"
-        st.markdown(
-            f"<div style='background:{bg};color:{fg};border-radius:8px;"
-            f"{shine_border}padding:8px 12px;margin-bottom:4px;'>"
-            f"<span style='font-weight:700;font-size:13px;'>{job.get('customer','')}</span>"
-            f"<span style='font-size:11px;opacity:.6;margin-left:8px;'>{jtype}"
-            f"{' · ' + job.get('postcode','') if job.get('postcode') else ''}</span>"
-            + (" <span style='font-size:10px;font-weight:700;background:#f0b429;color:#7a5c00;"
-               "border-radius:3px;padding:1px 6px;margin-left:6px;'>✨ Done</span>" if all_j_done else "")
-            + "</div>",
-            unsafe_allow_html=True)
-        jc_cols = st.columns(len(checks))
-        for ci, (ck, label) in enumerate(checks):
-            with jc_cols[ci]:
-                key    = f"{base}_{ck}"
-                cur    = checklist.get(key, False)
-                newval = st.checkbox(label, value=cur, key=f"jchk_{key}")
-                if newval != cur:
-                    checklist[key] = newval
-                    job_check_changed = True
-
-    if job_check_changed:
-        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
-        st.rerun()
 
     st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
 
