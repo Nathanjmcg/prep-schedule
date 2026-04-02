@@ -968,6 +968,31 @@
         "livery_note": "",
         "added_by": "Klaudia",
         "timestamp": "01/04/2026 07:37"
+      },
+      {
+        "customer": "Rosslee",
+        "postcode": "BB5 3AA",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1,
+          "10ft Store": 1,
+          "2+1": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Other": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Klaudia",
+        "timestamp": "27/03/2026 07:50",
+        "moved_by": "\u2014",
+        "moved_from": "2026-04-07",
+        "edited_at": "02/04/2026 13:25"
       }
     ],
     "2026-03-26": [
@@ -1256,28 +1281,6 @@
         "timestamp": "20/03/2026 14:11",
         "edited_by": "Nathan",
         "edited_at": "27/03/2026 10:30"
-      },
-      {
-        "customer": "Rosslee",
-        "postcode": "BB5 3AA",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "24ft AV": 1,
-          "10ft Store": 1,
-          "2+1": 1
-        },
-        "av_configs": {
-          "24ft AV": {
-            "Other": 1
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "added_by": "Klaudia",
-        "timestamp": "27/03/2026 07:50"
       },
       {
         "customer": "P Casey & Co Ltd",
