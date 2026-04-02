@@ -1972,7 +1972,7 @@
     "2026-04-02": {
       "live_hire": false,
       "mcs_check": 2,
-      "contracts": true,
+      "contracts": false,
       "pods": false,
       "collections": false,
       "pocs": false,
