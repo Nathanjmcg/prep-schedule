@@ -1975,8 +1975,8 @@
       "contracts": false,
       "pods": false,
       "collections": false,
-      "pocs": true,
-      "partial": true
+      "pocs": false,
+      "partial": false
     }
   },
   "live_hire": {
