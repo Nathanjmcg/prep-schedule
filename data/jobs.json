@@ -1976,7 +1976,7 @@
       "pods": false,
       "collections": false,
       "pocs": false,
-      "partial": true
+      "partial": false
     }
   }
 }
