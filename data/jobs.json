@@ -1970,7 +1970,7 @@
       "pocs": false
     },
     "2026-04-02": {
-      "live_hire": true,
+      "live_hire": false,
       "mcs_check": 1,
       "contracts": false,
       "pods": false,
