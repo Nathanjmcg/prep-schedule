@@ -1973,7 +1973,7 @@
       "live_hire": true,
       "mcs_check": 1,
       "contracts": false,
-      "pods": true,
+      "pods": false,
       "collections": true,
       "pocs": true,
       "partial": true
