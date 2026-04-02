@@ -558,74 +558,133 @@ def day_view_dialog(date_key):
 
     st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
 
-    # ── Fulfilment Checklist ──────────────────────────────────────────────────
-    CHECKLIST_ITEMS = [
-        ("contracts",    "📄 Contracts Posted?"),
-        ("pods",         "📦 PODs Attached?"),
-        ("collections",  "🔄 Collections Returned?"),
-        ("pocs",         "📎 POCs Attached?"),
-        ("partial",      "📋 Partially Live Contracts Posted?"),
-        ("live_hire",    "☁️ Up to Date Live Hire Uploaded?"),
-    ]
-    cl_key   = date_key
-    cl_state = checklist.get(cl_key, {})
+    # ── Per-job fulfilment checks ─────────────────────────────────────────────
+    JOB_CHECK_LABELS = {
+        "On Hire":  [("pod", "📦 POD Attached?"), ("contract", "📄 Contract Posted?")],
+        "Off Hire": [("poc", "📎 POC Attached?"), ("returns",  "🔄 Lines Returned?")],
+    }
+    job_check_changed = False
+    for ji, job in enumerate(jobs.get(date_key, [])):
+        jtype = job["type"]
+        checks = JOB_CHECK_LABELS.get(jtype)
+        if not checks:
+            continue
+        base = f"job_{date_key}_{ji}"
+        haulage    = job.get("haulage", "None")
+        border_col = K_GREEN if haulage == "Internal Haulage" else ("#c0392b" if haulage == "External Haulage" else "transparent")
+        bg, fg, _  = TYPE_STYLE[jtype]
+        all_j_done = all(checklist.get(f"{base}_{ck}", False) for ck, _ in checks)
+        shine_border = f"border:2px solid #f0b429;box-shadow:0 0 8px rgba(240,180,41,.4);" if all_j_done else f"border-left:4px solid {border_col};"
+        st.markdown(
+            f"<div style='background:{bg};color:{fg};border-radius:8px;"
+            f"{shine_border}padding:8px 12px;margin-bottom:4px;'>"
+            f"<span style='font-weight:700;font-size:13px;'>{job.get('customer','')}</span>"
+            f"<span style='font-size:11px;opacity:.6;margin-left:8px;'>{jtype}"
+            f"{' · ' + job.get('postcode','') if job.get('postcode') else ''}</span>"
+            + (" <span style='font-size:10px;font-weight:700;background:#f0b429;color:#7a5c00;"
+               "border-radius:3px;padding:1px 6px;margin-left:6px;'>✨ Done</span>" if all_j_done else "")
+            + "</div>",
+            unsafe_allow_html=True)
+        jc_cols = st.columns(len(checks))
+        for ci, (ck, label) in enumerate(checks):
+            with jc_cols[ci]:
+                key    = f"{base}_{ck}"
+                cur    = checklist.get(key, False)
+                newval = st.checkbox(label, value=cur, key=f"jchk_{key}")
+                if newval != cur:
+                    checklist[key] = newval
+                    job_check_changed = True
 
-    # mcs_check is a counter (int), not bool — must be ≥ 1 for all_done
-    mcs_check_count = int(cl_state.get("mcs_check", 0))
-    all_done = (
-        all(cl_state.get(k, False) for k, _ in CHECKLIST_ITEMS)
+    if job_check_changed:
+        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+        st.rerun()
+
+    st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
+
+    # ── Daily fulfilment checklist ────────────────────────────────────────────
+    d_key   = f"daily_{date_key}"
+    ds      = checklist.get(d_key, {})
+
+    # Auto-detect if live hire was uploaded today
+    today_str_dt = datetime.now().strftime("%Y-%m-%d")
+    lh_today_auto = (live_hire.get("latest", {}).get("date", "") == today_str_dt) if live_hire else False
+
+    DAILY_ITEMS = [
+        ("partial_contracts", "📋 Partially Live Contracts Posted?"),
+        ("oneoff_contracts",  "📄 One Off / Sale Contracts Posted?"),
+    ]
+    mcs_check_count = int(ds.get("mcs_check", 0))
+    live_ok = lh_today_auto or ds.get("live_hire_uploaded", False)
+
+    all_daily_done = (
+        all(ds.get(k, False) for k, _ in DAILY_ITEMS)
+        and live_ok
         and mcs_check_count >= 1
     )
 
     st.markdown(
         f"<div style='font-size:13px;font-weight:700;color:{K_GREY};"
-        f"margin-bottom:.6rem;'>✅ Fulfilment Checklist</div>",
+        f"margin-bottom:.6rem;'>📋 Daily Fulfilment Checklist</div>",
         unsafe_allow_html=True)
 
-    if all_done:
+    if all_daily_done:
         st.markdown("""
         <div class="day-complete-banner">
-          <div class="day-complete-title">🎉 Day Complete!</div>
-          <div class="day-complete-sub">All fulfilment tasks done for this day.</div>
+          <div class="day-complete-title">🎉 Dailys Complete!</div>
+          <div class="day-complete-sub">All daily fulfilment tasks done for this day.</div>
         </div>
         """, unsafe_allow_html=True)
 
-    cl_cols = st.columns(len(CHECKLIST_ITEMS))
-    changed = False
-    for ci, (ck, label) in enumerate(CHECKLIST_ITEMS):
-        with cl_cols[ci]:
-            current = cl_state.get(ck, False)
-            new_val = st.checkbox(label, value=current, key=f"cl_{cl_key}_{ck}")
-            if new_val != current:
-                cl_state[ck] = new_val
-                changed = True
+    daily_changed = False
+    dc_cols = st.columns(len(DAILY_ITEMS))
+    for ci, (ck, label) in enumerate(DAILY_ITEMS):
+        with dc_cols[ci]:
+            cur    = ds.get(ck, False)
+            newval = st.checkbox(label, value=cur, key=f"dcl_{date_key}_{ck}")
+            if newval != cur:
+                ds[ck] = newval
+                daily_changed = True
 
-    # MCS match counter — separate row, full width
-    st.markdown("<div style='margin-top:.6rem'></div>", unsafe_allow_html=True)
+    # Live hire uploaded row — auto or manual
+    lh_c1, lh_c2 = st.columns([5, 1])
+    with lh_c1:
+        if lh_today_auto:
+            st.markdown(
+                f"<div style='background:{K_GREEN_PALE};color:{K_GREEN_DARK};"
+                f"border-radius:6px;padding:5px 10px;font-size:12px;font-weight:600;'>"
+                f"☁️ New Live Hire Report Uploaded? &nbsp; ✅ Auto-detected — uploaded today</div>",
+                unsafe_allow_html=True)
+        else:
+            cur_lh = ds.get("live_hire_uploaded", False)
+            new_lh = st.checkbox("☁️ New Live Hire Report Uploaded?",
+                                  value=cur_lh, key=f"dcl_{date_key}_lh")
+            if new_lh != cur_lh:
+                ds["live_hire_uploaded"] = new_lh
+                daily_changed = True
+
+    # MCS match counter
+    st.markdown("<div style='margin-top:.5rem'></div>", unsafe_allow_html=True)
     mcs_c1, mcs_c2 = st.columns([5, 1])
     with mcs_c1:
-        count_colour  = K_GREEN_DARK if mcs_check_count >= 2 else ("#b45309" if mcs_check_count == 1 else "#9ca3af")
-        count_bg      = K_GREEN_PALE if mcs_check_count >= 2 else ("#fef3c7" if mcs_check_count == 1 else "#f3f4f6")
-        count_label   = (f"✅ Checked {mcs_check_count}×" if mcs_check_count > 0
-                         else "☐  Not yet checked")
+        count_colour = K_GREEN_DARK if mcs_check_count >= 2 else ("#b45309" if mcs_check_count == 1 else "#9ca3af")
+        count_bg     = K_GREEN_PALE if mcs_check_count >= 2 else ("#fef3c7" if mcs_check_count == 1 else "#f3f4f6")
+        count_label  = f"✅ Checked {mcs_check_count}×" if mcs_check_count > 0 else "☐  Not yet checked"
         st.markdown(
             f"<div style='display:flex;align-items:center;gap:10px;padding:6px 10px;"
             f"background:{count_bg};border-radius:8px;'>"
             f"<span style='font-size:13px;font-weight:600;color:{K_GREY};flex:1;'>"
-            f"🔍 Does Prep Schedule match MCS?</span>"
+            f"🔍 Prep Schedule Matches MCS?</span>"
             f"<span style='font-size:12px;font-weight:700;color:{count_colour};"
             f"background:white;border-radius:5px;padding:2px 10px;"
-            f"border:1px solid {count_colour};white-space:nowrap;'>"
-            f"{count_label}</span>"
-            f"</div>",
-            unsafe_allow_html=True)
+            f"border:1px solid {count_colour};white-space:nowrap;'>{count_label}</span>"
+            f"</div>", unsafe_allow_html=True)
     with mcs_c2:
-        if st.button("＋ Check", key=f"mcs_check_{cl_key}", use_container_width=True):
-            cl_state["mcs_check"] = mcs_check_count + 1
-            changed = True
+        if st.button("＋ Check", key=f"mcs_check_{date_key}", use_container_width=True):
+            ds["mcs_check"] = mcs_check_count + 1
+            daily_changed = True
 
-    if changed:
-        checklist[cl_key] = cl_state
+    if daily_changed:
+        checklist[d_key] = ds
         save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
         st.rerun()
 
@@ -1389,31 +1448,78 @@ pills    = "".join(
 pills += (f'<span class="pill" style="background:#f0f0f0;color:{K_GREY}">'
           f'📦 {sum(counts.values())} Total</span>')
 
-# MCS unpicked / unchecked counts (across all visible dates in schedule window)
-total_on_hire  = sum(1 for dk, jl in jobs.items()
-                     for ji, j in enumerate(jl) if j.get("type") == "On Hire")
-total_off_hire = sum(1 for dk, jl in jobs.items()
-                     for ji, j in enumerate(jl) if j.get("type") == "Off Hire")
-picked_count   = sum(1 for k, v in mcs.items() if v == "picked")
-checked_count  = sum(1 for k, v in mcs.items() if v == "checked")
-unpicked   = total_on_hire  - picked_count
-unchecked  = total_off_hire - checked_count
+# Outstanding PODs / POCs — only for days STRICTLY before today
+def job_per_checks_done(dk, ji, job_type):
+    """Return dict of per-job check states for a given job."""
+    base = f"job_{dk}_{ji}"
+    if job_type == "On Hire":
+        return {
+            "pod":      checklist.get(f"{base}_pod", False),
+            "contract": checklist.get(f"{base}_contract", False),
+        }
+    elif job_type == "Off Hire":
+        return {
+            "poc":     checklist.get(f"{base}_poc", False),
+            "returns": checklist.get(f"{base}_returns", False),
+        }
+    return {}
 
-if unpicked > 0:
+def daily_checklist_done(dk):
+    """Return True if all 4 daily items + mcs_check ≥ 1 for a given day."""
+    d_key = f"daily_{dk}"
+    ds    = checklist.get(d_key, {})
+    today_dt = datetime.now().strftime("%Y-%m-%d")
+    lh_today = (live_hire.get("latest", {}).get("date", "") == today_dt) if live_hire else False
+    live_ok  = lh_today or ds.get("live_hire_uploaded", False)
+    return (
+        ds.get("partial_contracts", False) and
+        ds.get("oneoff_contracts",  False) and
+        live_ok and
+        int(ds.get("mcs_check", 0)) >= 1
+    )
+
+def day_jobs_fulfilment_complete(dk):
+    """All per-job checks done for all On/Off Hire jobs on this day."""
+    day_job_list = jobs.get(dk, [])
+    if not day_job_list:
+        return True  # no jobs = nothing to check
+    for ji, job in enumerate(day_job_list):
+        checks = job_per_checks_done(dk, ji, job["type"])
+        if checks and not all(checks.values()):
+            return False
+    return True
+
+outstanding_pods  = 0
+outstanding_pocs  = 0
+today_str = fmt_key(today)
+for dk, jlist in jobs.items():
+    if dk >= today_str:
+        continue  # only past days
+    for ji, job in enumerate(jlist):
+        if job["type"] == "On Hire":
+            checks = job_per_checks_done(dk, ji, "On Hire")
+            if not checks.get("pod", False) or not checks.get("contract", False):
+                outstanding_pods += 1
+        elif job["type"] == "Off Hire":
+            checks = job_per_checks_done(dk, ji, "Off Hire")
+            if not checks.get("poc", False) or not checks.get("returns", False):
+                outstanding_pocs += 1
+
+if outstanding_pods > 0:
     pills += (f'<span class="pill" style="background:#fff3cd;color:#7a5c00;'
               f'border:1px solid #e6c200;">'
-              f'⚠ {unpicked} On Hire Unpicked</span>')
+              f'⚠ {outstanding_pods} Outstanding POD{"s" if outstanding_pods != 1 else ""}/Contract{"s" if outstanding_pods != 1 else ""}</span>')
 else:
     pills += (f'<span class="pill" style="background:{K_GREEN_PALE};color:{K_GREEN_DARK};">'
-              f'✅ All On Hires Picked</span>')
+              f'✅ All PODs and Contracts clear</span>')
 
-if unchecked > 0:
+if outstanding_pocs > 0:
     pills += (f'<span class="pill" style="background:#fff3cd;color:#7a5c00;'
               f'border:1px solid #e6c200;">'
-              f'⚠ {unchecked} Off Hire Unchecked</span>')
+              f'⚠ {outstanding_pocs} Outstanding POC{"s" if outstanding_pocs != 1 else ""}/Return{"s" if outstanding_pocs != 1 else ""}</span>')
 else:
     pills += (f'<span class="pill" style="background:#fdecea;color:#7b1a1a;">'
-              f'✅ All Off Hires Checked</span>')
+              f'✅ All POCs and Returns clear</span>')
 
 st.markdown(pills, unsafe_allow_html=True)
 st.markdown("<div style='margin-bottom:.5rem'></div>", unsafe_allow_html=True)
@@ -1630,13 +1736,10 @@ for w in range(n_weeks):
 
         card_cls = "is-today" if is_today else ("is-bh" if is_bh else ("is-weekend" if is_weekend else ""))
 
-        # Check if day is fully processed — gold glow
-        CL_KEYS  = ["contracts", "pods", "collections", "pocs", "partial", "live_hire"]
-        cl_state_day = checklist.get(dk, {})
-        if (all(cl_state_day.get(k) for k in CL_KEYS)
-                and int(cl_state_day.get("mcs_check", 0)) >= 1
-                and not is_today and not is_bh):
-            card_cls = "is-complete"
+        # Gold glow — all per-job checks done AND daily checklist complete
+        if not is_today and not is_bh:
+            if day_jobs_fulfilment_complete(dk) and daily_checklist_done(dk) and jobs.get(dk):
+                card_cls = "is-complete"
         date_cls = "is-today" if is_today else ""
 
         with cols[d]:
@@ -1687,22 +1790,24 @@ for w in range(n_weeks):
             else:
                 summary_html = "<div class='day-empty'>No jobs</div>"
 
-            # Checklist progress indicator
-            CL_KEYS = ["contracts", "pods", "collections", "pocs", "partial", "live_hire"]
-            cl_state = checklist.get(dk, {})
-            cl_done  = sum(1 for k in CL_KEYS if cl_state.get(k))
-            mcs_chk  = int(cl_state.get("mcs_check", 0))
-            cl_total = len(CL_KEYS) + 1  # +1 for mcs_check
-            cl_done += 1 if mcs_chk >= 1 else 0
-            if cl_done == cl_total:
+            # Fulfilment / Daily checklist indicator
+            jobs_done   = day_jobs_fulfilment_complete(dk)
+            dailys_done = daily_checklist_done(dk)
+            if day_jobs and jobs_done and dailys_done:
                 summary_html += (
-                    f'<div style="font-size:9px;font-weight:700;color:{K_GREEN_DARK};"'
-                    f'padding:1px 5px;">🎉 Day Complete</div>'
+                    f'<div style="font-size:9px;font-weight:700;color:#7a5c00;'
+                    f'background:#fff3b0;border-radius:3px;padding:1px 5px;margin-top:1px;'
+                    f'display:inline-block;">✨ Daily\'s Complete</div>'
                 )
-            elif cl_done > 0:
+            elif day_jobs and dailys_done:
                 summary_html += (
-                    f'<div style="font-size:9px;color:{K_GREY};opacity:.6;padding:1px 5px;">'
-                    f'✅ {cl_done}/{cl_total} checklist</div>'
+                    f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">'
+                    f'✅ Dailys done</div>'
+                )
+            elif day_jobs and jobs_done:
+                summary_html += (
+                    f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">'
+                    f'✅ Jobs complete</div>'
                 )
             sv_count = len(site_visits.get(dk, []))
             if sv_count:
