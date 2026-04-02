@@ -119,12 +119,12 @@ def gh_put(path, obj, sha=None, msg="Update schedule"):
 def load_data():
     data, sha = gh_get(DATA_FILE)
     if data is None:
-        return {}, {}, {}, {}, {}, None
+        return {}, {}, {}, {}, {}, {}, None
     return (data.get("jobs", {}), data.get("mcs", {}),
             data.get("site_visits", {}), data.get("svr_confirmed", {}),
-            data.get("checklist", {}), sha)
+            data.get("checklist", {}), data.get("live_hire", {}), sha)
 
-def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None, cl_dict=None, _sha_hint=None):
+def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None, cl_dict=None, lh_dict=None, _sha_hint=None):
     """Fetch latest SHA immediately before writing. Retries once on 409."""
     payload_obj = {
         "jobs":          jobs_dict,
@@ -132,8 +132,8 @@ def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None, cl_dict=None, _s
         "site_visits":   sv_dict  or {},
         "svr_confirmed": svr_dict or {},
         "checklist":     cl_dict  or {},
+        "live_hire":     lh_dict  or {},
     }
-    # Clear cache first so any subsequent load_data() gets fresh data
     st.cache_data.clear()
     for attempt in range(3):
         _, fresh_sha = gh_get(DATA_FILE)
@@ -143,11 +143,10 @@ def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None, cl_dict=None, _s
         except Exception as e:
             if attempt == 2:
                 raise e
-            # Brief pause then retry with a fresh SHA on conflict
             import time; time.sleep(0.5)
 
 def save_jobs(jobs_dict, _sha_hint=None):
-    save_data(jobs_dict, mcs, site_visits, svr_confirmed, checklist, _sha_hint)
+    save_data(jobs_dict, mcs, site_visits, svr_confirmed, checklist, live_hire, _sha_hint)
 
 # ── Date helpers ──────────────────────────────────────────────────────────────
 def get_monday(d): return d - timedelta(days=d.weekday())
@@ -199,7 +198,7 @@ for k, v in [("week_offset", 0), ("n_weeks", 4),
     if k not in st.session_state:
         st.session_state[k] = v
 
-jobs, mcs, site_visits, svr_confirmed, checklist, sha = load_data()
+jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, sha = load_data()
 bank_holidays = get_bank_holidays()
 
 # ── Global CSS ────────────────────────────────────────────────────────────────
@@ -519,13 +518,13 @@ def day_view_dialog(date_key):
                         if st.button("☐  Picked on MCS", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs[mcs_key] = "picked"
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                             st.rerun()
                     else:
                         if st.button("✅ Picked on MCS — undo", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs.pop(mcs_key, None)
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                             st.rerun()
 
                 elif job_type_val == "Off Hire":
@@ -533,13 +532,13 @@ def day_view_dialog(date_key):
                         if st.button("☐  Collection Processed on MCS", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs[mcs_key] = "checked"
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                             st.rerun()
                     else:
                         if st.button("✅ Collection Processed on MCS — undo", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs.pop(mcs_key, None)
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                             st.rerun()
             with rc2:
                 if st.button("✏️", key=f"dv_edit_{date_key}_{ji}",
@@ -626,7 +625,7 @@ def day_view_dialog(date_key):
 
     if changed:
         checklist[cl_key] = cl_state
-        save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
+        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
         st.rerun()
 
     st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
@@ -672,13 +671,13 @@ def day_view_dialog(date_key):
                     if st.button("✅ Nathan Checked and Confirmed in Diary",
                                  key=f"svr_confirm_{svr_key}", use_container_width=True):
                         svr_confirmed[svr_key] = True
-                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
+                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                         st.rerun()
                 else:
                     if st.button("↩ Unconfirm", key=f"svr_unconfirm_{svr_key}",
                                  use_container_width=True):
                         svr_confirmed.pop(svr_key, None)
-                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
+                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                         st.rerun()
             with sc2:
                 if st.button("✏️ Edit request", key=f"svr_edit_{svr_key}",
@@ -797,7 +796,7 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
                     site_visits[date_key][edit_svr_idx] = new_sv
                 else:
                     site_visits[date_key].append(new_sv)
-                save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
+                save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                 st.session_state["day_view_date"]    = None
                 st.session_state["svr_modal_date"]   = None
                 st.session_state["svr_modal_idx"]    = None
@@ -813,7 +812,7 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
                 site_visits[date_key].pop(edit_svr_idx)
                 if not site_visits[date_key]:
                     del site_visits[date_key]
-                save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
+                save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                 st.session_state["svr_modal_date"] = None
                 st.session_state["svr_modal_idx"]  = None
                 st.rerun()
@@ -859,7 +858,7 @@ def move_site_visit_dialog(from_date, sv_idx):
             new_svr_key = f"{to_key}_{len(site_visits[to_key]) - 1}"
             if old_svr_key in svr_confirmed:
                 svr_confirmed[new_svr_key] = svr_confirmed.pop(old_svr_key)
-            save_data(jobs, mcs, site_visits, svr_confirmed, checklist)
+            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
             st.session_state["msv_from_date"] = None
             st.session_state["msv_idx"]       = None
             st.session_state["day_view_date"] = None
@@ -1239,6 +1238,74 @@ elif st.session_state.expand_date is not None and st.session_state.expand_idx is
 elif st.session_state.modal_date:
     job_modal(st.session_state.modal_date, st.session_state.modal_edit_idx)
 
+# ── LIVE HIRE UPLOAD (sidebar) ───────────────────────────────────────────────
+with st.sidebar:
+    st.markdown(f"""
+    <div style='font-family:Figtree,sans-serif;'>
+      {KENSITE_LOGO_HTML}
+      <div style='font-size:14px;font-weight:700;color:{K_GREEN};margin:10px 0 4px;'>
+        Live Hire Report
+      </div>
+      <div style='font-size:11px;color:{K_GREY};opacity:.7;margin-bottom:10px;'>
+        Upload today's MCSrm Equipment on Hire export (.xlsx) to update the live revenue counter.
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    uploaded_file = st.file_uploader(
+        "Upload MCSrm export",
+        type=["xlsx"],
+        label_visibility="collapsed",
+        key="lh_uploader"
+    )
+
+    if uploaded_file is not None:
+        try:
+            import pandas as pd
+            df_lh = pd.read_excel(uploaded_file)
+            if "WeekChg" not in df_lh.columns:
+                st.error("Could not find 'WeekChg' column — is this the right report?")
+            else:
+                total_rev  = float(df_lh["WeekChg"].sum())
+                row_count  = int(df_lh["WeekChg"].notna().sum())
+                upload_ts  = datetime.now().strftime("%d/%m/%Y %H:%M")
+                new_lh = {
+                    "total_weekly_revenue": round(total_rev, 2),
+                    "line_count":           row_count,
+                    "uploaded_at":          upload_ts,
+                    "filename":             uploaded_file.name,
+                }
+                save_data(jobs, mcs, site_visits, svr_confirmed, checklist, new_lh)
+                st.success(f"Updated — £{total_rev:,.2f}/wk across {row_count} lines")
+                st.rerun()
+        except Exception as e:
+            st.error(f"Error reading file: {e}")
+
+    # Show current snapshot
+    if live_hire:
+        rev   = live_hire.get("total_weekly_revenue", 0)
+        lines = live_hire.get("line_count", 0)
+        ts    = live_hire.get("uploaded_at", "")
+        fname = live_hire.get("filename", "")
+        st.markdown(f"""
+        <div style='background:{K_GREEN_PALE};border-radius:8px;padding:10px 12px;margin-top:8px;'>
+          <div style='font-size:18px;font-weight:800;color:{K_GREEN_DARK};'>
+            £{rev:,.2f}<span style='font-size:11px;font-weight:500;'> / week</span>
+          </div>
+          <div style='font-size:10px;color:{K_GREEN_DARK};opacity:.75;margin-top:2px;'>
+            {lines} lines · {fname}
+          </div>
+          <div style='font-size:10px;color:{K_GREEN_DARK};opacity:.55;margin-top:1px;'>
+            Uploaded {ts}
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+    else:
+        st.markdown(
+            f"<div style='font-size:11px;color:{K_GREY};opacity:.5;"
+            f"padding:8px;background:#f5f5f5;border-radius:6px;'>No report uploaded yet.</div>",
+            unsafe_allow_html=True)
+
 # ── HEADER ────────────────────────────────────────────────────────────────────
 st.markdown(f"""
 <div class="ks-header">
@@ -1343,7 +1410,7 @@ def week_unit_summary(ws):
                 external_dels += 1
     return on_u, off_u, on_total, off_total, internal_dels, external_dels
 
-def render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_dels):
+def render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_dels, lh_snapshot=None):
     if not on_u and not off_u and not internal_dels and not external_dels:
         return ""
     html = "<div class='wk-bar'><div style='display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;'>"
@@ -1369,13 +1436,24 @@ def render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_de
         f"padding:2px 8px;font-size:10.5px;font-weight:600;'>🚚 {external_dels} External</span>"
         f"</div></div>"
     )
-    # Right — asset totals
+    # Right — asset totals + live hire revenue
+    rev_html = ""
+    if lh_snapshot and lh_snapshot.get("total_weekly_revenue"):
+        rev   = lh_snapshot["total_weekly_revenue"]
+        ts    = lh_snapshot.get("uploaded_at", "")
+        rev_html = (
+            f"<div style='font-size:11px;font-weight:800;color:{K_GREEN_DARK};"
+            f"margin-top:4px;padding-top:4px;border-top:1px solid #c3dfc9;'>"
+            f"💰 £{rev:,.2f}/wk live</div>"
+            f"<div style='font-size:9px;color:{K_GREEN_DARK};opacity:.6;'>as at {ts}</div>"
+        )
     html += (
         f"<div style='text-align:right;flex-shrink:0;white-space:nowrap;'>"
         f"<div style='font-size:10px;font-weight:700;color:{K_GREEN_DARK};margin-bottom:2px;'>"
         f"📦 {on_total} assets on hire</div>"
         f"<div style='font-size:10px;font-weight:700;color:#7b1a1a;'>"
         f"📦 {off_total} assets off hire</div>"
+        f"{rev_html}"
         f"</div>"
     )
     html += "</div></div>"
@@ -1448,7 +1526,7 @@ for i, col in enumerate(hcols):
 for w in range(n_weeks):
     ws = start_date + timedelta(weeks=w)
     on_u, off_u, on_total, off_total, internal_dels, external_dels = week_unit_summary(ws)
-    st.markdown(render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_dels), unsafe_allow_html=True)
+    st.markdown(render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_dels, live_hire), unsafe_allow_html=True)
     cols = st.columns(7)
 
     for d in range(7):
