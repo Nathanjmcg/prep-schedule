@@ -2024,6 +2024,9 @@
       "collections": false,
       "pocs": false,
       "partial": false
+    },
+    "daily_2026-04-02": {
+      "mcs_check": 1
     }
   },
   "live_hire": {
