@@ -1266,14 +1266,27 @@ with st.sidebar:
             if "WeekChg" not in df_lh.columns:
                 st.error("Could not find 'WeekChg' column — is this the right report?")
             else:
-                total_rev  = float(df_lh["WeekChg"].sum())
+                total_rev  = round(float(df_lh["WeekChg"].sum()), 2)
                 row_count  = int(df_lh["WeekChg"].notna().sum())
                 upload_ts  = datetime.now().strftime("%d/%m/%Y %H:%M")
+                upload_dt  = datetime.now().strftime("%Y-%m-%d")
+
+                # Keep history — list of {date, revenue, line_count, uploaded_at, filename}
+                history = live_hire.get("history", []) if isinstance(live_hire, dict) else []
+                # Append new entry (keep up to 60 days of history)
+                history.append({
+                    "date":     upload_dt,
+                    "revenue":  total_rev,
+                    "lines":    row_count,
+                    "at":       upload_ts,
+                    "filename": uploaded_file.name,
+                })
+                history = history[-60:]
                 new_lh = {
-                    "total_weekly_revenue": round(total_rev, 2),
-                    "line_count":           row_count,
-                    "uploaded_at":          upload_ts,
-                    "filename":             uploaded_file.name,
+                    "latest":  {"revenue": total_rev, "lines": row_count,
+                                "at": upload_ts, "filename": uploaded_file.name,
+                                "date": upload_dt},
+                    "history": history,
                 }
                 save_data(jobs, mcs, site_visits, svr_confirmed, checklist, new_lh)
                 st.success(f"Updated — £{total_rev:,.2f}/wk across {row_count} lines")
@@ -1281,12 +1294,13 @@ with st.sidebar:
         except Exception as e:
             st.error(f"Error reading file: {e}")
 
-    # Show current snapshot
-    if live_hire:
-        rev   = live_hire.get("total_weekly_revenue", 0)
-        lines = live_hire.get("line_count", 0)
-        ts    = live_hire.get("uploaded_at", "")
-        fname = live_hire.get("filename", "")
+    # Show current snapshot in sidebar
+    if live_hire and live_hire.get("latest"):
+        latest = live_hire["latest"]
+        rev    = latest.get("revenue", 0)
+        lines  = latest.get("lines", 0)
+        ts     = latest.get("at", "")
+        fname  = latest.get("filename", "")
         st.markdown(f"""
         <div style='background:{K_GREEN_PALE};border-radius:8px;padding:10px 12px;margin-top:8px;'>
           <div style='font-size:18px;font-weight:800;color:{K_GREEN_DARK};'>
@@ -1300,6 +1314,20 @@ with st.sidebar:
           </div>
         </div>
         """, unsafe_allow_html=True)
+
+        # History table
+        history = live_hire.get("history", [])
+        if len(history) > 1:
+            st.markdown("<div style='margin-top:12px;font-size:11px;font-weight:700;"
+                        "color:#888;'>Upload history</div>", unsafe_allow_html=True)
+            for entry in reversed(history[-7:]):
+                st.markdown(
+                    f"<div style='font-size:10px;color:{K_GREY};padding:2px 0;"
+                    f"border-bottom:0.5px solid #eee;'>"
+                    f"{entry.get('date','')} — "
+                    f"<b>£{entry.get('revenue',0):,.2f}</b> "
+                    f"({entry.get('lines',0)} lines)</div>",
+                    unsafe_allow_html=True)
     else:
         st.markdown(
             f"<div style='font-size:11px;color:{K_GREY};opacity:.5;"
@@ -1386,6 +1414,65 @@ else:
 st.markdown(pills, unsafe_allow_html=True)
 st.markdown("<div style='margin-bottom:.5rem'></div>", unsafe_allow_html=True)
 
+# ── LIVE HIRE REVENUE BANNER ──────────────────────────────────────────────────
+if live_hire and live_hire.get("latest"):
+    latest  = live_hire["latest"]
+    rev     = latest.get("revenue", 0)
+    rev_ts  = latest.get("at", "")
+    history = live_hire.get("history", [])
+
+    # Find a reading from ~7 days ago
+    today_dt = datetime.now().date()
+    prev_rev = None
+    for entry in reversed(history[:-1]):  # exclude the latest
+        try:
+            entry_dt = datetime.strptime(entry["date"], "%Y-%m-%d").date()
+            days_ago = (today_dt - entry_dt).days
+            if days_ago >= 7:
+                prev_rev = entry["revenue"]
+                prev_date = entry_dt.strftime("%-d %b")
+                break
+        except Exception:
+            continue
+
+    # % change
+    if prev_rev and prev_rev > 0:
+        pct       = ((rev - prev_rev) / prev_rev) * 100
+        pct_str   = f"{pct:+.1f}%"
+        arrow     = "▲" if pct > 0 else ("▼" if pct < 0 else "—")
+        chg_col   = K_GREEN_DARK if pct > 0 else ("#7b1a1a" if pct < 0 else K_GREY)
+        chg_bg    = K_GREEN_PALE if pct > 0 else ("#fdecea" if pct < 0 else "#f0f0f0")
+        chg_html  = (
+            f'<span style="background:{chg_bg};color:{chg_col};border-radius:5px;'
+            f'padding:3px 10px;font-size:13px;font-weight:700;margin-left:10px;">'
+            f'{arrow} {pct_str} vs {prev_date}</span>'
+        )
+    else:
+        chg_html = (
+            f'<span style="font-size:11px;color:{K_GREY};opacity:.5;margin-left:10px;">'
+            f'No 7-day comparison yet</span>'
+        )
+
+    st.markdown(f"""
+    <div style="background:{K_GREEN};border-radius:10px;padding:14px 20px;
+                margin-bottom:1rem;display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
+      <div>
+        <div style="font-size:11px;color:rgba(255,255,255,.75);font-weight:600;
+                    letter-spacing:.05em;text-transform:uppercase;">Live Hire — Weekly Revenue</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-top:2px;">
+          <span style="font-size:28px;font-weight:800;color:white;">
+            £{rev:,.2f}
+          </span>
+          <span style="font-size:13px;color:rgba(255,255,255,.7);">/ week</span>
+          {chg_html}
+        </div>
+      </div>
+      <div style="margin-left:auto;text-align:right;">
+        <div style="font-size:10px;color:rgba(255,255,255,.6);">As at {rev_ts}</div>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
 # ── HELPERS ───────────────────────────────────────────────────────────────────
 def week_unit_summary(ws):
     on_u, off_u = {}, {}
@@ -1438,9 +1525,9 @@ def render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_de
     )
     # Right — asset totals + live hire revenue
     rev_html = ""
-    if lh_snapshot and lh_snapshot.get("total_weekly_revenue"):
-        rev   = lh_snapshot["total_weekly_revenue"]
-        ts    = lh_snapshot.get("uploaded_at", "")
+    if lh_snapshot and lh_snapshot.get("latest"):
+        rev   = lh_snapshot["latest"].get("revenue", 0)
+        ts    = lh_snapshot["latest"].get("at", "")
         rev_html = (
             f"<div style='font-size:11px;font-weight:800;color:{K_GREEN_DARK};"
             f"margin-top:4px;padding-top:4px;border-top:1px solid #c3dfc9;'>"
