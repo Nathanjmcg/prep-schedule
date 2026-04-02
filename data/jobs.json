@@ -1973,8 +1973,8 @@
       "live_hire": true,
       "mcs_check": 1,
       "contracts": false,
-      "pods": true,
-      "collections": true,
+      "pods": false,
+      "collections": false,
       "pocs": true,
       "partial": true
     }
