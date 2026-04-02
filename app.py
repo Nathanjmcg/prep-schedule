@@ -496,9 +496,15 @@ def day_view_dialog(date_key):
             }
             job_checks   = JOB_CHECK_LABELS.get(job_type_val, [])
             base_ck      = f"job_{date_key}_{ji}"
-            all_job_done = bool(job_checks) and all(
+            checks_done  = bool(job_checks) and all(
                 checklist.get(f"{base_ck}_{ck}", False) for ck, _ in job_checks
             )
+            # On Hire: fully done = both checks + MCS picked
+            # Off Hire: fully done = both checks (replaces MCS)
+            if job_type_val == "On Hire":
+                all_job_done = checks_done and (mcs.get(f"{date_key}_{ji}", "") == "picked")
+            else:
+                all_job_done = checks_done
             # Shiny gold border when all checks done
             card_border = (
                 "border:2px solid #f0b429;box-shadow:0 0 10px rgba(240,180,41,.35);"
@@ -512,14 +518,11 @@ def day_view_dialog(date_key):
 
             rc1, rc2, rc3 = st.columns([5, 1, 1])
             with rc1:
-                # MCS status badge
+                # MCS status badge (On Hire only — shown in card)
                 mcs_badge = ""
                 if mcs_status == "picked" and job_type_val == "On Hire":
                     mcs_badge = (f'<div class="mcs-done" style="margin-top:8px;">'
                                  f'✅ Picked on MCS</div>')
-                elif mcs_status == "checked" and job_type_val == "Off Hire":
-                    mcs_badge = (f'<div class="mcs-done-red" style="margin-top:8px;">'
-                                 f'✅ Collection Processed on MCS</div>')
 
                 st.markdown(f"""
                 <div style="background:{bg};color:{fg};border-radius:10px;
@@ -535,39 +538,10 @@ def day_view_dialog(date_key):
                 </div>
                 """, unsafe_allow_html=True)
 
-                # MCS action button
-                if job_type_val == "On Hire":
-                    if mcs_status != "picked":
-                        if st.button("☐  Picked on MCS", key=f"mcs_{mcs_key}",
-                                     use_container_width=True):
-                            mcs[mcs_key] = "picked"
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
-                            st.rerun()
-                    else:
-                        if st.button("✅ Picked on MCS — undo", key=f"mcs_{mcs_key}",
-                                     use_container_width=True):
-                            mcs.pop(mcs_key, None)
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
-                            st.rerun()
-                elif job_type_val == "Off Hire":
-                    if mcs_status != "checked":
-                        if st.button("☐  Collection Processed on MCS", key=f"mcs_{mcs_key}",
-                                     use_container_width=True):
-                            mcs[mcs_key] = "checked"
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
-                            st.rerun()
-                    else:
-                        if st.button("✅ Collection Processed on MCS — undo", key=f"mcs_{mcs_key}",
-                                     use_container_width=True):
-                            mcs.pop(mcs_key, None)
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
-                            st.rerun()
-
-                # Per-job fulfilment checkboxes — inside the card column
+                # ── Per-job checks ──────────────────────────────────────────
                 if job_checks:
                     st.markdown(
-                        f"<div style='margin-top:6px;padding-top:6px;"
-                        f"border-top:1px solid rgba(0,0,0,.1);'></div>",
+                        "<div style='margin-top:2px;margin-bottom:4px;'></div>",
                         unsafe_allow_html=True)
                     jc_cols = st.columns(len(job_checks))
                     job_ck_changed = False
@@ -582,6 +556,22 @@ def day_view_dialog(date_key):
                     if job_ck_changed:
                         save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                         st.rerun()
+
+                # ── MCS button — On Hire only, below the checks ─────────────
+                if job_type_val == "On Hire":
+                    if mcs_status != "picked":
+                        if st.button("☐  Picked on MCS", key=f"mcs_{mcs_key}",
+                                     use_container_width=True):
+                            mcs[mcs_key] = "picked"
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+                            st.rerun()
+                    else:
+                        if st.button("✅ Picked on MCS — undo", key=f"mcs_{mcs_key}",
+                                     use_container_width=True):
+                            mcs.pop(mcs_key, None)
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+                            st.rerun()
+                # Off Hire — no MCS button, POC/Returns IS the confirmation
             with rc2:
                 if st.button("✏️", key=f"dv_edit_{date_key}_{ji}",
                              use_container_width=True, help="Edit this job"):
@@ -1480,11 +1470,21 @@ def day_jobs_fulfilment_complete(dk):
     """All per-job checks done for all On/Off Hire jobs on this day."""
     day_job_list = jobs.get(dk, [])
     if not day_job_list:
-        return True  # no jobs = nothing to check
+        return True
     for ji, job in enumerate(day_job_list):
-        checks = job_per_checks_done(dk, ji, job["type"])
-        if checks and not all(checks.values()):
-            return False
+        jtype = job["type"]
+        base  = f"job_{dk}_{ji}"
+        if jtype == "On Hire":
+            pod_ok      = checklist.get(f"{base}_pod", False)
+            contract_ok = checklist.get(f"{base}_contract", False)
+            mcs_ok      = mcs.get(f"{dk}_{ji}", "") == "picked"
+            if not (pod_ok and contract_ok and mcs_ok):
+                return False
+        elif jtype == "Off Hire":
+            poc_ok     = checklist.get(f"{base}_poc", False)
+            returns_ok = checklist.get(f"{base}_returns", False)
+            if not (poc_ok and returns_ok):
+                return False
     return True
 
 outstanding_pods  = 0
