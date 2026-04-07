@@ -1378,13 +1378,15 @@
             "Office": 1
           }
         },
-        "install_dismantle": false,
+        "install_dismantle": true,
         "haulage": "Internal Haulage",
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Callum",
-        "timestamp": "07/04/2026 09:16"
+        "timestamp": "07/04/2026 09:16",
+        "edited_by": "Callum",
+        "edited_at": "07/04/2026 15:31"
       },
       {
         "customer": "A Connolly Limited",
