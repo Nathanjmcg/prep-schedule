@@ -1717,22 +1717,18 @@
         "type": "On Hire",
         "site_move_type": "",
         "units": {
-          "24ft AV": 1,
-          "2+1": 1,
-          "Tank": 1,
-          "Steps": 2
+          "10ft Store": 1
         },
-        "av_configs": {
-          "24ft AV": {
-            "Office": 1
-          }
-        },
+        "av_configs": {},
         "install_dismantle": false,
         "haulage": "None",
+        "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Nathan",
-        "timestamp": "27/03/2026 13:37"
+        "timestamp": "27/03/2026 13:37",
+        "edited_by": "Nathan",
+        "edited_at": "07/04/2026 07:38"
       }
     ],
     "2026-04-02": [
