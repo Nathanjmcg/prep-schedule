@@ -2033,7 +2033,7 @@
     "job_2026-04-07_0_contract": true,
     "daily_2026-04-07": {
       "mcs_check": 1,
-      "partial_contracts": true
+      "partial_contracts": false
     }
   },
   "live_hire": {
