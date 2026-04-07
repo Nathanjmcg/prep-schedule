@@ -2111,7 +2111,7 @@
     "job_2026-04-02_4_poc": false,
     "job_2026-04-07_0_contract": true,
     "daily_2026-04-07": {
-      "mcs_check": 5,
+      "mcs_check": 6,
       "partial_contracts": true,
       "live_hire_uploaded": false
     },
