@@ -2095,7 +2095,7 @@
     "daily_2026-04-07": {
       "mcs_check": 3,
       "partial_contracts": false,
-      "live_hire_uploaded": true
+      "live_hire_uploaded": false
     }
   },
   "live_hire": {
