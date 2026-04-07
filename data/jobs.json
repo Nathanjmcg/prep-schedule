@@ -1285,6 +1285,23 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "07/04/2026 08:48"
+      },
+      {
+        "customer": "Assured Traffic Solutions",
+        "postcode": "SK10",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "4+2": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nick",
+        "timestamp": "07/04/2026 13:37"
       }
     ],
     "2026-04-07": [
