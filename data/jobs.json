@@ -2114,7 +2114,8 @@
       "mcs_check": 5,
       "partial_contracts": true,
       "live_hire_uploaded": false
-    }
+    },
+    "job_2026-04-07_1_poc": true
   },
   "live_hire": {
     "latest": {
