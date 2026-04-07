@@ -2094,7 +2094,8 @@
     "job_2026-04-07_0_contract": true,
     "daily_2026-04-07": {
       "mcs_check": 3,
-      "partial_contracts": false
+      "partial_contracts": false,
+      "live_hire_uploaded": true
     }
   },
   "live_hire": {
