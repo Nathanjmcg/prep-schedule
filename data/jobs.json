@@ -2205,7 +2205,7 @@
     },
     "job_2026-04-08_1_contract": true,
     "job_2026-04-08_2_contract": true,
-    "job_2026-04-08_4_contract": false,
+    "job_2026-04-08_4_contract": true,
     "job_2026-04-08_3_contract": true,
     "daily_2026-04-09": {
       "mcs_check": 1
