@@ -541,7 +541,7 @@ def day_view_dialog(date_key):
                 contract_html = ""
                 if contract_num and contract_num != "00000":
                     contract_html = (
-                        f'<span style="font-size:11px;font-weight:500;opacity:.6;'
+                        f'<span style="font-size:14px;font-weight:500;opacity:.6;'
                         f'margin-left:8px;background:rgba(0,0,0,.07);border-radius:4px;'
                         f'padding:1px 7px;">{contract_num}</span>'
                     )
