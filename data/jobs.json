@@ -2209,7 +2209,8 @@
     "job_2026-04-08_3_contract": true,
     "daily_2026-04-09": {
       "mcs_check": 1
-    }
+    },
+    "job_2026-04-08_0_contract": true
   },
   "live_hire": {
     "latest": {
