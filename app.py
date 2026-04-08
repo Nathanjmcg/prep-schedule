@@ -539,7 +539,7 @@ def day_view_dialog(date_key):
 
                 contract_num = job.get("contract_number", "")
                 contract_html = ""
-                if contract_num and contract_num != "01-00000":
+                if contract_num and contract_num != "00000":
                     contract_html = (
                         f'<span style="font-size:11px;font-weight:500;opacity:.6;'
                         f'margin-left:8px;background:rgba(0,0,0,.07);border-radius:4px;'
@@ -1102,8 +1102,8 @@ def job_modal(date_key, edit_idx=None):
 
     contract_number = st.text_input(
         "Contract Number",
-        value=edit_job.get("contract_number", "01-00000") if edit_job else "01-00000",
-        placeholder="01-00000"
+        value=edit_job.get("contract_number", "00000") if edit_job else "00000",
+        placeholder="00000"
     )
 
     # Site Move sub-type
