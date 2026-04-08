@@ -2120,7 +2120,8 @@
     "job_2026-04-07_1_poc": true,
     "job_2026-04-07_1_returns": true,
     "daily_2026-04-08": {
-      "partial_contracts": false
+      "partial_contracts": false,
+      "mcs_check": 1
     }
   },
   "live_hire": {
