@@ -2139,7 +2139,7 @@
     "job_2026-04-07_1_returns": true,
     "daily_2026-04-08": {
       "partial_contracts": false,
-      "mcs_check": 2
+      "mcs_check": 3
     }
   },
   "live_hire": {
