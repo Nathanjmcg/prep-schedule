@@ -195,12 +195,25 @@ for k, v in [("week_offset", 0), ("n_weeks", 4),
              ("day_view_date", None),
              ("move_from_date", None), ("move_job_idx", None),
              ("svr_modal_date", None), ("svr_modal_idx", None),
-             ("msv_from_date", None), ("msv_idx", None)]:
+             ("msv_from_date", None), ("msv_idx", None),
+             ("dialog_open", False)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
 jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, sha = load_data()
 bank_holidays = get_bank_holidays()
+
+def open_dialog(**kwargs):
+    """Set dialog state and mark dialog as open."""
+    for k, v in kwargs.items():
+        st.session_state[k] = v
+    st.session_state.dialog_open = True
+
+def close_dialog(**kwargs):
+    """Clear dialog state and mark dialog as closed."""
+    for k, v in kwargs.items():
+        st.session_state[k] = v
+    st.session_state.dialog_open = False
 
 # ── Global CSS ────────────────────────────────────────────────────────────────
 st.markdown(f"""
@@ -524,11 +537,19 @@ def day_view_dialog(date_key):
                     mcs_badge = (f'<div class="mcs-done" style="margin-top:8px;">'
                                  f'✅ Picked on MCS</div>')
 
+                contract_num = job.get("contract_number", "")
+                contract_html = ""
+                if contract_num and contract_num != "01-00000":
+                    contract_html = (
+                        f'<span style="font-size:11px;font-weight:500;opacity:.6;'
+                        f'margin-left:8px;background:rgba(0,0,0,.07);border-radius:4px;'
+                        f'padding:1px 7px;">{contract_num}</span>'
+                    )
                 st.markdown(f"""
                 <div style="background:{bg};color:{fg};border-radius:10px;
                             {card_border}padding:12px 14px;margin-bottom:4px;">
                   <div style="font-size:17px;font-weight:800;margin-bottom:2px;">
-                    {job.get("customer","")}{done_badge}</div>
+                    {job.get("customer","")}{contract_html}{done_badge}</div>
                   <div style="font-size:12px;opacity:.65;margin-bottom:6px;">{job.get("postcode","")}</div>
                   <div>{tags}</div>
                   {units_html}
@@ -750,6 +771,7 @@ def day_view_dialog(date_key):
         if st.button("＋ Add job to this day", use_container_width=True, type="primary"):
             st.session_state["modal_date"]     = date_key
             st.session_state["modal_edit_idx"] = None
+            st.session_state.dialog_open = False
             st.session_state["day_view_date"]  = None
             st.rerun()
     with ac2:
@@ -760,7 +782,7 @@ def day_view_dialog(date_key):
             st.rerun()
     with ac3:
         if st.button("Close", use_container_width=True):
-            st.session_state["day_view_date"] = None
+            close_dialog(day_view_date=None)
             st.rerun()
 
 # ── SITE VISIT REQUEST DIALOG (add/edit) ─────────────────────────────────────
@@ -852,6 +874,7 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
     with sb2:
         if st.button("Cancel", use_container_width=True):
             st.session_state["svr_modal_date"] = None
+            st.session_state.dialog_open = False
             st.session_state["svr_modal_idx"]  = None
             st.rerun()
     with sb3:
@@ -862,6 +885,7 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
                     del site_visits[date_key]
                 save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                 st.session_state["svr_modal_date"] = None
+                st.session_state.dialog_open = False
                 st.session_state["svr_modal_idx"]  = None
                 st.rerun()
 
@@ -908,13 +932,16 @@ def move_site_visit_dialog(from_date, sv_idx):
                 svr_confirmed[new_svr_key] = svr_confirmed.pop(old_svr_key)
             save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
             st.session_state["msv_from_date"] = None
+            st.session_state.dialog_open = False
             st.session_state["msv_idx"]       = None
             st.session_state["day_view_date"] = None
+            st.session_state.dialog_open = False
             st.success(f"Moved to {to_date.strftime('%a %-d %b')}.")
             st.rerun()
     with mc2:
         if st.button("Cancel", use_container_width=True):
             st.session_state["msv_from_date"] = None
+            st.session_state.dialog_open = False
             st.session_state["msv_idx"]       = None
             st.rerun()
 
@@ -961,12 +988,14 @@ def move_job_dialog(from_date, job_idx):
             save_jobs(jobs)
             st.session_state["day_view_date"]  = None
             st.session_state["move_from_date"] = None
+            st.session_state.dialog_open = False
             st.session_state["move_job_idx"]   = None
             st.success(f"Moved to {to_date.strftime('%a %-d %b')}.")
             st.rerun()
     with mc2:
         if st.button("Cancel", use_container_width=True):
             st.session_state["move_from_date"] = None
+            st.session_state.dialog_open = False
             st.session_state["move_job_idx"]   = None
             st.rerun()
 
@@ -1033,6 +1062,7 @@ def expand_chip_dialog(date_key, job_idx):
     with ec2:
         if st.button("Close", use_container_width=True):
             st.session_state["expand_date"] = None
+            st.session_state.dialog_open = False
             st.session_state["expand_idx"]  = None
             st.rerun()
 
@@ -1069,6 +1099,12 @@ def job_modal(date_key, edit_idx=None):
     with fc3:
         def_type = edit_job.get("type", "On Hire") if edit_job else "On Hire"
         job_type = st.selectbox("Type *", JOB_TYPES, index=JOB_TYPES.index(def_type))
+
+    contract_number = st.text_input(
+        "Contract Number",
+        value=edit_job.get("contract_number", "01-00000") if edit_job else "01-00000",
+        placeholder="01-00000"
+    )
 
     # Site Move sub-type
     site_move_type = None
@@ -1228,6 +1264,7 @@ def job_modal(date_key, edit_idx=None):
                 new_job = {
                     "customer":          customer.strip(),
                     "postcode":          postcode.strip().upper(),
+                    "contract_number":   contract_number.strip(),
                     "type":              job_type,
                     "site_move_type":    site_move_type or "",
                     "units":             {u: v for u, v in unit_vals.items() if v > 0},
@@ -1253,12 +1290,14 @@ def job_modal(date_key, edit_idx=None):
                 save_jobs(jobs)
                 st.session_state["modal_date"]     = None
                 st.session_state["modal_edit_idx"] = None
+                st.session_state.dialog_open = False
                 st.rerun()
 
     with ba2:
         if st.button("Cancel", use_container_width=True):
             st.session_state["modal_date"]     = None
             st.session_state["modal_edit_idx"] = None
+            st.session_state.dialog_open = False
             st.rerun()
 
     with ba3:
@@ -1270,21 +1309,27 @@ def job_modal(date_key, edit_idx=None):
                 save_jobs(jobs)
                 st.session_state["modal_date"]     = None
                 st.session_state["modal_edit_idx"] = None
+                st.session_state.dialog_open = False
                 st.rerun()
 
 # ── Trigger dialogs ───────────────────────────────────────────────────────────
-if st.session_state.svr_modal_date:
-    site_visit_dialog(st.session_state.svr_modal_date, st.session_state.svr_modal_idx)
-elif st.session_state.msv_from_date is not None and st.session_state.msv_idx is not None:
-    move_site_visit_dialog(st.session_state.msv_from_date, st.session_state.msv_idx)
-elif st.session_state.move_from_date is not None and st.session_state.move_job_idx is not None:
-    move_job_dialog(st.session_state.move_from_date, st.session_state.move_job_idx)
-elif st.session_state.day_view_date:
-    day_view_dialog(st.session_state.day_view_date)
-elif st.session_state.expand_date is not None and st.session_state.expand_idx is not None:
-    expand_chip_dialog(st.session_state.expand_date, st.session_state.expand_idx)
-elif st.session_state.modal_date:
-    job_modal(st.session_state.modal_date, st.session_state.modal_edit_idx)
+# dialog_open flag prevents auto-refresh from re-opening dialogs after they close
+if st.session_state.dialog_open:
+    if st.session_state.svr_modal_date:
+        site_visit_dialog(st.session_state.svr_modal_date, st.session_state.svr_modal_idx)
+    elif st.session_state.msv_from_date is not None and st.session_state.msv_idx is not None:
+        move_site_visit_dialog(st.session_state.msv_from_date, st.session_state.msv_idx)
+    elif st.session_state.move_from_date is not None and st.session_state.move_job_idx is not None:
+        move_job_dialog(st.session_state.move_from_date, st.session_state.move_job_idx)
+    elif st.session_state.day_view_date:
+        day_view_dialog(st.session_state.day_view_date)
+    elif st.session_state.expand_date is not None and st.session_state.expand_idx is not None:
+        expand_chip_dialog(st.session_state.expand_date, st.session_state.expand_idx)
+    elif st.session_state.modal_date:
+        job_modal(st.session_state.modal_date, st.session_state.modal_edit_idx)
+    else:
+        # All state cleared — mark dialog as closed
+        st.session_state.dialog_open = False
 
 # ── LIVE HIRE UPLOAD (sidebar) ───────────────────────────────────────────────
 with st.sidebar:
@@ -1836,10 +1881,9 @@ for w in range(n_weeks):
             st.markdown("<div class='ks-add-btn'>", unsafe_allow_html=True)
             if st.button("＋ Add / View", key=f"day_{dk}", use_container_width=True):
                 if day_jobs:
-                    st.session_state["day_view_date"] = dk
+                    open_dialog(day_view_date=dk)
                 else:
-                    st.session_state["modal_date"]     = dk
-                    st.session_state["modal_edit_idx"] = None
+                    open_dialog(modal_date=dk, modal_edit_idx=None)
                 st.rerun()
             st.markdown("</div>", unsafe_allow_html=True)
 
@@ -1969,6 +2013,7 @@ with st.expander("📥 Export to Excel / CSV"):
                 "Date":              d.strftime("%d/%m/%Y"),
                 "Day":               d.strftime("%A"),
                 "Customer":          j.get("customer", ""),
+                "Contract No.":      j.get("contract_number", ""),
                 "Postcode":          j.get("postcode", ""),
                 "Type":              j["type"],
                 "Site Move Type":    j.get("site_move_type", ""),
