@@ -1873,6 +1873,23 @@
         "livery_note": "",
         "added_by": "Callum",
         "timestamp": "08/04/2026 07:35"
+      },
+      {
+        "customer": "Bellway Homes North West Division",
+        "postcode": "CH5 2RF",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Solar Loo Single": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Callum",
+        "timestamp": "08/04/2026 07:47"
       }
     ],
     "2026-04-02": [
@@ -2183,7 +2200,7 @@
       "partial_contracts": false,
       "mcs_check": 3
     },
-    "job_2026-04-08_1_contract": true,
+    "job_2026-04-08_1_contract": false,
     "job_2026-04-08_2_contract": true,
     "job_2026-04-08_4_contract": true
   },
