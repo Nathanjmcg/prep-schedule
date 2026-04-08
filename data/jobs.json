@@ -2201,7 +2201,7 @@
     "job_2026-04-07_1_returns": true,
     "daily_2026-04-08": {
       "partial_contracts": false,
-      "mcs_check": 3
+      "mcs_check": 4
     },
     "job_2026-04-08_1_contract": true,
     "job_2026-04-08_2_contract": true,
