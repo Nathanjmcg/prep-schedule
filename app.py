@@ -1073,6 +1073,9 @@ def job_modal(date_key, edit_idx=None):
     if edit_idx is not None and date_key in jobs and edit_idx < len(jobs[date_key]):
         edit_job = jobs[date_key][edit_idx]
 
+    # Unique key prefix — prevents widget key collisions across multiple opens
+    _k = f"{date_key}_{edit_idx if edit_idx is not None else 'new'}"
+
     day_label = datetime.strptime(date_key, "%Y-%m-%d").strftime("%A %-d %B %Y")
     st.markdown(f"<div style='font-size:13px;color:{K_GREY};opacity:.6;"
                 f"margin-bottom:1rem;'>📅 {day_label}</div>", unsafe_allow_html=True)
@@ -1118,6 +1121,7 @@ def job_modal(date_key, edit_idx=None):
             sm_opts,
             index=sm_opts.index(def_sm),
             horizontal=True,
+            key=f"sm_{_k}",
         )
 
     # Mandatory Added By — always shown, pre-selected if editing
@@ -1139,7 +1143,7 @@ def job_modal(date_key, edit_idx=None):
         with u_cols[i % 4]:
             def_qty = int(edit_job.get("units", {}).get(u, 0)) if edit_job else 0
             unit_vals[u] = st.number_input(u, min_value=0, max_value=99,
-                                           value=def_qty, step=1, key=f"mu_{u}")
+                                           value=def_qty, step=1, key=f"mu_{_k}_{u}")
 
     # AV configuration breakdown — shown for any AV unit with qty > 0
     av_units_with_qty = [u for u in AV_UNITS if unit_vals.get(u, 0) > 0]
@@ -1166,7 +1170,7 @@ def job_modal(date_key, edit_idx=None):
                     def_cfg = int(saved_cfg.get(cfg, 0))
                     cfg_vals[cfg] = st.number_input(
                         cfg, min_value=0, max_value=int(qty),
-                        value=def_cfg, step=1, key=f"cfg_{u}_{cfg}")
+                        value=def_cfg, step=1, key=f"cfg_{_k}_{u}_{cfg}")
 
             # Validation hint
             cfg_total = sum(cfg_vals.values())
@@ -1184,7 +1188,8 @@ def job_modal(date_key, edit_idx=None):
             av_configs[u] = {cfg: v for cfg, v in cfg_vals.items() if v > 0}
 
     def_id = edit_job.get("install_dismantle", False) if edit_job else False
-    install_dismantle = st.checkbox("Install / Dismantle", value=def_id)
+    install_dismantle = st.checkbox("Install / Dismantle", value=def_id,
+                                    key=f"id_{_k}")
 
     haulage_opts = ["None", "Internal Haulage", "External Haulage"]
     def_haulage  = edit_job.get("haulage", "None") if edit_job else "None"
@@ -1192,13 +1197,14 @@ def job_modal(date_key, edit_idx=None):
         def_haulage = "None"
     haulage = st.radio("Haulage", haulage_opts,
                        index=haulage_opts.index(def_haulage),
-                       horizontal=True)
+                       horizontal=True, key=f"haul_{_k}")
     haulage_who = ""
     if haulage == "External Haulage":
         haulage_who = st.text_input(
             "Who is the haulage contractor? *",
             value=edit_job.get("haulage_who", "") if edit_job else "",
-            placeholder="e.g. Stobbarts, Eddie Stobart, XYZ Haulage..."
+            placeholder="e.g. Stobbarts, Eddie Stobart, XYZ Haulage...",
+            key=f"hw_{_k}"
         )
 
     st.markdown(f"<div style='font-size:13px;font-weight:700;color:{K_GREY};"
@@ -1210,13 +1216,15 @@ def job_modal(date_key, edit_idx=None):
     livery = st.radio("Cabin livery", livery_opts,
                       index=livery_opts.index(def_livery),
                       horizontal=True,
-                      label_visibility="collapsed")
+                      label_visibility="collapsed",
+                      key=f"liv_{_k}")
     livery_note = ""
     if livery == "Customer Livery — Specify":
         livery_note = st.text_input(
             "Paint colour or RAL code",
             value=edit_job.get("livery_note", "") if edit_job else "",
-            placeholder="e.g. RAL 5010, British Racing Green, #1A2B3C…"
+            placeholder="e.g. RAL 5010, British Racing Green, #1A2B3C…",
+            key=f"livnote_{_k}"
         )
 
     st.markdown("<div style='margin-top:1rem'></div>", unsafe_allow_html=True)
