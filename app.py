@@ -599,6 +599,7 @@ def day_view_dialog(date_key):
                     st.session_state["modal_date"]     = date_key
                     st.session_state["modal_edit_idx"] = ji
                     st.session_state["day_view_date"]  = None
+                    st.session_state.dialog_open = True
                     st.rerun()
             with rc3:
                 if st.button("📅", key=f"dv_move_{date_key}_{ji}",
@@ -606,6 +607,7 @@ def day_view_dialog(date_key):
                     st.session_state["move_from_date"] = date_key
                     st.session_state["move_job_idx"]   = ji
                     st.session_state["day_view_date"]  = None
+                    st.session_state.dialog_open = True
                     st.rerun()
 
     st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
@@ -754,6 +756,7 @@ def day_view_dialog(date_key):
                     st.session_state["svr_modal_date"] = date_key
                     st.session_state["svr_modal_idx"]  = svi
                     st.session_state["day_view_date"]  = None
+                    st.session_state.dialog_open = True
                     st.rerun()
             with sc3:
                 if st.button("📅", key=f"svr_move_{svr_key}",
@@ -761,6 +764,7 @@ def day_view_dialog(date_key):
                     st.session_state["msv_from_date"]  = date_key
                     st.session_state["msv_idx"]        = svi
                     st.session_state["day_view_date"]  = None
+                    st.session_state.dialog_open = True
                     st.rerun()
 
         st.markdown("<div style='margin-top:.5rem'></div>", unsafe_allow_html=True)
@@ -771,7 +775,7 @@ def day_view_dialog(date_key):
         if st.button("＋ Add job to this day", use_container_width=True, type="primary"):
             st.session_state["modal_date"]     = date_key
             st.session_state["modal_edit_idx"] = None
-            st.session_state.dialog_open = False
+            st.session_state.dialog_open = True  # transition
             st.session_state["day_view_date"]  = None
             st.rerun()
     with ac2:
@@ -779,6 +783,7 @@ def day_view_dialog(date_key):
             st.session_state["svr_modal_date"] = date_key
             st.session_state["svr_modal_idx"]  = None
             st.session_state["day_view_date"]  = None
+            st.session_state.dialog_open       = True
             st.rerun()
     with ac3:
         if st.button("Close", use_container_width=True):
@@ -1321,8 +1326,17 @@ def job_modal(date_key, edit_idx=None):
                 st.rerun()
 
 # ── Trigger dialogs ───────────────────────────────────────────────────────────
-# dialog_open flag prevents auto-refresh from re-opening dialogs after they close
-if st.session_state.dialog_open:
+# Only open a dialog if a button was explicitly clicked this session.
+# We check dialog_open AND that at least one dialog key is set.
+_any_dialog = (
+    st.session_state.svr_modal_date or
+    (st.session_state.msv_from_date is not None and st.session_state.msv_idx is not None) or
+    (st.session_state.move_from_date is not None and st.session_state.move_job_idx is not None) or
+    st.session_state.day_view_date or
+    (st.session_state.expand_date is not None and st.session_state.expand_idx is not None) or
+    st.session_state.modal_date
+)
+if st.session_state.dialog_open and _any_dialog:
     if st.session_state.svr_modal_date:
         site_visit_dialog(st.session_state.svr_modal_date, st.session_state.svr_modal_idx)
     elif st.session_state.msv_from_date is not None and st.session_state.msv_idx is not None:
@@ -1335,9 +1349,8 @@ if st.session_state.dialog_open:
         expand_chip_dialog(st.session_state.expand_date, st.session_state.expand_idx)
     elif st.session_state.modal_date:
         job_modal(st.session_state.modal_date, st.session_state.modal_edit_idx)
-    else:
-        # All state cleared — mark dialog as closed
-        st.session_state.dialog_open = False
+elif not _any_dialog:
+    st.session_state.dialog_open = False
 
 # ── LIVE HIRE UPLOAD (sidebar) ───────────────────────────────────────────────
 with st.sidebar:
