@@ -2253,7 +2253,10 @@
     "daily_2026-04-09": {
       "mcs_check": 6
     },
-    "job_2026-04-08_0_contract": false
+    "job_2026-04-08_0_contract": false,
+    "daily_2026-04-10": {
+      "mcs_check": 1
+    }
   },
   "live_hire": {
     "latest": {
