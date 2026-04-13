@@ -2524,7 +2524,7 @@
     "2026-04-23": [
       {
         "customer": "Blyth Group",
-        "postcode": "",
+        "postcode": "DY2",
         "contract_number": "00000",
         "type": "On Hire",
         "site_move_type": "",
@@ -2533,7 +2533,8 @@
         },
         "av_configs": {
           "32ft AV": {
-            "Office": 2
+            "Canteen": 1,
+            "Other": 1
           }
         },
         "install_dismantle": false,
@@ -2543,9 +2544,8 @@
         "livery_note": "",
         "added_by": "Nathan",
         "timestamp": "13/04/2026 09:00",
-        "moved_by": "\u2014",
-        "moved_from": "2026-04-21",
-        "edited_at": "13/04/2026 14:44"
+        "edited_by": "Nathan",
+        "edited_at": "13/04/2026 14:46"
       }
     ]
   },
