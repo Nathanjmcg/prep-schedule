@@ -2274,6 +2274,9 @@
     "job_2026-04-08_0_contract": false,
     "daily_2026-04-10": {
       "mcs_check": 1
+    },
+    "daily_2026-04-13": {
+      "mcs_check": 1
     }
   },
   "live_hire": {
