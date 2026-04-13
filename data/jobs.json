@@ -2419,6 +2419,34 @@
         "added_by": "Callum",
         "timestamp": "13/04/2026 12:06"
       }
+    ],
+    "2026-04-17": [
+      {
+        "customer": "Manchester and Cheshire construction Company Ltd",
+        "postcode": "CW1 2JZ",
+        "contract_number": "0000030983",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 2,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 3,
+          "IBC": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Other": 2
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Callum",
+        "timestamp": "13/04/2026 12:12"
+      }
     ]
   },
   "mcs": {
