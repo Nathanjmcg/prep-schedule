@@ -2330,30 +2330,6 @@
         "edited_at": "13/04/2026 11:57"
       }
     ],
-    "2026-04-21": [
-      {
-        "customer": "Blyth Group",
-        "postcode": "",
-        "contract_number": "00000",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "32ft AV": 2
-        },
-        "av_configs": {
-          "32ft AV": {
-            "Office": 2
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "added_by": "Nathan",
-        "timestamp": "13/04/2026 09:00"
-      }
-    ],
     "2026-04-20": [
       {
         "customer": "Kenny Waste Management",
@@ -2543,6 +2519,33 @@
         "moved_by": "\u2014",
         "moved_from": "2026-04-14",
         "edited_at": "13/04/2026 14:42"
+      }
+    ],
+    "2026-04-23": [
+      {
+        "customer": "Blyth Group",
+        "postcode": "",
+        "contract_number": "00000",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Office": 2
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Nathan",
+        "timestamp": "13/04/2026 09:00",
+        "moved_by": "\u2014",
+        "moved_from": "2026-04-21",
+        "edited_at": "13/04/2026 14:44"
       }
     ]
   },
