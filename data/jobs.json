@@ -1011,6 +1011,32 @@
         "livery_note": "",
         "added_by": "Callum",
         "timestamp": "13/04/2026 07:08"
+      },
+      {
+        "customer": "APL Lifting",
+        "postcode": "M46 9BE",
+        "contract_number": "0000031365",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 3,
+          "20ft AV": 3
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Other": 3
+          },
+          "20ft AV": {
+            "Other": 3
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Callum",
+        "timestamp": "13/04/2026 07:23"
       }
     ],
     "2026-03-26": [
