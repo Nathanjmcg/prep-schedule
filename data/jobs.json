@@ -2164,6 +2164,24 @@
         "livery_note": "",
         "added_by": "Klaudia",
         "timestamp": "02/04/2026 09:41"
+      },
+      {
+        "customer": "M Group NW Ltd",
+        "postcode": "BB2 7LB",
+        "contract_number": "0000031364",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Callum",
+        "timestamp": "13/04/2026 07:40"
       }
     ],
     "2026-04-15": [
