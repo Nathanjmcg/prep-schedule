@@ -2196,7 +2196,7 @@
         "timestamp": "13/04/2026 07:40"
       },
       {
-        "customer": "john Reilly Civil Engineering LTD",
+        "customer": "John Reilly Civil Engineering Ltd",
         "postcode": "WN2 2BQ",
         "contract_number": "0000030156",
         "type": "Off Hire",
@@ -2215,7 +2215,9 @@
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Peter",
-        "timestamp": "13/04/2026 13:33"
+        "timestamp": "13/04/2026 13:33",
+        "edited_by": "Peter",
+        "edited_at": "14/04/2026 07:26"
       },
       {
         "customer": "Bethell LTD",
