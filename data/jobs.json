@@ -2422,6 +2422,22 @@
         "livery_note": "",
         "added_by": "Klaudia",
         "timestamp": "14/04/2026 10:32"
+      },
+      {
+        "customer": "david wilson homes",
+        "postcode": "CW1 5LS",
+        "contract_number": "0000031373",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {},
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "haulage_who": "Nortons",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Peter",
+        "timestamp": "14/04/2026 14:45"
       }
     ],
     "2026-04-20": [
