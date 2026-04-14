@@ -2318,6 +2318,32 @@
         "timestamp": "13/04/2026 11:56",
         "edited_by": "Peter",
         "edited_at": "14/04/2026 07:12"
+      },
+      {
+        "customer": "A Connolly Limited",
+        "postcode": "M8 9DG",
+        "contract_number": "0000030733",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1,
+          "3+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 2
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Callum",
+        "timestamp": "14/04/2026 07:16"
       }
     ],
     "2026-04-20": [
