@@ -2366,7 +2366,7 @@
         "timestamp": "14/04/2026 07:16"
       },
       {
-        "customer": "0000030735",
+        "customer": "A Connolly",
         "postcode": "M8 9DG",
         "contract_number": "0000030735",
         "type": "Site Move",
@@ -2381,7 +2381,9 @@
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Callum",
-        "timestamp": "14/04/2026 07:18"
+        "timestamp": "14/04/2026 07:18",
+        "edited_by": "Callum",
+        "edited_at": "14/04/2026 14:49"
       },
       {
         "customer": "A Connolly Limited",
