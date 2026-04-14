@@ -2362,6 +2362,24 @@
         "livery_note": "",
         "added_by": "Callum",
         "timestamp": "14/04/2026 07:18"
+      },
+      {
+        "customer": "A Connolly Limited",
+        "postcode": "M8 9DG",
+        "contract_number": "0000030736",
+        "type": "Site Move",
+        "site_move_type": "Movement to New Site",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Callum",
+        "timestamp": "14/04/2026 07:25"
       }
     ],
     "2026-04-20": [
