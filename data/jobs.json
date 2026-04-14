@@ -2400,6 +2400,28 @@
         "livery_note": "",
         "added_by": "Callum",
         "timestamp": "14/04/2026 07:25"
+      },
+      {
+        "customer": "Argent  Energy Limited",
+        "postcode": "CH65 4BD",
+        "contract_number": "31116",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 1
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Meeting Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "haulage_who": "D Cains - ADDITIONAL KITCHEN PACK REQUIRED",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Klaudia",
+        "timestamp": "14/04/2026 10:32"
       }
     ],
     "2026-04-20": [
