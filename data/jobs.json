@@ -2861,6 +2861,24 @@
         "livery_note": "",
         "added_by": "Peter",
         "timestamp": "14/04/2026 13:30"
+      },
+      {
+        "customer": "31225",
+        "postcode": "SK8 3SZ",
+        "contract_number": "0000031225",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Peter",
+        "timestamp": "14/04/2026 13:35"
       }
     ]
   },
