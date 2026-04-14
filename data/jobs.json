@@ -924,6 +924,24 @@
         "timestamp": "31/03/2026 10:22",
         "edited_by": "Peter",
         "edited_at": "31/03/2026 10:41"
+      },
+      {
+        "customer": "Connolloys",
+        "postcode": "M26 3GP",
+        "contract_number": "31372",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Static Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Jake",
+        "timestamp": "14/04/2026 08:18"
       }
     ],
     "2026-04-13": [
