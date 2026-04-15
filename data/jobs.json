@@ -2740,15 +2740,14 @@
           }
         },
         "install_dismantle": false,
-        "haulage": "None",
+        "haulage": "Internal Haulage",
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Peter",
         "timestamp": "13/04/2026 13:43",
-        "moved_by": "\u2014",
-        "moved_from": "2026-04-14",
-        "edited_at": "13/04/2026 14:42"
+        "edited_by": "Peter",
+        "edited_at": "15/04/2026 09:37"
       }
     ],
     "2026-04-23": [
