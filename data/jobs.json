@@ -2626,6 +2626,24 @@
         "livery_note": "",
         "added_by": "Callum",
         "timestamp": "13/04/2026 12:06"
+      },
+      {
+        "customer": "Morris Homes",
+        "postcode": "BL9 5JE",
+        "contract_number": "00000",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Solar Loo Single": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "haulage_who": "D Cain & Sons",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Peter",
+        "timestamp": "15/04/2026 13:09"
       }
     ],
     "2026-04-17": [
