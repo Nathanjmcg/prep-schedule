@@ -2846,12 +2846,14 @@
         },
         "av_configs": {},
         "install_dismantle": false,
-        "haulage": "None",
+        "haulage": "Internal Haulage",
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Peter",
-        "timestamp": "15/04/2026 09:34"
+        "timestamp": "15/04/2026 09:34",
+        "edited_by": "Peter",
+        "edited_at": "15/04/2026 09:34"
       }
     ],
     "2026-04-27": [
