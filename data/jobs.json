@@ -3013,6 +3013,24 @@
         "timestamp": "14/04/2026 13:24",
         "edited_by": "Peter",
         "edited_at": "14/04/2026 13:36"
+      },
+      {
+        "customer": "Exact Property services",
+        "postcode": "L38 3RR",
+        "contract_number": "0000030110",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Peter",
+        "timestamp": "17/04/2026 07:55"
       }
     ],
     "2026-04-30": [
