@@ -2558,6 +2558,28 @@
         "livery_note": "",
         "added_by": "Peter",
         "timestamp": "17/04/2026 07:36"
+      },
+      {
+        "customer": "Bethell",
+        "postcode": "M26 1GE",
+        "contract_number": "0000031386",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Peter",
+        "timestamp": "17/04/2026 07:37"
       }
     ],
     "2026-04-16": [
