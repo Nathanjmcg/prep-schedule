@@ -2980,6 +2980,24 @@
         "livery_note": "",
         "added_by": "Peter",
         "timestamp": "15/04/2026 12:12"
+      },
+      {
+        "customer": "GRS",
+        "postcode": "WA5 3ZH",
+        "contract_number": "31392",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Customer Livery \u2014 Specify",
+        "livery_note": "UNIT TO BE PAINTED RAL5002 -2x DESKS TO BE DELIVERED WITH UNIT",
+        "added_by": "Klaudia",
+        "timestamp": "17/04/2026 15:11"
       }
     ],
     "2026-04-27": [
