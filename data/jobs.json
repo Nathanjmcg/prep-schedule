@@ -2741,12 +2741,14 @@
     "2026-04-23": [
       {
         "customer": "Blyth Group",
-        "postcode": "DY2",
-        "contract_number": "00000",
+        "postcode": "DY2 8UZ",
+        "contract_number": "0000031387",
         "type": "On Hire",
         "site_move_type": "",
         "units": {
-          "32ft AV": 2
+          "32ft AV": 2,
+          "20ft Store": 2,
+          "Steps": 1
         },
         "av_configs": {
           "32ft AV": {
@@ -2762,7 +2764,7 @@
         "added_by": "Nathan",
         "timestamp": "13/04/2026 09:00",
         "edited_by": "Nathan",
-        "edited_at": "13/04/2026 14:46"
+        "edited_at": "17/04/2026 07:18"
       }
     ],
     "2026-04-21": [
