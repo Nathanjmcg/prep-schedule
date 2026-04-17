@@ -2442,36 +2442,6 @@
     ],
     "2026-04-20": [
       {
-        "customer": "Kenny Waste Management",
-        "postcode": "M4",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "32ft AV": 2,
-          "20ft AV": 1,
-          "4+2": 1
-        },
-        "av_configs": {
-          "20ft AV": {
-            "Drying Room": 1
-          },
-          "32ft AV": {
-            "Canteen": 1,
-            "Office": 1
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "added_by": "Nathan",
-        "timestamp": "19/03/2026 13:07",
-        "edited_by": "Nathan",
-        "edited_at": "13/04/2026 09:01",
-        "moved_by": "\u2014",
-        "moved_from": "2026-04-13"
-      },
-      {
         "customer": "A Connolly LTD",
         "postcode": "PR2 3XR",
         "contract_number": "0000030511",
