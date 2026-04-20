@@ -2583,7 +2583,7 @@
       },
       {
         "customer": "Millers of Longton",
-        "postcode": "PR4 4ST",
+        "postcode": "PR4 4SR",
         "contract_number": "0000031383",
         "type": "On Hire",
         "site_move_type": "",
@@ -2597,7 +2597,9 @@
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Peter",
-        "timestamp": "17/04/2026 07:38"
+        "timestamp": "17/04/2026 07:38",
+        "edited_by": "Peter",
+        "edited_at": "20/04/2026 07:53"
       }
     ],
     "2026-04-16": [
