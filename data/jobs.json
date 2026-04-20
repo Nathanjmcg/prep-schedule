@@ -3000,6 +3000,24 @@
         "livery_note": "UNIT TO BE PAINTED RAL5002 -2x DESKS TO BE DELIVERED WITH UNIT",
         "added_by": "Klaudia",
         "timestamp": "17/04/2026 15:11"
+      },
+      {
+        "customer": "Think Hire",
+        "postcode": "LA14 5DN - COLLECTION FROM YARD",
+        "contract_number": "31394",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Smoking Shelter": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Klaudia",
+        "timestamp": "20/04/2026 08:48"
       }
     ],
     "2026-04-27": [
