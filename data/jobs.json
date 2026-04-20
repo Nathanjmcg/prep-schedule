@@ -3003,7 +3003,7 @@
       },
       {
         "customer": "Think Hire",
-        "postcode": "LA14 5DN - COLLECTION FROM YARD",
+        "postcode": "OL9 8EU - COLLECTION FROM YARD",
         "contract_number": "31394",
         "type": "On Hire",
         "site_move_type": "",
@@ -3017,7 +3017,9 @@
         "livery": "Standard Livery",
         "livery_note": "",
         "added_by": "Klaudia",
-        "timestamp": "20/04/2026 08:48"
+        "timestamp": "20/04/2026 08:48",
+        "edited_by": "Klaudia",
+        "edited_at": "20/04/2026 08:58"
       }
     ],
     "2026-04-27": [
