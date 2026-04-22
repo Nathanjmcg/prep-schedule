@@ -2952,6 +2952,28 @@
         "livery_note": "",
         "added_by": "Peter",
         "timestamp": "22/04/2026 12:53"
+      },
+      {
+        "customer": "bury pallets",
+        "postcode": "M50",
+        "contract_number": "00000",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Office": 2
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Peter",
+        "timestamp": "22/04/2026 14:54"
       }
     ],
     "2026-04-21": [
