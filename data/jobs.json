@@ -3841,6 +3841,26 @@
         "added_by": "Peter",
         "timestamp": "24/04/2026 15:43"
       }
+    ],
+    "2026-05-08": [
+      {
+        "customer": "Fusion Crossfit",
+        "postcode": "WN7 3PT",
+        "contract_number": "0000031397",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "added_by": "Peter",
+        "timestamp": "24/04/2026 15:46"
+      }
     ]
   },
   "mcs": {
