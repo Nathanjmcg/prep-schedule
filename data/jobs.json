@@ -4025,6 +4025,9 @@
     "job_2026-04-20_5_returns": false,
     "daily_2026-04-24": {
       "mcs_check": 3
+    },
+    "daily_2026-05-08": {
+      "mcs_check": 1
     }
   },
   "live_hire": {
