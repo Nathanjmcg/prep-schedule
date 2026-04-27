@@ -35,6 +35,15 @@ UNIT_TYPES = [
 AV_UNITS = {"32ft AV", "24ft AV", "20ft AV", "10ft AV"}
 AV_CONFIGS = ["Canteen", "Office", "Drying Room", "Changing Room", "Welfare", "Meeting Room", "Other"]
 
+# Units counted as delivered/collected assets (excludes accessories)
+ASSET_UNITS = {
+    "32ft AV", "24ft AV", "20ft AV", "10ft AV",
+    "Mobile Welfare", "Static Welfare",
+    "20ft Store", "10ft Store",
+    "Solar Loo Single", "Solar Loo Double", "Chemiloo",
+    "Smoking Shelter", "Generator",
+}
+
 JOB_TYPES = ["On Hire", "Off Hire", "Site Move"]
 TEAM_MEMBERS = ["Jake", "Ewa", "Klaudia", "Chris", "Nick", "Chloe", "Peter", "Callum", "Nathan"]
 TYPE_STYLE = {
@@ -545,6 +554,19 @@ def day_view_dialog(date_key):
                         f'margin-left:8px;background:rgba(0,0,0,.07);border-radius:4px;'
                         f'padding:1px 7px;">{contract_num}</span>'
                     )
+                # Notes
+                notes_html = ""
+                if job.get("notes"):
+                    notes_by  = job.get("notes_edited_by", "")
+                    notes_at  = job.get("notes_edited_at", "")
+                    notes_stamp = (f'<span style="font-size:9px;opacity:.5;margin-left:6px;">'
+                                   f'✏️ {notes_by} · {notes_at}</span>' if notes_by else "")
+                    notes_html = (
+                        f'<div style="margin-top:6px;padding:6px 8px;'
+                        f'background:rgba(0,0,0,.05);border-radius:5px;font-size:11px;">'
+                        f'📝 {job["notes"]}{notes_stamp}</div>'
+                    )
+
                 st.markdown(f"""
                 <div style="background:{bg};color:{fg};border-radius:10px;
                             {card_border}padding:12px 14px;margin-bottom:4px;">
@@ -554,6 +576,7 @@ def day_view_dialog(date_key):
                   <div>{tags}</div>
                   {units_html}
                   {av_cfg_html}
+                  {notes_html}
                   {ts_line}
                   {mcs_badge}
                 </div>
@@ -1232,6 +1255,22 @@ def job_modal(date_key, edit_idx=None):
             key=f"livnote_{_k}"
         )
 
+    # Notes
+    notes_val = edit_job.get("notes", "") if edit_job else ""
+    notes = st.text_area(
+        "Notes (max 200 characters)",
+        value=notes_val,
+        max_chars=200,
+        height=80,
+        placeholder="Any additional details, instructions or context...",
+        key=f"notes_{_k}"
+    )
+    chars_left = 200 - len(notes)
+    st.markdown(
+        f"<div style='font-size:10px;color:{'#c0392b' if chars_left < 20 else K_GREY};"
+        f"opacity:.6;text-align:right;margin-top:-8px;'>{chars_left} characters remaining</div>",
+        unsafe_allow_html=True)
+
     st.markdown("<div style='margin-top:1rem'></div>", unsafe_allow_html=True)
     ba1, ba2, ba3 = st.columns([2, 2, 2])
 
@@ -1287,9 +1326,19 @@ def job_modal(date_key, edit_idx=None):
                     "haulage_who":       haulage_who.strip() if haulage == "External Haulage" else "",
                     "livery":            livery,
                     "livery_note":       livery_note.strip() if livery == "Customer Livery — Specify" else "",
+                    "notes":             notes.strip(),
                     "added_by":          orig_by,
                     "timestamp":         orig_ts,
                 }
+                # Track notes edit — if notes changed during an edit, stamp it
+                if edit_job is not None and notes.strip() != (edit_job.get("notes","") or ""):
+                    new_job["notes_edited_by"] = added_by
+                    new_job["notes_edited_at"] = datetime.now().strftime("%d/%m/%Y %H:%M")
+                elif edit_job is not None:
+                    # Preserve existing notes edit stamp
+                    if edit_job.get("notes_edited_by"):
+                        new_job["notes_edited_by"] = edit_job["notes_edited_by"]
+                        new_job["notes_edited_at"] = edit_job["notes_edited_at"]
                 if edited_ts:
                     new_job["edited_by"] = edited_by
                     new_job["edited_at"] = edited_ts
@@ -1651,12 +1700,13 @@ if live_hire and live_hire.get("latest"):
 def week_unit_summary(ws):
     on_u, off_u = {}, {}
     on_total = off_total = 0
-    internal_dels = external_dels = 0
+    internal_assets = external_assets = 0
     for d in range(7):
         dk = fmt_key(ws + timedelta(days=d))
         for job in jobs.get(dk, []):
             is_off = job["type"] == "Off Hire"
             target = off_u if is_off else on_u
+            h      = job.get("haulage", "None")
             for u, q in job.get("units", {}).items():
                 if q:
                     target[u] = target.get(u, 0) + q
@@ -1664,15 +1714,16 @@ def week_unit_summary(ws):
                         off_total += q
                     else:
                         on_total += q
-            h = job.get("haulage", "None")
-            if h == "Internal Haulage":
-                internal_dels += 1
-            elif h == "External Haulage":
-                external_dels += 1
-    return on_u, off_u, on_total, off_total, internal_dels, external_dels
+                    # Count asset quantities by haulage — exclude accessories
+                    if u in ASSET_UNITS:
+                        if h == "Internal Haulage":
+                            internal_assets += q
+                        elif h == "External Haulage":
+                            external_assets += q
+    return on_u, off_u, on_total, off_total, internal_assets, external_assets
 
-def render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_dels, lh_snapshot=None):
-    if not on_u and not off_u and not internal_dels and not external_dels:
+def render_week_bar(on_u, off_u, on_total, off_total, internal_assets, external_assets, lh_snapshot=None):
+    if not on_u and not off_u and not internal_assets and not external_assets:
         return ""
     html = "<div class='wk-bar'><div style='display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;'>"
     # Left — unit breakdown
@@ -1686,15 +1737,15 @@ def render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_de
                  f"margin:0 3px;'>OFF:</span>")
         html += "".join(f'<span class="wku off">{u} ×{q}</span>' for u, q in off_u.items())
     html += "</div></div>"
-    # Middle — delivery counters
+    # Middle — asset delivery counts by haulage type
     html += (
         f"<div style='flex-shrink:0;border-left:1px solid #c3dfc9;padding-left:10px;'>"
-        f"<div class='wk-bar-title'>Deliveries</div>"
+        f"<div class='wk-bar-title'>Assets Moving</div>"
         f"<div style='display:flex;gap:6px;margin-top:2px;'>"
         f"<span style='background:{K_GREEN};color:white;border-radius:4px;"
-        f"padding:2px 8px;font-size:10.5px;font-weight:600;'>🚛 {internal_dels} Internal</span>"
+        f"padding:2px 8px;font-size:10.5px;font-weight:600;'>🚛 {internal_assets} Internal</span>"
         f"<span style='background:#c0392b;color:white;border-radius:4px;"
-        f"padding:2px 8px;font-size:10.5px;font-weight:600;'>🚚 {external_dels} External</span>"
+        f"padding:2px 8px;font-size:10.5px;font-weight:600;'>🚚 {external_assets} External</span>"
         f"</div></div>"
     )
     # Right — asset totals + live hire revenue
@@ -2042,6 +2093,7 @@ with st.expander("📥 Export to Excel / CSV"):
                 "AV Configs":        av_cfg_str,
                 "Install/Dismantle": "Yes" if j.get("install_dismantle") else "",
                 "Haulage":           j.get("haulage", ""),
+                "Notes":             j.get("notes", ""),
                 "Livery":            j.get("livery", "Standard Livery"),
                 "Livery Note":       j.get("livery_note", ""),
                 "Added By":          j.get("added_by", ""),
