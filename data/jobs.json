@@ -3712,6 +3712,34 @@
         "livery_note": "",
         "added_by": "Peter",
         "timestamp": "24/04/2026 15:11"
+      },
+      {
+        "customer": "Bethell",
+        "postcode": "LA23 1JS",
+        "contract_number": "0000031280",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 3,
+          "Tank": 1,
+          "Steps": 1,
+          "IBC": 2
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1,
+            "Office": 1,
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "27/04/2026 12:22"
       }
     ],
     "2026-05-07": [
