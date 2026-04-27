@@ -2831,6 +2831,25 @@
         "livery_note": "",
         "added_by": "Peter",
         "timestamp": "24/04/2026 15:25"
+      },
+      {
+        "customer": "CLC Contractors",
+        "postcode": "ST4 7SN",
+        "contract_number": "0000031009",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "27/04/2026 13:37"
       }
     ],
     "2026-04-23": [
