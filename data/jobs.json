@@ -4090,6 +4090,35 @@
         "notes": "being moved to M34 7PL",
         "added_by": "Peter",
         "timestamp": "30/04/2026 10:32"
+      },
+      {
+        "customer": "Chandos",
+        "postcode": "PR4 0LH",
+        "contract_number": "0000031435",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 2,
+          "20ft Store": 1,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 1,
+          "IBC": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1,
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "30/04/2026 10:36"
       }
     ]
   },
