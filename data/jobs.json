@@ -2879,6 +2879,25 @@
         "notes": "32FT OFFICE 50/50 SPLIT",
         "added_by": "Jake",
         "timestamp": "28/04/2026 07:34"
+      },
+      {
+        "customer": "Manchester and Cheshire Construction",
+        "postcode": "SK11 9AY",
+        "contract_number": "0000031345",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "30/04/2026 08:35"
       }
     ],
     "2026-04-23": [
