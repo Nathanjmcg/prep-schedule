@@ -3881,7 +3881,7 @@
         "customer": "A Connolly",
         "postcode": "WA3 6RG",
         "contract_number": "0000029886",
-        "type": "On Hire",
+        "type": "Off Hire",
         "site_move_type": "",
         "units": {
           "20ft Store": 1
@@ -3894,7 +3894,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "30/04/2026 10:49"
+        "timestamp": "30/04/2026 10:49",
+        "edited_by": "Peter",
+        "edited_at": "30/04/2026 11:03"
       },
       {
         "customer": "M Group",
