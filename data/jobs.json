@@ -4364,17 +4364,15 @@
           }
         },
         "install_dismantle": true,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
+        "haulage": "External Haulage",
+        "haulage_who": "D Cains",
         "livery": "Standard Livery",
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
         "timestamp": "14/04/2026 13:30",
         "edited_by": "Peter",
-        "edited_at": "01/05/2026 08:47",
-        "moved_by": "\u2014",
-        "moved_from": "2026-05-05"
+        "edited_at": "05/05/2026 10:27"
       }
     ]
   },
