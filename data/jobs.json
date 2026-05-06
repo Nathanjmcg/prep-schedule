@@ -4452,6 +4452,25 @@
         "added_by": "Nathan",
         "timestamp": "06/05/2026 15:12"
       }
+    ],
+    "2026-05-18": [
+      {
+        "customer": "Bethell Construction",
+        "postcode": "WA15 8UN",
+        "contract_number": "00000",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {},
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Nathan",
+        "timestamp": "06/05/2026 15:14"
+      }
     ]
   },
   "mcs": {
