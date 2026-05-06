@@ -3828,28 +3828,6 @@
     ],
     "2026-05-07": [
       {
-        "customer": "Speedy",
-        "postcode": "LS11",
-        "contract_number": "00000",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "24ft AV": 1
-        },
-        "av_configs": {
-          "24ft AV": {
-            "Office": 1
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "added_by": "Peter",
-        "timestamp": "23/04/2026 08:07"
-      },
-      {
         "customer": "A Connolly",
         "postcode": "WA3 6RG",
         "contract_number": "0000029886",
