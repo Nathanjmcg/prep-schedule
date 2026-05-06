@@ -4191,7 +4191,7 @@
       {
         "customer": "Chandos",
         "postcode": "PR4 0LH",
-        "contract_number": "31446",
+        "contract_number": "0000031446",
         "type": "On Hire",
         "site_move_type": "",
         "units": {},
@@ -4205,7 +4205,7 @@
         "added_by": "Klaudia",
         "timestamp": "06/05/2026 08:08",
         "edited_by": "Klaudia",
-        "edited_at": "06/05/2026 14:59"
+        "edited_at": "06/05/2026 15:01"
       }
     ],
     "2026-05-06": [
