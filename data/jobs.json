@@ -4471,6 +4471,25 @@
         "added_by": "Nathan",
         "timestamp": "06/05/2026 15:14"
       }
+    ],
+    "2026-05-25": [
+      {
+        "customer": "Allshaw Group",
+        "postcode": "NG9 6DL",
+        "contract_number": "00000",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {},
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Nathan",
+        "timestamp": "06/05/2026 15:15"
+      }
     ]
   },
   "mcs": {
