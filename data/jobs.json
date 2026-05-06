@@ -4187,6 +4187,23 @@
         "notes": "we are also collecting a 12ft AV Dry & Moving 1 x 20ft whilst on site.",
         "added_by": "Peter",
         "timestamp": "05/05/2026 15:50"
+      },
+      {
+        "customer": "Chandos",
+        "postcode": "PR4 0LH",
+        "contract_number": "31446",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {},
+        "av_configs": {},
+        "install_dismantle": true,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "Purchase of the TV and wall mount with installation on 08.05. Please ensure that technician takes TV and wall mount to the site",
+        "added_by": "Klaudia",
+        "timestamp": "06/05/2026 08:08"
       }
     ],
     "2026-05-06": [
