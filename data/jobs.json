@@ -4464,13 +4464,17 @@
         "units": {},
         "av_configs": {},
         "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
+        "haulage": "External Haulage",
+        "haulage_who": "Ainscough Haulage Hiab",
         "livery": "Standard Livery",
         "livery_note": "",
-        "notes": "",
+        "notes": "Units to be Bethel Blue RAL5002. Ready by 14.05",
         "added_by": "Nathan",
-        "timestamp": "06/05/2026 15:14"
+        "timestamp": "06/05/2026 15:14",
+        "notes_edited_by": "Nathan",
+        "notes_edited_at": "07/05/2026 11:25",
+        "edited_by": "Nathan",
+        "edited_at": "07/05/2026 11:25"
       }
     ],
     "2026-05-25": [
