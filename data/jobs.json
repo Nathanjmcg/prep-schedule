@@ -2778,8 +2778,7 @@
         "units": {
           "2+1": 1,
           "Tank": 1,
-          "Steps": 1,
-          "IBC": 1
+          "Steps": 1
         },
         "av_configs": {},
         "install_dismantle": false,
@@ -2787,8 +2786,13 @@
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
+        "notes": "NO IBC OR PUMP REQUIRED",
         "added_by": "Peter",
-        "timestamp": "13/04/2026 13:55"
+        "timestamp": "13/04/2026 13:55",
+        "notes_edited_by": "Peter",
+        "notes_edited_at": "07/05/2026 09:46",
+        "edited_by": "Peter",
+        "edited_at": "07/05/2026 09:46"
       },
       {
         "customer": "PAS",
