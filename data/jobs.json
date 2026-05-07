@@ -2789,6 +2789,23 @@
         "livery_note": "",
         "added_by": "Peter",
         "timestamp": "13/04/2026 13:55"
+      },
+      {
+        "customer": "PAS",
+        "postcode": "PR4 0UG",
+        "contract_number": "30526",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {},
+        "av_configs": {},
+        "install_dismantle": true,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "Disconnection of generator and  8654, 8520, 1x IBC. Unit and generator to be collected on 12.05. Smaller generator to be delivered on 12.05 needs to be conected to unit 8851, 1IBC+1leadto stay on site",
+        "added_by": "Klaudia",
+        "timestamp": "07/05/2026 09:01"
       }
     ],
     "2026-05-01": [
