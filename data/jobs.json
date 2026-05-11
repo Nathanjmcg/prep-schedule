@@ -4606,6 +4606,37 @@
         "notes": "8383 20ft Store, Padlock | St Dominics Court, Stoke-on-Trent | PO 17/16809/341344",
         "added_by": "Nathan",
         "timestamp": "11/05/2026 15:22"
+      },
+      {
+        "customer": "PAS (NW) Ltd",
+        "postcode": "WA2 9UF",
+        "contract_number": "0000031041",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 1,
+          "10ft AV": 1,
+          "2+1": 1,
+          "Steps": 2,
+          "IBC": 2,
+          "Generator": 1
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1
+          },
+          "10ft AV": {
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "8277 Canteen, 8326 12ft Dryer(10ftAV), 7974 2+1, SS056+SS565 Steps, IBCW x2, Pumps x2, 40kva Gen | Peel Hall WA2 9UF | P151M&N/H7182",
+        "added_by": "Nathan",
+        "timestamp": "11/05/2026 15:40"
       }
     ]
   },
