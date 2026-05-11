@@ -2829,6 +2829,25 @@
         "notes": "",
         "added_by": "Nathan",
         "timestamp": "11/05/2026 11:27"
+      },
+      {
+        "customer": "Design Plumbing Services Ltd",
+        "postcode": "PR7 5PU",
+        "contract_number": "0000029846",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "8745 12ft ECO Mobile Welfare | Coopers Lane Chorley | LESLEY",
+        "added_by": "Nathan",
+        "timestamp": "11/05/2026 15:57"
       }
     ],
     "2026-05-01": [
