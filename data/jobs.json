@@ -4554,6 +4554,34 @@
         "added_by": "Nathan",
         "timestamp": "11/05/2026 11:38"
       }
+    ],
+    "2026-05-27": [
+      {
+        "customer": "Artium Construction Limited",
+        "postcode": "LS9 8EX",
+        "contract_number": "0000031453",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 6
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 2,
+            "Office": 2,
+            "Drying Room": 1,
+            "Meeting Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Customer Livery \u2014 Specify",
+        "livery_note": "Black",
+        "notes": "",
+        "added_by": "Nathan",
+        "timestamp": "11/05/2026 11:46"
+      }
     ]
   },
   "mcs": {
