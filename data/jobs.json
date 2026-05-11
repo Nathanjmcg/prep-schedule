@@ -2810,6 +2810,25 @@
         "notes": "Disconnection of generator and  8654, 8520, 1x IBC. Unit and generator to be collected on 12.05. Smaller generator to be delivered on 12.05 needs to be conected to unit 8851, 1IBC+1leadto stay on site",
         "added_by": "Klaudia",
         "timestamp": "07/05/2026 09:01"
+      },
+      {
+        "customer": "Wright Build Ltd",
+        "postcode": "WN7 2UU",
+        "contract_number": "0000031454",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Nathan",
+        "timestamp": "11/05/2026 11:27"
       }
     ],
     "2026-05-01": [
