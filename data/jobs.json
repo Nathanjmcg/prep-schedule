@@ -4514,6 +4514,27 @@
         "added_by": "Nathan",
         "timestamp": "06/05/2026 15:15"
       }
+    ],
+    "2026-05-13": [
+      {
+        "customer": "Exact Property Services Ltd",
+        "postcode": "WA16 7LL",
+        "contract_number": "0000031450",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Nathan",
+        "timestamp": "11/05/2026 11:29"
+      }
     ]
   },
   "mcs": {
