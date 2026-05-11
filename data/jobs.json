@@ -4586,6 +4586,27 @@
         "added_by": "Nathan",
         "timestamp": "11/05/2026 11:46"
       }
+    ],
+    "2026-05-11": [
+      {
+        "customer": "CLC Contractors Ltd",
+        "postcode": "ST4 7SN",
+        "contract_number": "0000030175",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "8383 20ft Store, Padlock | St Dominics Court, Stoke-on-Trent | PO 17/16809/341344",
+        "added_by": "Nathan",
+        "timestamp": "11/05/2026 15:22"
+      }
     ]
   },
   "mcs": {
