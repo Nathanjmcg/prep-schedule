@@ -57,42 +57,8 @@ K_PURPLE_PALE = "#f3e8ff"
 K_PURPLE_DARK = "#5b21b6"
 
 # ── Password protection ───────────────────────────────────────────────────────
-def check_password():
-    if st.session_state.get("authenticated"):
-        return True
-    st.markdown(f"""
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&display=swap');
-    html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;}}
-    .login-outer{{display:flex;flex-direction:column;align-items:center;
-                  justify-content:center;min-height:70vh;}}
-    .login-card{{background:{K_WHITE};border:1.5px solid {K_LGREY};border-radius:14px;
-                 padding:2.5rem 2rem;width:360px;text-align:center;}}
-    .login-card h2{{color:{K_GREEN};font-size:22px;font-weight:800;margin-bottom:4px;}}
-    .login-card p{{color:{K_GREY};font-size:13px;margin-bottom:1.5rem;}}
-    </style>
-    <div class="login-outer">
-      <div class="login-card">
-        <div style="margin-bottom:12px;">{KENSITE_LOGO_HTML}</div>
-        <h2>Prep Schedule</h2>
-        <p>Enter your password to continue</p>
-      </div>
-    </div>
-    """, unsafe_allow_html=True)
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        pwd = st.text_input("Password", type="password",
-                            placeholder="Password...", label_visibility="collapsed")
-        if st.button("Log in", use_container_width=True, type="primary"):
-            if pwd == st.secrets["APP_PASSWORD"]:
-                st.session_state["authenticated"] = True
-                st.rerun()
-            else:
-                st.error("Incorrect password.")
-    return False
-
-if not check_password():
-    st.stop()
+if not st.session_state.get("authenticated", True):
+    st.session_state["authenticated"] = True
 
 # Auto-refresh every 30 seconds — paused when a file is being uploaded to avoid loop
 _file_uploading = st.session_state.get("lh_uploader") is not None
@@ -1509,7 +1475,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ── NAV ROW ───────────────────────────────────────────────────────────────────
-n1, n2, n3, n4, n5, n6 = st.columns([1.2, 0.8, 1.2, 0.8, 2, 1])
+n1, n2, n3, n4, n5 = st.columns([1.2, 0.8, 1.2, 0.8, 3])
 with n1:
     if st.button("◀ Prev Week", use_container_width=True):
         st.session_state.week_offset -= 1; st.rerun()
@@ -1528,9 +1494,6 @@ with n4:
                       format_func=lambda x: f"{x} {'week' if x == 1 else 'weeks'}")
     if nw != st.session_state.n_weeks:
         st.session_state.n_weeks = nw; st.rerun()
-with n6:
-    if st.button("🔒 Log out", use_container_width=True):
-        st.session_state["authenticated"] = False; st.rerun()
 
 # ── DATE RANGE ────────────────────────────────────────────────────────────────
 today      = date.today()
