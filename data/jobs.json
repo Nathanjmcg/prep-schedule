@@ -4580,6 +4580,25 @@
         "notes": "this is an 8ft anti vandal Gatehouse with office furniture.",
         "added_by": "Peter",
         "timestamp": "12/05/2026 11:57"
+      },
+      {
+        "customer": "Connollys",
+        "postcode": "OL8 3TB",
+        "contract_number": "0000031460",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "12/05/2026 11:59"
       }
     ],
     "2026-05-26": [
