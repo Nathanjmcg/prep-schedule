@@ -4882,6 +4882,26 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "12/05/2026 12:25"
+      },
+      {
+        "customer": "A Connolly",
+        "postcode": "WA10 3XH",
+        "contract_number": "0000029977",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Static Welfare": 1,
+          "20ft Store": 4
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "28ft Static Welfare Unit.",
+        "added_by": "Peter",
+        "timestamp": "12/05/2026 12:27"
       }
     ]
   },
