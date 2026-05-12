@@ -45,7 +45,7 @@ ASSET_UNITS = {
 }
 
 JOB_TYPES = ["On Hire", "Off Hire", "Site Move"]
-TEAM_MEMBERS = ["Jake", "Ewa", "Klaudia", "Chris", "Nick", "Chloe", "Peter", "Callum", "Nathan"]
+TEAM_MEMBERS = ["Jake", "Ewa", "Klaudia", "Chris", "Nick", "Chloe", "Peter", "Claude", "Nathan"]
 TYPE_STYLE = {
     "On Hire":      (K_GREEN_PALE, K_GREEN_DARK, "●"),
     "Off Hire":     ("#fdecea",    "#7b1a1a",    "●"),
@@ -1514,8 +1514,14 @@ pills    = "".join(
 pills += (f'<span class="pill" style="background:#f0f0f0;color:{K_GREY}">'
           f'📦 {sum(counts.values())} Total</span>')
 
-# Outstanding PODs / POCs — only for days STRICTLY before today
-def job_per_checks_done(dk, ji, job_type):
+# Total deliveries (On Hire) and collections (Off Hire) across the entire schedule
+total_deliveries   = sum(1 for j in all_flat if j.get("type") == "On Hire")
+total_collections  = sum(1 for j in all_flat if j.get("type") == "Off Hire")
+
+pills += (f'<span class="pill" style="background:{K_GREEN_PALE};color:{K_GREEN_DARK};">'
+          f'🚚 {total_deliveries} Deliveries</span>')
+pills += (f'<span class="pill" style="background:#fdecea;color:#7b1a1a;">'
+          f'📦 {total_collections} Collections</span>')
     """Return dict of per-job check states for a given job."""
     base = f"job_{dk}_{ji}"
     if job_type == "On Hire":
@@ -1564,38 +1570,6 @@ def day_jobs_fulfilment_complete(dk):
             if not (poc_ok and returns_ok):
                 return False
     return True
-
-outstanding_pods  = 0
-outstanding_pocs  = 0
-today_str = fmt_key(today)
-for dk, jlist in jobs.items():
-    if dk >= today_str:
-        continue  # only past days
-    for ji, job in enumerate(jlist):
-        if job["type"] == "On Hire":
-            checks = job_per_checks_done(dk, ji, "On Hire")
-            if not checks.get("pod", False) or not checks.get("contract", False):
-                outstanding_pods += 1
-        elif job["type"] == "Off Hire":
-            checks = job_per_checks_done(dk, ji, "Off Hire")
-            if not checks.get("poc", False) or not checks.get("returns", False):
-                outstanding_pocs += 1
-
-if outstanding_pods > 0:
-    pills += (f'<span class="pill" style="background:#fff3cd;color:#7a5c00;'
-              f'border:1px solid #e6c200;">'
-              f'⚠ {outstanding_pods} Outstanding POD{"s" if outstanding_pods != 1 else ""}/Contract{"s" if outstanding_pods != 1 else ""}</span>')
-else:
-    pills += (f'<span class="pill" style="background:{K_GREEN_PALE};color:{K_GREEN_DARK};">'
-              f'✅ All PODs and Contracts clear</span>')
-
-if outstanding_pocs > 0:
-    pills += (f'<span class="pill" style="background:#fff3cd;color:#7a5c00;'
-              f'border:1px solid #e6c200;">'
-              f'⚠ {outstanding_pocs} Outstanding POC{"s" if outstanding_pocs != 1 else ""}/Return{"s" if outstanding_pocs != 1 else ""}</span>')
-else:
-    pills += (f'<span class="pill" style="background:#fdecea;color:#7b1a1a;">'
-              f'✅ All POCs and Returns clear</span>')
 
 st.markdown(pills, unsafe_allow_html=True)
 st.markdown("<div style='margin-bottom:.5rem'></div>", unsafe_allow_html=True)
