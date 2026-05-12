@@ -4582,7 +4582,7 @@
         "timestamp": "12/05/2026 11:57"
       },
       {
-        "customer": "Connollys",
+        "customer": "A Connolly",
         "postcode": "OL8 3TB",
         "contract_number": "0000031460",
         "type": "Off Hire",
@@ -4598,7 +4598,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "12/05/2026 11:59"
+        "timestamp": "12/05/2026 11:59",
+        "edited_by": "Peter",
+        "edited_at": "12/05/2026 12:00"
       }
     ],
     "2026-05-26": [
