@@ -4795,7 +4795,7 @@
         "customer": "A Connolly",
         "postcode": "CH4 0RD",
         "contract_number": "0000029918",
-        "type": "On Hire",
+        "type": "Off Hire",
         "site_move_type": "",
         "units": {
           "24ft AV": 1,
@@ -4814,7 +4814,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "12/05/2026 13:18"
+        "timestamp": "12/05/2026 13:18",
+        "edited_by": "Peter",
+        "edited_at": "12/05/2026 13:19"
       }
     ],
     "2026-05-11": [
