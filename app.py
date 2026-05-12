@@ -1522,6 +1522,9 @@ pills += (f'<span class="pill" style="background:{K_GREEN_PALE};color:{K_GREEN_D
           f'🚚 {total_deliveries} Deliveries</span>')
 pills += (f'<span class="pill" style="background:#fdecea;color:#7b1a1a;">'
           f'📦 {total_collections} Collections</span>')
+
+# ── Helper functions for fulfilment checks ────────────────────────────────────
+def job_per_checks_done(dk, ji, job_type):
     """Return dict of per-job check states for a given job."""
     base = f"job_{dk}_{ji}"
     if job_type == "On Hire":
