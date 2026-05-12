@@ -4844,6 +4844,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "12/05/2026 12:20"
+      },
+      {
+        "customer": "Stuart Energy",
+        "postcode": "WN3 6JF",
+        "contract_number": "0000031466",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "12/05/2026 12:23"
       }
     ]
   },
