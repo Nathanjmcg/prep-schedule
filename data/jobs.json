@@ -4998,6 +4998,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "12/05/2026 12:40"
+      },
+      {
+        "customer": "31401",
+        "postcode": "PR4 0LH",
+        "contract_number": "0000031401",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Solar Loo Single": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "12/05/2026 13:02"
       }
     ]
   },
