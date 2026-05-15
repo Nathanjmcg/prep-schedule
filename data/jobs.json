@@ -4600,6 +4600,25 @@
         "notes": "",
         "added_by": "Klaudia",
         "timestamp": "15/05/2026 14:08"
+      },
+      {
+        "customer": "A Connolly Limited",
+        "postcode": "M33 4QJ",
+        "contract_number": "30397",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 2
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Klaudia",
+        "timestamp": "15/05/2026 14:09"
       }
     ],
     "2026-05-25": [
