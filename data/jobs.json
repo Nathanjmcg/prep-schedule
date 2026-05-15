@@ -5112,6 +5112,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "12/05/2026 13:02"
+      },
+      {
+        "customer": "\u2022 Wright Build Ltd",
+        "postcode": "CH60 1XN",
+        "contract_number": "30589",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Klaudia",
+        "timestamp": "15/05/2026 13:49"
       }
     ],
     "2026-05-22": [
