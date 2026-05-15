@@ -4762,6 +4762,28 @@
         "notes": "",
         "added_by": "Nathan",
         "timestamp": "11/05/2026 11:38"
+      },
+      {
+        "customer": "EE THOMPSON",
+        "postcode": "LA2 9NH",
+        "contract_number": "31480",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "20FT STORE + RACKING",
+        "added_by": "Jake",
+        "timestamp": "15/05/2026 07:55",
+        "moved_by": "\u2014",
+        "moved_from": "2026-05-19",
+        "edited_at": "15/05/2026 07:56"
       }
     ],
     "2026-05-27": [
@@ -5120,27 +5142,6 @@
         "notes": "32FT 3+1  DRY ROOM / SHOWER",
         "added_by": "Jake",
         "timestamp": "15/05/2026 07:07"
-      }
-    ],
-    "2026-05-19": [
-      {
-        "customer": "EE THOMPSON",
-        "postcode": "LA2 9NH",
-        "contract_number": "31480",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "20ft Store": 1
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "20FT STORE + RACKING",
-        "added_by": "Jake",
-        "timestamp": "15/05/2026 07:55"
       }
     ]
   },
