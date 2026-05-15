@@ -5170,6 +5170,27 @@
         "added_by": "Jake",
         "timestamp": "15/05/2026 07:07"
       }
+    ],
+    "2026-06-01": [
+      {
+        "customer": "Richard O'Brien Joinery & Building Ltd",
+        "postcode": "CH60 1XN",
+        "contract_number": "31030",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Klaudia",
+        "timestamp": "15/05/2026 13:35"
+      }
     ]
   },
   "mcs": {
