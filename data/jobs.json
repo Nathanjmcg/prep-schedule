@@ -5010,6 +5010,33 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "12/05/2026 12:36"
+      },
+      {
+        "customer": "Argent Energy Limited",
+        "postcode": "CH65 4BD",
+        "contract_number": "31116",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 3,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1,
+            "Meeting Room": 2
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Klaudia",
+        "timestamp": "15/05/2026 12:58"
       }
     ],
     "2026-05-21": [
