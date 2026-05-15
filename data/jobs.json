@@ -5154,10 +5154,10 @@
     ],
     "2026-05-22": [
       {
-        "customer": "Northwich Bio Energy",
+        "customer": "Just Welfare",
         "postcode": "CW9 7NU",
         "contract_number": "0000030970",
-        "type": "On Hire",
+        "type": "Off Hire",
         "site_move_type": "",
         "units": {
           "32ft AV": 3,
@@ -5181,7 +5181,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "12/05/2026 13:05"
+        "timestamp": "12/05/2026 13:05",
+        "edited_by": "Peter",
+        "edited_at": "15/05/2026 13:55"
       }
     ],
     "2026-05-28": [
