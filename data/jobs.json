@@ -5216,6 +5216,36 @@
         "notes": "",
         "added_by": "Claude",
         "timestamp": "17/05/2026 14:08"
+      },
+      {
+        "customer": "Bethell Plant Services",
+        "postcode": "BL1 2HG",
+        "contract_number": "0000031465",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 2,
+          "20ft Store": 1,
+          "Stairs": 1,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Office": 1,
+            "Other": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Customer Livery \u2014 Specify",
+        "livery_note": "Bethell Blue",
+        "notes": "",
+        "added_by": "Claude",
+        "timestamp": "17/05/2026 14:13"
       }
     ],
     "2026-05-22": [
