@@ -4791,12 +4791,13 @@
         "type": "On Hire",
         "site_move_type": "",
         "units": {
-          "32ft AV": 5
+          "32ft AV": 7
         },
         "av_configs": {
           "32ft AV": {
             "Canteen": 2,
-            "Drying Room": 3
+            "Drying Room": 3,
+            "Other": 2
           }
         },
         "install_dismantle": false,
@@ -4804,11 +4805,13 @@
         "haulage_who": "Think Hire",
         "livery": "Standard Livery",
         "livery_note": "",
-        "notes": "",
+        "notes": "2 x 3+1/Dryer/Shower",
         "added_by": "Nathan",
         "timestamp": "11/05/2026 11:38",
+        "notes_edited_by": "Nathan",
+        "notes_edited_at": "17/05/2026 14:16",
         "edited_by": "Nathan",
-        "edited_at": "17/05/2026 14:00"
+        "edited_at": "17/05/2026 14:16"
       },
       {
         "customer": "EE THOMPSON",
