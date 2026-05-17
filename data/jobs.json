@@ -5307,6 +5307,34 @@
         "moved_by": "\u2014",
         "moved_from": "2026-05-20",
         "edited_at": "17/05/2026 14:03"
+      },
+      {
+        "customer": "Bethell Construction",
+        "postcode": "WA15 8UN",
+        "contract_number": "0000031439",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 2,
+          "Stairs": 1,
+          "3+1": 1,
+          "Steps": 1,
+          "IBC": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Customer Livery \u2014 Specify",
+        "livery_note": "Bethell Blue",
+        "notes": "",
+        "added_by": "Claude",
+        "timestamp": "17/05/2026 14:06"
       }
     ]
   },
