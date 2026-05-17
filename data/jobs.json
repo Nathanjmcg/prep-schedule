@@ -5103,6 +5103,31 @@
         "notes": "",
         "added_by": "Klaudia",
         "timestamp": "15/05/2026 12:58"
+      },
+      {
+        "customer": "P Hughes Construction",
+        "postcode": "OL10 2TB",
+        "contract_number": "0000031484",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 2,
+          "Stairs": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Claude",
+        "timestamp": "17/05/2026 14:03"
       }
     ],
     "2026-05-21": [
