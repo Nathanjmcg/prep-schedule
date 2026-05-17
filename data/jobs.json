@@ -5335,6 +5335,29 @@
         "notes": "",
         "added_by": "Claude",
         "timestamp": "17/05/2026 14:06"
+      },
+      {
+        "customer": "Think Hire",
+        "postcode": "ST13 7LQ",
+        "contract_number": "0000031478",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 1
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "haulage_who": "Think Hire",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Claude",
+        "timestamp": "17/05/2026 14:07"
       }
     ]
   },
