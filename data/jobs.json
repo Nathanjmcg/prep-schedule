@@ -4790,16 +4790,25 @@
         "contract_number": "0000031452",
         "type": "On Hire",
         "site_move_type": "",
-        "units": {},
-        "av_configs": {},
+        "units": {
+          "32ft AV": 5
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 2,
+            "Drying Room": 3
+          }
+        },
         "install_dismantle": false,
-        "haulage": "None",
-        "haulage_who": "",
+        "haulage": "External Haulage",
+        "haulage_who": "Think Hire",
         "livery": "Standard Livery",
         "livery_note": "",
         "notes": "",
         "added_by": "Nathan",
-        "timestamp": "11/05/2026 11:38"
+        "timestamp": "11/05/2026 11:38",
+        "edited_by": "Nathan",
+        "edited_at": "17/05/2026 14:00"
       },
       {
         "customer": "EE THOMPSON",
