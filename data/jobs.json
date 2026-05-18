@@ -5249,6 +5249,25 @@
         "notes": "",
         "added_by": "Claude",
         "timestamp": "17/05/2026 14:13"
+      },
+      {
+        "customer": "Cooke Cabin Hire",
+        "postcode": "CW8 2TB",
+        "contract_number": "0000030779",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "18/05/2026 15:36"
       }
     ],
     "2026-05-22": [
