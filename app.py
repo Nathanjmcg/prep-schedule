@@ -60,9 +60,10 @@ K_PURPLE_DARK = "#5b21b6"
 if not st.session_state.get("authenticated", True):
     st.session_state["authenticated"] = True
 
-# Auto-refresh every 30 seconds — paused when a file is being uploaded to avoid loop
-_file_uploading = st.session_state.get("lh_uploader") is not None
-if not _file_uploading:
+# Auto-refresh every 30 seconds — paused when a file is uploading OR any dialog is open
+_file_uploading  = st.session_state.get("lh_uploader") is not None
+_any_dialog_open = st.session_state.get("any_dialog_open", False)
+if not _file_uploading and not _any_dialog_open:
     st_autorefresh(interval=30_000, limit=0, key="schedule_autorefresh")
 
 # ── GitHub config ─────────────────────────────────────────────────────────────
@@ -184,7 +185,7 @@ def open_dialog(**kwargs):
     token = _uuid.uuid4().hex[:8]
     for k, v in kwargs.items():
         st.session_state[k] = v
-    # Set token for whichever primary key was set
+    st.session_state["any_dialog_open"] = True
     _token_map = {
         "day_view_date":  "dv_token",
         "modal_date":     "modal_token",
@@ -201,6 +202,7 @@ def open_dialog(**kwargs):
 def close_dialog(**kwargs):
     for k, v in kwargs.items():
         st.session_state[k] = v
+    st.session_state["any_dialog_open"] = False
 
 # ── Global CSS ────────────────────────────────────────────────────────────────
 st.markdown(f"""
@@ -606,6 +608,7 @@ def day_view_dialog(date_key):
                              use_container_width=True, help="Move to another day"):
                     st.session_state["move_from_date"] = date_key
                     st.session_state["move_token"] = _uuid.uuid4().hex[:8]
+                    st.session_state["any_dialog_open"] = True
                     st.session_state["move_job_idx"]   = ji
                     st.session_state["day_view_date"]  = None
                     st.rerun()
@@ -755,6 +758,7 @@ def day_view_dialog(date_key):
                              use_container_width=True):
                     st.session_state["svr_modal_date"] = date_key
                     st.session_state["svr_token"] = _uuid.uuid4().hex[:8]
+                    st.session_state["any_dialog_open"] = True
                     st.session_state["svr_modal_idx"]  = svi
                     st.session_state["day_view_date"]  = None
                     st.rerun()
@@ -780,6 +784,7 @@ def day_view_dialog(date_key):
         if st.button("🔍 Request Site Visit", use_container_width=True):
             st.session_state["svr_modal_date"] = date_key
             st.session_state["svr_token"] = _uuid.uuid4().hex[:8]
+            st.session_state["any_dialog_open"] = True
             st.session_state["svr_modal_idx"]  = None
             st.session_state["day_view_date"]  = None
             st.rerun()
@@ -1375,6 +1380,9 @@ elif _should_open("expand_date", "expand_token") and st.session_state.get("expan
 elif _should_open("modal_date", "modal_token"):
     _mark_rendered("modal_token")
     job_modal(st.session_state.modal_date, st.session_state.modal_edit_idx)
+else:
+    # No dialog is opening — safe to re-enable auto-refresh
+    st.session_state["any_dialog_open"] = False
 
 # ── LIVE HIRE UPLOAD (sidebar) ───────────────────────────────────────────────
 with st.sidebar:
