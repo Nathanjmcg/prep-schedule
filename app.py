@@ -177,9 +177,26 @@ for k, v in [("week_offset", 0), ("n_weeks", 4),
 jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, sha = load_data()
 bank_holidays = get_bank_holidays()
 
+import uuid as _uuid
+
 def open_dialog(**kwargs):
+    """Set dialog state with a unique token so it only opens once per click."""
+    token = _uuid.uuid4().hex[:8]
     for k, v in kwargs.items():
         st.session_state[k] = v
+    # Set token for whichever primary key was set
+    _token_map = {
+        "day_view_date":  "dv_token",
+        "modal_date":     "modal_token",
+        "svr_modal_date": "svr_token",
+        "move_from_date": "move_token",
+        "msv_from_date":  "msv_token",
+        "expand_date":    "expand_token",
+    }
+    for k in kwargs:
+        if k in _token_map:
+            st.session_state[_token_map[k]] = token
+            break
 
 def close_dialog(**kwargs):
     for k, v in kwargs.items():
@@ -385,8 +402,6 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
 # ── DAY VIEW DIALOG (all jobs for a day) ─────────────────────────────────────
 @st.dialog("Day Schedule", width="large")
 def day_view_dialog(date_key):
-    # Clear immediately so auto-refresh won't re-open this dialog
-    st.session_state["day_view_date"] = None
     day_label = datetime.strptime(date_key, "%Y-%m-%d").strftime("%A %-d %B %Y")
     bh = bank_holidays.get(date_key, "")
     header_extra = f"  ·  🏴󠁧󠁢󠁥󠁮󠁧󠁿 {bh}" if bh else ""
@@ -590,6 +605,7 @@ def day_view_dialog(date_key):
                 if st.button("📅", key=f"dv_move_{date_key}_{ji}",
                              use_container_width=True, help="Move to another day"):
                     st.session_state["move_from_date"] = date_key
+                    st.session_state["move_token"] = _uuid.uuid4().hex[:8]
                     st.session_state["move_job_idx"]   = ji
                     st.session_state["day_view_date"]  = None
                     st.rerun()
@@ -738,6 +754,7 @@ def day_view_dialog(date_key):
                 if st.button("✏️ Edit request", key=f"svr_edit_{svr_key}",
                              use_container_width=True):
                     st.session_state["svr_modal_date"] = date_key
+                    st.session_state["svr_token"] = _uuid.uuid4().hex[:8]
                     st.session_state["svr_modal_idx"]  = svi
                     st.session_state["day_view_date"]  = None
                     st.rerun()
@@ -762,6 +779,7 @@ def day_view_dialog(date_key):
     with ac2:
         if st.button("🔍 Request Site Visit", use_container_width=True):
             st.session_state["svr_modal_date"] = date_key
+            st.session_state["svr_token"] = _uuid.uuid4().hex[:8]
             st.session_state["svr_modal_idx"]  = None
             st.session_state["day_view_date"]  = None
             st.rerun()
@@ -773,8 +791,6 @@ def day_view_dialog(date_key):
 # ── SITE VISIT REQUEST DIALOG (add/edit) ─────────────────────────────────────
 @st.dialog("Site Visit Request", width="large")
 def site_visit_dialog(date_key, edit_svr_idx=None):
-    st.session_state["svr_modal_date"] = None
-    st.session_state["svr_modal_idx"]  = None
     edit_sv = None
     if edit_svr_idx is not None:
         sv_list = site_visits.get(date_key, [])
@@ -877,8 +893,6 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
 # ── MOVE SITE VISIT DIALOG ────────────────────────────────────────────────────
 @st.dialog("Move Site Visit to Another Day", width="small")
 def move_site_visit_dialog(from_date, sv_idx):
-    st.session_state["msv_from_date"] = None
-    st.session_state["msv_idx"]       = None
     sv_list = site_visits.get(from_date, [])
     if sv_idx >= len(sv_list):
         st.warning("Site visit not found."); return
@@ -932,8 +946,6 @@ def move_site_visit_dialog(from_date, sv_idx):
 # ── MOVE JOB DIALOG ──────────────────────────────────────────────────────────
 @st.dialog("Move Job to Another Day", width="small")
 def move_job_dialog(from_date, job_idx):
-    st.session_state["move_from_date"] = None
-    st.session_state["move_job_idx"]   = None
     if from_date not in jobs or job_idx >= len(jobs[from_date]):
         st.warning("Job not found."); return
 
@@ -986,8 +998,6 @@ def move_job_dialog(from_date, job_idx):
 # ── EXPAND CHIP DIALOG (view details + open edit) ────────────────────────────
 @st.dialog("Job Details", width="small")
 def expand_chip_dialog(date_key, job_idx):
-    st.session_state["expand_date"] = None
-    st.session_state["expand_idx"]  = None
     if date_key not in jobs or job_idx >= len(jobs[date_key]):
         st.warning("Job not found."); return
     job = jobs[date_key][job_idx]
@@ -1054,8 +1064,6 @@ def expand_chip_dialog(date_key, job_idx):
 # ── MODAL DIALOG ──────────────────────────────────────────────────────────────
 @st.dialog("Add / Edit Job", width="large")
 def job_modal(date_key, edit_idx=None):
-    st.session_state["modal_date"]     = None
-    st.session_state["modal_edit_idx"] = None
     edit_job = None
     if edit_idx is not None and date_key in jobs and edit_idx < len(jobs[date_key]):
         edit_job = jobs[date_key][edit_idx]
@@ -1331,18 +1339,41 @@ def job_modal(date_key, edit_idx=None):
                 st.rerun()
 
 # ── Trigger dialogs ───────────────────────────────────────────────────────────
-# Each dialog clears its own key at the top, so auto-refresh never re-opens them.
-if st.session_state.svr_modal_date:
+# Each dialog key stores a (value, token) tuple. The token is a unique ID set
+# when a button is clicked. We track the last rendered token — if it matches,
+# the dialog is already open or was already closed, so we don't reopen it.
+# This prevents auto-refresh re-opening dialogs while keeping them stable mid-form.
+
+def _should_open(key, token_key):
+    """Return True only if this dialog key has a new unrendered token."""
+    val = st.session_state.get(key)
+    if not val:
+        return False
+    token    = st.session_state.get(token_key, "")
+    rendered = st.session_state.get(f"{token_key}_rendered", "")
+    return token != rendered
+
+def _mark_rendered(token_key):
+    """Mark this dialog's token as rendered so it won't refire on auto-refresh."""
+    st.session_state[f"{token_key}_rendered"] = st.session_state.get(token_key, "")
+
+if _should_open("svr_modal_date", "svr_token"):
+    _mark_rendered("svr_token")
     site_visit_dialog(st.session_state.svr_modal_date, st.session_state.svr_modal_idx)
-elif st.session_state.msv_from_date is not None and st.session_state.msv_idx is not None:
+elif _should_open("msv_from_date", "msv_token") and st.session_state.get("msv_idx") is not None:
+    _mark_rendered("msv_token")
     move_site_visit_dialog(st.session_state.msv_from_date, st.session_state.msv_idx)
-elif st.session_state.move_from_date is not None and st.session_state.move_job_idx is not None:
+elif _should_open("move_from_date", "move_token") and st.session_state.get("move_job_idx") is not None:
+    _mark_rendered("move_token")
     move_job_dialog(st.session_state.move_from_date, st.session_state.move_job_idx)
-elif st.session_state.day_view_date:
+elif _should_open("day_view_date", "dv_token"):
+    _mark_rendered("dv_token")
     day_view_dialog(st.session_state.day_view_date)
-elif st.session_state.expand_date is not None and st.session_state.expand_idx is not None:
+elif _should_open("expand_date", "expand_token") and st.session_state.get("expand_idx") is not None:
+    _mark_rendered("expand_token")
     expand_chip_dialog(st.session_state.expand_date, st.session_state.expand_idx)
-elif st.session_state.modal_date:
+elif _should_open("modal_date", "modal_token"):
+    _mark_rendered("modal_token")
     job_modal(st.session_state.modal_date, st.session_state.modal_edit_idx)
 
 # ── LIVE HIRE UPLOAD (sidebar) ───────────────────────────────────────────────
