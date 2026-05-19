@@ -2055,18 +2055,20 @@ with st.expander("🤖 Claude Integration — Schedule Summary & Update Guide"):
     def build_text_summary():
         if not jobs:
             return "No jobs currently in the schedule."
+
+        # Only include from the start of the current week onwards
+        week_start = (today - timedelta(days=today.weekday())).strftime("%Y-%m-%d")
+        filtered_dates = sorted(dk for dk in jobs.keys() if dk >= week_start)
+        if not filtered_dates:
+            return "No jobs from this week onwards."
+
         lines = [f"KENSITE PREP SCHEDULE — Generated {datetime.now().strftime('%d/%m/%Y %H:%M')}", ""]
-        # Group by week
-        all_dates = sorted(jobs.keys())
-        if not all_dates:
-            return "No jobs currently in the schedule."
         weeks = {}
-        for dk in all_dates:
+        for dk in filtered_dates:
             d  = datetime.strptime(dk, "%Y-%m-%d").date()
             wk = d.isocalendar()[1]
             yr = d.isocalendar()[0]
-            key = (yr, wk)
-            weeks.setdefault(key, []).append(dk)
+            weeks.setdefault((yr, wk), []).append(dk)
 
         for (yr, wk), dates in sorted(weeks.items()):
             # Week header
