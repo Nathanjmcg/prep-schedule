@@ -170,8 +170,7 @@ for k, v in [("week_offset", 0), ("n_weeks", 4),
              ("day_view_date", None),
              ("move_from_date", None), ("move_job_idx", None),
              ("svr_modal_date", None), ("svr_modal_idx", None),
-             ("msv_from_date", None), ("msv_idx", None),
-             ("dialog_open", False)]:
+             ("msv_from_date", None), ("msv_idx", None)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
@@ -179,16 +178,12 @@ jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, sha = load_data()
 bank_holidays = get_bank_holidays()
 
 def open_dialog(**kwargs):
-    """Set dialog state and mark dialog as open."""
     for k, v in kwargs.items():
         st.session_state[k] = v
-    st.session_state.dialog_open = True
 
 def close_dialog(**kwargs):
-    """Clear dialog state and mark dialog as closed."""
     for k, v in kwargs.items():
         st.session_state[k] = v
-    st.session_state.dialog_open = False
 
 # ── Global CSS ────────────────────────────────────────────────────────────────
 st.markdown(f"""
@@ -390,6 +385,8 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
 # ── DAY VIEW DIALOG (all jobs for a day) ─────────────────────────────────────
 @st.dialog("Day Schedule", width="large")
 def day_view_dialog(date_key):
+    # Clear immediately so auto-refresh won't re-open this dialog
+    st.session_state["day_view_date"] = None
     day_label = datetime.strptime(date_key, "%Y-%m-%d").strftime("%A %-d %B %Y")
     bh = bank_holidays.get(date_key, "")
     header_extra = f"  ·  🏴󠁧󠁢󠁥󠁮󠁧󠁿 {bh}" if bh else ""
@@ -588,7 +585,6 @@ def day_view_dialog(date_key):
                     st.session_state["modal_date"]     = date_key
                     st.session_state["modal_edit_idx"] = ji
                     st.session_state["day_view_date"]  = None
-                    st.session_state.dialog_open = True
                     st.rerun()
             with rc3:
                 if st.button("📅", key=f"dv_move_{date_key}_{ji}",
@@ -596,7 +592,6 @@ def day_view_dialog(date_key):
                     st.session_state["move_from_date"] = date_key
                     st.session_state["move_job_idx"]   = ji
                     st.session_state["day_view_date"]  = None
-                    st.session_state.dialog_open = True
                     st.rerun()
 
     st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
@@ -745,7 +740,6 @@ def day_view_dialog(date_key):
                     st.session_state["svr_modal_date"] = date_key
                     st.session_state["svr_modal_idx"]  = svi
                     st.session_state["day_view_date"]  = None
-                    st.session_state.dialog_open = True
                     st.rerun()
             with sc3:
                 if st.button("📅", key=f"svr_move_{svr_key}",
@@ -753,7 +747,6 @@ def day_view_dialog(date_key):
                     st.session_state["msv_from_date"]  = date_key
                     st.session_state["msv_idx"]        = svi
                     st.session_state["day_view_date"]  = None
-                    st.session_state.dialog_open = True
                     st.rerun()
 
         st.markdown("<div style='margin-top:.5rem'></div>", unsafe_allow_html=True)
@@ -764,7 +757,6 @@ def day_view_dialog(date_key):
         if st.button("＋ Add job to this day", use_container_width=True, type="primary"):
             st.session_state["modal_date"]     = date_key
             st.session_state["modal_edit_idx"] = None
-            st.session_state.dialog_open = True  # transition
             st.session_state["day_view_date"]  = None
             st.rerun()
     with ac2:
@@ -772,7 +764,6 @@ def day_view_dialog(date_key):
             st.session_state["svr_modal_date"] = date_key
             st.session_state["svr_modal_idx"]  = None
             st.session_state["day_view_date"]  = None
-            st.session_state.dialog_open       = True
             st.rerun()
     with ac3:
         if st.button("Close", use_container_width=True):
@@ -782,6 +773,8 @@ def day_view_dialog(date_key):
 # ── SITE VISIT REQUEST DIALOG (add/edit) ─────────────────────────────────────
 @st.dialog("Site Visit Request", width="large")
 def site_visit_dialog(date_key, edit_svr_idx=None):
+    st.session_state["svr_modal_date"] = None
+    st.session_state["svr_modal_idx"]  = None
     edit_sv = None
     if edit_svr_idx is not None:
         sv_list = site_visits.get(date_key, [])
@@ -868,7 +861,6 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
     with sb2:
         if st.button("Cancel", use_container_width=True):
             st.session_state["svr_modal_date"] = None
-            st.session_state.dialog_open = False
             st.session_state["svr_modal_idx"]  = None
             st.rerun()
     with sb3:
@@ -879,13 +871,14 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
                     del site_visits[date_key]
                 save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
                 st.session_state["svr_modal_date"] = None
-                st.session_state.dialog_open = False
                 st.session_state["svr_modal_idx"]  = None
                 st.rerun()
 
 # ── MOVE SITE VISIT DIALOG ────────────────────────────────────────────────────
 @st.dialog("Move Site Visit to Another Day", width="small")
 def move_site_visit_dialog(from_date, sv_idx):
+    st.session_state["msv_from_date"] = None
+    st.session_state["msv_idx"]       = None
     sv_list = site_visits.get(from_date, [])
     if sv_idx >= len(sv_list):
         st.warning("Site visit not found."); return
@@ -926,22 +919,21 @@ def move_site_visit_dialog(from_date, sv_idx):
                 svr_confirmed[new_svr_key] = svr_confirmed.pop(old_svr_key)
             save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
             st.session_state["msv_from_date"] = None
-            st.session_state.dialog_open = False
             st.session_state["msv_idx"]       = None
             st.session_state["day_view_date"] = None
-            st.session_state.dialog_open = False
             st.success(f"Moved to {to_date.strftime('%a %-d %b')}.")
             st.rerun()
     with mc2:
         if st.button("Cancel", use_container_width=True):
             st.session_state["msv_from_date"] = None
-            st.session_state.dialog_open = False
             st.session_state["msv_idx"]       = None
             st.rerun()
 
 # ── MOVE JOB DIALOG ──────────────────────────────────────────────────────────
 @st.dialog("Move Job to Another Day", width="small")
 def move_job_dialog(from_date, job_idx):
+    st.session_state["move_from_date"] = None
+    st.session_state["move_job_idx"]   = None
     if from_date not in jobs or job_idx >= len(jobs[from_date]):
         st.warning("Job not found."); return
 
@@ -982,20 +974,20 @@ def move_job_dialog(from_date, job_idx):
             save_jobs(jobs)
             st.session_state["day_view_date"]  = None
             st.session_state["move_from_date"] = None
-            st.session_state.dialog_open = False
             st.session_state["move_job_idx"]   = None
             st.success(f"Moved to {to_date.strftime('%a %-d %b')}.")
             st.rerun()
     with mc2:
         if st.button("Cancel", use_container_width=True):
             st.session_state["move_from_date"] = None
-            st.session_state.dialog_open = False
             st.session_state["move_job_idx"]   = None
             st.rerun()
 
 # ── EXPAND CHIP DIALOG (view details + open edit) ────────────────────────────
 @st.dialog("Job Details", width="small")
 def expand_chip_dialog(date_key, job_idx):
+    st.session_state["expand_date"] = None
+    st.session_state["expand_idx"]  = None
     if date_key not in jobs or job_idx >= len(jobs[date_key]):
         st.warning("Job not found."); return
     job = jobs[date_key][job_idx]
@@ -1056,13 +1048,14 @@ def expand_chip_dialog(date_key, job_idx):
     with ec2:
         if st.button("Close", use_container_width=True):
             st.session_state["expand_date"] = None
-            st.session_state.dialog_open = False
             st.session_state["expand_idx"]  = None
             st.rerun()
 
 # ── MODAL DIALOG ──────────────────────────────────────────────────────────────
 @st.dialog("Add / Edit Job", width="large")
 def job_modal(date_key, edit_idx=None):
+    st.session_state["modal_date"]     = None
+    st.session_state["modal_edit_idx"] = None
     edit_job = None
     if edit_idx is not None and date_key in jobs and edit_idx < len(jobs[date_key]):
         edit_job = jobs[date_key][edit_idx]
@@ -1318,14 +1311,12 @@ def job_modal(date_key, edit_idx=None):
                 save_jobs(jobs)
                 st.session_state["modal_date"]     = None
                 st.session_state["modal_edit_idx"] = None
-                st.session_state.dialog_open = False
                 st.rerun()
 
     with ba2:
         if st.button("Cancel", use_container_width=True):
             st.session_state["modal_date"]     = None
             st.session_state["modal_edit_idx"] = None
-            st.session_state.dialog_open = False
             st.rerun()
 
     with ba3:
@@ -1337,35 +1328,22 @@ def job_modal(date_key, edit_idx=None):
                 save_jobs(jobs)
                 st.session_state["modal_date"]     = None
                 st.session_state["modal_edit_idx"] = None
-                st.session_state.dialog_open = False
                 st.rerun()
 
 # ── Trigger dialogs ───────────────────────────────────────────────────────────
-# Only open a dialog if a button was explicitly clicked this session.
-# We check dialog_open AND that at least one dialog key is set.
-_any_dialog = (
-    st.session_state.svr_modal_date or
-    (st.session_state.msv_from_date is not None and st.session_state.msv_idx is not None) or
-    (st.session_state.move_from_date is not None and st.session_state.move_job_idx is not None) or
-    st.session_state.day_view_date or
-    (st.session_state.expand_date is not None and st.session_state.expand_idx is not None) or
-    st.session_state.modal_date
-)
-if st.session_state.dialog_open and _any_dialog:
-    if st.session_state.svr_modal_date:
-        site_visit_dialog(st.session_state.svr_modal_date, st.session_state.svr_modal_idx)
-    elif st.session_state.msv_from_date is not None and st.session_state.msv_idx is not None:
-        move_site_visit_dialog(st.session_state.msv_from_date, st.session_state.msv_idx)
-    elif st.session_state.move_from_date is not None and st.session_state.move_job_idx is not None:
-        move_job_dialog(st.session_state.move_from_date, st.session_state.move_job_idx)
-    elif st.session_state.day_view_date:
-        day_view_dialog(st.session_state.day_view_date)
-    elif st.session_state.expand_date is not None and st.session_state.expand_idx is not None:
-        expand_chip_dialog(st.session_state.expand_date, st.session_state.expand_idx)
-    elif st.session_state.modal_date:
-        job_modal(st.session_state.modal_date, st.session_state.modal_edit_idx)
-elif not _any_dialog:
-    st.session_state.dialog_open = False
+# Each dialog clears its own key at the top, so auto-refresh never re-opens them.
+if st.session_state.svr_modal_date:
+    site_visit_dialog(st.session_state.svr_modal_date, st.session_state.svr_modal_idx)
+elif st.session_state.msv_from_date is not None and st.session_state.msv_idx is not None:
+    move_site_visit_dialog(st.session_state.msv_from_date, st.session_state.msv_idx)
+elif st.session_state.move_from_date is not None and st.session_state.move_job_idx is not None:
+    move_job_dialog(st.session_state.move_from_date, st.session_state.move_job_idx)
+elif st.session_state.day_view_date:
+    day_view_dialog(st.session_state.day_view_date)
+elif st.session_state.expand_date is not None and st.session_state.expand_idx is not None:
+    expand_chip_dialog(st.session_state.expand_date, st.session_state.expand_idx)
+elif st.session_state.modal_date:
+    job_modal(st.session_state.modal_date, st.session_state.modal_edit_idx)
 
 # ── LIVE HIRE UPLOAD (sidebar) ───────────────────────────────────────────────
 with st.sidebar:
