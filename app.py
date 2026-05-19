@@ -2039,3 +2039,150 @@ with st.expander("📥 Export to Excel / CSV"):
         st.dataframe(df, use_container_width=True, hide_index=True)
     else:
         st.info("No jobs in the schedule yet.")
+
+# ── CLAUDE INTEGRATION ────────────────────────────────────────────────────────
+st.markdown("---")
+with st.expander("🤖 Claude Integration — Schedule Summary & Update Guide"):
+
+    # ── Plain-text schedule summary ───────────────────────────────────────────
+    st.markdown("#### 📋 Schedule Summary (copy and paste to Claude)")
+    st.markdown(
+        "<div style='font-size:12px;color:#888;margin-bottom:8px;'>"
+        "This is a plain-text version of the full schedule. "
+        "Copy it and paste it into a Claude conversation so Claude can read and compare it to MCS.</div>",
+        unsafe_allow_html=True)
+
+    def build_text_summary():
+        if not jobs:
+            return "No jobs currently in the schedule."
+        lines = [f"KENSITE PREP SCHEDULE — Generated {datetime.now().strftime('%d/%m/%Y %H:%M')}", ""]
+        # Group by week
+        all_dates = sorted(jobs.keys())
+        if not all_dates:
+            return "No jobs currently in the schedule."
+        weeks = {}
+        for dk in all_dates:
+            d  = datetime.strptime(dk, "%Y-%m-%d").date()
+            wk = d.isocalendar()[1]
+            yr = d.isocalendar()[0]
+            key = (yr, wk)
+            weeks.setdefault(key, []).append(dk)
+
+        for (yr, wk), dates in sorted(weeks.items()):
+            # Week header
+            first = datetime.strptime(dates[0], "%Y-%m-%d").date()
+            last  = datetime.strptime(dates[-1], "%Y-%m-%d").date()
+            lines.append(f"── WEEK {wk} ({first.strftime('%-d %b')} – {last.strftime('%-d %b %Y')}) ──")
+            for dk in sorted(dates):
+                d        = datetime.strptime(dk, "%Y-%m-%d").date()
+                day_jobs = jobs.get(dk, [])
+                if not day_jobs:
+                    continue
+                lines.append(f"\n{d.strftime('%A %-d %B')}:")
+                for ji, j in enumerate(day_jobs):
+                    jtype    = j.get("type", "")
+                    customer = j.get("customer", "")
+                    contract = j.get("contract_number", "")
+                    postcode = j.get("postcode", "")
+                    units    = ", ".join(f'{u}×{q}' for u, q in j.get("units", {}).items() if q)
+                    haulage  = j.get("haulage", "None")
+                    haul_who = j.get("haulage_who", "")
+                    haul_str = ""
+                    if haulage == "Internal Haulage":
+                        haul_str = " · Internal"
+                    elif haulage == "External Haulage":
+                        haul_str = f" · External ({haul_who})" if haul_who else " · External"
+                    id_str   = f" [I/D]" if j.get("install_dismantle") else ""
+                    smt      = j.get("site_move_type", "")
+                    type_str = f"{jtype}{' — ' + smt if smt else ''}"
+                    contract_str = f" · #{contract}" if contract and contract != "00000" else ""
+                    # AV configs
+                    av_parts = []
+                    for av_u, cfgs in j.get("av_configs", {}).items():
+                        if cfgs:
+                            av_parts.append(f"{av_u}: " + ", ".join(f"{c}×{n}" for c,n in cfgs.items()))
+                    av_str = f" [{'; '.join(av_parts)}]" if av_parts else ""
+                    notes_str = f'\n       Notes: {j["notes"]}' if j.get("notes") else ""
+                    lines.append(
+                        f"  {ji+1}. [{type_str}]{id_str} {customer}{contract_str}"
+                        f"{' · ' + postcode if postcode else ''}"
+                        f" — {units}{av_str}{haul_str}{notes_str}"
+                    )
+            lines.append("")
+        return "\n".join(lines)
+
+    summary_text = build_text_summary()
+    st.text_area("", value=summary_text, height=300, label_visibility="collapsed",
+                 key="claude_summary_text")
+    st.download_button(
+        "⬇ Download as .txt",
+        data=summary_text,
+        file_name=f"kensite_schedule_{today}.txt",
+        mime="text/plain",
+        use_container_width=False)
+
+    st.markdown("---")
+
+    # ── Update instructions for Claude ────────────────────────────────────────
+    st.markdown("#### 🛠 How to ask Claude to update the schedule")
+    st.markdown(
+        "<div style='font-size:12px;color:#888;margin-bottom:8px;'>"
+        "Copy the prompt below into Claude along with the schedule text above "
+        "and your MCS export. Claude will return a list of changes to make.</div>",
+        unsafe_allow_html=True)
+
+    job_fields = """DATE FORMAT: YYYY-MM-DD (e.g. 2026-05-19)
+JOB FIELDS (all optional except customer and type):
+  customer        — Customer name
+  contract_number — Contract number (e.g. 01234)
+  postcode        — Site postcode
+  type            — "On Hire" | "Off Hire" | "Site Move"
+  site_move_type  — "Movement on Same Site" | "Movement to New Site"
+  units           — dict e.g. {"32ft AV": 2, "Mobile Welfare": 1}
+  av_configs      — dict e.g. {"32ft AV": {"Office": 1, "Canteen": 1}}
+  install_dismantle — true | false
+  haulage         — "None" | "Internal Haulage" | "External Haulage"
+  haulage_who     — contractor name if External
+  livery          — "Standard Livery" | "Customer Livery — Specify"
+  livery_note     — RAL code or colour name
+  notes           — free text, max 200 chars"""
+
+    claude_prompt = f"""I'm going to give you the current Kensite Prep Schedule and my MCS live hire export. 
+Please compare them and tell me:
+1. Any jobs in MCS that are NOT in the prep schedule (need adding)
+2. Any jobs in the prep schedule that look different to MCS (need updating)
+3. Any jobs in the prep schedule that are no longer in MCS (may need removing)
+
+For each change, give me the exact details in this format so I can action them:
+
+ADD JOB:
+  Date: DD/MM/YYYY
+  Customer: [name]
+  Type: [On Hire / Off Hire / Site Move]
+  Contract: [number]
+  Postcode: [postcode]
+  Units: [e.g. 2×32ft AV, 1×Mobile Welfare]
+  Haulage: [Internal / External / None]
+  Notes: [any relevant notes]
+
+UPDATE JOB (job number X on DD/MM/YYYY):
+  Field: [what changed]
+  Old value: [old]
+  New value: [new]
+
+REMOVE JOB:
+  Date: DD/MM/YYYY
+  Customer: [name]
+  Reason: [e.g. no longer in MCS]
+
+Keep suggestions concise. Do not fabricate data — only report what you can confirm from the two sources.
+
+--- PREP SCHEDULE ---
+{summary_text[:500]}... (paste full schedule text here)
+
+--- MCS EXPORT ---
+(paste your MCS export here)"""
+
+    st.text_area("Claude prompt template", value=claude_prompt,
+                 height=280, key="claude_prompt_text")
+    st.caption("💡 Tip — replace the truncated schedule above with the full text from the summary box, then paste your MCS export below it.")
