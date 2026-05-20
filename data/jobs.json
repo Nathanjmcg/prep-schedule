@@ -5502,6 +5502,35 @@
         "notes": "",
         "added_by": "Klaudia",
         "timestamp": "15/05/2026 13:35"
+      },
+      {
+        "customer": "Leasium",
+        "postcode": "PR2 8AA",
+        "contract_number": "31498",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1,
+          "24ft AV": 2,
+          "20ft Store": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Other": 1
+          },
+          "24ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "32FT 3+1 DRY ROOM, 24FT OFFICE, 24FT CANTEEN, 20FT STORE",
+        "added_by": "Jake",
+        "timestamp": "20/05/2026 09:08"
       }
     ],
     "2026-05-19": [
