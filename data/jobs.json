@@ -4548,11 +4548,19 @@
         "contract_number": "0000031439",
         "type": "On Hire",
         "site_move_type": "",
-        "units": {},
-        "av_configs": {},
+        "units": {
+          "32ft AV": 2,
+          "3+1": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
         "install_dismantle": false,
-        "haulage": "External Haulage",
-        "haulage_who": "Ainscough Haulage Hiab",
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
         "notes": "Units to be Bethel Blue RAL5002. Ready by 14.05",
@@ -4561,7 +4569,7 @@
         "notes_edited_by": "Nathan",
         "notes_edited_at": "07/05/2026 11:25",
         "edited_by": "Nathan",
-        "edited_at": "12/05/2026 09:03"
+        "edited_at": "20/05/2026 09:33"
       },
       {
         "customer": "John Reilly Civil Engineering",
