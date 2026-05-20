@@ -4832,16 +4832,15 @@
         },
         "av_configs": {},
         "install_dismantle": false,
-        "haulage": "None",
+        "haulage": "Internal Haulage",
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
         "notes": "20FT STORE + RACKING",
         "added_by": "Jake",
         "timestamp": "15/05/2026 07:55",
-        "moved_by": "\u2014",
-        "moved_from": "2026-05-19",
-        "edited_at": "15/05/2026 07:56"
+        "edited_by": "Jake",
+        "edited_at": "20/05/2026 13:46"
       },
       {
         "customer": "Essential Access Platforms",
