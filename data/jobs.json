@@ -5452,10 +5452,9 @@
         "customer": "A Connolly LTD",
         "postcode": "WN3 5TT",
         "contract_number": "0000031218",
-        "type": "Off Hire",
-        "site_move_type": "",
+        "type": "Site Move",
+        "site_move_type": "Movement to New Site",
         "units": {
-          "20ft Store": 1,
           "10ft Store": 1
         },
         "av_configs": {},
@@ -5464,9 +5463,13 @@
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
-        "notes": "",
+        "notes": "site move from WN3 5XT to WN3 5TT",
         "added_by": "Peter",
-        "timestamp": "20/05/2026 13:14"
+        "timestamp": "20/05/2026 13:14",
+        "notes_edited_by": "Peter",
+        "notes_edited_at": "20/05/2026 13:21",
+        "edited_by": "Peter",
+        "edited_at": "20/05/2026 13:21"
       }
     ],
     "2026-05-28": [
