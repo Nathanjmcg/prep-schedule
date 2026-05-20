@@ -4880,6 +4880,25 @@
         "notes": "STILL NEED TO ARRANGE TRANSPORT",
         "added_by": "Jake",
         "timestamp": "20/05/2026 09:06"
+      },
+      {
+        "customer": "Probuk",
+        "postcode": "WA15 6RH",
+        "contract_number": "0000030222",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "10ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "20/05/2026 13:43"
       }
     ],
     "2026-05-27": [
