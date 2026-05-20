@@ -599,9 +599,11 @@ def day_view_dialog(date_key):
             with rc2:
                 if st.button("✏️", key=f"dv_edit_{date_key}_{ji}",
                              use_container_width=True, help="Edit this job"):
-                    st.session_state["modal_date"]     = date_key
-                    st.session_state["modal_edit_idx"] = ji
-                    st.session_state["day_view_date"]  = None
+                    st.session_state["modal_date"]      = date_key
+                    st.session_state["modal_edit_idx"]  = ji
+                    st.session_state["modal_token"]     = _uuid.uuid4().hex[:8]
+                    st.session_state["any_dialog_open"] = True
+                    st.session_state["day_view_date"]   = None
                     st.rerun()
             with rc3:
                 if st.button("📅", key=f"dv_move_{date_key}_{ji}",
@@ -765,9 +767,11 @@ def day_view_dialog(date_key):
             with sc3:
                 if st.button("📅", key=f"svr_move_{svr_key}",
                              use_container_width=True, help="Move to another day"):
-                    st.session_state["msv_from_date"]  = date_key
-                    st.session_state["msv_idx"]        = svi
-                    st.session_state["day_view_date"]  = None
+                    st.session_state["msv_from_date"]   = date_key
+                    st.session_state["msv_idx"]         = svi
+                    st.session_state["msv_token"]       = _uuid.uuid4().hex[:8]
+                    st.session_state["any_dialog_open"] = True
+                    st.session_state["day_view_date"]   = None
                     st.rerun()
 
         st.markdown("<div style='margin-top:.5rem'></div>", unsafe_allow_html=True)
@@ -776,9 +780,11 @@ def day_view_dialog(date_key):
     ac1, ac2, ac3 = st.columns(3)
     with ac1:
         if st.button("＋ Add job to this day", use_container_width=True, type="primary"):
-            st.session_state["modal_date"]     = date_key
-            st.session_state["modal_edit_idx"] = None
-            st.session_state["day_view_date"]  = None
+            st.session_state["modal_date"]       = date_key
+            st.session_state["modal_edit_idx"]   = None
+            st.session_state["modal_token"]      = _uuid.uuid4().hex[:8]
+            st.session_state["any_dialog_open"]  = True
+            st.session_state["day_view_date"]    = None
             st.rerun()
     with ac2:
         if st.button("🔍 Request Site Visit", use_container_width=True):
@@ -1055,10 +1061,12 @@ def expand_chip_dialog(date_key, job_idx):
     ec1, ec2 = st.columns(2)
     with ec1:
         if st.button("✏️ Edit this job", use_container_width=True, type="primary"):
-            st.session_state["modal_date"]     = date_key
-            st.session_state["modal_edit_idx"] = job_idx
-            st.session_state["expand_date"]    = None
-            st.session_state["expand_idx"]     = None
+            st.session_state["modal_date"]      = date_key
+            st.session_state["modal_edit_idx"]  = job_idx
+            st.session_state["modal_token"]     = _uuid.uuid4().hex[:8]
+            st.session_state["any_dialog_open"] = True
+            st.session_state["expand_date"]     = None
+            st.session_state["expand_idx"]      = None
             st.rerun()
     with ec2:
         if st.button("Close", use_container_width=True):
