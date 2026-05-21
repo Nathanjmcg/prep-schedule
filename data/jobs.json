@@ -5620,9 +5620,13 @@
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
-        "notes": "32FT 3+1 DRY ROOM, 24FT OFFICE, 24FT CANTEEN, 20FT STORE",
+        "notes": "32FT 3+1 DRY ROOM, 24FT OFFICE, 24FT CANTEEN, 20FT STORE\n+ EFFLUENT TANK",
         "added_by": "Jake",
-        "timestamp": "20/05/2026 09:08"
+        "timestamp": "20/05/2026 09:08",
+        "notes_edited_by": "Jake",
+        "notes_edited_at": "21/05/2026 10:02",
+        "edited_by": "Jake",
+        "edited_at": "21/05/2026 10:02"
       }
     ],
     "2026-05-19": [
