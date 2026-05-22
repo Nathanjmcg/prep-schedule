@@ -4936,6 +4936,25 @@
         "notes": "Astleys",
         "added_by": "Jake",
         "timestamp": "20/05/2026 15:37"
+      },
+      {
+        "customer": "HSS",
+        "postcode": "BL3 5AP",
+        "contract_number": "31514",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "haulage_who": "STAR AUTOS",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "STAR AUTOS",
+        "added_by": "Jake",
+        "timestamp": "22/05/2026 11:26"
       }
     ],
     "2026-05-27": [
