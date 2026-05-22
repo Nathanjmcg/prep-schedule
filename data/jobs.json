@@ -4868,17 +4868,21 @@
         "type": "On Hire",
         "site_move_type": "",
         "units": {
-          "Mobile Welfare": 2
+          "Mobile Welfare": 1
         },
         "av_configs": {},
         "install_dismantle": false,
-        "haulage": "None",
-        "haulage_who": "",
+        "haulage": "External Haulage",
+        "haulage_who": "STAR AUTOS",
         "livery": "Standard Livery",
         "livery_note": "",
-        "notes": "STILL NEED TO ARRANGE TRANSPORT",
+        "notes": "",
         "added_by": "Jake",
-        "timestamp": "20/05/2026 09:06"
+        "timestamp": "20/05/2026 09:06",
+        "notes_edited_by": "Jake",
+        "notes_edited_at": "22/05/2026 11:45",
+        "edited_by": "Jake",
+        "edited_at": "22/05/2026 11:45"
       },
       {
         "customer": "Probuk",
