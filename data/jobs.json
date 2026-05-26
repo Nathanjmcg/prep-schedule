@@ -6058,6 +6058,27 @@
         "moved_from": "2026-05-27",
         "edited_at": "26/05/2026 08:39"
       }
+    ],
+    "2026-06-02": [
+      {
+        "customer": "Hughes Bros",
+        "postcode": "M29 7HA",
+        "contract_number": "0000031506",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "26/05/2026 11:41"
+      }
     ]
   },
   "mcs": {
