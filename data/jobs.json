@@ -5759,6 +5759,25 @@
         "notes_edited_at": "21/05/2026 10:02",
         "edited_by": "Jake",
         "edited_at": "21/05/2026 10:02"
+      },
+      {
+        "customer": "Aspire Construction Projects",
+        "postcode": "DE24 8RF",
+        "contract_number": "0000031507",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "26/05/2026 11:34"
       }
     ],
     "2026-05-19": [
