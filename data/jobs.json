@@ -5764,7 +5764,7 @@
         "customer": "Aspire Construction Projects",
         "postcode": "DE24 8RF",
         "contract_number": "0000031507",
-        "type": "Off Hire",
+        "type": "On Hire",
         "site_move_type": "",
         "units": {
           "Mobile Welfare": 1
@@ -5777,7 +5777,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "26/05/2026 11:34"
+        "timestamp": "26/05/2026 11:34",
+        "edited_by": "Peter",
+        "edited_at": "26/05/2026 11:34"
       }
     ],
     "2026-05-19": [
