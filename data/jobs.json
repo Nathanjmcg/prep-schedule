@@ -6118,6 +6118,30 @@
         "notes": "site move",
         "added_by": "Peter",
         "timestamp": "26/05/2026 12:08"
+      },
+      {
+        "customer": "MCI Development",
+        "postcode": "ST5 6AT",
+        "contract_number": "0000030176",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 3
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 2,
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "26/05/2026 12:14"
       }
     ]
   },
