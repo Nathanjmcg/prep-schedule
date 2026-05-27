@@ -6078,6 +6078,31 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "26/05/2026 12:06"
+      },
+      {
+        "customer": "Holmpatrick Developments",
+        "postcode": "WA9 3EX",
+        "contract_number": "31523",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 2,
+          "2+1": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Jake",
+        "timestamp": "27/05/2026 15:15"
       }
     ],
     "2026-06-02": [
