@@ -5854,13 +5854,15 @@
           }
         },
         "install_dismantle": false,
-        "haulage": "External Haulage",
-        "haulage_who": "Think Hire",
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
         "notes": "",
         "added_by": "Claude",
-        "timestamp": "17/05/2026 14:07"
+        "timestamp": "17/05/2026 14:07",
+        "edited_by": "Claude",
+        "edited_at": "27/05/2026 07:55"
       }
     ],
     "2026-05-29": [
