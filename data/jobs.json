@@ -6958,13 +6958,6 @@
       "supplier": "Sutter",
       "status": "pending",
       "created_at": "28/05/2026 15:20"
-    },
-    "ed1c94e7a2e3": {
-      "requester": "Baz",
-      "item": "22",
-      "supplier": "22",
-      "status": "pending",
-      "created_at": "28/05/2026 15:24"
     }
   },
   "materials_totals": {}
