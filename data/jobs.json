@@ -6951,6 +6951,13 @@
       "supplier": "Daton",
       "status": "pending",
       "created_at": "28/05/2026 15:20"
+    },
+    "61d56a9eed93": {
+      "requester": "Mel",
+      "item": "TFR Cleaner x 25L",
+      "supplier": "Sutter",
+      "status": "pending",
+      "created_at": "28/05/2026 15:20"
     }
   },
   "materials_totals": {}
