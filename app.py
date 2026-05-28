@@ -46,6 +46,7 @@ ASSET_UNITS = {
 
 JOB_TYPES = ["On Hire", "Off Hire", "Site Move"]
 TEAM_MEMBERS = ["Jake", "Ewa", "Klaudia", "Chris", "Nick", "Chloe", "Peter", "Claude", "Nathan"]
+MATERIALS_NAMES = ["Alex", "Baz", "Carl", "Cliff", "Dan", "Jim", "Keaton", "Matt", "Mel", "Mitch", "Ste"]
 TYPE_STYLE = {
     "On Hire":      (K_GREEN_PALE, K_GREEN_DARK, "●"),
     "Off Hire":     ("#fdecea",    "#7b1a1a",    "●"),
@@ -96,12 +97,14 @@ def gh_put(path, obj, sha=None, msg="Update schedule"):
 def load_data():
     data, sha = gh_get(DATA_FILE)
     if data is None:
-        return {}, {}, {}, {}, {}, {}, None
+        return {}, {}, {}, {}, {}, {}, {}, None
     return (data.get("jobs", {}), data.get("mcs", {}),
             data.get("site_visits", {}), data.get("svr_confirmed", {}),
-            data.get("checklist", {}), data.get("live_hire", {}), sha)
+            data.get("checklist", {}), data.get("live_hire", {}),
+            data.get("materials", {}), sha)
 
-def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None, cl_dict=None, lh_dict=None, _sha_hint=None):
+def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None,
+              cl_dict=None, lh_dict=None, mat_dict=None, _sha_hint=None):
     """Fetch latest SHA immediately before writing. Retries once on 409."""
     payload_obj = {
         "jobs":          jobs_dict,
@@ -110,6 +113,7 @@ def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None, cl_dict=None, lh
         "svr_confirmed": svr_dict or {},
         "checklist":     cl_dict  or {},
         "live_hire":     lh_dict  or {},
+        "materials":     mat_dict or {},
     }
     st.cache_data.clear()
     for attempt in range(3):
@@ -123,7 +127,7 @@ def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None, cl_dict=None, lh
             import time; time.sleep(0.5)
 
 def save_jobs(jobs_dict, _sha_hint=None):
-    save_data(jobs_dict, mcs, site_visits, svr_confirmed, checklist, live_hire, _sha_hint)
+    save_data(jobs_dict, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, _sha_hint)
 
 # ── Date helpers ──────────────────────────────────────────────────────────────
 def get_monday(d): return d - timedelta(days=d.weekday())
@@ -171,12 +175,28 @@ for k, v in [("week_offset", 0), ("n_weeks", 4),
              ("day_view_date", None),
              ("move_from_date", None), ("move_job_idx", None),
              ("svr_modal_date", None), ("svr_modal_idx", None),
-             ("msv_from_date", None), ("msv_idx", None)]:
+             ("msv_from_date", None), ("msv_idx", None),
+             ("mat_add", False), ("mat_view_id", None)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
-jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, sha = load_data()
+jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, sha = load_data()
 bank_holidays = get_bank_holidays()
+
+# Auto-expire materials with pod_received status older than 24h
+_now = datetime.now()
+_mat_changed = False
+for mid, req in list(materials.items()):
+    if req.get("status") == "pod_received" and req.get("pod_received_at"):
+        try:
+            pod_dt = datetime.strptime(req["pod_received_at"], "%d/%m/%Y %H:%M")
+            if (_now - pod_dt).total_seconds() > 86400:
+                del materials[mid]
+                _mat_changed = True
+        except Exception:
+            pass
+if _mat_changed:
+    save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
 
 import uuid as _uuid
 
@@ -229,7 +249,29 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
 .day-date.is-today{{color:{K_GREEN};}}
 .day-body{{padding:5px;}}
 
-/* Day summary pills inside card */
+/* Materials Request panel */
+.mat-panel {{
+  border: 1px solid {K_LGREY}; border-radius: 10px; overflow: hidden;
+  background: #fafafa; margin: 2px; min-height: 170px;
+}}
+.mat-panel-head {{
+  padding: 7px 9px 5px; border-bottom: 1px solid {K_LGREY};
+  background: #f0f0f0;
+}}
+.mat-panel-title {{
+  font-size: 10px; font-weight: 700; color: {K_GREY}; opacity: .5;
+  text-transform: uppercase; letter-spacing: .07em;
+}}
+.mat-panel-label {{
+  font-size: 13px; font-weight: 800; color: {K_GREY};
+}}
+.mat-pill {{
+  border-radius: 6px; padding: 4px 8px; margin-bottom: 3px;
+  font-size: 11px; line-height: 1.4; cursor: pointer;
+}}
+.mat-pill.pending  {{ background: #fdecea; color: #7b1a1a; }}
+.mat-pill.ordered  {{ background: #fff9e6; color: #7a5c00; }}
+.mat-pill.pod      {{ background: {K_GREEN_PALE}; color: {K_GREEN_DARK}; }}
 .day-sum-pill{{display:flex;align-items:center;gap:5px;padding:3px 5px;
                border-radius:5px;margin-bottom:2px;font-size:11px;font-weight:600;}}
 .day-sum-dot{{width:8px;height:8px;border-radius:50%;flex-shrink:0;}}
@@ -578,7 +620,7 @@ def day_view_dialog(date_key):
                                 checklist[key] = newval
                                 job_ck_changed = True
                     if job_ck_changed:
-                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
                         st.rerun()
 
                 # ── MCS button — On Hire only, below the checks ─────────────
@@ -587,13 +629,13 @@ def day_view_dialog(date_key):
                         if st.button("☐  Picked on MCS", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs[mcs_key] = "picked"
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
                             st.rerun()
                     else:
                         if st.button("✅ Picked on MCS — undo", key=f"mcs_{mcs_key}",
                                      use_container_width=True):
                             mcs.pop(mcs_key, None)
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
                             st.rerun()
                 # Off Hire — no MCS button, POC/Returns IS the confirmation
             with rc2:
@@ -701,7 +743,7 @@ def day_view_dialog(date_key):
 
     if daily_changed:
         checklist[d_key] = ds
-        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
         st.rerun()
 
     st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
@@ -747,13 +789,13 @@ def day_view_dialog(date_key):
                     if st.button("✅ Nathan Checked and Confirmed in Diary",
                                  key=f"svr_confirm_{svr_key}", use_container_width=True):
                         svr_confirmed[svr_key] = True
-                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
                         st.rerun()
                 else:
                     if st.button("↩ Unconfirm", key=f"svr_unconfirm_{svr_key}",
                                  use_container_width=True):
                         svr_confirmed.pop(svr_key, None)
-                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+                        save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
                         st.rerun()
             with sc2:
                 if st.button("✏️ Edit request", key=f"svr_edit_{svr_key}",
@@ -880,7 +922,7 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
                     site_visits[date_key][edit_svr_idx] = new_sv
                 else:
                     site_visits[date_key].append(new_sv)
-                save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+                save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
                 st.session_state["day_view_date"]    = None
                 st.session_state["svr_modal_date"]   = None
                 st.session_state["svr_modal_idx"]    = None
@@ -896,7 +938,7 @@ def site_visit_dialog(date_key, edit_svr_idx=None):
                 site_visits[date_key].pop(edit_svr_idx)
                 if not site_visits[date_key]:
                     del site_visits[date_key]
-                save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+                save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
                 st.session_state["svr_modal_date"] = None
                 st.session_state["svr_modal_idx"]  = None
                 st.rerun()
@@ -942,7 +984,7 @@ def move_site_visit_dialog(from_date, sv_idx):
             new_svr_key = f"{to_key}_{len(site_visits[to_key]) - 1}"
             if old_svr_key in svr_confirmed:
                 svr_confirmed[new_svr_key] = svr_confirmed.pop(old_svr_key)
-            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire)
+            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
             st.session_state["msv_from_date"] = None
             st.session_state["msv_idx"]       = None
             st.session_state["day_view_date"] = None
@@ -1351,6 +1393,111 @@ def job_modal(date_key, edit_idx=None):
                 st.session_state["modal_edit_idx"] = None
                 st.rerun()
 
+# ── MATERIALS REQUEST — ADD DIALOG ───────────────────────────────────────────
+@st.dialog("New Materials Request", width="small")
+def materials_add_dialog():
+    name_opts = ["— Select your name *"] + MATERIALS_NAMES
+    requester = st.selectbox("Your name *", name_opts, key="mat_name")
+    item      = st.text_input("What do you need? *", placeholder="e.g. M10 bolts, cable ties, paint...", key="mat_item")
+    supplier  = st.text_input("Usual supplier (if known)", placeholder="e.g. Screwfix, Travis Perkins...", key="mat_supplier")
+
+    mc1, mc2 = st.columns(2)
+    with mc1:
+        if st.button("✅ Submit Request", type="primary", use_container_width=True):
+            errors = []
+            if requester == "— Select your name *": errors.append("Please select your name.")
+            if not item.strip():                    errors.append("Please describe what you need.")
+            for e in errors: st.warning(e)
+            if not errors:
+                mid = _uuid.uuid4().hex[:12]
+                materials[mid] = {
+                    "requester":  requester,
+                    "item":       item.strip(),
+                    "supplier":   supplier.strip(),
+                    "status":     "pending",
+                    "created_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
+                }
+                save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
+                st.session_state["any_dialog_open"] = False
+                st.rerun()
+    with mc2:
+        if st.button("Cancel", use_container_width=True):
+            st.session_state["any_dialog_open"] = False
+            st.rerun()
+
+# ── MATERIALS REQUEST — VIEW/UPDATE DIALOG ────────────────────────────────────
+@st.dialog("Materials Request", width="small")
+def materials_view_dialog(mid):
+    req = materials.get(mid)
+    if not req:
+        st.warning("Request not found."); return
+
+    status    = req.get("status", "pending")
+    status_colours = {
+        "pending":      ("#fdecea", "#7b1a1a"),
+        "ordered":      ("#fff9e6", "#7a5c00"),
+        "pod_received": (K_GREEN_PALE, K_GREEN_DARK),
+    }
+    bg, fg = status_colours.get(status, ("#f0f0f0", K_GREY))
+    status_label = {"pending": "🔴 Pending", "ordered": "🟡 Ordered", "pod_received": "🟢 POD Received"}
+
+    st.markdown(f"""
+    <div style="background:{bg};color:{fg};border-radius:8px;padding:12px 14px;margin-bottom:1rem;">
+      <div style="font-size:17px;font-weight:800;margin-bottom:4px;">{req.get("item","")}</div>
+      <div style="font-size:12px;opacity:.7;">Requested by <b>{req.get("requester","")}</b> · {req.get("created_at","")}</div>
+      {f'<div style="font-size:11px;opacity:.6;margin-top:3px;">Supplier: {req["supplier"]}</div>' if req.get("supplier") else ""}
+      <div style="margin-top:6px;font-size:12px;font-weight:700;">{status_label.get(status,"")}</div>
+      {f'<div style="font-size:10px;opacity:.6;">Ordered by {req.get("ordered_by","")} · {req.get("ordered_at","")} · £{req.get("value","?")}</div>' if status in ("ordered","pod_received") else ""}
+      {f'<div style="font-size:10px;opacity:.6;">POD received {req.get("pod_received_at","")}</div>' if status == "pod_received" else ""}
+    </div>
+    """, unsafe_allow_html=True)
+
+    changed = False
+
+    if status == "pending":
+        st.markdown("**Mark as Ordered:**")
+        vc1, vc2 = st.columns([3, 2])
+        with vc1:
+            orderer = st.selectbox("Ordered by", ["— Select *"] + MATERIALS_NAMES + TEAM_MEMBERS,
+                                   key=f"mat_orderer_{mid}")
+        with vc2:
+            value = st.text_input("Value (£)", placeholder="e.g. 24.99", key=f"mat_value_{mid}")
+        if st.button("✅ Mark Ordered", type="primary", use_container_width=True):
+            if orderer == "— Select *":
+                st.warning("Please select who ordered it.")
+            else:
+                req["status"]     = "ordered"
+                req["ordered_by"] = orderer
+                req["ordered_at"] = datetime.now().strftime("%d/%m/%Y %H:%M")
+                req["value"]      = value.strip()
+                materials[mid]    = req
+                save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
+                st.session_state["any_dialog_open"] = False
+                st.rerun()
+
+    elif status == "ordered":
+        st.markdown(f"**Requested by {req.get('requester','')} — tick when POD is in:**")
+        if st.button("✅ POD Brought to Office", type="primary", use_container_width=True):
+            req["status"]         = "pod_received"
+            req["pod_received_at"] = datetime.now().strftime("%d/%m/%Y %H:%M")
+            materials[mid]        = req
+            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
+            st.session_state["any_dialog_open"] = False
+            st.rerun()
+
+    st.markdown("<div style='margin-top:.75rem'></div>", unsafe_allow_html=True)
+    dc1, dc2 = st.columns(2)
+    with dc1:
+        if st.button("🗑 Delete request", use_container_width=True):
+            del materials[mid]
+            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials)
+            st.session_state["any_dialog_open"] = False
+            st.rerun()
+    with dc2:
+        if st.button("Close", use_container_width=True):
+            st.session_state["any_dialog_open"] = False
+            st.rerun()
+
 # ── Trigger dialogs ───────────────────────────────────────────────────────────
 # Each dialog key stores a (value, token) tuple. The token is a unique ID set
 # when a button is clicked. We track the last rendered token — if it matches,
@@ -1388,6 +1535,15 @@ elif _should_open("expand_date", "expand_token") and st.session_state.get("expan
 elif _should_open("modal_date", "modal_token"):
     _mark_rendered("modal_token")
     job_modal(st.session_state.modal_date, st.session_state.modal_edit_idx)
+elif st.session_state.get("mat_add"):
+    st.session_state["mat_add"] = False
+    st.session_state["any_dialog_open"] = True
+    materials_add_dialog()
+elif st.session_state.get("mat_view_id"):
+    mid = st.session_state["mat_view_id"]
+    st.session_state["mat_view_id"] = None
+    st.session_state["any_dialog_open"] = True
+    materials_view_dialog(mid)
 else:
     # No dialog is opening — safe to re-enable auto-refresh
     st.session_state["any_dialog_open"] = False
@@ -1443,7 +1599,7 @@ with st.sidebar:
                                     "date": upload_dt},
                         "history": history,
                     }
-                    save_data(jobs, mcs, site_visits, svr_confirmed, checklist, new_lh)
+                    save_data(jobs, mcs, site_visits, svr_confirmed, checklist, new_lh, materials)
                     st.session_state["lh_last_processed"] = uploaded_file.name
                     st.success(f"✅ Updated — £{total_rev:,.2f}/wk across {row_count} lines")
             except Exception as e:
@@ -1788,42 +1944,49 @@ def render_chip(job, chip_id=""):
     )
 
 # ── CALENDAR ──────────────────────────────────────────────────────────────────
-DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+MAT_NAMES_DISPLAY = ["Sat", "Sun"]  # kept for reference but column is now Materials
 
-# Day name headers
-hcols = st.columns(7)
-for i, col in enumerate(hcols):
+# Day name headers — 5 weekday cols + 1 materials col (spanning Sat+Sun space)
+hcols = st.columns([1, 1, 1, 1, 1, 2])
+for i, col in enumerate(hcols[:5]):
     with col:
         st.markdown(
             f"<div style='text-align:center;font-size:11px;font-weight:700;"
             f"color:{K_GREY};opacity:.45;letter-spacing:.07em;text-transform:uppercase;"
             f"padding-bottom:3px;'>{DAY_NAMES[i]}</div>",
             unsafe_allow_html=True)
+with hcols[5]:
+    # Count pending materials requests for header badge
+    _pending_count = sum(1 for r in materials.values() if r.get("status") == "pending")
+    _badge = f' <span style="background:#c0392b;color:white;border-radius:10px;padding:1px 6px;font-size:10px;">{_pending_count}</span>' if _pending_count else ""
+    st.markdown(
+        f"<div style='text-align:center;font-size:11px;font-weight:700;"
+        f"color:{K_GREY};opacity:.7;letter-spacing:.07em;text-transform:uppercase;"
+        f"padding-bottom:3px;'>🔧 Materials{_badge}</div>",
+        unsafe_allow_html=True)
 
 for w in range(n_weeks):
     ws = start_date + timedelta(weeks=w)
     on_u, off_u, on_total, off_total, internal_dels, external_dels = week_unit_summary(ws)
     st.markdown(render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_dels, live_hire), unsafe_allow_html=True)
-    cols = st.columns(7)
+    cols = st.columns([1, 1, 1, 1, 1, 2])
 
-    for d in range(7):
+    # Mon–Fri day cards (cols 0–4)
+    for d in range(5):
         day        = ws + timedelta(days=d)
         dk         = fmt_key(day)
         is_today   = day == today
-        is_weekend = day.weekday() >= 5
         is_bh      = dk in bank_holidays
         bh_name    = bank_holidays.get(dk, "")
 
-        card_cls = "is-today" if is_today else ("is-bh" if is_bh else ("is-weekend" if is_weekend else ""))
-
-        # Gold glow — all per-job checks done AND daily checklist complete
+        card_cls = "is-today" if is_today else ("is-bh" if is_bh else "")
         if not is_today and not is_bh:
             if day_jobs_fulfilment_complete(dk) and daily_checklist_done(dk) and jobs.get(dk):
                 card_cls = "is-complete"
         date_cls = "is-today" if is_today else ""
 
         with cols[d]:
-            # Build day summary HTML
             day_jobs = jobs.get(dk, [])
             summary_html = ""
             if day_jobs:
@@ -1840,7 +2003,6 @@ for w in range(n_weeks):
                         f'<span class="day-sum-label">{label}</span>'
                         f'</div>'
                     )
-                # MCS progress
                 on_hire_jobs  = [j for j in day_jobs if j.get("type") == "On Hire"]
                 off_hire_jobs = [j for j in day_jobs if j.get("type") == "Off Hire"]
                 picked  = sum(1 for ji, j in enumerate(on_hire_jobs)
@@ -1852,9 +2014,9 @@ for w in range(n_weeks):
                 elif picked > 0:
                     summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ {picked}/{len(on_hire_jobs)} picked MCS</div>'
                 if off_hire_jobs and checked == len(off_hire_jobs):
-                    summary_html += f'<div style="font-size:9px;color:#7b1a1a;font-weight:700;padding:1px 5px;">✅ All checked in MCS</div>'
+                    summary_html += f'<div style="font-size:9px;color:#7b1a1a;font-weight:700;padding:1px 5px;">✅ All processed MCS</div>'
                 elif checked > 0:
-                    summary_html += f'<div style="font-size:9px;color:#7b1a1a;padding:1px 5px;">✅ {checked}/{len(off_hire_jobs)} checked MCS</div>'
+                    summary_html += f'<div style="font-size:9px;color:#7b1a1a;padding:1px 5px;">✅ {checked}/{len(off_hire_jobs)} processed MCS</div>'
                 haul_icons = []
                 for job in day_jobs:
                     h = job.get("haulage", "None")
@@ -1870,7 +2032,6 @@ for w in range(n_weeks):
             else:
                 summary_html = "<div class='day-empty'>No jobs</div>"
 
-            # Fulfilment / Daily checklist indicator
             jobs_done   = day_jobs_fulfilment_complete(dk)
             dailys_done = daily_checklist_done(dk)
             if day_jobs and jobs_done and dailys_done:
@@ -1880,15 +2041,10 @@ for w in range(n_weeks):
                     f'display:inline-block;">✨ Daily\'s Complete</div>'
                 )
             elif day_jobs and dailys_done:
-                summary_html += (
-                    f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">'
-                    f'✅ Dailys done</div>'
-                )
+                summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ Dailys done</div>'
             elif day_jobs and jobs_done:
-                summary_html += (
-                    f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">'
-                    f'✅ Jobs complete</div>'
-                )
+                summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ Jobs complete</div>'
+
             sv_count = len(site_visits.get(dk, []))
             if sv_count:
                 summary_html += (
@@ -1908,9 +2064,52 @@ for w in range(n_weeks):
                 f"</div>",
                 unsafe_allow_html=True)
 
-    # ── Button row — always flat, one per day, outside the card columns ──────
-    btn_cols = st.columns(7)
-    for d in range(7):
+    # Materials panel — col 5 (spans Sat+Sun space)
+    with cols[5]:
+        # Render existing requests as coloured pills
+        mat_items = list(materials.items())
+        mat_status_order = {"pending": 0, "ordered": 1, "pod_received": 2}
+        mat_items.sort(key=lambda x: mat_status_order.get(x[1].get("status","pending"), 0))
+
+        mat_html = ""
+        for mid, req in mat_items:
+            status = req.get("status", "pending")
+            if status == "pending":
+                bg, fg = "#fdecea", "#7b1a1a"; icon = "🔴"
+            elif status == "ordered":
+                bg, fg = "#fff9e6", "#7a5c00"; icon = "🟡"
+            else:
+                bg, fg = K_GREEN_PALE, K_GREEN_DARK; icon = "🟢"
+            item     = req.get("item","")
+            reqby    = req.get("requester","")
+            supplier = f' · {req["supplier"]}' if req.get("supplier") else ""
+            mat_html += (
+                f'<div class="mat-pill {status}" style="background:{bg};color:{fg};">'
+                f'<span style="font-weight:700;">{icon} {item}</span>'
+                f'<span style="font-size:9.5px;opacity:.7;display:block;">{reqby}{supplier}</span>'
+                f'</div>'
+            )
+
+        st.markdown(
+            f"<div class='mat-panel'>"
+            f"<div class='mat-panel-head'>"
+            f"<div class='mat-panel-title'>Materials</div>"
+            f"<div class='mat-panel-label'>Requests</div>"
+            f"</div>"
+            f"<div style='padding:5px;'>{mat_html if mat_html else '<div class=\"day-empty\">No requests</div>'}</div>"
+            f"</div>",
+            unsafe_allow_html=True)
+
+        # View buttons for each request
+        for mid, req in mat_items:
+            if st.button(f"View", key=f"matview_{w}_{mid}", use_container_width=True):
+                st.session_state["mat_view_id"]       = mid
+                st.session_state["any_dialog_open"]   = True
+                st.rerun()
+
+    # ── Button row — Mon–Fri only ─────────────────────────────────────────────
+    btn_cols = st.columns([1, 1, 1, 1, 1, 2])
+    for d in range(5):
         day      = ws + timedelta(days=d)
         dk       = fmt_key(day)
         day_jobs = jobs.get(dk, [])
@@ -1923,6 +2122,14 @@ for w in range(n_weeks):
                     open_dialog(modal_date=dk, modal_edit_idx=None)
                 st.rerun()
             st.markdown("</div>", unsafe_allow_html=True)
+    # Materials add button
+    with btn_cols[5]:
+        st.markdown("<div class='ks-add-btn'>", unsafe_allow_html=True)
+        if st.button("＋ Add Request", key=f"matadd_{w}", use_container_width=True):
+            st.session_state["mat_add"]           = True
+            st.session_state["any_dialog_open"]   = True
+            st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
 
 # ── SNAPSHOT ─────────────────────────────────────────────────────────────────
 st.markdown("---")
