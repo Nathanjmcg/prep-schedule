@@ -6949,8 +6949,12 @@
       "requester": "Alex",
       "item": "16mm Cable - 2 x Reels",
       "supplier": "Daton",
-      "status": "pending",
-      "created_at": "28/05/2026 15:20"
+      "status": "ordered",
+      "created_at": "28/05/2026 15:20",
+      "ordered_by": "Chris",
+      "ordered_at": "28/05/2026 15:27",
+      "value": "78.99",
+      "week_key": "2026-W22"
     },
     "61d56a9eed93": {
       "requester": "Mel",
@@ -6960,5 +6964,7 @@
       "created_at": "28/05/2026 15:20"
     }
   },
-  "materials_totals": {}
+  "materials_totals": {
+    "2026-W22": 78.99
+  }
 }
