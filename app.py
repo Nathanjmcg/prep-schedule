@@ -2084,50 +2084,87 @@ for w in range(n_weeks):
         wk_key   = ws.strftime("%Y-W%V")
         wk_total = materials_totals.get(wk_key, 0)
         wk_total_html = (
-            f'<div style="font-size:10px;font-weight:700;color:{K_GREEN_DARK};">'
-            f'💰 £{wk_total:,.2f} this week</div>'
-            if wk_total else
-            f'<div style="font-size:10px;color:{K_GREY};opacity:.4;">No spend recorded</div>'
+            f'<span style="font-size:10px;font-weight:700;color:{K_GREEN_DARK};">'
+            f'💰 £{wk_total:,.2f}</span>'
+            if wk_total else ""
         )
 
         st.markdown(
-            f"<div class='mat-panel'>"
-            f"<div class='mat-panel-head' style='display:flex;justify-content:space-between;align-items:center;'>"
-            f"<div><div class='mat-panel-title'>Materials</div>"
-            f"<div class='mat-panel-label'>Requests</div></div>"
-            f"<div style='text-align:right;'>{wk_total_html}</div>"
+            f"<div style='border:1px solid {K_LGREY};border-radius:10px;"
+            f"overflow:hidden;margin:2px;background:#fafafa;'>"
+            f"<div style='padding:7px 9px 5px;border-bottom:1px solid {K_LGREY};"
+            f"background:#f0f0f0;display:flex;justify-content:space-between;align-items:center;'>"
+            f"<div style='font-size:10px;font-weight:700;color:{K_GREY};opacity:.5;"
+            f"text-transform:uppercase;letter-spacing:.07em;'>🔧 Materials</div>"
+            f"{wk_total_html}"
             f"</div>"
-            f"<div style='padding:5px;max-height:170px;overflow-y:auto;'>",
+            f"<div style='padding:6px;'>",
             unsafe_allow_html=True)
 
-        if not mat_items:
-            st.markdown("<div class='day-empty'>No requests</div>", unsafe_allow_html=True)
-        else:
-            for mid, req in mat_items:
-                status = req.get("status", "pending")
-                if status == "pending":
-                    bg, fg = "#fdecea", "#7b1a1a"; icon = "🔴"
-                elif status == "ordered":
-                    bg, fg = "#fff9e6", "#7a5c00"; icon = "🟡"
-                else:
-                    bg, fg = K_GREEN_PALE, K_GREEN_DARK; icon = "🟢"
-                item     = req.get("item","")
-                reqby    = req.get("requester","")
-                supplier = f' · {req["supplier"]}' if req.get("supplier") else ""
-                val_str  = f' · £{req["value"]}' if req.get("value") else ""
-                # Clickable pill — styled as button matching the pill colour
-                st.markdown(
-                    f"<div style='background:{bg};color:{fg};border-radius:6px;"
-                    f"padding:4px 8px;margin-bottom:2px;'>"
-                    f"<span style='font-weight:700;font-size:11px;'>{icon} {item}</span>"
-                    f"<span style='font-size:9.5px;opacity:.7;display:block;'>{reqby}{supplier}{val_str}</span>"
-                    f"</div>",
-                    unsafe_allow_html=True)
-                if st.button("↗ Open", key=f"matview_{w}_{mid}", use_container_width=True):
-                    st.session_state["mat_view_id"]     = mid
-                    st.session_state["any_dialog_open"] = True
-                    st.rerun()
+        # Sort: most recent first (by created_at), then by status order
+        mat_items.sort(key=lambda x: x[1].get("created_at",""), reverse=True)
 
+        # Status legend + weekly total header
+        legend_html = (
+            f"<div style='display:flex;justify-content:space-between;"
+            f"align-items:center;margin-bottom:5px;flex-wrap:wrap;gap:4px;'>"
+            f"<div style='display:flex;gap:5px;'>"
+            f"<span style='background:#fdecea;color:#7b1a1a;border-radius:4px;"
+            f"padding:1px 7px;font-size:10px;font-weight:700;'>🔴 Requested</span>"
+            f"<span style='background:#fff9e6;color:#7a5c00;border-radius:4px;"
+            f"padding:1px 7px;font-size:10px;font-weight:700;'>🟡 Ordered</span>"
+            f"<span style='background:{K_GREEN_PALE};color:{K_GREEN_DARK};border-radius:4px;"
+            f"padding:1px 7px;font-size:10px;font-weight:700;'>🟢 Received</span>"
+            f"</div>"
+            f"{wk_total_html}"
+            f"</div>"
+        )
+
+        # Build all pills as pure HTML inside a scrollable div
+        pills_html = ""
+        for mid, req in mat_items:
+            status = req.get("status", "pending")
+            if status == "pending":
+                bg, fg = "#fdecea", "#7b1a1a"
+            elif status == "ordered":
+                bg, fg = "#fff9e6", "#7a5c00"
+            else:
+                bg, fg = K_GREEN_PALE, K_GREEN_DARK
+            item     = req.get("item", "")
+            reqby    = req.get("requester", "")
+            supplier = f' · {req["supplier"]}' if req.get("supplier") else ""
+            val_str  = f' · £{req["value"]}' if req.get("value") else ""
+            pills_html += (
+                f'<div style="background:{bg};color:{fg};border-radius:6px;'
+                f'padding:4px 8px;margin-bottom:3px;">'
+                f'<span style="font-weight:700;font-size:11px;">{item}</span>'
+                f'<span style="font-size:9.5px;opacity:.7;display:block;">'
+                f'{reqby}{supplier}{val_str}</span>'
+                f'</div>'
+            )
+
+        empty_html = "<div class='day-empty' style='padding:8px;'>No requests</div>"
+        scroll_box = (
+            f"<div style='max-height:150px;overflow-y:auto;"
+            f"border:1px solid {K_LGREY};border-radius:7px;padding:4px;background:white;'>"
+            f"{pills_html if pills_html else empty_html}"
+            f"</div>"
+        )
+        st.markdown(legend_html + scroll_box, unsafe_allow_html=True)
+
+        # Buttons sit below the scroll box — one per request, styled small
+        for mid, req in mat_items:
+            status = req.get("status", "pending")
+            if status == "pending":
+                btn_label = f"🔴 {req.get('item','')[:18]}"
+            elif status == "ordered":
+                btn_label = f"🟡 {req.get('item','')[:18]}"
+            else:
+                btn_label = f"🟢 {req.get('item','')[:18]}"
+            if st.button(btn_label, key=f"matview_{w}_{mid}", use_container_width=True):
+                st.session_state["mat_view_id"]     = mid
+                st.session_state["any_dialog_open"] = True
+                st.rerun()
         st.markdown("</div></div>", unsafe_allow_html=True)
 
     # ── Button row — Mon–Fri only ─────────────────────────────────────────────
