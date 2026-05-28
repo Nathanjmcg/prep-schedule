@@ -6008,6 +6008,40 @@
         "notes": "1 x gate house also being returned.",
         "added_by": "Peter",
         "timestamp": "19/05/2026 10:07"
+      },
+      {
+        "customer": "Think Hire",
+        "postcode": "GL20 6FG",
+        "contract_number": "0000031521",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 5,
+          "10ft Store": 2,
+          "3+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1,
+            "Office": 2,
+            "Drying Room": 1,
+            "Meeting Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Jake",
+        "timestamp": "26/05/2026 11:21",
+        "edited_by": "Jake",
+        "edited_at": "28/05/2026 10:18",
+        "moved_by": "\u2014",
+        "moved_from": "2026-06-08"
       }
     ],
     "2026-06-08": [
@@ -6060,38 +6094,6 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "20/05/2026 09:19"
-      },
-      {
-        "customer": "Think Hire",
-        "postcode": "GL20 6FG",
-        "contract_number": "0000031521",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "32ft AV": 5,
-          "10ft Store": 2,
-          "3+1": 1,
-          "Tank": 1,
-          "Steps": 2
-        },
-        "av_configs": {
-          "32ft AV": {
-            "Canteen": 1,
-            "Office": 2,
-            "Drying Room": 1,
-            "Meeting Room": 1
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Jake",
-        "timestamp": "26/05/2026 11:21",
-        "edited_by": "Jake",
-        "edited_at": "28/05/2026 10:03"
       }
     ],
     "2026-06-03": [
