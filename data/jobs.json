@@ -6943,5 +6943,14 @@
         "filename": "Equipment On Hire 270526.xlsx"
       }
     ]
+  },
+  "materials": {
+    "5b629a557f6a": {
+      "requester": "Carl",
+      "item": "CSM 10 Boards x 40",
+      "supplier": "Yorkshire Ply",
+      "status": "pending",
+      "created_at": "28/05/2026 15:12"
+    }
   }
 }
