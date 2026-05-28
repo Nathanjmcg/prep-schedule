@@ -2097,7 +2097,7 @@ for w in range(n_weeks):
             f"<div class='mat-panel-label'>Requests</div></div>"
             f"<div style='text-align:right;'>{wk_total_html}</div>"
             f"</div>"
-            f"<div style='padding:5px;'>",
+            f"<div style='padding:5px;max-height:170px;overflow-y:auto;'>",
             unsafe_allow_html=True)
 
         if not mat_items:
