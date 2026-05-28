@@ -5760,12 +5760,12 @@
           "20ft Store": 1
         },
         "av_configs": {
-          "32ft AV": {
-            "Other": 1
-          },
           "24ft AV": {
             "Canteen": 1,
             "Office": 1
+          },
+          "32ft AV": {
+            "Other": 1
           }
         },
         "install_dismantle": false,
@@ -5773,13 +5773,13 @@
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
-        "notes": "32FT 3+1 DRY ROOM, 24FT OFFICE, 24FT CANTEEN, 20FT STORE\n+ EFFLUENT TANK",
+        "notes": "",
         "added_by": "Jake",
         "timestamp": "20/05/2026 09:08",
         "notes_edited_by": "Jake",
-        "notes_edited_at": "21/05/2026 10:02",
+        "notes_edited_at": "28/05/2026 09:58",
         "edited_by": "Jake",
-        "edited_at": "21/05/2026 10:02"
+        "edited_at": "28/05/2026 09:58"
       },
       {
         "customer": "Aspire Construction Projects",
