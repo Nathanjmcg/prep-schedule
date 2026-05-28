@@ -6944,5 +6944,14 @@
       }
     ]
   },
-  "materials": {}
+  "materials": {
+    "3f6189c92fad": {
+      "requester": "Alex",
+      "item": "16mm Cable - 2 x Reels",
+      "supplier": "Daton",
+      "status": "pending",
+      "created_at": "28/05/2026 15:20"
+    }
+  },
+  "materials_totals": {}
 }
