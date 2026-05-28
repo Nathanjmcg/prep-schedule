@@ -6949,8 +6949,11 @@
       "requester": "Carl",
       "item": "CSM 10 Boards x 40",
       "supplier": "Yorkshire Ply",
-      "status": "pending",
-      "created_at": "28/05/2026 15:12"
+      "status": "ordered",
+      "created_at": "28/05/2026 15:12",
+      "ordered_by": "Peter",
+      "ordered_at": "28/05/2026 15:13",
+      "value": "505.99"
     }
   }
 }
