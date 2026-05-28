@@ -6107,7 +6107,7 @@
         "customer": "Termrim Construction",
         "postcode": "LS26 8EW",
         "contract_number": "0000029805",
-        "type": "On Hire",
+        "type": "Off Hire",
         "site_move_type": "",
         "units": {
           "20ft Store": 1
@@ -6120,7 +6120,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "26/05/2026 12:06"
+        "timestamp": "26/05/2026 12:06",
+        "edited_by": "Peter",
+        "edited_at": "28/05/2026 09:14"
       },
       {
         "customer": "Holmpatrick Developments",
