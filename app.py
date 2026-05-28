@@ -282,13 +282,13 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
   padding: 5px 9px !important;
   margin-bottom: 3px !important;
   font-size: 11px !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   border: none !important;
   min-height: 0 !important;
   height: auto !important;
   line-height: 1.3 !important;
 }}
-.mat-scroll button p {{ font-size: 11px !important; }}
+.mat-scroll button p {{ font-size: 11px !important; font-weight: 700 !important; }}
 .day-sum-pill{{display:flex;align-items:center;gap:5px;padding:3px 5px;
                border-radius:5px;margin-bottom:2px;font-size:11px;font-weight:600;}}
 .day-sum-dot{{width:8px;height:8px;border-radius:50%;flex-shrink:0;}}
@@ -2139,13 +2139,31 @@ for w in range(n_weeks):
                 st.markdown("<div class='day-empty' style='padding:8px;'>No requests</div>",
                             unsafe_allow_html=True)
             else:
+                # Build per-button CSS targeting each button's st-key class
+                btn_css = "<style>"
                 for mid, req in mat_items:
                     status = req.get("status", "pending")
-                    icon   = {"pending": "🔴", "ordered": "🟡", "pod_received": "🟢"}.get(status, "🔴")
+                    if status == "pending":
+                        c_bg, c_fg, c_hov = "#fdecea", "#7b1a1a", "#fbddd8"
+                    elif status == "ordered":
+                        c_bg, c_fg, c_hov = "#fff9e6", "#7a5c00", "#fff0c2"
+                    else:
+                        c_bg, c_fg, c_hov = K_GREEN_PALE, K_GREEN_DARK, "#d4ecdd"
+                    bkey = f"matview_{w}_{mid}"
+                    btn_css += (
+                        f".st-key-{bkey} button{{background:{c_bg} !important;"
+                        f"color:{c_fg} !important;}}"
+                        f".st-key-{bkey} button:hover{{background:{c_hov} !important;"
+                        f"color:{c_fg} !important;}}"
+                    )
+                btn_css += "</style>"
+                st.markdown(btn_css, unsafe_allow_html=True)
+
+                for mid, req in mat_items:
                     item     = req.get("item", "")
                     reqby    = req.get("requester", "")
                     val_str  = f" · £{req['value']}" if req.get("value") else ""
-                    btn_label = f"{icon} {item}  —  {reqby}{val_str}"
+                    btn_label = f"{item}  —  {reqby}{val_str}"
                     if st.button(btn_label, key=f"matview_{w}_{mid}", use_container_width=True):
                         st.session_state["mat_view_id"]     = mid
                         st.session_state["any_dialog_open"] = True
