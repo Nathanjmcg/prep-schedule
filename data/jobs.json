@@ -5832,6 +5832,25 @@
         "edited_at": "28/05/2026 07:54",
         "moved_by": "\u2014",
         "moved_from": "2026-05-31"
+      },
+      {
+        "customer": "Perfect Associates LTD",
+        "postcode": "SK10 4SP",
+        "contract_number": "0000031522",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Claude",
+        "timestamp": "28/05/2026 09:59"
       }
     ],
     "2026-05-19": [
