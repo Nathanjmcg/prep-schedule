@@ -273,6 +273,22 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
 .mat-pill.pending  {{ background: #fdecea; color: #7b1a1a; }}
 .mat-pill.ordered  {{ background: #fff9e6; color: #7a5c00; }}
 .mat-pill.pod      {{ background: {K_GREEN_PALE}; color: {K_GREEN_DARK}; }}
+
+/* Materials pill buttons inside scroll container */
+.mat-scroll button {{
+  text-align: left !important;
+  justify-content: flex-start !important;
+  border-radius: 6px !important;
+  padding: 5px 9px !important;
+  margin-bottom: 3px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+  line-height: 1.3 !important;
+}}
+.mat-scroll button p {{ font-size: 11px !important; }}
 .day-sum-pill{{display:flex;align-items:center;gap:5px;padding:3px 5px;
                border-radius:5px;margin-bottom:2px;font-size:11px;font-weight:600;}}
 .day-sum-dot{{width:8px;height:8px;border-radius:50%;flex-shrink:0;}}
@@ -2075,12 +2091,17 @@ for w in range(n_weeks):
 
     # Materials panel — col 5 (spans Sat+Sun space)
     with cols[5]:
-        # Render existing requests as coloured pills
         mat_items = list(materials.items())
-        mat_status_order = {"pending": 0, "ordered": 1, "pod_received": 2}
-        mat_items.sort(key=lambda x: mat_status_order.get(x[1].get("status","pending"), 0))
 
-        # Weekly total for this week — persists even after requests are deleted
+        # Sort: most recent first
+        mat_items.sort(key=lambda x: x[1].get("created_at", ""), reverse=True)
+
+        # Status counts for legend
+        n_pending  = sum(1 for _, r in mat_items if r.get("status") == "pending")
+        n_ordered  = sum(1 for _, r in mat_items if r.get("status") == "ordered")
+        n_received = sum(1 for _, r in mat_items if r.get("status") == "pod_received")
+
+        # Weekly total
         wk_key   = ws.strftime("%Y-W%V")
         wk_total = materials_totals.get(wk_key, 0)
         wk_total_html = (
@@ -2089,83 +2110,47 @@ for w in range(n_weeks):
             if wk_total else ""
         )
 
+        # Header with title + weekly total
         st.markdown(
-            f"<div style='border:1px solid {K_LGREY};border-radius:10px;"
-            f"overflow:hidden;margin:2px;background:#fafafa;'>"
-            f"<div style='padding:7px 9px 5px;border-bottom:1px solid {K_LGREY};"
-            f"background:#f0f0f0;display:flex;justify-content:space-between;align-items:center;'>"
-            f"<div style='font-size:10px;font-weight:700;color:{K_GREY};opacity:.5;"
-            f"text-transform:uppercase;letter-spacing:.07em;'>🔧 Materials</div>"
-            f"{wk_total_html}"
-            f"</div>"
-            f"<div style='padding:6px;'>",
+            f"<div style='display:flex;justify-content:space-between;align-items:center;"
+            f"margin:2px 2px 4px;'>"
+            f"<div style='font-size:11px;font-weight:700;color:{K_GREY};opacity:.6;"
+            f"text-transform:uppercase;letter-spacing:.06em;'>🔧 Materials</div>"
+            f"{wk_total_html}</div>",
             unsafe_allow_html=True)
 
-        # Sort: most recent first (by created_at), then by status order
-        mat_items.sort(key=lambda x: x[1].get("created_at",""), reverse=True)
-
-        # Status legend + weekly total header
-        legend_html = (
-            f"<div style='display:flex;justify-content:space-between;"
-            f"align-items:center;margin-bottom:5px;flex-wrap:wrap;gap:4px;'>"
-            f"<div style='display:flex;gap:5px;'>"
+        # Legend with counts
+        st.markdown(
+            f"<div style='display:flex;gap:4px;margin:0 2px 5px;'>"
             f"<span style='background:#fdecea;color:#7b1a1a;border-radius:4px;"
-            f"padding:1px 7px;font-size:10px;font-weight:700;'>🔴 Requested</span>"
+            f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🔴 {n_pending} Requested</span>"
             f"<span style='background:#fff9e6;color:#7a5c00;border-radius:4px;"
-            f"padding:1px 7px;font-size:10px;font-weight:700;'>🟡 Ordered</span>"
+            f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🟡 {n_ordered} Ordered</span>"
             f"<span style='background:{K_GREEN_PALE};color:{K_GREEN_DARK};border-radius:4px;"
-            f"padding:1px 7px;font-size:10px;font-weight:700;'>🟢 Received</span>"
-            f"</div>"
-            f"{wk_total_html}"
-            f"</div>"
-        )
+            f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🟢 {n_received} Received</span>"
+            f"</div>",
+            unsafe_allow_html=True)
 
-        # Build all pills as pure HTML inside a scrollable div
-        pills_html = ""
-        for mid, req in mat_items:
-            status = req.get("status", "pending")
-            if status == "pending":
-                bg, fg = "#fdecea", "#7b1a1a"
-            elif status == "ordered":
-                bg, fg = "#fff9e6", "#7a5c00"
+        # Scrollable container with clickable pill-buttons
+        st.markdown("<div class='mat-scroll'>", unsafe_allow_html=True)
+        mat_box = st.container(height=160)
+        with mat_box:
+            if not mat_items:
+                st.markdown("<div class='day-empty' style='padding:8px;'>No requests</div>",
+                            unsafe_allow_html=True)
             else:
-                bg, fg = K_GREEN_PALE, K_GREEN_DARK
-            item     = req.get("item", "")
-            reqby    = req.get("requester", "")
-            supplier = f' · {req["supplier"]}' if req.get("supplier") else ""
-            val_str  = f' · £{req["value"]}' if req.get("value") else ""
-            pills_html += (
-                f'<div style="background:{bg};color:{fg};border-radius:6px;'
-                f'padding:4px 8px;margin-bottom:3px;">'
-                f'<span style="font-weight:700;font-size:11px;">{item}</span>'
-                f'<span style="font-size:9.5px;opacity:.7;display:block;">'
-                f'{reqby}{supplier}{val_str}</span>'
-                f'</div>'
-            )
-
-        empty_html = "<div class='day-empty' style='padding:8px;'>No requests</div>"
-        scroll_box = (
-            f"<div style='max-height:150px;overflow-y:auto;"
-            f"border:1px solid {K_LGREY};border-radius:7px;padding:4px;background:white;'>"
-            f"{pills_html if pills_html else empty_html}"
-            f"</div>"
-        )
-        st.markdown(legend_html + scroll_box, unsafe_allow_html=True)
-
-        # Buttons sit below the scroll box — one per request, styled small
-        for mid, req in mat_items:
-            status = req.get("status", "pending")
-            if status == "pending":
-                btn_label = f"🔴 {req.get('item','')[:18]}"
-            elif status == "ordered":
-                btn_label = f"🟡 {req.get('item','')[:18]}"
-            else:
-                btn_label = f"🟢 {req.get('item','')[:18]}"
-            if st.button(btn_label, key=f"matview_{w}_{mid}", use_container_width=True):
-                st.session_state["mat_view_id"]     = mid
-                st.session_state["any_dialog_open"] = True
-                st.rerun()
-        st.markdown("</div></div>", unsafe_allow_html=True)
+                for mid, req in mat_items:
+                    status = req.get("status", "pending")
+                    icon   = {"pending": "🔴", "ordered": "🟡", "pod_received": "🟢"}.get(status, "🔴")
+                    item     = req.get("item", "")
+                    reqby    = req.get("requester", "")
+                    val_str  = f" · £{req['value']}" if req.get("value") else ""
+                    btn_label = f"{icon} {item}  —  {reqby}{val_str}"
+                    if st.button(btn_label, key=f"matview_{w}_{mid}", use_container_width=True):
+                        st.session_state["mat_view_id"]     = mid
+                        st.session_state["any_dialog_open"] = True
+                        st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
 
     # ── Button row — Mon–Fri only ─────────────────────────────────────────────
     btn_cols = st.columns([1, 1, 1, 1, 1, 2])
