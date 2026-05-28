@@ -6220,6 +6220,34 @@
         "notes": "",
         "added_by": "Claude",
         "timestamp": "28/05/2026 10:02"
+      },
+      {
+        "customer": "M Group",
+        "postcode": "PR8 4QQ",
+        "contract_number": "0000031333",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1,
+          "24ft AV": 1,
+          "Tank": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          },
+          "32ft AV": {
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "28/05/2026 12:02"
       }
     ],
     "2026-06-02": [
