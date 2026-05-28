@@ -5916,25 +5916,6 @@
         "timestamp": "19/05/2026 09:46"
       },
       {
-        "customer": "Lowbury Construction",
-        "postcode": "M31 3AY",
-        "contract_number": "0000031508",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "20ft Store": 1
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Peter",
-        "timestamp": "22/05/2026 15:15"
-      },
-      {
         "customer": "Greenmount Projects",
         "postcode": "M30 9BP",
         "contract_number": "0000031430",
@@ -6316,6 +6297,30 @@
         "notes": "",
         "added_by": "Nathan",
         "timestamp": "28/05/2026 07:53"
+      }
+    ],
+    "2026-06-12": [
+      {
+        "customer": "Lowbury Construction",
+        "postcode": "M31 3AY",
+        "contract_number": "0000031508",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "22/05/2026 15:15",
+        "moved_by": "\u2014",
+        "moved_from": "2026-05-29",
+        "edited_at": "28/05/2026 08:33"
       }
     ]
   },
