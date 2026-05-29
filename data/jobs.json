@@ -4629,27 +4629,6 @@
         "timestamp": "15/05/2026 14:09"
       }
     ],
-    "2026-05-25": [
-      {
-        "customer": "Allshaw Group",
-        "postcode": "NG9 6DL",
-        "contract_number": "0000031259",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {},
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Nathan",
-        "timestamp": "06/05/2026 15:15",
-        "edited_by": "Nathan",
-        "edited_at": "12/05/2026 09:03"
-      }
-    ],
     "2026-05-13": [
       {
         "customer": "Exact Property Services Ltd",
