@@ -6495,6 +6495,32 @@
         "added_by": "Peter",
         "timestamp": "28/05/2026 12:12"
       }
+    ],
+    "2026-06-04": [
+      {
+        "customer": "JUST WLFARE",
+        "postcode": "OX14 4TE",
+        "contract_number": "31527",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1,
+          "Stairs": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "BEING STACKED ON TOP OF UNITS ALREADY ON SITE\nRAL 7016 \u2013 Anthracite Grey / Ral 6009 \u2013 Fir Green",
+        "added_by": "Jake",
+        "timestamp": "29/05/2026 07:57"
+      }
     ]
   },
   "mcs": {
