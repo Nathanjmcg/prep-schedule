@@ -6520,6 +6520,25 @@
         "notes": "BEING STACKED ON TOP OF UNITS ALREADY ON SITE\nRAL 7016 \u2013 Anthracite Grey / Ral 6009 \u2013 Fir Green",
         "added_by": "Jake",
         "timestamp": "29/05/2026 07:57"
+      },
+      {
+        "customer": "30614",
+        "postcode": "FY5 4LH",
+        "contract_number": "0000030614",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "29/05/2026 09:40"
       }
     ]
   },
