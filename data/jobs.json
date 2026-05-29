@@ -6960,12 +6960,13 @@
       "requester": "Mitch",
       "item": "CSM10 Board",
       "supplier": "Yorkshire Ply",
-      "status": "ordered",
+      "status": "pod_received",
       "created_at": "29/05/2026 07:12",
       "ordered_by": "Chris",
       "ordered_at": "29/05/2026 07:13",
       "value": "420",
-      "week_key": "2026-W22"
+      "week_key": "2026-W22",
+      "pod_received_at": "29/05/2026 07:13"
     }
   },
   "materials_totals": {
