@@ -6960,11 +6960,15 @@
       "requester": "Mitch",
       "item": "CSM10 Board",
       "supplier": "Yorkshire Ply",
-      "status": "pending",
-      "created_at": "29/05/2026 07:12"
+      "status": "ordered",
+      "created_at": "29/05/2026 07:12",
+      "ordered_by": "Chris",
+      "ordered_at": "29/05/2026 07:13",
+      "value": "420",
+      "week_key": "2026-W22"
     }
   },
   "materials_totals": {
-    "2026-W22": 155.99
+    "2026-W22": 575.99
   }
 }
