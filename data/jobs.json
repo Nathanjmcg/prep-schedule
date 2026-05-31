@@ -6977,19 +6977,7 @@
       }
     ]
   },
-  "materials": {
-    "61d56a9eed93": {
-      "requester": "Mel",
-      "item": "TFR Cleaner x 25L",
-      "supplier": "Sutter",
-      "status": "ordered",
-      "created_at": "28/05/2026 15:20",
-      "ordered_by": "Matt",
-      "ordered_at": "28/05/2026 15:48",
-      "value": "77",
-      "week_key": "2026-W22"
-    }
-  },
+  "materials": {},
   "materials_totals": {
     "2026-W22": 575.99
   }
