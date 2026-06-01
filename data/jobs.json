@@ -6977,7 +6977,15 @@
       }
     ]
   },
-  "materials": {},
+  "materials": {
+    "2a679fbce6ae": {
+      "requester": "Carl",
+      "item": "Grtgd",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "01/06/2026 07:24"
+    }
+  },
   "materials_totals": {
     "2026-W22": 575.99
   }
