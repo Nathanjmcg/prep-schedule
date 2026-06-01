@@ -6982,12 +6982,13 @@
       "requester": "Carl",
       "item": "Grtgd",
       "supplier": "",
-      "status": "ordered",
+      "status": "pod_received",
       "created_at": "01/06/2026 07:24",
       "ordered_by": "Alex",
       "ordered_at": "01/06/2026 07:24",
       "value": "",
-      "week_key": "2026-W23"
+      "week_key": "2026-W23",
+      "pod_received_at": "01/06/2026 07:25"
     }
   },
   "materials_totals": {
