@@ -6981,20 +6981,7 @@
       }
     ]
   },
-  "materials": {
-    "2a679fbce6ae": {
-      "requester": "Carl",
-      "item": "Grtgd",
-      "supplier": "",
-      "status": "pod_received",
-      "created_at": "01/06/2026 07:24",
-      "ordered_by": "Alex",
-      "ordered_at": "01/06/2026 07:24",
-      "value": "",
-      "week_key": "2026-W23",
-      "pod_received_at": "01/06/2026 07:25"
-    }
-  },
+  "materials": {},
   "materials_totals": {
     "2026-W22": 575.99,
     "2026-W23": 0
