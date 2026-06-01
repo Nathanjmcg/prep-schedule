@@ -5293,15 +5293,15 @@
         },
         "av_configs": {},
         "install_dismantle": false,
-        "haulage": "External Haulage",
-        "haulage_who": "customers own transport",
+        "haulage": "None",
+        "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
         "timestamp": "12/05/2026 12:37",
         "edited_by": "Peter",
-        "edited_at": "12/05/2026 12:37"
+        "edited_at": "01/06/2026 08:19"
       },
       {
         "customer": "Think Hire",
