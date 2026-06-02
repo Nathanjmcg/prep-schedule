@@ -6585,6 +6585,25 @@
         "timestamp": "02/06/2026 10:02",
         "edited_by": "Peter",
         "edited_at": "02/06/2026 10:02"
+      },
+      {
+        "customer": "Rowland Homes",
+        "postcode": "WN4 9ES",
+        "contract_number": "0000030914",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Tank": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "8x8 tank collection",
+        "added_by": "Peter",
+        "timestamp": "02/06/2026 10:03"
       }
     ]
   },
