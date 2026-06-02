@@ -6554,6 +6554,35 @@
         "timestamp": "29/05/2026 09:40",
         "edited_by": "Peter",
         "edited_at": "29/05/2026 09:41"
+      },
+      {
+        "customer": "Krol Corlett Construction",
+        "postcode": "L12 7JG",
+        "contract_number": "0000031536",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 2,
+          "24ft AV": 2,
+          "Stairs": 2,
+          "3+1": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Office": 2
+          },
+          "24ft AV": {
+            "Office": 2
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "smoking shelter.",
+        "added_by": "Peter",
+        "timestamp": "02/06/2026 10:02"
       }
     ]
   },
