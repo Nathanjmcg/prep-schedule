@@ -6447,6 +6447,29 @@
         "notes": "",
         "added_by": "Nathan",
         "timestamp": "28/05/2026 07:53"
+      },
+      {
+        "customer": "Pinington LTD",
+        "postcode": "LA14 5UG",
+        "contract_number": "0000031219",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "02/06/2026 15:14"
       }
     ],
     "2026-06-12": [
