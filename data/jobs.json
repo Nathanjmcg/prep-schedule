@@ -6415,14 +6415,16 @@
             "Office": 1
           }
         },
-        "install_dismantle": false,
+        "install_dismantle": true,
         "haulage": "None",
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
         "notes": "",
         "added_by": "Claude",
-        "timestamp": "28/05/2026 10:02"
+        "timestamp": "28/05/2026 10:02",
+        "edited_by": "Claude",
+        "edited_at": "02/06/2026 15:45"
       },
       {
         "customer": "M Group",
