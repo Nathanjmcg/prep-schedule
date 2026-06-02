@@ -6258,12 +6258,12 @@
         "type": "Off Hire",
         "site_move_type": "",
         "units": {
-          "24ft AV": 2,
+          "24ft AV": 3,
           "IBC": 1
         },
         "av_configs": {
           "24ft AV": {
-            "Office": 2
+            "Office": 3
           }
         },
         "install_dismantle": false,
@@ -6273,7 +6273,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "02/06/2026 09:51"
+        "timestamp": "02/06/2026 09:51",
+        "edited_by": "Peter",
+        "edited_at": "02/06/2026 09:51"
       }
     ],
     "2026-06-02": [
