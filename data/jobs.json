@@ -6507,6 +6507,25 @@
         "notes_edited_at": "02/06/2026 09:54",
         "edited_by": "Peter",
         "edited_at": "02/06/2026 09:54"
+      },
+      {
+        "customer": "Chandos",
+        "postcode": "WA8 3UJ",
+        "contract_number": "31540",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Static Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "24FT WELFARE",
+        "added_by": "Jake",
+        "timestamp": "02/06/2026 14:52"
       }
     ],
     "2026-06-04": [
