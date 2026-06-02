@@ -6245,6 +6245,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "02/06/2026 15:46"
+      },
+      {
+        "customer": "Think Hire",
+        "postcode": "M38 9XE",
+        "contract_number": "0000031539",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "10ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "02/06/2026 15:47"
       }
     ],
     "2026-06-08": [
