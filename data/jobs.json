@@ -6063,6 +6063,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "02/06/2026 15:35"
+      },
+      {
+        "customer": "Mudskipper",
+        "postcode": "M19 1AB",
+        "contract_number": "0000031451",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "02/06/2026 15:36"
       }
     ],
     "2026-06-08": [
