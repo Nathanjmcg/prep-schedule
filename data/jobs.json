@@ -6576,13 +6576,15 @@
           }
         },
         "install_dismantle": false,
-        "haulage": "None",
+        "haulage": "Internal Haulage",
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
         "notes": "smoking shelter.",
         "added_by": "Peter",
-        "timestamp": "02/06/2026 10:02"
+        "timestamp": "02/06/2026 10:02",
+        "edited_by": "Peter",
+        "edited_at": "02/06/2026 10:02"
       }
     ]
   },
