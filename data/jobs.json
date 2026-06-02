@@ -6500,9 +6500,13 @@
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
-        "notes": "order also includes a smoking shelter.",
+        "notes": "order also includes a smoking shelter.\nx1 store must have racking",
         "added_by": "Peter",
-        "timestamp": "28/05/2026 12:12"
+        "timestamp": "28/05/2026 12:12",
+        "notes_edited_by": "Peter",
+        "notes_edited_at": "02/06/2026 09:54",
+        "edited_by": "Peter",
+        "edited_at": "02/06/2026 09:54"
       }
     ],
     "2026-06-04": [
