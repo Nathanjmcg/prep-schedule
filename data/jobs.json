@@ -6150,6 +6150,25 @@
         "notes": "12ft gate house also coming back.",
         "added_by": "Peter",
         "timestamp": "02/06/2026 15:42"
+      },
+      {
+        "customer": "A connolly",
+        "postcode": "WA3 6RG",
+        "contract_number": "0000029886",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "02/06/2026 15:43"
       }
     ],
     "2026-06-08": [
