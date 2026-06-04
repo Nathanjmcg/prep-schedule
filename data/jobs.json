@@ -6283,6 +6283,37 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "02/06/2026 15:48"
+      },
+      {
+        "customer": "Holmpatrick Developments",
+        "postcode": "LA1 3JJ",
+        "contract_number": "0000031516",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 2,
+          "20ft Store": 1,
+          "2+1": 1,
+          "Smoking Shelter": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
+        "install_dismantle": true,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Claude",
+        "timestamp": "28/05/2026 10:02",
+        "edited_by": "Claude",
+        "edited_at": "04/06/2026 14:16",
+        "moved_by": "\u2014",
+        "moved_from": "2026-06-03"
       }
     ],
     "2026-06-08": [
@@ -6424,35 +6455,6 @@
         "timestamp": "27/05/2026 15:15",
         "edited_by": "Jake",
         "edited_at": "28/05/2026 10:00"
-      },
-      {
-        "customer": "Holmpatrick Developments",
-        "postcode": "LA1 3JJ",
-        "contract_number": "0000031516",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "24ft AV": 2,
-          "20ft Store": 1,
-          "2+1": 1,
-          "Smoking Shelter": 1
-        },
-        "av_configs": {
-          "24ft AV": {
-            "Canteen": 1,
-            "Office": 1
-          }
-        },
-        "install_dismantle": true,
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Claude",
-        "timestamp": "28/05/2026 10:02",
-        "edited_by": "Claude",
-        "edited_at": "02/06/2026 15:45"
       },
       {
         "customer": "M Group",
