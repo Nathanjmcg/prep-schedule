@@ -6975,6 +6975,31 @@
         "added_by": "Nathan",
         "timestamp": "08/06/2026 06:43"
       }
+    ],
+    "2026-06-16": [
+      {
+        "customer": "Manchester & Cheshire Construction",
+        "postcode": "SK12 1NW",
+        "contract_number": "0000031543",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Nathan",
+        "timestamp": "08/06/2026 08:37"
+      }
     ]
   },
   "mcs": {
