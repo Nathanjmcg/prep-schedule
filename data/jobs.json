@@ -6972,6 +6972,25 @@
         "moved_by": "\u2014",
         "moved_from": "2026-06-03",
         "edited_at": "02/06/2026 19:27"
+      },
+      {
+        "customer": "Lancashire County Council",
+        "postcode": "PR5 4AR",
+        "contract_number": "0000030023",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 3
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "08/06/2026 10:05"
       }
     ],
     "2026-06-15": [
