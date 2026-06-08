@@ -6770,6 +6770,25 @@
         "notes": "Sale of 2+1 WC",
         "added_by": "Nathan",
         "timestamp": "05/06/2026 07:58"
+      },
+      {
+        "customer": "HH Smith",
+        "postcode": "",
+        "contract_number": "0000031551",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "2+1": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Customer Livery \u2014 Specify",
+        "livery_note": "Poppy Red",
+        "notes": "Sale",
+        "added_by": "Nathan",
+        "timestamp": "08/06/2026 06:42"
       }
     ],
     "2026-06-10": [
