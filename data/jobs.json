@@ -7195,11 +7195,11 @@
   },
   "live_hire": {
     "latest": {
-      "revenue": 75395.2,
-      "lines": 2833,
-      "at": "07/06/2026 20:30",
-      "filename": "Equipment On Hire 070626.xlsx",
-      "date": "2026-06-07"
+      "revenue": 75989.2,
+      "lines": 2856,
+      "at": "08/06/2026 08:46",
+      "filename": "Equipment On Hire 080626.xlsx",
+      "date": "2026-06-08"
     },
     "history": [
       {
@@ -7460,6 +7460,13 @@
         "lines": 2833,
         "at": "07/06/2026 20:30",
         "filename": "Equipment On Hire 070626.xlsx"
+      },
+      {
+        "date": "2026-06-08",
+        "revenue": 75989.2,
+        "lines": 2856,
+        "at": "08/06/2026 08:46",
+        "filename": "Equipment On Hire 080626.xlsx"
       }
     ]
   },
