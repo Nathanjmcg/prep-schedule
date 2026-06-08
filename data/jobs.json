@@ -6973,6 +6973,27 @@
         "moved_from": "2026-06-03",
         "edited_at": "02/06/2026 19:27"
       }
+    ],
+    "2026-06-15": [
+      {
+        "customer": "Rowland Homes",
+        "postcode": "PR25 5KP",
+        "contract_number": "0000031547",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Nathan",
+        "timestamp": "08/06/2026 06:43"
+      }
     ]
   },
   "mcs": {
