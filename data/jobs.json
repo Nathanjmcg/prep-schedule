@@ -6404,6 +6404,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "02/06/2026 15:34"
+      },
+      {
+        "customer": "MBC Building Contractors",
+        "postcode": "M14 4AH",
+        "contract_number": "0000031552",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Nathan",
+        "timestamp": "08/06/2026 06:34"
       }
     ],
     "2026-06-03": [
