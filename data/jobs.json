@@ -7031,6 +7031,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "15/06/2026 08:14"
+      },
+      {
+        "customer": "Chandos",
+        "postcode": "WA8 3UJ",
+        "contract_number": "0000031540",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Static Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "show on MCS as a 20ft store but job is for a 24ft static",
+        "added_by": "Peter",
+        "timestamp": "15/06/2026 08:15"
       }
     ],
     "2026-06-16": [
