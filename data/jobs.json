@@ -7216,7 +7216,7 @@
         "customer": "A Connolly LTD",
         "postcode": "OL7 9HE",
         "contract_number": "0000031583",
-        "type": "Off Hire",
+        "type": "On Hire",
         "site_move_type": "",
         "units": {
           "20ft Store": 1
@@ -7229,7 +7229,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "15/06/2026 10:25"
+        "timestamp": "15/06/2026 10:25",
+        "edited_by": "Peter",
+        "edited_at": "15/06/2026 10:28"
       }
     ]
   },
