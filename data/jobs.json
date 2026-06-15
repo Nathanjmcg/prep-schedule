@@ -7102,6 +7102,29 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "15/06/2026 08:23"
+      },
+      {
+        "customer": "Stoneguard Northern",
+        "postcode": "L3 0BG",
+        "contract_number": "0000030698",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "50/50 split office & store",
+        "added_by": "Peter",
+        "timestamp": "15/06/2026 08:27"
       }
     ],
     "2026-06-16": [
