@@ -7073,6 +7073,35 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "15/06/2026 08:17"
+      },
+      {
+        "customer": "COSAF Environments",
+        "postcode": "M13 0JQ",
+        "contract_number": "0000031566",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1,
+          "20ft Store": 1,
+          "10ft Store": 2,
+          "3+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "15/06/2026 08:23"
       }
     ],
     "2026-06-16": [
