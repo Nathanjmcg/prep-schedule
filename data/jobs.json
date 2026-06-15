@@ -7251,6 +7251,29 @@
         "notes": "site move from NG19 - NG14",
         "added_by": "Peter",
         "timestamp": "15/06/2026 12:28"
+      },
+      {
+        "customer": "VIG 2019 LTD",
+        "postcode": "DN11 0GU",
+        "contract_number": "0000031573",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "15/06/2026 12:30"
       }
     ]
   },
