@@ -7050,6 +7050,29 @@
         "notes": "show on MCS as a 20ft store but job is for a 24ft static",
         "added_by": "Peter",
         "timestamp": "15/06/2026 08:15"
+      },
+      {
+        "customer": "M Group",
+        "postcode": "LL11 9BY",
+        "contract_number": "0000031576",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "15/06/2026 08:17"
       }
     ],
     "2026-06-16": [
