@@ -7335,6 +7335,36 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "16/06/2026 15:43"
+      },
+      {
+        "customer": "m group",
+        "postcode": "ST10 4LJ",
+        "contract_number": "0000031062",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1,
+          "24ft AV": 2,
+          "Stairs": 1,
+          "Tank": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Drying Room": 1
+          },
+          "24ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "32ft 3+1 dry",
+        "added_by": "Peter",
+        "timestamp": "16/06/2026 15:50"
       }
     ]
   },
