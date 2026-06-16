@@ -7365,6 +7365,30 @@
         "notes": "32ft 3+1 dry",
         "added_by": "Peter",
         "timestamp": "16/06/2026 15:50"
+      },
+      {
+        "customer": "m group",
+        "postcode": "LA2 8FG",
+        "contract_number": "0000031178",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 1,
+          "20ft Store": 1
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "grey waste barrel",
+        "added_by": "Peter",
+        "timestamp": "16/06/2026 15:53"
       }
     ]
   },
