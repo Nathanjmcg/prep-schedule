@@ -7315,6 +7315,27 @@
         "added_by": "Peter",
         "timestamp": "16/06/2026 15:22"
       }
+    ],
+    "2026-06-18": [
+      {
+        "customer": "prem civils",
+        "postcode": "L33 4XZ",
+        "contract_number": "0000031591",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 2
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "16/06/2026 15:43"
+      }
     ]
   },
   "mcs": {
