@@ -7531,6 +7531,29 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "17/06/2026 07:18"
+      },
+      {
+        "customer": "THINK HIRE",
+        "postcode": "HP18 0TL",
+        "contract_number": "0000031578",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "32FT OFFICE  TO BE PAINTED WHITE",
+        "added_by": "Peter",
+        "timestamp": "17/06/2026 07:20"
       }
     ]
   },
