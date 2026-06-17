@@ -7449,6 +7449,23 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "17/06/2026 07:05"
+      },
+      {
+        "customer": "BDW Trading",
+        "postcode": "SK10 1LT",
+        "contract_number": "0000031209",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {},
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "17/06/2026 07:07"
       }
     ]
   },
