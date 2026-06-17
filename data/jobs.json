@@ -7508,6 +7508,29 @@
         "notes": "SITE MOVE FROM la2 8fg too FY4 5LB",
         "added_by": "Peter",
         "timestamp": "17/06/2026 07:15"
+      },
+      {
+        "customer": "M GROUP",
+        "postcode": "L8 0WN",
+        "contract_number": "0000031581",
+        "type": "Site Move",
+        "site_move_type": "Movement to New Site",
+        "units": {
+          "20ft AV": 1
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "17/06/2026 07:18"
       }
     ]
   },
