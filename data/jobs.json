@@ -7639,9 +7639,13 @@
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
-        "notes": "X2 SINGLE CHEMILOO\nX1 DDA CHEMILOO",
+        "notes": "X2 SINGLE CHEMILOO-X1 DDA CHEMILOO",
         "added_by": "Peter",
-        "timestamp": "17/06/2026 07:44"
+        "timestamp": "17/06/2026 07:44",
+        "notes_edited_by": "Peter",
+        "notes_edited_at": "17/06/2026 07:45",
+        "edited_by": "Peter",
+        "edited_at": "17/06/2026 07:45"
       }
     ]
   },
