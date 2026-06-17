@@ -7389,6 +7389,29 @@
         "notes": "grey waste barrel",
         "added_by": "Peter",
         "timestamp": "16/06/2026 15:53"
+      },
+      {
+        "customer": "persimmon",
+        "postcode": "NG14 6LE",
+        "contract_number": "0000031588",
+        "type": "Site Move",
+        "site_move_type": "Movement to New Site",
+        "units": {
+          "Solar Loo Single": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "17/06/2026 07:48",
+        "edited_by": "Peter",
+        "edited_at": "17/06/2026 07:50",
+        "moved_by": "\u2014",
+        "moved_from": "2026-06-23"
       }
     ],
     "2026-06-19": [
@@ -7646,27 +7669,6 @@
         "notes_edited_at": "17/06/2026 07:45",
         "edited_by": "Peter",
         "edited_at": "17/06/2026 07:45"
-      },
-      {
-        "customer": "persimmon",
-        "postcode": "NG14 6LE",
-        "contract_number": "0000031588",
-        "type": "Site Move",
-        "site_move_type": "Movement to New Site",
-        "units": {
-          "Solar Loo Single": 1
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Peter",
-        "timestamp": "17/06/2026 07:48",
-        "edited_by": "Peter",
-        "edited_at": "17/06/2026 07:49"
       }
     ]
   },
