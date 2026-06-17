@@ -7466,6 +7466,29 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "17/06/2026 07:07"
+      },
+      {
+        "customer": "H H Smiths",
+        "postcode": "WN2 1PE",
+        "contract_number": "0000031035",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Other": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "17/06/2026 07:12"
       }
     ]
   },
