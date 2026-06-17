@@ -7644,6 +7644,30 @@
         "notes": "X15 LOCKERS IN DRYING ROOM",
         "added_by": "Peter",
         "timestamp": "17/06/2026 07:41"
+      },
+      {
+        "customer": "Heaton group",
+        "postcode": "WN3 5BE",
+        "contract_number": "0000030349",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 2,
+          "Stairs": 2
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 2
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "17/06/2026 08:05"
       }
     ],
     "2026-06-23": [
