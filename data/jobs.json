@@ -7596,6 +7596,31 @@
         "notes": "10 FT UNITS - X2 SHOWER ROOMS\n10FT GATEHOUSE WITH A SINK \nX2 20 FT STORE - RACKED WITH ELECTRIC",
         "added_by": "Peter",
         "timestamp": "17/06/2026 07:32"
+      },
+      {
+        "customer": "HSS",
+        "postcode": "SN16 9DX",
+        "contract_number": "0000031586",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 6,
+          "IBC": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Office": 5,
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "haulage_who": "D.CAINS",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "X15 LOCKERS IN DRYING ROOM",
+        "added_by": "Peter",
+        "timestamp": "17/06/2026 07:41"
       }
     ]
   },
