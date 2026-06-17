@@ -7670,6 +7670,41 @@
         "edited_by": "Peter",
         "edited_at": "17/06/2026 07:45"
       }
+    ],
+    "2026-06-24": [
+      {
+        "customer": "M group",
+        "postcode": "FY4 5BL",
+        "contract_number": "0000031593",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1,
+          "24ft AV": 2,
+          "20ft Store": 1,
+          "Stairs": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 3
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          },
+          "32ft AV": {
+            "Other": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "32ft 3+1/dry room",
+        "added_by": "Peter",
+        "timestamp": "17/06/2026 08:03"
+      }
     ]
   },
   "mcs": {
