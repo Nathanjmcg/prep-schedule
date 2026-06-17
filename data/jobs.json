@@ -7489,6 +7489,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "17/06/2026 07:12"
+      },
+      {
+        "customer": "M GROUP",
+        "postcode": "FY4 5LB",
+        "contract_number": "0000031582",
+        "type": "Site Move",
+        "site_move_type": "Movement to New Site",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "SITE MOVE FROM la2 8fg too FY4 5LB",
+        "added_by": "Peter",
+        "timestamp": "17/06/2026 07:15"
       }
     ]
   },
