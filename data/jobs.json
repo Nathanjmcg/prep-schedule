@@ -7895,6 +7895,27 @@
         "added_by": "Peter",
         "timestamp": "17/06/2026 10:22"
       }
+    ],
+    "2026-07-23": [
+      {
+        "customer": "BTID Events",
+        "postcode": "PR7 5LP",
+        "contract_number": "0000031143",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 52
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "x50 event loos - x2 disabled access loos",
+        "added_by": "Peter",
+        "timestamp": "17/06/2026 10:28"
+      }
     ]
   },
   "mcs": {
