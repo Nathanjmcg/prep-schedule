@@ -7616,9 +7616,13 @@
         "haulage_who": "THINK HIRE",
         "livery": "Standard Livery",
         "livery_note": "",
-        "notes": "10 FT UNITS - X2 SHOWER ROOMS\n10FT GATEHOUSE WITH A SINK \nX2 20 FT STORE - RACKED WITH ELECTRIC",
+        "notes": "10 FT UNITS - X2 SHOWER ROOMS, 10FT GATEHOUSE WITH A SINK , X2 20 FT STORE - RACKED WITH ELECTRIC",
         "added_by": "Peter",
-        "timestamp": "17/06/2026 07:32"
+        "timestamp": "17/06/2026 07:32",
+        "notes_edited_by": "Peter",
+        "notes_edited_at": "18/06/2026 13:41",
+        "edited_by": "Peter",
+        "edited_at": "18/06/2026 13:41"
       },
       {
         "customer": "HSS",
