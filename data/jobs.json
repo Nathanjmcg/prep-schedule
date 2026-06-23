@@ -7850,8 +7850,7 @@
         "type": "Off Hire",
         "site_move_type": "",
         "units": {
-          "10ft Store": 1,
-          "Stairs": 1
+          "10ft Store": 1
         },
         "av_configs": {},
         "install_dismantle": false,
