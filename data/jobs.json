@@ -7986,6 +7986,27 @@
         "added_by": "Peter",
         "timestamp": "17/06/2026 10:28"
       }
+    ],
+    "2026-06-26": [
+      {
+        "customer": "j.cooney",
+        "postcode": "OL11 4HQ",
+        "contract_number": "0000031613",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 2
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "x2 disabled chemiloo",
+        "added_by": "Peter",
+        "timestamp": "23/06/2026 09:21"
+      }
     ]
   },
   "mcs": {
