@@ -8006,6 +8006,25 @@
         "notes": "x2 disabled chemiloo",
         "added_by": "Peter",
         "timestamp": "23/06/2026 09:21"
+      },
+      {
+        "customer": "my life legacy",
+        "postcode": "WN6 0PP",
+        "contract_number": "0000031617",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 2
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "x2 event loo",
+        "added_by": "Peter",
+        "timestamp": "23/06/2026 09:22"
       }
     ]
   },
