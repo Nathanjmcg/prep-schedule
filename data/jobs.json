@@ -8052,6 +8052,34 @@
         "notes": "x1 water barrel- x1 booster pump",
         "added_by": "Peter",
         "timestamp": "23/06/2026 09:26"
+      },
+      {
+        "customer": "pal hire",
+        "postcode": "M28 3PT",
+        "contract_number": "0000031620",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 2,
+          "Stairs": 1,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "32ft- office/ meet with sink- 32ft canteen / dry with sink",
+        "added_by": "Peter",
+        "timestamp": "23/06/2026 09:30"
       }
     ]
   },
