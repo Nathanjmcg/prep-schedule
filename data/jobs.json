@@ -7818,15 +7818,19 @@
         "timestamp": "17/06/2026 08:14"
       },
       {
-        "customer": "John Reilly Engineering",
+        "customer": "John Reilly",
         "postcode": "CW1 4QR",
-        "contract_number": "0000030310",
+        "contract_number": "0000030638",
         "type": "Off Hire",
         "site_move_type": "",
         "units": {
-          "10ft Store": 1
+          "24ft AV": 1
         },
-        "av_configs": {},
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          }
+        },
         "install_dismantle": false,
         "haulage": "Internal Haulage",
         "haulage_who": "",
@@ -7834,7 +7838,7 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "23/06/2026 08:10"
+        "timestamp": "23/06/2026 08:11"
       }
     ],
     "2026-07-13": [
