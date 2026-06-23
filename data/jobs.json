@@ -8026,6 +8026,33 @@
         "added_by": "Peter",
         "timestamp": "23/06/2026 09:22"
       }
+    ],
+    "2026-06-29": [
+      {
+        "customer": "m group",
+        "postcode": "WA7 2PQ",
+        "contract_number": "0000031621",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1,
+          "20ft Store": 1,
+          "IBC": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "x1 water barrel- x1 booster pump",
+        "added_by": "Peter",
+        "timestamp": "23/06/2026 09:26"
+      }
     ]
   },
   "mcs": {
