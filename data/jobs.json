@@ -7824,7 +7824,8 @@
         "type": "Off Hire",
         "site_move_type": "",
         "units": {
-          "24ft AV": 1
+          "24ft AV": 1,
+          "Stairs": 1
         },
         "av_configs": {
           "24ft AV": {
@@ -7838,7 +7839,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "23/06/2026 08:11"
+        "timestamp": "23/06/2026 08:11",
+        "edited_by": "Peter",
+        "edited_at": "23/06/2026 08:45"
       },
       {
         "customer": "john reilly",
