@@ -8046,6 +8046,25 @@
         "notes": "x2 event loo",
         "added_by": "Peter",
         "timestamp": "23/06/2026 09:22"
+      },
+      {
+        "customer": "Duncan Ross",
+        "postcode": "M22 4PJ",
+        "contract_number": "0000031417",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "24/06/2026 11:05"
       }
     ],
     "2026-06-29": [
