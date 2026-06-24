@@ -7882,6 +7882,29 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "23/06/2026 09:00"
+      },
+      {
+        "customer": "john reilly",
+        "postcode": "CW1 4QR",
+        "contract_number": "0000030640",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "10ft AV": 1
+        },
+        "av_configs": {
+          "10ft AV": {
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "12FT UNIT",
+        "added_by": "Peter",
+        "timestamp": "24/06/2026 10:55"
       }
     ],
     "2026-07-13": [
