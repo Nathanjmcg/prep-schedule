@@ -8107,6 +8107,28 @@
         "added_by": "Peter",
         "timestamp": "24/06/2026 08:41"
       }
+    ],
+    "2026-07-01": [
+      {
+        "customer": "Perfect associates",
+        "postcode": "LL13 0PN",
+        "contract_number": "0000030460",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Stairs": 2,
+          "3+1": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "24/06/2026 08:55"
+      }
     ]
   },
   "mcs": {
