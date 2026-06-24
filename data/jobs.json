@@ -8128,6 +8128,31 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "24/06/2026 08:55"
+      },
+      {
+        "customer": "Perfect Associates",
+        "postcode": "LL13 0PN",
+        "contract_number": "0000030445",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 3
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1,
+            "Office": 1,
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "24/06/2026 08:57"
       }
     ]
   },
