@@ -8253,6 +8253,27 @@
         "added_by": "Peter",
         "timestamp": "25/06/2026 08:06"
       }
+    ],
+    "2026-07-06": [
+      {
+        "customer": "TERMRIM",
+        "postcode": "LS29 6AR",
+        "contract_number": "0000030132",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 2
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "25/06/2026 08:09"
+      }
     ]
   },
   "mcs": {
