@@ -8761,12 +8761,17 @@
       "requester": "Cliff",
       "item": "h",
       "supplier": "bbm",
-      "status": "pending",
-      "created_at": "25/06/2026 08:29"
+      "status": "ordered",
+      "created_at": "25/06/2026 08:29",
+      "ordered_by": "Alex",
+      "ordered_at": "25/06/2026 08:30",
+      "value": "60",
+      "week_key": "2026-W26"
     }
   },
   "materials_totals": {
     "2026-W22": 575.99,
-    "2026-W23": 0
+    "2026-W23": 0,
+    "2026-W26": 60.0
   }
 }
