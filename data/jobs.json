@@ -8761,12 +8761,13 @@
       "requester": "Cliff",
       "item": "h",
       "supplier": "bbm",
-      "status": "ordered",
+      "status": "pod_received",
       "created_at": "25/06/2026 08:29",
       "ordered_by": "Alex",
       "ordered_at": "25/06/2026 08:30",
       "value": "60",
-      "week_key": "2026-W26"
+      "week_key": "2026-W26",
+      "pod_received_at": "25/06/2026 08:31"
     }
   },
   "materials_totals": {
