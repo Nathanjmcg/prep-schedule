@@ -8756,20 +8756,7 @@
       }
     ]
   },
-  "materials": {
-    "c9c5bc9cfa5e": {
-      "requester": "Cliff",
-      "item": "h",
-      "supplier": "bbm",
-      "status": "pod_received",
-      "created_at": "25/06/2026 08:29",
-      "ordered_by": "Alex",
-      "ordered_at": "25/06/2026 08:30",
-      "value": "60",
-      "week_key": "2026-W26",
-      "pod_received_at": "25/06/2026 08:31"
-    }
-  },
+  "materials": {},
   "materials_totals": {
     "2026-W22": 575.99,
     "2026-W23": 0,
