@@ -8296,12 +8296,12 @@
       },
       {
         "customer": "A Connolly",
-        "postcode": "OL8 4LH",
-        "contract_number": "0000031223",
+        "postcode": "WN3 5XL",
+        "contract_number": "0000030158",
         "type": "Off Hire",
         "site_move_type": "",
         "units": {
-          "10ft Store": 1
+          "20ft Store": 1
         },
         "av_configs": {},
         "install_dismantle": false,
@@ -8311,7 +8311,7 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "29/06/2026 11:36"
+        "timestamp": "29/06/2026 11:37"
       }
     ],
     "2026-07-06": [
