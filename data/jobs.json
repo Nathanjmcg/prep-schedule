@@ -8227,19 +8227,18 @@
         "timestamp": "29/06/2026 10:42"
       },
       {
-        "customer": "MBC Building Contractors",
-        "postcode": "OL9 6AA",
-        "contract_number": "0000031632",
+        "customer": "H H Smith",
+        "postcode": "SK2 7AF",
+        "contract_number": "0000031561",
         "type": "On Hire",
         "site_move_type": "",
         "units": {
-          "20ft AV": 2,
+          "32ft AV": 1,
           "20ft Store": 1
         },
         "av_configs": {
-          "20ft AV": {
-            "Canteen": 1,
-            "Office": 1
+          "32ft AV": {
+            "Canteen": 1
           }
         },
         "install_dismantle": false,
@@ -8249,7 +8248,7 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "29/06/2026 11:30"
+        "timestamp": "29/06/2026 11:32"
       }
     ],
     "2026-07-02": [
