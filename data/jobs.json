@@ -8352,6 +8352,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "25/06/2026 08:09"
+      },
+      {
+        "customer": "Army of Shadows Production LTD",
+        "postcode": "M24 4SB",
+        "contract_number": "0000031631",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Static Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "29/06/2026 11:43"
       }
     ],
     "2026-07-07": [
