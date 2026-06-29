@@ -8471,6 +8471,31 @@
         "notes": "20ft unit is office 70 / canteen 30 split.",
         "added_by": "Peter",
         "timestamp": "29/06/2026 11:50"
+      },
+      {
+        "customer": "Rosslee",
+        "postcode": "BB5 3AA",
+        "contract_number": "0000031313",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 1,
+          "10ft Store": 1,
+          "2+1": 1
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "29/06/2026 12:12"
       }
     ]
   },
