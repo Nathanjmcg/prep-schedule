@@ -8357,7 +8357,7 @@
         "customer": "Army of Shadows Production LTD",
         "postcode": "M24 4SB",
         "contract_number": "0000031631",
-        "type": "Off Hire",
+        "type": "On Hire",
         "site_move_type": "",
         "units": {
           "Static Welfare": 1
@@ -8370,7 +8370,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "29/06/2026 11:43"
+        "timestamp": "29/06/2026 11:43",
+        "edited_by": "Peter",
+        "edited_at": "29/06/2026 11:45"
       }
     ],
     "2026-07-07": [
