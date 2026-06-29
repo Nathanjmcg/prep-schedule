@@ -7961,6 +7961,27 @@
         "notes": "24FT STATIC WELFARE",
         "added_by": "Peter",
         "timestamp": "29/06/2026 13:58"
+      },
+      {
+        "customer": "DOMIS",
+        "postcode": "M15 4WB",
+        "contract_number": "0000031639",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "3+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "12X8 EFFLUENT",
+        "added_by": "Peter",
+        "timestamp": "29/06/2026 14:00"
       }
     ],
     "2026-07-23": [
