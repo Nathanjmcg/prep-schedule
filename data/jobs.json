@@ -8373,6 +8373,32 @@
         "timestamp": "29/06/2026 11:43",
         "edited_by": "Peter",
         "edited_at": "29/06/2026 11:45"
+      },
+      {
+        "customer": "F Parkinson LTD",
+        "postcode": "M11 1AJ",
+        "contract_number": "0000031633",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "24ft unit is office / canteen split.",
+        "added_by": "Peter",
+        "timestamp": "29/06/2026 11:48"
       }
     ],
     "2026-07-07": [
