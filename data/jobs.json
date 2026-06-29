@@ -8447,6 +8447,30 @@
         "edited_at": "25/06/2026 08:10",
         "moved_by": "\u2014",
         "moved_from": "2026-06-22"
+      },
+      {
+        "customer": "Rosslee Construction",
+        "postcode": "BB5 3AA",
+        "contract_number": "0000031313",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 1,
+          "10ft Store": 1
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "20ft unit is office 70 / canteen 30 split.",
+        "added_by": "Peter",
+        "timestamp": "29/06/2026 11:50"
       }
     ]
   },
