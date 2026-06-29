@@ -8293,6 +8293,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "29/06/2026 11:34"
+      },
+      {
+        "customer": "A Connolly",
+        "postcode": "OL8 4LH",
+        "contract_number": "0000031223",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "10ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "29/06/2026 11:36"
       }
     ],
     "2026-07-06": [
