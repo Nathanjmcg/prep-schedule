@@ -8594,7 +8594,7 @@
     ],
     "2026-07-09": [
       {
-        "customer": "ainscough",
+        "customer": "AIS vanguard",
         "postcode": "CH2 4LB",
         "contract_number": "0000031651",
         "type": "On Hire",
@@ -8615,30 +8615,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "01/07/2026 09:35"
-      },
-      {
-        "customer": "AIS vanguard",
-        "postcode": "CH2 4LB",
-        "contract_number": "0000031652",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "32ft AV": 2
-        },
-        "av_configs": {
-          "32ft AV": {
-            "Meeting Room": 2
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Peter",
-        "timestamp": "01/07/2026 09:36"
+        "timestamp": "01/07/2026 09:35",
+        "edited_by": "Peter",
+        "edited_at": "01/07/2026 09:36"
       }
     ]
   },
