@@ -8567,6 +8567,32 @@
         "notes": "32FT OFFICE/MEET- SINK IN OFFICE SIDE- SANITARY BINS 10 PK",
         "added_by": "Peter",
         "timestamp": "29/06/2026 12:21"
+      },
+      {
+        "customer": "F PARKINSON",
+        "postcode": "LA1 1JW",
+        "contract_number": "0000031200",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 2,
+          "Stairs": 1,
+          "Solar Loo Single": 1
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "OFFICE TO HAVE A SINK.",
+        "added_by": "Peter",
+        "timestamp": "01/07/2026 15:31"
       }
     ],
     "2026-07-03": [
