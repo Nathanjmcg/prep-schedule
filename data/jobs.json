@@ -8664,6 +8664,36 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "01/07/2026 09:39"
+      },
+      {
+        "customer": "AIS Vanguard",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031650",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 4,
+          "20ft Store": 1,
+          "4+2": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1,
+          "Smoking Shelter": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 3,
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "01/07/2026 09:42"
       }
     ]
   },
