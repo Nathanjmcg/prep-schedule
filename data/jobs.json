@@ -8853,6 +8853,29 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "01/07/2026 15:45"
+      },
+      {
+        "customer": "THINK HIRE",
+        "postcode": "M45 7GZ",
+        "contract_number": "0000031664",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "01/07/2026 15:47"
       }
     ]
   },
