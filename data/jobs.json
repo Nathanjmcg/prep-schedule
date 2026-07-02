@@ -7910,6 +7910,26 @@
         "notes": "x4 event toilet - x2 DDA chemiloo",
         "added_by": "Peter",
         "timestamp": "17/06/2026 10:07"
+      },
+      {
+        "customer": "F Parkinson",
+        "postcode": "FY6 7HE",
+        "contract_number": "0000031642",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1,
+          "Static Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "24FT STATIC WELFARE",
+        "added_by": "Peter",
+        "timestamp": "02/07/2026 14:34"
       }
     ],
     "2026-07-20": [
