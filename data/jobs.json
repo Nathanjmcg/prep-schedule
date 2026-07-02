@@ -9060,6 +9060,29 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "02/07/2026 08:01"
+      },
+      {
+        "customer": "Think Hire",
+        "postcode": "M25 9XX",
+        "contract_number": "0000031672",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "02/07/2026 08:02"
       }
     ]
   },
