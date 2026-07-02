@@ -8635,6 +8635,25 @@
         "timestamp": "01/07/2026 09:27",
         "edited_by": "Peter",
         "edited_at": "01/07/2026 09:31"
+      },
+      {
+        "customer": "D P Construction",
+        "postcode": "PR7 5LS",
+        "contract_number": "0000031681",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "02/07/2026 13:30"
       }
     ],
     "2026-07-09": [
