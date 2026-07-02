@@ -9228,6 +9228,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "02/07/2026 14:01"
+      },
+      {
+        "customer": "AIS Vanguard",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031657",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "IBC": 4
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "x4 pumps",
+        "added_by": "Peter",
+        "timestamp": "02/07/2026 14:06"
       }
     ]
   },
