@@ -9304,6 +9304,27 @@
         "edited_by": "Peter",
         "edited_at": "02/07/2026 14:31"
       }
+    ],
+    "2026-07-21": [
+      {
+        "customer": "Wright build",
+        "postcode": "M30 0DD",
+        "contract_number": "0000031678",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "02/07/2026 14:47"
+      }
     ]
   },
   "mcs": {
