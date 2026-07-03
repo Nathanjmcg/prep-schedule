@@ -9211,7 +9211,7 @@
         "customer": "L&S Commercial",
         "postcode": "SK9 7AU",
         "contract_number": "0000031228",
-        "type": "On Hire",
+        "type": "Off Hire",
         "site_move_type": "",
         "units": {
           "Chemiloo": 1
@@ -9224,7 +9224,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "02/07/2026 13:45"
+        "timestamp": "02/07/2026 13:45",
+        "edited_by": "Peter",
+        "edited_at": "03/07/2026 08:59"
       },
       {
         "customer": "PEAK PLATFORMS",
