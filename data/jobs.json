@@ -9232,7 +9232,7 @@
         "customer": "PEAK PLATFORMS",
         "postcode": "CV23 9LP",
         "contract_number": "0000030872",
-        "type": "On Hire",
+        "type": "Off Hire",
         "site_move_type": "",
         "units": {
           "20ft Store": 3
@@ -9245,7 +9245,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "02/07/2026 13:50"
+        "timestamp": "02/07/2026 13:50",
+        "edited_by": "Peter",
+        "edited_at": "03/07/2026 09:00"
       }
     ],
     "2026-07-10": [
