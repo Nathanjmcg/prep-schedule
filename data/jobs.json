@@ -8791,9 +8791,9 @@
     ],
     "2026-07-09": [
       {
-        "customer": "AIS vanguard",
+        "customer": "AIS Vanguard",
         "postcode": "CH2 4LB",
-        "contract_number": "0000031652",
+        "contract_number": "0000031651",
         "type": "On Hire",
         "site_move_type": "",
         "units": {
@@ -8801,7 +8801,8 @@
         },
         "av_configs": {
           "32ft AV": {
-            "Meeting Room": 2
+            "Canteen": 1,
+            "Office": 1
           }
         },
         "install_dismantle": false,
@@ -8811,7 +8812,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "01/07/2026 09:36"
+        "timestamp": "01/07/2026 09:35",
+        "edited_by": "Peter",
+        "edited_at": "01/07/2026 09:37"
       },
       {
         "customer": "AIS Vanguard",
@@ -9524,9 +9527,9 @@
     ],
     "2026-07-22": [
       {
-        "customer": "AIS Vanguard",
+        "customer": "AIS vanguard",
         "postcode": "CH2 4LB",
-        "contract_number": "0000031651",
+        "contract_number": "0000031652",
         "type": "On Hire",
         "site_move_type": "",
         "units": {
@@ -9534,8 +9537,7 @@
         },
         "av_configs": {
           "32ft AV": {
-            "Canteen": 1,
-            "Office": 1
+            "Meeting Room": 2
           }
         },
         "install_dismantle": false,
@@ -9545,11 +9547,10 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "01/07/2026 09:35",
-        "edited_by": "Peter",
-        "edited_at": "06/07/2026 11:19",
+        "timestamp": "01/07/2026 09:36",
         "moved_by": "\u2014",
-        "moved_from": "2026-07-09"
+        "moved_from": "2026-07-09",
+        "edited_at": "06/07/2026 11:19"
       }
     ]
   },
