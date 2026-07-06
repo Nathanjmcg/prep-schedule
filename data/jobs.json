@@ -9282,27 +9282,6 @@
         "timestamp": "06/07/2026 09:13"
       }
     ],
-    "2026-07-10": [
-      {
-        "customer": "AIS Vanguard",
-        "postcode": "CH2 4LB",
-        "contract_number": "0000031655",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "Stairs": 2
-        },
-        "av_configs": {},
-        "install_dismantle": true,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Peter",
-        "timestamp": "02/07/2026 14:01"
-      }
-    ],
     "2026-07-14": [
       {
         "customer": "A Connolly",
@@ -9559,6 +9538,28 @@
         "notes": "x4 pumps",
         "added_by": "Peter",
         "timestamp": "02/07/2026 14:06",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-10",
+        "edited_at": "06/07/2026 11:21"
+      },
+      {
+        "customer": "AIS Vanguard",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031655",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Stairs": 2
+        },
+        "av_configs": {},
+        "install_dismantle": true,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "02/07/2026 14:01",
         "moved_by": "\u2014",
         "moved_from": "2026-07-10",
         "edited_at": "06/07/2026 11:21"
