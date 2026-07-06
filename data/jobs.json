@@ -9286,25 +9286,6 @@
       {
         "customer": "AIS Vanguard",
         "postcode": "CH2 4LB",
-        "contract_number": "0000031655",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "Stairs": 2
-        },
-        "av_configs": {},
-        "install_dismantle": true,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Peter",
-        "timestamp": "02/07/2026 14:01"
-      },
-      {
-        "customer": "AIS Vanguard",
-        "postcode": "CH2 4LB",
         "contract_number": "0000031657",
         "type": "On Hire",
         "site_move_type": "",
@@ -9558,6 +9539,28 @@
         "timestamp": "01/07/2026 09:42",
         "moved_by": "\u2014",
         "moved_from": "2026-07-09",
+        "edited_at": "06/07/2026 11:20"
+      },
+      {
+        "customer": "AIS Vanguard",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031655",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Stairs": 2
+        },
+        "av_configs": {},
+        "install_dismantle": true,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "02/07/2026 14:01",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-10",
         "edited_at": "06/07/2026 11:20"
       }
     ]
