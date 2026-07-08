@@ -8099,6 +8099,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "08/07/2026 08:51"
+      },
+      {
+        "customer": "Termrim",
+        "postcode": "LS26 8EW",
+        "contract_number": "0000029805",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 2
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "08/07/2026 08:54"
       }
     ],
     "2026-07-23": [
