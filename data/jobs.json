@@ -7932,7 +7932,7 @@
         "customer": "Greenmount projects",
         "postcode": "M9 4AD",
         "contract_number": "0000031703",
-        "type": "Off Hire",
+        "type": "On Hire",
         "site_move_type": "",
         "units": {
           "20ft Store": 1
@@ -7945,7 +7945,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "08/07/2026 13:56"
+        "timestamp": "08/07/2026 13:56",
+        "edited_by": "Peter",
+        "edited_at": "08/07/2026 13:58"
       }
     ],
     "2026-07-17": [
