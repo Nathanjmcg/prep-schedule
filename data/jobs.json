@@ -8137,6 +8137,26 @@
         "notes": "REACTIVE SOLAR UNIT",
         "added_by": "Peter",
         "timestamp": "08/07/2026 09:28"
+      },
+      {
+        "customer": "PHS",
+        "postcode": "PR4 3SH",
+        "contract_number": "0000031705",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1,
+          "10ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "08/07/2026 14:49"
       }
     ],
     "2026-07-23": [
