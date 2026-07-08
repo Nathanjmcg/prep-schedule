@@ -9442,10 +9442,10 @@
         "type": "On Hire",
         "site_move_type": "",
         "units": {
-          "24ft AV": 1
+          "20ft AV": 1
         },
         "av_configs": {
-          "24ft AV": {
+          "20ft AV": {
             "Office": 1
           }
         },
@@ -9456,7 +9456,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "02/07/2026 08:26"
+        "timestamp": "02/07/2026 08:26",
+        "edited_by": "Peter",
+        "edited_at": "08/07/2026 14:56"
       }
     ],
     "2026-07-08": [
