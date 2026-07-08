@@ -9525,6 +9525,25 @@
         "moved_by": "\u2014",
         "moved_from": "2026-07-20",
         "edited_at": "07/07/2026 14:30"
+      },
+      {
+        "customer": "DLP",
+        "postcode": "OL12 7LG",
+        "contract_number": "0000031145",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "08/07/2026 08:59"
       }
     ],
     "2026-07-16": [
