@@ -8979,6 +8979,38 @@
         "notes": "32FT -  3+1/DRY",
         "added_by": "Peter",
         "timestamp": "01/07/2026 15:37"
+      },
+      {
+        "customer": "Manchester and Cheshire",
+        "postcode": "SK7 1RA",
+        "contract_number": "0000031698",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 2,
+          "24ft AV": 1,
+          "Stairs": 1,
+          "4+2": 1,
+          "Tank": 1,
+          "IBC": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Meeting Room": 1
+          },
+          "32ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "08/07/2026 09:03"
       }
     ],
     "2026-07-27": [
