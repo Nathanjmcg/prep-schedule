@@ -8099,6 +8099,23 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "08/07/2026 08:54"
+      },
+      {
+        "customer": "CHANDOS",
+        "postcode": "WA8 8LY",
+        "contract_number": "00000317107",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {},
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "External Haulage",
+        "haulage_who": "D.CAINS",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "REACTIVE SOLAR UNIT",
+        "added_by": "Peter",
+        "timestamp": "08/07/2026 09:28"
       }
     ],
     "2026-07-23": [
