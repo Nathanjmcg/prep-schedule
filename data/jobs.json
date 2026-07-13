@@ -8033,30 +8033,6 @@
         "timestamp": "03/07/2026 08:17"
       },
       {
-        "customer": "DOMIS",
-        "postcode": "M15 4WB",
-        "contract_number": "0000031639",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "3+1": 1,
-          "Tank": 1,
-          "Steps": 2
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "12X8 EFFLUENT",
-        "added_by": "Peter",
-        "timestamp": "29/06/2026 14:00",
-        "moved_by": "\u2014",
-        "moved_from": "2026-07-20",
-        "edited_at": "07/07/2026 14:29"
-      },
-      {
         "customer": "M GROUP",
         "postcode": "WA7 2PQ",
         "contract_number": "0000031621",
@@ -8286,6 +8262,30 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "13/07/2026 08:24"
+      },
+      {
+        "customer": "DOMIS",
+        "postcode": "M15 4WB",
+        "contract_number": "0000031639",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "3+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "12X8 EFFLUENT",
+        "added_by": "Peter",
+        "timestamp": "29/06/2026 14:00",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-17",
+        "edited_at": "13/07/2026 11:23"
       }
     ],
     "2026-07-23": [
