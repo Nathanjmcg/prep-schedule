@@ -9339,6 +9339,29 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "08/07/2026 15:23"
+      },
+      {
+        "customer": "HSS",
+        "postcode": "DN1",
+        "contract_number": "0000031713",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Other": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "24FT prayer room, hand and foot wash also included... 6 boxes of 20 carpet tiles.",
+        "added_by": "Peter",
+        "timestamp": "13/07/2026 10:56"
       }
     ],
     "2026-07-28": [
