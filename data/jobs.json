@@ -9900,10 +9900,10 @@
         "customer": "Essential access",
         "postcode": "CH5 2NU",
         "contract_number": "0000030891",
-        "type": "On Hire",
+        "type": "Off Hire",
         "site_move_type": "",
         "units": {
-          "20ft Store": 2
+          "20ft Store": 1
         },
         "av_configs": {},
         "install_dismantle": false,
