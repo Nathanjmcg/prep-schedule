@@ -10276,6 +10276,25 @@
         "notes": "DISPOSABLE SANITARY BINS.",
         "added_by": "Peter",
         "timestamp": "13/07/2026 11:04"
+      },
+      {
+        "customer": "A Connolly",
+        "postcode": "BL1 3TD",
+        "contract_number": "0000031719",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 3
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "13/07/2026 11:06"
       }
     ]
   },
