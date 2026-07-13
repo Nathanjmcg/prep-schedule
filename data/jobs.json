@@ -8929,9 +8929,13 @@
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
-        "notes": "Site move- 24ft canteen, 32ft dry room/toilet block, steps, ibc, tank and stairs",
+        "notes": "Site move- 24ft canteen, 32ft dry room/toilet block, steps, ibc, tank and stairs from site WA5 3YY to OL9 8DY",
         "added_by": "Peter",
-        "timestamp": "13/07/2026 08:05"
+        "timestamp": "13/07/2026 08:05",
+        "notes_edited_by": "Peter",
+        "notes_edited_at": "13/07/2026 08:06",
+        "edited_by": "Peter",
+        "edited_at": "13/07/2026 08:06"
       }
     ],
     "2026-07-03": [
