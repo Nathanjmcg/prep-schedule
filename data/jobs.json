@@ -8073,35 +8073,6 @@
     ],
     "2026-07-20": [
       {
-        "customer": "MWH treatment",
-        "postcode": "SK14 3BU",
-        "contract_number": "0000031501",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "32ft AV": 8,
-          "20ft Store": 1,
-          "Smoking Shelter": 2
-        },
-        "av_configs": {
-          "32ft AV": {
-            "Canteen": 1,
-            "Office": 2,
-            "Drying Room": 1,
-            "Meeting Room": 1,
-            "Other": 3
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "x1 32ft 3+1+shower- x1 3+1+office - x1 canteen dry 60/40 - units to be sprayed moss green ( RAL CODE 6005)",
-        "added_by": "Peter",
-        "timestamp": "17/06/2026 10:22"
-      },
-      {
         "customer": "Wright Build",
         "postcode": "PR25 5UH",
         "contract_number": "0000031347",
@@ -10314,6 +10285,40 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "13/07/2026 11:06"
+      }
+    ],
+    "2026-08-17": [
+      {
+        "customer": "MWH treatment",
+        "postcode": "SK14 3BU",
+        "contract_number": "0000031501",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 8,
+          "20ft Store": 1,
+          "Smoking Shelter": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1,
+            "Office": 2,
+            "Drying Room": 1,
+            "Meeting Room": 1,
+            "Other": 3
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "x1 32ft 3+1+shower- x1 3+1+office - x1 canteen dry 60/40 - units to be sprayed moss green ( RAL CODE 6005)",
+        "added_by": "Peter",
+        "timestamp": "17/06/2026 10:22",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-20",
+        "edited_at": "13/07/2026 11:24"
       }
     ]
   },
