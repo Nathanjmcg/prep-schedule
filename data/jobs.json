@@ -8242,6 +8242,31 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "13/07/2026 08:21"
+      },
+      {
+        "customer": "HSS",
+        "postcode": "M90 1QX",
+        "contract_number": "0000030841",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 2,
+          "Stairs": 1
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "13/07/2026 08:24"
       }
     ],
     "2026-07-23": [
