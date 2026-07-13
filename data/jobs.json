@@ -9662,7 +9662,7 @@
         "customer": "DAISY HILL FC",
         "postcode": "BL5 2EH",
         "contract_number": "0000031717",
-        "type": "Off Hire",
+        "type": "On Hire",
         "site_move_type": "",
         "units": {
           "Chemiloo": 2
@@ -9675,7 +9675,9 @@
         "livery_note": "",
         "notes": "",
         "added_by": "Peter",
-        "timestamp": "13/07/2026 08:01"
+        "timestamp": "13/07/2026 08:01",
+        "edited_by": "Peter",
+        "edited_at": "13/07/2026 08:02"
       }
     ],
     "2026-07-21": [
