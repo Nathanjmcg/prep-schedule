@@ -8909,6 +8909,29 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "07/07/2026 09:45"
+      },
+      {
+        "customer": "GRS",
+        "postcode": "OL9 8DY",
+        "contract_number": "0000031697",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "24ft AV": 1
+        },
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "Site move- 24ft canteen, 32ft dry room/toilet block, steps, ibc, tank and stairs",
+        "added_by": "Peter",
+        "timestamp": "13/07/2026 08:05"
       }
     ],
     "2026-07-03": [
