@@ -8311,13 +8311,13 @@
         "edited_at": "13/07/2026 11:23"
       },
       {
-        "customer": "DUCHY HOMES",
-        "postcode": "M24 4PE",
-        "contract_number": "0000031220",
-        "type": "On Hire",
+        "customer": "PEAK PLATFORMS",
+        "postcode": "HD1 6AS",
+        "contract_number": "0000030952",
+        "type": "Off Hire",
         "site_move_type": "",
         "units": {
-          "Tank": 1
+          "20ft Store": 2
         },
         "av_configs": {},
         "install_dismantle": false,
@@ -8325,9 +8325,9 @@
         "haulage_who": "",
         "livery": "Standard Livery",
         "livery_note": "",
-        "notes": "",
+        "notes": "Both stores fully racked",
         "added_by": "Peter",
-        "timestamp": "14/07/2026 12:59"
+        "timestamp": "14/07/2026 13:00"
       }
     ],
     "2026-07-23": [
