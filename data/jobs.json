@@ -8328,6 +8328,25 @@
         "notes": "Both stores fully racked",
         "added_by": "Peter",
         "timestamp": "14/07/2026 13:00"
+      },
+      {
+        "customer": "duchy homes",
+        "postcode": "M24 4PE",
+        "contract_number": "0000031220",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Tank": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "14/07/2026 13:02"
       }
     ],
     "2026-07-23": [
