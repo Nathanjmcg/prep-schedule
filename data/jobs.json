@@ -8309,6 +8309,25 @@
         "moved_by": "\u2014",
         "moved_from": "2026-07-17",
         "edited_at": "13/07/2026 11:23"
+      },
+      {
+        "customer": "DUCHY HOMES",
+        "postcode": "M24 4PE",
+        "contract_number": "0000031220",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Tank": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "14/07/2026 12:59"
       }
     ],
     "2026-07-23": [
