@@ -8366,6 +8366,25 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "15/07/2026 08:12"
+      },
+      {
+        "customer": "JOHN REILLY",
+        "postcode": "PR4 0XB",
+        "contract_number": "0000031725",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "15/07/2026 08:13"
       }
     ],
     "2026-07-23": [
