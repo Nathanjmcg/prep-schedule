@@ -10172,8 +10172,8 @@
         "customer": "F Parkinson",
         "postcode": "LA1 1JW",
         "contract_number": "0000031200",
-        "type": "On Hire",
-        "site_move_type": "",
+        "type": "Site Move",
+        "site_move_type": "Movement on Same Site",
         "units": {
           "20ft AV": 2,
           "Stairs": 1,
@@ -10192,7 +10192,9 @@
         "livery_note": "",
         "notes": "20FT Office to have a sink and worktop",
         "added_by": "Peter",
-        "timestamp": "03/07/2026 09:19"
+        "timestamp": "03/07/2026 09:19",
+        "edited_by": "Peter",
+        "edited_at": "15/07/2026 12:53"
       },
       {
         "customer": "GRS",
