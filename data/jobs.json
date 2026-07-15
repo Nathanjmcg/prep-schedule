@@ -10200,8 +10200,8 @@
         "customer": "GRS",
         "postcode": "OL9 8DY",
         "contract_number": "0000031697",
-        "type": "On Hire",
-        "site_move_type": "",
+        "type": "Site Move",
+        "site_move_type": "Movement on Same Site",
         "units": {
           "24ft AV": 2,
           "Stairs": 1,
@@ -10223,7 +10223,9 @@
         "livery_note": "",
         "notes": "Disposable sanitary bin.- pump in 2+1",
         "added_by": "Peter",
-        "timestamp": "07/07/2026 10:09"
+        "timestamp": "07/07/2026 10:09",
+        "edited_by": "Peter",
+        "edited_at": "15/07/2026 12:55"
       },
       {
         "customer": "Essential access",
