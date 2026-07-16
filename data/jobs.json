@@ -10810,6 +10810,31 @@
         "moved_from": "2026-07-20",
         "edited_at": "13/07/2026 11:24"
       }
+    ],
+    "2026-08-05": [
+      {
+        "customer": "HOLMPATRICK",
+        "postcode": "LA1 3JJ",
+        "contract_number": "0000031755",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft AV": 1
+        },
+        "av_configs": {
+          "20ft AV": {
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "16/07/2026 12:23"
+      }
     ]
   },
   "mcs": {
