@@ -8105,25 +8105,6 @@
         "timestamp": "06/07/2026 10:09"
       },
       {
-        "customer": "Wright Build",
-        "postcode": "PR25 5UH",
-        "contract_number": "0000031340",
-        "type": "Off Hire",
-        "site_move_type": "",
-        "units": {
-          "Mobile Welfare": 1
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Peter",
-        "timestamp": "06/07/2026 12:50"
-      },
-      {
         "customer": "Termrim",
         "postcode": "LS26 8EW",
         "contract_number": "0000029805",
@@ -10707,6 +10688,28 @@
         "moved_by": "\u2014",
         "moved_from": "2026-07-17",
         "edited_at": "16/07/2026 12:44"
+      },
+      {
+        "customer": "Wright Build",
+        "postcode": "PR25 5UH",
+        "contract_number": "0000031340",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "06/07/2026 12:50",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-20",
+        "edited_at": "16/07/2026 12:45"
       }
     ],
     "2026-07-10": [
