@@ -9938,6 +9938,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: -, -, M45 7TR",
         "added_by": "MCS Auto",
         "timestamp": "16/07/2026 15:18"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Think Hire  Ltd",
+        "postcode": "M25 9XX",
+        "contract_number": "0000031672",
+        "units": {
+          "20ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: MOBILE VAN OF KERSAL ROAD, PLAYGROUND, PRESTWICH, M25 9XX",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:47"
       }
     ],
     "2026-07-08": [
