@@ -707,20 +707,14 @@ def day_view_dialog(date_key):
     d_key   = f"daily_{date_key}"
     ds      = checklist.get(d_key, {})
 
-    # Auto-detect if live hire was uploaded today
-    today_str_dt = datetime.now().strftime("%Y-%m-%d")
-    lh_today_auto = (live_hire.get("latest", {}).get("date", "") == today_str_dt) if live_hire else False
-
     DAILY_ITEMS = [
         ("partial_contracts", "📋 Partially Live Contracts Posted?"),
         ("oneoff_contracts",  "📄 One Off / Sale Contracts Posted?"),
     ]
     mcs_check_count = int(ds.get("mcs_check", 0))
-    live_ok = lh_today_auto or ds.get("live_hire_uploaded", False)
 
     all_daily_done = (
         all(ds.get(k, False) for k, _ in DAILY_ITEMS)
-        and live_ok
         and mcs_check_count >= 1
     )
 
@@ -745,23 +739,6 @@ def day_view_dialog(date_key):
             newval = st.checkbox(label, value=cur, key=f"dcl_{date_key}_{ck}")
             if newval != cur:
                 ds[ck] = newval
-                daily_changed = True
-
-    # Live hire uploaded row — auto or manual
-    lh_c1, lh_c2 = st.columns([5, 1])
-    with lh_c1:
-        if lh_today_auto:
-            st.markdown(
-                f"<div style='background:{K_GREEN_PALE};color:{K_GREEN_DARK};"
-                f"border-radius:6px;padding:5px 10px;font-size:12px;font-weight:600;'>"
-                f"☁️ New Live Hire Report Uploaded? &nbsp; ✅ Auto-detected — uploaded today</div>",
-                unsafe_allow_html=True)
-        else:
-            cur_lh = ds.get("live_hire_uploaded", False)
-            new_lh = st.checkbox("☁️ New Live Hire Report Uploaded?",
-                                  value=cur_lh, key=f"dcl_{date_key}_lh")
-            if new_lh != cur_lh:
-                ds["live_hire_uploaded"] = new_lh
                 daily_changed = True
 
     # MCS match counter
@@ -1600,112 +1577,83 @@ else:
     # No dialog is opening — safe to re-enable auto-refresh
     st.session_state["any_dialog_open"] = False
 
-# ── LIVE HIRE UPLOAD (sidebar) ───────────────────────────────────────────────
-with st.sidebar:
-    st.markdown(f"""
-    <div style='font-family:Figtree,sans-serif;'>
-      {KENSITE_LOGO_HTML}
-      <div style='font-size:14px;font-weight:700;color:{K_GREEN};margin:10px 0 4px;'>
-        Live Hire Report
-      </div>
-      <div style='font-size:11px;color:{K_GREY};opacity:.7;margin-bottom:10px;'>
-        Upload today's MCSrm Equipment on Hire export (.xlsx) to update the live revenue counter.
-      </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    uploaded_file = st.file_uploader(
-        "Upload MCSrm export",
-        type=["xlsx"],
-        label_visibility="collapsed",
-        key="lh_uploader"
-    )
-
-    if uploaded_file is not None:
-        # Use filename as a key to avoid re-processing the same file on every rerun
-        last_processed = st.session_state.get("lh_last_processed", "")
-        if uploaded_file.name != last_processed:
-            try:
-                import pandas as pd
-                df_lh = pd.read_excel(uploaded_file)
-                if "WeekChg" not in df_lh.columns:
-                    st.error("Could not find 'WeekChg' column — is this the right report?")
-                else:
-                    total_rev  = round(float(df_lh["WeekChg"].sum()), 2)
-                    row_count  = int(df_lh["WeekChg"].notna().sum())
-                    upload_ts  = datetime.now().strftime("%d/%m/%Y %H:%M")
-                    upload_dt  = datetime.now().strftime("%Y-%m-%d")
-
-                    history = live_hire.get("history", []) if isinstance(live_hire, dict) else []
-                    history.append({
-                        "date":     upload_dt,
-                        "revenue":  total_rev,
-                        "lines":    row_count,
-                        "at":       upload_ts,
-                        "filename": uploaded_file.name,
-                    })
-                    history = history[-60:]
-                    new_lh = {
-                        "latest":  {"revenue": total_rev, "lines": row_count,
-                                    "at": upload_ts, "filename": uploaded_file.name,
-                                    "date": upload_dt},
-                        "history": history,
-                    }
-                    save_data(jobs, mcs, site_visits, svr_confirmed, checklist, new_lh, materials, materials_totals)
-                    st.session_state["lh_last_processed"] = uploaded_file.name
-                    st.success(f"✅ Updated — £{total_rev:,.2f}/wk across {row_count} lines")
-            except Exception as e:
-                st.error(f"Error reading file: {e}")
-        else:
-            st.success(f"✅ Already processed — £{live_hire['latest']['revenue']:,.2f}/wk")
-
-    # Show current snapshot in sidebar
-    if live_hire and live_hire.get("latest"):
-        latest = live_hire["latest"]
-        rev    = latest.get("revenue", 0)
-        lines  = latest.get("lines", 0)
-        ts     = latest.get("at", "")
-        fname  = latest.get("filename", "")
-        st.markdown(f"""
-        <div style='background:{K_GREEN_PALE};border-radius:8px;padding:10px 12px;margin-top:8px;'>
-          <div style='font-size:18px;font-weight:800;color:{K_GREEN_DARK};'>
-            £{rev:,.2f}<span style='font-size:11px;font-weight:500;'> / week</span>
-          </div>
-          <div style='font-size:10px;color:{K_GREEN_DARK};opacity:.75;margin-top:2px;'>
-            {lines} lines · {fname}
-          </div>
-          <div style='font-size:10px;color:{K_GREEN_DARK};opacity:.55;margin-top:1px;'>
-            Uploaded {ts}
-          </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        # History table
-        history = live_hire.get("history", [])
-        if len(history) > 1:
-            st.markdown("<div style='margin-top:12px;font-size:11px;font-weight:700;"
-                        "color:#888;'>Upload history</div>", unsafe_allow_html=True)
-            for entry in reversed(history[-7:]):
-                st.markdown(
-                    f"<div style='font-size:10px;color:{K_GREY};padding:2px 0;"
-                    f"border-bottom:0.5px solid #eee;'>"
-                    f"{entry.get('date','')} — "
-                    f"<b>£{entry.get('revenue',0):,.2f}</b> "
-                    f"({entry.get('lines',0)} lines)</div>",
-                    unsafe_allow_html=True)
-    else:
-        st.markdown(
-            f"<div style='font-size:11px;color:{K_GREY};opacity:.5;"
-            f"padding:8px;background:#f5f5f5;border-radius:6px;'>No report uploaded yet.</div>",
-            unsafe_allow_html=True)
-
 # ── HEADER ────────────────────────────────────────────────────────────────────
+st.markdown("<style>[data-testid=\"stSidebar\"],[data-testid=\"collapsedControl\"]{display:none !important;}</style>", unsafe_allow_html=True)
+
 st.markdown(f"""
 <div class="ks-header">
   {KENSITE_LOGO_HTML}
   <span class="ks-title">Prep Schedule</span>
 </div>
 """, unsafe_allow_html=True)
+
+# ── QUOTE REQUESTS ────────────────────────────────────────────────────────────
+QUOTE_REQ_FILE = "data/quote requests.json"
+OFFER_CODES = ["MOBILEOFFER"]
+
+with st.expander("📨 Request a Quote (auto-created in MCS, emailed to Enquiries)"):
+    qr_data, qr_sha = gh_get(QUOTE_REQ_FILE)
+    qr_data = qr_data or {"requests": []}
+
+    qc1, qc2, qc3 = st.columns(3)
+    with qc1:
+        qr_cust = st.text_input("Customer account code (existing customers only)",
+                                key="qr_cust", placeholder="e.g. WRIGH001")
+        qr_offer = st.selectbox("Offer code", OFFER_CODES, key="qr_offer")
+    with qc2:
+        qr_start = st.date_input("Hire start date", key="qr_start")
+        qr_weeks = st.number_input("Duration (weeks, 0 = open ended)",
+                                   min_value=0, max_value=260, value=0,
+                                   key="qr_weeks")
+    with qc3:
+        qr_site = st.text_input("Site name / postcode", key="qr_site")
+        qr_notes = st.text_input("Notes for Enquiries (optional)",
+                                 key="qr_notes")
+    qr_by = st.text_input("Requested by", key="qr_by")
+
+    if st.button("Submit quote request", key="qr_submit"):
+        if not qr_cust.strip() or not qr_by.strip():
+            st.error("Customer code and Requested by are needed.")
+        else:
+            import uuid as _qruuid
+            qr_data["requests"].append({
+                "id": _qruuid.uuid4().hex[:10],
+                "customer_code": qr_cust.strip().upper(),
+                "offer_code": qr_offer,
+                "start_date": qr_start.isoformat(),
+                "weeks": int(qr_weeks),
+                "site": qr_site.strip(),
+                "notes": qr_notes.strip(),
+                "requested_by": qr_by.strip(),
+                "requested_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
+                "status": "pending",
+                "quote_ref": "",
+                "detail": "",
+            })
+            _, fresh_sha = gh_get(QUOTE_REQ_FILE)
+            gh_put(QUOTE_REQ_FILE, qr_data, sha=fresh_sha,
+                   msg="Quote request added")
+            st.success("Request queued. The worker picks it up within "
+                       "a few minutes and it lands with Enquiries.")
+
+    recent = (list(reversed(qr_data.get("requests", [])))
+              + list(reversed(qr_data.get("history", []))))[:8]
+    if recent:
+        st.markdown("<div style='font-size:12px;font-weight:700;"
+                    "margin-top:.5rem;'>Recent requests</div>",
+                    unsafe_allow_html=True)
+        for r in recent:
+            icon = {"pending": "⏳", "done": "✅",
+                    "failed": "❌"}.get(r.get("status"), "❓")
+            line = (f"{icon} {r.get('requested_at','')} · "
+                    f"{r.get('customer_code','')} · "
+                    f"{r.get('offer_code','')} · {r.get('status','')}")
+            if r.get("quote_ref"):
+                line += f" · {r['quote_ref']}"
+            if r.get("status") == "failed" and r.get("detail"):
+                line += f" · {r['detail'][:60]}"
+            st.markdown(f"<div style='font-size:12px;'>{line}</div>",
+                        unsafe_allow_html=True)
 
 # ── NAV ROW ───────────────────────────────────────────────────────────────────
 n1, n2, n3, n4, n5 = st.columns([1.2, 0.8, 1.2, 0.8, 3])
@@ -1773,16 +1721,12 @@ def job_per_checks_done(dk, ji, job_type):
     return {}
 
 def daily_checklist_done(dk):
-    """Return True if all 4 daily items + mcs_check ≥ 1 for a given day."""
+    """Return True if all daily items + mcs_check ≥ 1 for a given day."""
     d_key = f"daily_{dk}"
     ds    = checklist.get(d_key, {})
-    today_dt = datetime.now().strftime("%Y-%m-%d")
-    lh_today = (live_hire.get("latest", {}).get("date", "") == today_dt) if live_hire else False
-    live_ok  = lh_today or ds.get("live_hire_uploaded", False)
     return (
         ds.get("partial_contracts", False) and
         ds.get("oneoff_contracts",  False) and
-        live_ok and
         int(ds.get("mcs_check", 0)) >= 1
     )
 
@@ -1809,65 +1753,6 @@ def day_jobs_fulfilment_complete(dk):
 
 st.markdown(pills, unsafe_allow_html=True)
 st.markdown("<div style='margin-bottom:.5rem'></div>", unsafe_allow_html=True)
-
-# ── LIVE HIRE REVENUE BANNER ──────────────────────────────────────────────────
-if live_hire and live_hire.get("latest"):
-    latest  = live_hire["latest"]
-    rev     = latest.get("revenue", 0)
-    rev_ts  = latest.get("at", "")
-    history = live_hire.get("history", [])
-
-    # Find a reading from ~7 days ago
-    today_dt = datetime.now().date()
-    prev_rev = None
-    for entry in reversed(history[:-1]):  # exclude the latest
-        try:
-            entry_dt = datetime.strptime(entry["date"], "%Y-%m-%d").date()
-            days_ago = (today_dt - entry_dt).days
-            if days_ago >= 7:
-                prev_rev = entry["revenue"]
-                prev_date = entry_dt.strftime("%-d %b")
-                break
-        except Exception:
-            continue
-
-    # % change
-    if prev_rev and prev_rev > 0:
-        pct       = ((rev - prev_rev) / prev_rev) * 100
-        pct_str   = f"{pct:+.1f}%"
-        arrow     = "▲" if pct > 0 else ("▼" if pct < 0 else "—")
-        chg_col   = K_GREEN_DARK if pct > 0 else ("#7b1a1a" if pct < 0 else K_GREY)
-        chg_bg    = K_GREEN_PALE if pct > 0 else ("#fdecea" if pct < 0 else "#f0f0f0")
-        chg_html  = (
-            f'<span style="background:{chg_bg};color:{chg_col};border-radius:5px;'
-            f'padding:3px 10px;font-size:13px;font-weight:700;margin-left:10px;">'
-            f'{arrow} {pct_str} vs {prev_date}</span>'
-        )
-    else:
-        chg_html = (
-            f'<span style="font-size:11px;color:{K_GREY};opacity:.5;margin-left:10px;">'
-            f'No 7-day comparison yet</span>'
-        )
-
-    st.markdown(f"""
-    <div style="background:{K_GREEN};border-radius:10px;padding:14px 20px;
-                margin-bottom:1rem;display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
-      <div>
-        <div style="font-size:11px;color:rgba(255,255,255,.75);font-weight:600;
-                    letter-spacing:.05em;text-transform:uppercase;">Live Hire — Weekly Revenue</div>
-        <div style="display:flex;align-items:baseline;gap:8px;margin-top:2px;">
-          <span style="font-size:28px;font-weight:800;color:white;">
-            £{rev:,.2f}
-          </span>
-          <span style="font-size:13px;color:rgba(255,255,255,.7);">/ week</span>
-          {chg_html}
-        </div>
-      </div>
-      <div style="margin-left:auto;text-align:right;">
-        <div style="font-size:10px;color:rgba(255,255,255,.6);">As at {rev_ts}</div>
-      </div>
-    </div>
-    """, unsafe_allow_html=True)
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
 def week_unit_summary(ws):
@@ -1923,7 +1808,7 @@ def render_week_bar(on_u, off_u, on_total, off_total, internal_assets, external_
     )
     # Right — asset totals + live hire revenue
     rev_html = ""
-    if lh_snapshot and lh_snapshot.get("latest"):
+    if False and lh_snapshot and lh_snapshot.get("latest"):
         rev   = lh_snapshot["latest"].get("revenue", 0)
         ts    = lh_snapshot["latest"].get("at", "")
         rev_html = (
