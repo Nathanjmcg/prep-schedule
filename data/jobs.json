@@ -8401,6 +8401,25 @@
         "notes": "MOVING OVER TO FENCED AREA",
         "added_by": "Peter",
         "timestamp": "16/07/2026 09:30"
+      },
+      {
+        "customer": "A Connolly",
+        "postcode": "M7 1WE",
+        "contract_number": "0000031738",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 2
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "16/07/2026 09:31"
       }
     ],
     "2026-07-23": [
