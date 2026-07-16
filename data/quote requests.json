@@ -1,5 +1,20 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "e10b3c88ba",
+      "customer_code": "AIN002",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-19",
+      "weeks": 2,
+      "site": "m46 9be",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "16/07/2026 21:17",
+      "status": "pending",
+      "quote_ref": "",
+      "detail": ""
+    }
+  ],
   "history": [
     {
       "id": "7e63ad825a",
