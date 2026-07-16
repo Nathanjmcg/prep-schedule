@@ -8366,6 +8366,49 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: KEEPMOAT HOMES, HALEGATE, WA8 8LY",
         "added_by": "MCS Auto",
         "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "OL2 7US",
+        "contract_number": "0000030821",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Napier street, Oldham, , OL2 7US",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 18:22"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "H H Smith & Sons Co Ltd",
+        "postcode": "BB2 3HH",
+        "contract_number": "0000031193",
+        "units": {
+          "24ft AV": 2,
+          "2+1": 1,
+          "10ft Store": 1,
+          "Steps": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: BLACKBURN HOSPITAL, TOWER VIEW, HASLINGDEN ROAD, BLACKBURN, BB2 3HH | Also on contract: 1x Staircase; 1x 1000G Eflluent Tank; 1x Chargeable Weekly Tank Empty; 1x Double Stack/ Erect Staircase; 1x Chargeable Fortnighlty Tank Empty",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 18:22",
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1,
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-07-23": [
@@ -9639,6 +9682,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Bradshaw Primary School, Ingham Lane, Halifax, HX2 9PF",
         "added_by": "MCS Auto",
         "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Leasium LTD",
+        "postcode": "WN5 0UU",
+        "contract_number": "0000029761",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: GM Fire & Rescue, Robin Park Road, Wigan, , WN5 0UU",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 18:22"
       }
     ],
     "2026-07-28": [
@@ -11118,6 +11178,23 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "16/07/2026 12:39"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Morris Homes (North) Ltd",
+        "postcode": "WA14 4EB",
+        "contract_number": "0000031694",
+        "units": {
+          "Solar Loo Single": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: EGERTON PARK, NORMAN ROAD, ALTRINCHAM, CHESHIRE, WA14 4EB | Also on contract: 53x - Solar Loo Heater Top Up; 53x - Initial Fuel Fill; 1x - Weekly Service",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 18:22"
       }
     ]
   },
