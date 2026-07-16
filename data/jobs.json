@@ -8210,25 +8210,6 @@
         "timestamp": "13/07/2026 08:21"
       },
       {
-        "customer": "duchy homes",
-        "postcode": "M24 4PE",
-        "contract_number": "0000031220",
-        "type": "Off Hire",
-        "site_move_type": "",
-        "units": {
-          "Tank": 1
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Peter",
-        "timestamp": "14/07/2026 13:02"
-      },
-      {
         "customer": "greenmount",
         "postcode": "M40 7QD",
         "contract_number": "0000031710",
@@ -10713,6 +10694,28 @@
         "notes": "Both stores fully racked",
         "added_by": "Peter",
         "timestamp": "14/07/2026 13:00",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-20",
+        "edited_at": "16/07/2026 12:46"
+      },
+      {
+        "customer": "duchy homes",
+        "postcode": "M24 4PE",
+        "contract_number": "0000031220",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Tank": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "14/07/2026 13:02",
         "moved_by": "\u2014",
         "moved_from": "2026-07-20",
         "edited_at": "16/07/2026 12:46"
