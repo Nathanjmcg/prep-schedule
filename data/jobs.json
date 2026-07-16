@@ -9944,6 +9944,23 @@
         "timestamp": "02/07/2026 08:26",
         "edited_by": "Peter",
         "edited_at": "08/07/2026 14:56"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Think Hire  Ltd",
+        "postcode": "M45 7TR",
+        "contract_number": "0000031662",
+        "units": {
+          "24ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: -, -, M45 7TR",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:18"
       }
     ],
     "2026-07-08": [
