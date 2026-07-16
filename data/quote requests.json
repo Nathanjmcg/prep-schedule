@@ -1,0 +1,18 @@
+{
+  "requests": [
+    {
+      "id": "7e63ad825a",
+      "customer_code": "AIN002",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-26",
+      "weeks": 2,
+      "site": "M46 9BE",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "16/07/2026 21:09",
+      "status": "pending",
+      "quote_ref": "",
+      "detail": ""
+    }
+  ]
+}
