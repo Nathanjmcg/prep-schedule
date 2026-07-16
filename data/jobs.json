@@ -8082,6 +8082,36 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "16/07/2026 10:13"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Weston Angling Club",
+        "postcode": "WA7 1GD",
+        "contract_number": "0000031731",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Sandymoor Pool, Rudheath Ln, Sandymoor, WA7 1GD | Also on contract: 1x Chargeable One Off Tank Empty - 17/07",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Chandos Civil Engineering Ltd",
+        "postcode": "OL2 7EQ",
+        "contract_number": "0000031735",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Miller Homes, Briars View, Oldham, OL2 7EQ",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
       }
     ],
     "2026-07-20": [
@@ -8287,6 +8317,55 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "16/07/2026 09:31"
+      },
+      {
+        "type": "On Hire",
+        "customer": "F Parkinson Ltd",
+        "postcode": "PR4 0NY",
+        "contract_number": "0000031727",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Cottam primary school, haydocks lane, cottam-, PR4 0NY",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Holmpatrick Developments",
+        "postcode": "LA1 3JJ",
+        "contract_number": "0000031734",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: -Newlands road Lancaster LA1 3jj just before the junction of, ///retrain.grapevine.caused, LA1 3JJ",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Chandos Civil Engineering Ltd",
+        "postcode": "WA8 8LY",
+        "contract_number": "0000031701",
+        "units": {
+          "Static Welfare": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: KEEPMOAT HOMES, HALEGATE, WA8 8LY",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
       }
     ],
     "2026-07-23": [
@@ -8355,6 +8434,38 @@
         "notes": "10FT STORE WITH RACKING AND ELECTRIC",
         "added_by": "Peter",
         "timestamp": "16/07/2026 10:27"
+      },
+      {
+        "type": "On Hire",
+        "customer": "AIS Vanguard Ltd",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031676",
+        "units": {
+          "Generator": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: GRINSOME ROAD, INCE, CH2 4LB | Also on contract: 10x 32amp PLUG; 1x 6WAY Dist Board; 1x 60KVA Battery Packs; 2x 125 AMP three phase Ext Lead",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "On Hire",
+        "customer": "J&J Design Ltd",
+        "postcode": "CH5 2LW",
+        "contract_number": "0000031726",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Shotton Mill, Weighbridge Road, Deeside, CH5 2LW",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
       }
     ],
     "2026-06-26": [
@@ -9496,6 +9607,38 @@
         "notes": "20FT CANTEEN/DRY-70/30 - 20FT OFFICE TO HAVE SINK",
         "added_by": "Peter",
         "timestamp": "16/07/2026 12:17"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Termrim Construction Ltd",
+        "postcode": "LS29 6AR",
+        "contract_number": "0000031714",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Moor Lane, Menston, Ilkley, LS29 6AR",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Exact Property Services Ltd",
+        "postcode": "HX2 9PF",
+        "contract_number": "0000031759",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Bradshaw Primary School, Ingham Lane, Halifax, HX2 9PF",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
       }
     ],
     "2026-07-28": [
@@ -10165,6 +10308,71 @@
         "moved_by": "\u2014",
         "moved_from": "2026-07-17",
         "edited_at": "16/07/2026 07:05"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "BD6 2AS",
+        "contract_number": "0000031758",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Stoned area facing 29 collingham ave, Bradford, BD6 2AS | Also on contract: 1x 30kva 12x8ft Container Gen - Unlimited; 1x 415v 125amp 5mtr BSU Charge Lead; 1x 3 Way 32AMP 230V Distribution Box; 3x 32amp 230v 20mtr Plug",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "On Hire",
+        "customer": "PAS (NW) Ltd",
+        "postcode": "WA2 9HF",
+        "contract_number": "0000031736",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: VISTRY, PEEL HALL, M&N., POPLARS AVENUE, OPP BRATHWAY CLOSE, WA2 9HF | Also on contract: 1x 24ft Solar Welfare - Reactive",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Rowland Homes Ltd",
+        "postcode": "PR7 6JL",
+        "contract_number": "0000031760",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Jubilee Garden, Euxton, PR7 6JL",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Wright Build Ltd",
+        "postcode": "BB5 4SA",
+        "contract_number": "0000031691",
+        "units": {
+          "20ft Store": 1,
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Buckingham Grove, Compound is to be located on the largest car park, Church, Accrington, BB5 4SA | Also on contract: 1x Move of 12ftboss unit and 20ft store to New Site from Mendip",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
       }
     ],
     "2026-07-16": [
@@ -10323,6 +10531,21 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "16/07/2026 10:12"
+      },
+      {
+        "type": "On Hire",
+        "customer": "H H Smith & Sons  Co Ltd",
+        "postcode": "M24 6XH",
+        "contract_number": "0000031732",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Hopwood Hall College, Middleton, M24 6XH | Also on contract: 1x Chargeable One Off Tank Empty - 2000galon",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
       }
     ],
     "2026-07-22": [
@@ -10661,6 +10884,36 @@
         "moved_by": "\u2014",
         "moved_from": "2026-07-20",
         "edited_at": "16/07/2026 12:46"
+      },
+      {
+        "type": "On Hire",
+        "customer": "BDW Trading Limited, Northwest Division",
+        "postcode": "WA4 6NH",
+        "contract_number": "0000031762",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Keckwick Park Site, Daresbury, WA4 6NH",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "On Hire",
+        "customer": "AIS Vanguard Ltd",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031654",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Grinsome Road, Ince, CH2 4LB | Also on contract: 1x cctv up to 4 hd cameras supplied and fitted; 1x flood light 100 watt",
+        "added_by": "MCS Auto",
+        "timestamp": "16/07/2026 15:04"
       }
     ],
     "2026-07-10": [
