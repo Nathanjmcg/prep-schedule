@@ -103,9 +103,28 @@ def load_data():
             data.get("checklist", {}), data.get("live_hire", {}),
             data.get("materials", {}), data.get("materials_totals", {}), sha)
 
+def _job_identity(j):
+    """Identity used to spot the same job in two copies of the data."""
+    return (str(j.get("contract_number") or "").strip(),
+            j.get("type", ""), j.get("customer", ""), j.get("postcode", ""))
+
+_MERGE_WINDOW_MIN = 10
+
+def _recently_created(j):
+    """True if the job was created within the merge window."""
+    try:
+        ts = datetime.strptime(j.get("timestamp", ""), "%d/%m/%Y %H:%M")
+        return datetime.now() - ts <= timedelta(minutes=_MERGE_WINDOW_MIN)
+    except Exception:
+        return False
+
 def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None,
               cl_dict=None, lh_dict=None, mat_dict=None, matt_dict=None, _sha_hint=None):
-    """Fetch latest SHA immediately before writing. Retries once on 409."""
+    """Fetch latest data immediately before writing and merge in any jobs
+    created remotely in the last few minutes that this session has not seen
+    (e.g. by the MCS auto-add script or another user). Prevents a save from
+    a slightly stale session silently wiping fresh additions, while still
+    honouring deletions of anything older. Retries on write conflicts."""
     payload_obj = {
         "jobs":          jobs_dict,
         "mcs":           mcs_dict,
@@ -118,7 +137,15 @@ def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None,
     }
     st.cache_data.clear()
     for attempt in range(3):
-        _, fresh_sha = gh_get(DATA_FILE)
+        fresh_obj, fresh_sha = gh_get(DATA_FILE)
+        if fresh_obj:
+            local_jobs = payload_obj["jobs"]
+            for dkey, remote_list in (fresh_obj.get("jobs") or {}).items():
+                local_keys = {_job_identity(x) for x in local_jobs.get(dkey, [])}
+                for rj in remote_list or []:
+                    if _job_identity(rj) not in local_keys and _recently_created(rj):
+                        local_jobs.setdefault(dkey, []).append(rj)
+                        local_keys.add(_job_identity(rj))
         try:
             gh_put(DATA_FILE, payload_obj, sha=fresh_sha)
             return
