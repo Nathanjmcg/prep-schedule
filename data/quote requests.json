@@ -1,20 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "b0ecd814d5",
-      "customer_code": "AINSCOUGH ENVIRONMENTAL",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-19",
-      "weeks": 2,
-      "site": "m46 9be",
-      "notes": "",
-      "requested_by": "Nathan",
-      "requested_at": "16/07/2026 21:19",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "7e63ad825a",
@@ -60,6 +45,21 @@
       "quote_ref": "",
       "detail": "Customer 'AIN002' not found in MCS (top match was 'No results found')",
       "processed_at": "16/07/2026 22:18"
+    },
+    {
+      "id": "b0ecd814d5",
+      "customer_code": "AINSCOUGH ENVIRONMENTAL",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-19",
+      "weeks": 2,
+      "site": "m46 9be",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "16/07/2026 21:19",
+      "status": "failed",
+      "quote_ref": "",
+      "detail": "Could not open the QuickQuote modal. Tried menu click then: ['#new-quote', '.quickquote .action-button']",
+      "processed_at": "16/07/2026 22:19"
     }
   ]
 }
