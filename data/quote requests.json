@@ -1,5 +1,6 @@
 {
-  "requests": [
+  "requests": [],
+  "history": [
     {
       "id": "7e63ad825a",
       "customer_code": "AIN002",
@@ -10,9 +11,10 @@
       "notes": "",
       "requested_by": "Nathan",
       "requested_at": "16/07/2026 21:09",
-      "status": "pending",
+      "status": "failed",
       "quote_ref": "",
-      "detail": ""
+      "detail": "Could not find element for step 'new_quote_button'. Tried: ['#new-quote', '.quickquote .action-button']",
+      "processed_at": "16/07/2026 22:13"
     },
     {
       "id": "0b5ae32a71",
@@ -24,9 +26,10 @@
       "notes": "",
       "requested_by": "Nathan",
       "requested_at": "16/07/2026 21:10",
-      "status": "pending",
+      "status": "failed",
       "quote_ref": "",
-      "detail": ""
+      "detail": "Could not find element for step 'new_quote_button'. Tried: ['#new-quote', '.quickquote .action-button']",
+      "processed_at": "16/07/2026 22:13"
     }
   ]
 }
