@@ -1,20 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "a78d82a440",
-      "customer_code": "AINSCOUGH ENVIRONMENTAL",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-19",
-      "weeks": 2,
-      "site": "m46 9be",
-      "notes": "",
-      "requested_by": "Nathan",
-      "requested_at": "17/07/2026 08:17",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "7e63ad825a",
@@ -120,6 +105,21 @@
       "quote_ref": "",
       "detail": "Create returned 500. Session id used: 3006. Server said: Error | RM-web \r\n\r\n\r\n     \r\n\r\n    \r\n     \r\n \r\n \r\n \r\n\r\n \r\n\r\n \r\n\r\n \r\n\r\n \r\n    #divModalLoader {\r\n        position: absolute;\r\n        top: 50%;\r\n",
       "processed_at": "17/07/2026 09:02"
+    },
+    {
+      "id": "a78d82a440",
+      "customer_code": "AINSCOUGH ENVIRONMENTAL",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-19",
+      "weeks": 2,
+      "site": "m46 9be",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "17/07/2026 08:17",
+      "status": "done",
+      "quote_ref": "01-001118",
+      "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
+      "processed_at": "17/07/2026 09:17"
     }
   ]
 }
