@@ -1595,6 +1595,30 @@ with st.expander("📨 Request a Quote (auto-created in MCS, emailed to Enquirie
     qr_data, qr_sha = gh_get(QUOTE_REQ_FILE)
     qr_data = qr_data or {"requests": []}
 
+    # Auto-clear: completed log entries older than 10 minutes drop off on
+    # their own so the log stays tidy (the page refreshes every 30s, so
+    # done items disappear ~10 min after the worker finishes them). Failed
+    # entries are kept so they are not missed; use Clear log to remove them.
+    def _qr_older_than(entry, minutes):
+        try:
+            ts = datetime.strptime(entry.get("processed_at", ""),
+                                   "%d/%m/%Y %H:%M")
+            return datetime.now() - ts > timedelta(minutes=minutes)
+        except Exception:
+            return False
+
+    _hist = qr_data.get("history", [])
+    _kept = [h for h in _hist
+             if not (h.get("status") == "done" and _qr_older_than(h, 10))]
+    if len(_kept) != len(_hist):
+        qr_data["history"] = _kept
+        try:
+            _, _fresh_sha = gh_get(QUOTE_REQ_FILE)
+            gh_put(QUOTE_REQ_FILE, qr_data, sha=_fresh_sha,
+                   msg="Auto-clear quote log")
+        except Exception:
+            pass  # a transient write clash just retries on the next refresh
+
     qc1, qc2, qc3 = st.columns(3)
     with qc1:
         qr_cust = st.text_input("Customer account code (existing customers only)",
@@ -1654,6 +1678,21 @@ with st.expander("📨 Request a Quote (auto-created in MCS, emailed to Enquirie
                 line += f" · {r['detail'][:60]}"
             st.markdown(f"<div style='font-size:12px;'>{line}</div>",
                         unsafe_allow_html=True)
+
+    if st.button("Clear log", key="qr_clear",
+                 help="Removes all completed and failed entries now. "
+                      "Pending requests waiting to be created are kept."):
+        qr_data["history"] = []
+        qr_data["requests"] = [r for r in qr_data.get("requests", [])
+                               if r.get("status") == "pending"]
+        try:
+            _, _clr_sha = gh_get(QUOTE_REQ_FILE)
+            gh_put(QUOTE_REQ_FILE, qr_data, sha=_clr_sha,
+                   msg="Quote log cleared")
+            st.success("Quote request log cleared.")
+        except Exception:
+            st.error("Could not clear the log just now, please try again.")
+        st.rerun()
 
 # ── NAV ROW ───────────────────────────────────────────────────────────────────
 n1, n2, n3, n4, n5 = st.columns([1.2, 0.8, 1.2, 0.8, 3])
