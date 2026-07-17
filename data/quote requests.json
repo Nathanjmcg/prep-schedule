@@ -1,48 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "6655305296",
-      "customer_code": "AINSCOUGH ENVIRONMENTAL",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-22",
-      "weeks": 2,
-      "site": "M46 9BE",
-      "notes": "",
-      "requested_by": "Nathan",
-      "requested_at": "17/07/2026 08:41",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    },
-    {
-      "id": "6df4bf26c9",
-      "customer_code": "AINSCOUGH ENVIRONMENTAL",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-22",
-      "weeks": 2,
-      "site": "M46 9BE",
-      "notes": "",
-      "requested_by": "Nathan",
-      "requested_at": "17/07/2026 08:41",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    },
-    {
-      "id": "f959ad855a",
-      "customer_code": "AINSCOUGH ENVIRONMENTAL",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-22",
-      "weeks": 2,
-      "site": "M46 9BE",
-      "notes": "",
-      "requested_by": "Nathan",
-      "requested_at": "17/07/2026 08:41",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "7e63ad825a",
@@ -223,6 +180,51 @@
       "quote_ref": "01-001123",
       "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
       "processed_at": "17/07/2026 09:40"
+    },
+    {
+      "id": "6655305296",
+      "customer_code": "AINSCOUGH ENVIRONMENTAL",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-22",
+      "weeks": 2,
+      "site": "M46 9BE",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "17/07/2026 08:41",
+      "status": "done",
+      "quote_ref": "01-001124",
+      "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
+      "processed_at": "17/07/2026 09:42"
+    },
+    {
+      "id": "6df4bf26c9",
+      "customer_code": "AINSCOUGH ENVIRONMENTAL",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-22",
+      "weeks": 2,
+      "site": "M46 9BE",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "17/07/2026 08:41",
+      "status": "done",
+      "quote_ref": "01-001125",
+      "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
+      "processed_at": "17/07/2026 09:42"
+    },
+    {
+      "id": "f959ad855a",
+      "customer_code": "AINSCOUGH ENVIRONMENTAL",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-22",
+      "weeks": 2,
+      "site": "M46 9BE",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "17/07/2026 08:41",
+      "status": "done",
+      "quote_ref": "01-001126",
+      "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
+      "processed_at": "17/07/2026 09:42"
     }
   ]
 }
