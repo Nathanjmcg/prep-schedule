@@ -8112,6 +8112,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Miller Homes, Briars View, Oldham, OL2 7EQ",
         "added_by": "MCS Auto",
         "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "BL1 2HD",
+        "contract_number": "0000031558",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Benjamin Court, Slater Street, Bolton, , BL1 2HD | Also on contract: 1x Event Toilet",
+        "added_by": "MCS Auto",
+        "timestamp": "17/07/2026 10:05"
       }
     ],
     "2026-07-20": [
@@ -8409,6 +8424,21 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Premier Building Supplies Ltd",
+        "postcode": "SK8 6HX",
+        "contract_number": "0000031068",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Embley ltd, Land ADJ TO 90 HEATHBANK, CHEADLE HULME, STOCKPORT, SK8 6HX | Also on contract: 1x 110V Hot Wash",
+        "added_by": "MCS Auto",
+        "timestamp": "17/07/2026 10:05"
       }
     ],
     "2026-07-23": [
