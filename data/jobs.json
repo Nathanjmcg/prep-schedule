@@ -8424,6 +8424,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Embley ltd, Land ADJ TO 90 HEATHBANK, CHEADLE HULME, STOCKPORT, SK8 6HX | Also on contract: 1x 110V Hot Wash",
         "added_by": "MCS Auto",
         "timestamp": "17/07/2026 10:05"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "WN5 9RG",
+        "contract_number": "0000031763",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: 2 Logwood Ave, Wigan, WN5 9RG",
+        "added_by": "MCS Auto",
+        "timestamp": "17/07/2026 10:15"
       }
     ],
     "2026-07-23": [
