@@ -31,21 +31,6 @@
   ],
   "history": [
     {
-      "id": "e3b4256acc",
-      "customer_code": "A CONNOLY",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-22",
-      "weeks": 2,
-      "site": "BL1 2HG",
-      "notes": "",
-      "requested_by": "nathan",
-      "requested_at": "17/07/2026 09:14",
-      "status": "done",
-      "quote_ref": "01-001127",
-      "detail": "Emailed to nathan.mcguinness@kensite.co.uk (fuzzy match 67%: A Connolly Limited - ACONN001)",
-      "processed_at": "17/07/2026 10:14"
-    },
-    {
       "id": "5bdcfad6ab",
       "customer_code": "THINK HIRE",
       "offer_code": "MOBILEOFFER",
