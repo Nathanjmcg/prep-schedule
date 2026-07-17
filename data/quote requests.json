@@ -1,20 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "7ea416bc70",
-      "customer_code": "AINSCOUGH ENVIRONMENTAL",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-19",
-      "weeks": 2,
-      "site": "m46 9be",
-      "notes": "",
-      "requested_by": "Nathan",
-      "requested_at": "17/07/2026 07:55",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "7e63ad825a",
@@ -75,6 +60,21 @@
       "quote_ref": "",
       "detail": "Could not open the QuickQuote modal. Tried menu click then: ['#new-quote', '.quickquote .action-button']",
       "processed_at": "16/07/2026 22:19"
+    },
+    {
+      "id": "7ea416bc70",
+      "customer_code": "AINSCOUGH ENVIRONMENTAL",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-19",
+      "weeks": 2,
+      "site": "m46 9be",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "17/07/2026 07:55",
+      "status": "failed",
+      "quote_ref": "",
+      "detail": "500 Server Error: Internal Server Error for url: https://kensite.rm.onmcs.com/QuickQuote/Create/",
+      "processed_at": "17/07/2026 08:55"
     }
   ]
 }
