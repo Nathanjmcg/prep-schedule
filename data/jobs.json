@@ -8441,6 +8441,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: 2 Logwood Ave, Wigan, WN5 9RG",
         "added_by": "MCS Auto",
         "timestamp": "17/07/2026 10:15"
+      },
+      {
+        "type": "On Hire",
+        "customer": "M Group NW Ltd",
+        "postcode": "L11 9DX",
+        "contract_number": "0000031766",
+        "units": {
+          "IBC": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Stonedale Crescent, Liverpool, L11 9DX | Also on contract: 1x One Off Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "17/07/2026 16:22"
       }
     ],
     "2026-07-23": [
@@ -10994,6 +11011,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Grinsome Road, Ince, CH2 4LB | Also on contract: 1x cctv up to 4 hd cameras supplied and fitted; 1x flood light 100 watt",
         "added_by": "MCS Auto",
         "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Links Contracting Services Ltd",
+        "postcode": "WN4 0SF",
+        "contract_number": "0000031765",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Garswood Primary School, Hamilton Rd, Garswood, Ashton-in-Makerfield,, Wigan, WN4 0SF | Also on contract: 56x - Initial Fuel Fill; 1x - Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "17/07/2026 16:22"
       }
     ],
     "2026-07-10": [
