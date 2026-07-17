@@ -29,21 +29,5 @@
       "detail": ""
     }
   ],
-  "history": [
-    {
-      "id": "4131fb2c76",
-      "customer_code": "A CONNOLLY",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-29",
-      "weeks": 2,
-      "site": "BL1 2HG",
-      "notes": "",
-      "requested_by": "jake",
-      "requested_at": "17/07/2026 09:43",
-      "status": "done",
-      "quote_ref": "01-001130",
-      "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
-      "processed_at": "17/07/2026 10:44"
-    }
-  ]
+  "history": []
 }
