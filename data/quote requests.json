@@ -1,4 +1,19 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "e3b4256acc",
+      "customer_code": "A CONNOLY",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-22",
+      "weeks": 2,
+      "site": "BL1 2HG",
+      "notes": "",
+      "requested_by": "nathan",
+      "requested_at": "17/07/2026 09:14",
+      "status": "pending",
+      "quote_ref": "",
+      "detail": ""
+    }
+  ],
   "history": []
 }
