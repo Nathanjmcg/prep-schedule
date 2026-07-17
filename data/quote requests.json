@@ -1,20 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "5bdcfad6ab",
-      "customer_code": "THINK HIRE",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-20",
-      "weeks": 4,
-      "site": "m28",
-      "notes": "",
-      "requested_by": "nick",
-      "requested_at": "17/07/2026 09:30",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "e3b4256acc",
@@ -30,6 +15,21 @@
       "quote_ref": "01-001127",
       "detail": "Emailed to nathan.mcguinness@kensite.co.uk (fuzzy match 67%: A Connolly Limited - ACONN001)",
       "processed_at": "17/07/2026 10:14"
+    },
+    {
+      "id": "5bdcfad6ab",
+      "customer_code": "THINK HIRE",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-20",
+      "weeks": 4,
+      "site": "m28",
+      "notes": "",
+      "requested_by": "nick",
+      "requested_at": "17/07/2026 09:30",
+      "status": "done",
+      "quote_ref": "01-001128",
+      "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
+      "processed_at": "17/07/2026 10:31"
     }
   ]
 }
