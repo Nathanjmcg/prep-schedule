@@ -1,20 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "8e1146f0d3",
-      "customer_code": "A CONNOLY",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-22",
-      "weeks": 2,
-      "site": "M46 9BE",
-      "notes": "",
-      "requested_by": "Nathan",
-      "requested_at": "17/07/2026 08:39",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "7e63ad825a",
@@ -165,6 +150,21 @@
       "quote_ref": "01-001121",
       "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
       "processed_at": "17/07/2026 09:37"
+    },
+    {
+      "id": "8e1146f0d3",
+      "customer_code": "A CONNOLY",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-22",
+      "weeks": 2,
+      "site": "M46 9BE",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "17/07/2026 08:39",
+      "status": "failed",
+      "quote_ref": "",
+      "detail": "Customer code 'A CONNOLY' not found in MCS",
+      "processed_at": "17/07/2026 09:39"
     }
   ]
 }
