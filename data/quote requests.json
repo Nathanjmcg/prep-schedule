@@ -1,5 +1,20 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "0e9c632da6",
+      "customer_code": "AINSCOUGH ENVIRONMENTAL",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-19",
+      "weeks": 2,
+      "site": "m46 9be",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "17/07/2026 08:02",
+      "status": "pending",
+      "quote_ref": "",
+      "detail": ""
+    }
+  ],
   "history": [
     {
       "id": "7e63ad825a",
