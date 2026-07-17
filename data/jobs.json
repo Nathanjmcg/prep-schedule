@@ -8112,6 +8112,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Benjamin Court, Slater Street, Bolton, , BL1 2HD | Also on contract: 1x Event Toilet",
         "added_by": "MCS Auto",
         "timestamp": "17/07/2026 10:05"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Chandos Civil Engineering Ltd",
+        "postcode": "OL2 7EQ",
+        "contract_number": "0000031735",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Miller Homes, Briars View, Oldham, OL2 7EQ",
+        "added_by": "MCS Auto",
+        "timestamp": "17/07/2026 10:10"
       }
     ],
     "2026-07-20": [
