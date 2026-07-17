@@ -31,21 +31,6 @@
   ],
   "history": [
     {
-      "id": "5bdcfad6ab",
-      "customer_code": "THINK HIRE",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-20",
-      "weeks": 4,
-      "site": "m28",
-      "notes": "",
-      "requested_by": "nick",
-      "requested_at": "17/07/2026 09:30",
-      "status": "done",
-      "quote_ref": "01-001128",
-      "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
-      "processed_at": "17/07/2026 10:31"
-    },
-    {
       "id": "4131fb2c76",
       "customer_code": "A CONNOLLY",
       "offer_code": "MOBILEOFFER",
