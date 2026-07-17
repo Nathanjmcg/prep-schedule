@@ -8441,6 +8441,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Stonedale Crescent, Liverpool, L11 9DX | Also on contract: 1x One Off Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "17/07/2026 16:22"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "OL2 5EL",
+        "contract_number": "0000031733",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: FENCED OFF AREA, NEAR 34 BIRCHINLEE AV, Oldham, OL2 5EL",
+        "added_by": "MCS Auto",
+        "timestamp": "17/07/2026 16:40"
       }
     ],
     "2026-07-23": [
@@ -11279,6 +11296,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: EGERTON PARK, NORMAN ROAD, ALTRINCHAM, CHESHIRE, WA14 4EB | Also on contract: 53x - Solar Loo Heater Top Up; 53x - Initial Fuel Fill; 1x - Weekly Service",
         "added_by": "MCS Auto",
         "timestamp": "16/07/2026 18:22"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "WN3 5XL",
+        "contract_number": "0000031500",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Car Park Mesnes AV, BAucher Road, WIGAN, , WN3 5XL | Also on contract: 1x Move of Unit 7284 from WN3 5TT site to Car Park Mesnes AV",
+        "added_by": "MCS Auto",
+        "timestamp": "17/07/2026 16:40"
       }
     ]
   },
