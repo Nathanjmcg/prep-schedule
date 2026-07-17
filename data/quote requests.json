@@ -1,20 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "f3c71675ce",
-      "customer_code": "AINSCOUGH ENVIRONMENTAL",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-19",
-      "weeks": 2,
-      "site": "m46 9be",
-      "notes": "",
-      "requested_by": "Nathan",
-      "requested_at": "17/07/2026 08:31",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "7e63ad825a",
@@ -135,6 +120,21 @@
       "quote_ref": "01-001118",
       "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
       "processed_at": "17/07/2026 09:17"
+    },
+    {
+      "id": "f3c71675ce",
+      "customer_code": "AINSCOUGH ENVIRONMENTAL",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-19",
+      "weeks": 2,
+      "site": "m46 9be",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "17/07/2026 08:31",
+      "status": "failed",
+      "quote_ref": "",
+      "detail": "Locator.click: Timeout 25000ms exceeded.\nCall log:\n  - waiting for locator(\"a.e-mail.primary-button\").first\n",
+      "processed_at": "17/07/2026 09:33"
     }
   ]
 }
