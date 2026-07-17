@@ -1,20 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "7187662725",
-      "customer_code": "AINSCOUGH ENVIRONMENTAL",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-19",
-      "weeks": 2,
-      "site": "m46 9be",
-      "notes": "",
-      "requested_by": "Nathan",
-      "requested_at": "17/07/2026 07:57",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "7e63ad825a",
@@ -90,6 +75,21 @@
       "quote_ref": "",
       "detail": "500 Server Error: Internal Server Error for url: https://kensite.rm.onmcs.com/QuickQuote/Create/",
       "processed_at": "17/07/2026 08:55"
+    },
+    {
+      "id": "7187662725",
+      "customer_code": "AINSCOUGH ENVIRONMENTAL",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-19",
+      "weeks": 2,
+      "site": "m46 9be",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "17/07/2026 07:57",
+      "status": "failed",
+      "quote_ref": "",
+      "detail": "Create returned 500. Session id used: none. Server said: Error | RM-web \r\n\r\n\r\n     \r\n\r\n    \r\n     \r\n \r\n \r\n \r\n\r\n \r\n\r\n \r\n\r\n \r\n\r\n \r\n    #divModalLoader {\r\n        position: absolute;\r\n        top: 50%;\r\n",
+      "processed_at": "17/07/2026 08:57"
     }
   ]
 }
