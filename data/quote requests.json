@@ -1,20 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "6962b0d49e",
-      "customer_code": "AINSCOUGH ENVIRONMENTAL",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-07-22",
-      "weeks": 2,
-      "site": "M46 9BE",
-      "notes": "",
-      "requested_by": "Nathan",
-      "requested_at": "17/07/2026 08:40",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "7e63ad825a",
@@ -180,6 +165,21 @@
       "quote_ref": "",
       "detail": "Customer code 'A CONNOLY' not found in MCS",
       "processed_at": "17/07/2026 09:39"
+    },
+    {
+      "id": "6962b0d49e",
+      "customer_code": "AINSCOUGH ENVIRONMENTAL",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-07-22",
+      "weeks": 2,
+      "site": "M46 9BE",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "17/07/2026 08:40",
+      "status": "done",
+      "quote_ref": "01-001123",
+      "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
+      "processed_at": "17/07/2026 09:40"
     }
   ]
 }
