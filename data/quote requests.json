@@ -1,5 +1,6 @@
 {
-  "requests": [
+  "requests": [],
+  "history": [
     {
       "id": "e3b4256acc",
       "customer_code": "A CONNOLY",
@@ -10,10 +11,10 @@
       "notes": "",
       "requested_by": "nathan",
       "requested_at": "17/07/2026 09:14",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
+      "status": "done",
+      "quote_ref": "01-001127",
+      "detail": "Emailed to nathan.mcguinness@kensite.co.uk (fuzzy match 67%: A Connolly Limited - ACONN001)",
+      "processed_at": "17/07/2026 10:14"
     }
-  ],
-  "history": []
+  ]
 }
