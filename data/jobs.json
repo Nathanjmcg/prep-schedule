@@ -10028,6 +10028,34 @@
         "moved_by": "\u2014",
         "moved_from": "2026-07-22",
         "edited_at": "20/07/2026 07:08"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Manchester and Cheshire construction Company Ltd",
+        "postcode": "",
+        "contract_number": "0000031770",
+        "units": {
+          "3+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1,
+          "20ft Store": 1,
+          "20ft AV": 1,
+          "32ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Pump; 1x Initial Water Fill; 1x Weekly Water Fill; 1x Chargeable Weekly Tank Empty; 1x Disposable Sanitary Bins. Pk10",
+        "added_by": "MCS Auto",
+        "timestamp": "20/07/2026 11:14",
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-07-28": [
@@ -11191,6 +11219,32 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Car Park Mesnes AV, BAucher Road, WIGAN, , WN3 5XL | Also on contract: 1x Move of Unit 7284 from WN3 5TT site to Car Park Mesnes AV",
         "added_by": "MCS Auto",
         "timestamp": "17/07/2026 16:40"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Total UK Rentals Ltd",
+        "postcode": "",
+        "contract_number": "0000031769",
+        "units": {
+          "20ft Store": 1,
+          "20ft AV": 1,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "20/07/2026 11:14",
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ]
   },
