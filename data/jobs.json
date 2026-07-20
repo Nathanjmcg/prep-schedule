@@ -9520,35 +9520,6 @@
     ],
     "2026-07-24": [
       {
-        "customer": "F PARKINSON",
-        "postcode": "FY6 7HE",
-        "contract_number": "0000031643",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "32ft AV": 1,
-          "24ft AV": 2,
-          "20ft Store": 1
-        },
-        "av_configs": {
-          "32ft AV": {
-            "Other": 1
-          },
-          "24ft AV": {
-            "Canteen": 1,
-            "Office": 1
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "32FT -  3+1/DRY",
-        "added_by": "Peter",
-        "timestamp": "01/07/2026 15:37"
-      },
-      {
         "customer": "Manchester and Cheshire",
         "postcode": "SK7 1RA",
         "contract_number": "0000031698",
