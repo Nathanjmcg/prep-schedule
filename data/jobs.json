@@ -8313,21 +8313,6 @@
         "timestamp": "16/07/2026 15:04"
       },
       {
-        "type": "On Hire",
-        "customer": "Holmpatrick Developments",
-        "postcode": "LA1 3JJ",
-        "contract_number": "0000031734",
-        "units": {},
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Site: -Newlands road Lancaster LA1 3jj just before the junction of, ///retrain.grapevine.caused, LA1 3JJ",
-        "added_by": "MCS Auto",
-        "timestamp": "16/07/2026 15:04"
-      },
-      {
         "type": "Off Hire",
         "customer": "A Connolly Limited",
         "postcode": "OL2 7US",
