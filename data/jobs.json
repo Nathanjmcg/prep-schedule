@@ -8560,21 +8560,27 @@
         "timestamp": "16/07/2026 15:04"
       },
       {
-        "type": "Off Hire",
         "customer": "J&J Design Ltd",
         "postcode": "CH5 2LW",
         "contract_number": "0000030027",
+        "type": "Off Hire",
+        "site_move_type": "",
         "units": {
           "20ft Store": 1
         },
+        "av_configs": {},
+        "install_dismantle": false,
         "haulage": "None",
         "haulage_who": "",
-        "livery": "",
+        "livery": "Standard Livery",
         "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Site: Shotton Mill, Weighbridge Road, Deeside, , CH5 2LW",
+        "notes": "20ft store to be half racked",
         "added_by": "MCS Auto",
-        "timestamp": "20/07/2026 09:32"
+        "timestamp": "20/07/2026 09:32",
+        "notes_edited_by": "Peter",
+        "notes_edited_at": "20/07/2026 10:08",
+        "edited_by": "Peter",
+        "edited_at": "20/07/2026 10:08"
       }
     ],
     "2026-06-26": [
