@@ -10028,34 +10028,6 @@
         "moved_by": "\u2014",
         "moved_from": "2026-07-22",
         "edited_at": "20/07/2026 07:08"
-      },
-      {
-        "type": "On Hire",
-        "customer": "Manchester and Cheshire construction Company Ltd",
-        "postcode": "",
-        "contract_number": "0000031770",
-        "units": {
-          "3+1": 1,
-          "Tank": 1,
-          "Steps": 2,
-          "IBC": 1,
-          "20ft Store": 1,
-          "20ft AV": 1,
-          "32ft AV": 1
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Pump; 1x Initial Water Fill; 1x Weekly Water Fill; 1x Chargeable Weekly Tank Empty; 1x Disposable Sanitary Bins. Pk10",
-        "added_by": "MCS Auto",
-        "timestamp": "20/07/2026 11:14",
-        "av_configs": {
-          "32ft AV": {
-            "Canteen": 1
-          }
-        }
       }
     ],
     "2026-07-28": [
@@ -11245,6 +11217,35 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "On Hire",
+        "customer": "Manchester and Cheshire construction Company Ltd",
+        "postcode": "",
+        "contract_number": "0000031770",
+        "units": {
+          "3+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1,
+          "20ft Store": 1,
+          "20ft AV": 1,
+          "32ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Pump; 1x Initial Water Fill; 1x Weekly Water Fill; 1x Chargeable Weekly Tank Empty; 1x Disposable Sanitary Bins. Pk10 | Date moved by MCS Auto from 27/07/2026 to 29/07/2026 on 20/07/2026 11:21",
+        "added_by": "MCS Auto",
+        "timestamp": "20/07/2026 11:21",
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1
+          }
+        },
+        "date_moved_by": "MCS Auto"
       }
     ]
   },
