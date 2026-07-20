@@ -8588,6 +8588,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Shotton Mill, Weighbridge Road, Deeside, CH5 2LW",
         "added_by": "MCS Auto",
         "timestamp": "16/07/2026 15:04"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "J&J Design Ltd",
+        "postcode": "CH5 2LW",
+        "contract_number": "0000030027",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Shotton Mill, Weighbridge Road, Deeside, , CH5 2LW",
+        "added_by": "MCS Auto",
+        "timestamp": "20/07/2026 09:32"
       }
     ],
     "2026-06-26": [
@@ -10969,6 +10986,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Garswood Primary School, Hamilton Rd, Garswood, Ashton-in-Makerfield,, Wigan, WN4 0SF | Also on contract: 56x - Initial Fuel Fill; 1x - Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "17/07/2026 16:22"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Proservice Building Services Marketplace Plc",
+        "postcode": "",
+        "contract_number": "0000031767",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "20/07/2026 09:32"
       }
     ],
     "2026-07-10": [
