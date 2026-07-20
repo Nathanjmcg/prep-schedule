@@ -10995,28 +10995,6 @@
         "timestamp": "16/07/2026 12:30"
       },
       {
-        "customer": "CBG Construction",
-        "postcode": "L20 3HZ",
-        "contract_number": "0000030739",
-        "type": "Off Hire",
-        "site_move_type": "",
-        "units": {
-          "20ft Store": 1
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Peter",
-        "timestamp": "03/07/2026 08:17",
-        "moved_by": "\u2014",
-        "moved_from": "2026-07-17",
-        "edited_at": "16/07/2026 12:43"
-      },
-      {
         "customer": "M GROUP",
         "postcode": "WA7 2PQ",
         "contract_number": "0000031621",
