@@ -1,5 +1,6 @@
 {
-  "requests": [
+  "requests": [],
+  "history": [
     {
       "id": "406870f736",
       "customer_code": "THINK HIRE",
@@ -10,9 +11,10 @@
       "notes": "",
       "requested_by": "jake",
       "requested_at": "17/07/2026 09:45",
-      "status": "pending",
+      "status": "failed",
       "quote_ref": "",
-      "detail": ""
+      "detail": "500 Server Error: Internal Server Error for url: https://kensite.rm.onmcs.com/QuickQuote/Details",
+      "processed_at": "20/07/2026 11:25"
     },
     {
       "id": "e749e1d3ed",
@@ -24,10 +26,10 @@
       "notes": "",
       "requested_by": "jake",
       "requested_at": "17/07/2026 09:45",
-      "status": "pending",
+      "status": "failed",
       "quote_ref": "",
-      "detail": ""
+      "detail": "500 Server Error: Internal Server Error for url: https://kensite.rm.onmcs.com/QuickQuote/Details",
+      "processed_at": "20/07/2026 11:25"
     }
-  ],
-  "history": []
+  ]
 }
