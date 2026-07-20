@@ -9742,21 +9742,6 @@
       },
       {
         "type": "On Hire",
-        "customer": "Termrim Construction Ltd",
-        "postcode": "LS29 6AR",
-        "contract_number": "0000031714",
-        "units": {},
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Site: Moor Lane, Menston, Ilkley, LS29 6AR",
-        "added_by": "MCS Auto",
-        "timestamp": "16/07/2026 15:04"
-      },
-      {
-        "type": "On Hire",
         "customer": "Exact Property Services Ltd",
         "postcode": "HX2 9PF",
         "contract_number": "0000031759",
