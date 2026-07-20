@@ -9678,6 +9678,23 @@
         "timestamp": "17/07/2026 16:22",
         "edited_by": "Peter",
         "edited_at": "20/07/2026 09:12"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "David Aspinall Building Contractor Ltd",
+        "postcode": "WA12 9JQ",
+        "contract_number": "0000031442",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Harrison Way, newton le willows, COMMON ROAD, , WA12 9JQ",
+        "added_by": "MCS Auto",
+        "timestamp": "20/07/2026 13:52"
       }
     ],
     "2026-07-27": [
