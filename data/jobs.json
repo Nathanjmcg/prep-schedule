@@ -8553,25 +8553,6 @@
         "timestamp": "17/06/2026 10:28"
       },
       {
-        "customer": "J J DESIGN",
-        "postcode": "CH5 2LW",
-        "contract_number": "0000030027",
-        "type": "Off Hire",
-        "site_move_type": "",
-        "units": {
-          "20ft Store": 1
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "20FT STORE TO BE 1/2 RACKED",
-        "added_by": "Peter",
-        "timestamp": "13/07/2026 10:50"
-      },
-      {
         "customer": "think hire",
         "postcode": "HD3 3RS",
         "contract_number": "0000031757",
