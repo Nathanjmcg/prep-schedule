@@ -11284,7 +11284,25 @@
         "date_moved_by": "MCS Auto"
       }
     ],
-    "2026-08-03": []
+    "2026-08-03": [
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000031776",
+        "units": {
+          "20ft Store": 3
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 22FT Towable Wlefare Unit",
+        "added_by": "MCS Auto",
+        "timestamp": "21/07/2026 18:58"
+      }
+    ]
   },
   "mcs": {
     "2026-03-19_1": "picked",
