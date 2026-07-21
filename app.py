@@ -1587,6 +1587,110 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+# ── LIVE HIRE REPORTS ─────────────────────────────────────────────────────────
+# Version 1.0
+LIVE_HIRE_REQ_FILE = "data/live hire report requests.json"
+
+# Names only - the worker on Nathan's machine maps these to email
+# addresses locally, so no addresses are stored in this public repo.
+# Must match the worker's PEOPLE list exactly.
+LIVE_HIRE_USERS = [
+    "Nathan McGuinness", "Chris Murdoch", "Jason Wiltshire",
+    "Claire Simmons", "Chloe Ainscough", "Nick Arnold",
+    "Joanne Dowling", "Ewa Roicka-Drake", "Lee McConville (AES)",
+]
+
+with st.expander("📊 Live Hire Report (runs in MCS, emailed to you as PDF and Excel)"):
+    lh_data, lh_sha = gh_get(LIVE_HIRE_REQ_FILE)
+    lh_data = lh_data or {"requests": []}
+
+    # Auto-clear: completed log entries older than 10 minutes drop off so
+    # the log stays tidy. Failed entries are kept until cleared.
+    def _lh_older_than(entry, minutes):
+        try:
+            ts = datetime.strptime(entry.get("processed_at", ""),
+                                   "%d/%m/%Y %H:%M")
+            return datetime.now() - ts > timedelta(minutes=minutes)
+        except Exception:
+            return False
+
+    _lh_hist = lh_data.get("history", [])
+    _lh_kept = [h for h in _lh_hist
+                if not (h.get("status") == "done" and _lh_older_than(h, 10))]
+    if len(_lh_kept) != len(_lh_hist):
+        lh_data["history"] = _lh_kept
+        try:
+            _, _lh_fresh_sha = gh_get(LIVE_HIRE_REQ_FILE)
+            gh_put(LIVE_HIRE_REQ_FILE, lh_data, sha=_lh_fresh_sha,
+                   msg="Auto-clear live hire report log")
+        except Exception:
+            pass  # transient write clash retries on next refresh
+
+    lhc1, lhc2 = st.columns(2)
+    with lhc1:
+        lh_cust = st.text_input(
+            "Customer name or account number",
+            key="lh_cust", placeholder="e.g. WRIGH001 or Wright Builders")
+    with lhc2:
+        lh_by = st.selectbox("Send the report to", LIVE_HIRE_USERS,
+                             key="lh_by")
+
+    if st.button("Run Live Hire Report", key="lh_submit"):
+        if not lh_cust.strip():
+            st.error("Enter a customer name or account number.")
+        else:
+            import uuid as _lhuuid
+            lh_data["requests"].append({
+                "id": _lhuuid.uuid4().hex[:10],
+                "customer": lh_cust.strip(),
+                "requested_by": lh_by,
+                "requested_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
+                "status": "pending",
+                "detail": "",
+            })
+            _, lh_fresh_sha = gh_get(LIVE_HIRE_REQ_FILE)
+            gh_put(LIVE_HIRE_REQ_FILE, lh_data, sha=lh_fresh_sha,
+                   msg="Live hire report request added")
+            st.success("Request queued. The report worker picks it up "
+                       "within about 10 minutes and emails you the "
+                       "report as PDF and Excel.")
+
+    lh_recent = (list(reversed(lh_data.get("requests", [])))
+                 + list(reversed(lh_data.get("history", []))))[:8]
+    if lh_recent:
+        st.markdown("<div style='font-size:12px;font-weight:700;"
+                    "margin-top:.5rem;'>Recent requests</div>",
+                    unsafe_allow_html=True)
+        for r in lh_recent:
+            icon = {"pending": "⏳", "done": "✅",
+                    "failed": "❌"}.get(r.get("status"), "❓")
+            line = (f"{icon} {r.get('requested_at','')} · "
+                    f"{r.get('customer','')} · "
+                    f"{r.get('requested_by','')} · {r.get('status','')}")
+            if r.get("matched_customer"):
+                line += f" · {r['matched_customer']}"
+            if r.get("status") == "failed" and r.get("detail"):
+                line += f" · {r['detail'][:60]}"
+            st.markdown(f"<div style='font-size:12px;'>{line}</div>",
+                        unsafe_allow_html=True)
+
+    if st.button("Clear log", key="lh_clear",
+                 help="Removes completed and failed entries now. Pending "
+                      "requests are kept."):
+        lh_data["history"] = []
+        lh_data["requests"] = [r for r in lh_data.get("requests", [])
+                               if r.get("status") == "pending"]
+        try:
+            _, _lh_clr_sha = gh_get(LIVE_HIRE_REQ_FILE)
+            gh_put(LIVE_HIRE_REQ_FILE, lh_data, sha=_lh_clr_sha,
+                   msg="Live hire report log cleared")
+            st.success("Live hire report log cleared.")
+        except Exception:
+            st.error("Could not clear the log just now, please try again.")
+        st.rerun()
+# ── END LIVE HIRE REPORTS ─────────────────────────────────────────────────────
+
+
 # ── QUOTE REQUESTS ────────────────────────────────────────────────────────────
 QUOTE_REQ_FILE = "data/quote requests.json"
 OFFER_CODES = ["MOBILEOFFER"]
