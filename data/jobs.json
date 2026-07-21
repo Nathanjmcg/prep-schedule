@@ -10062,6 +10062,31 @@
         "moved_by": "\u2014",
         "moved_from": "2026-07-22",
         "edited_at": "20/07/2026 07:08"
+      },
+      {
+        "customer": "PERFECT ASSOCIATES",
+        "postcode": "LA1 4RP",
+        "contract_number": "0000031014",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "13/07/2026 11:27",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-21",
+        "edited_at": "21/07/2026 08:33"
       }
     ],
     "2026-07-28": [
@@ -10302,28 +10327,6 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "08/07/2026 08:59"
-      },
-      {
-        "customer": "PERFECT ASSOCIATES",
-        "postcode": "LA1 4RP",
-        "contract_number": "0000031014",
-        "type": "Off Hire",
-        "site_move_type": "",
-        "units": {
-          "2+1": 1,
-          "Tank": 1,
-          "Steps": 2,
-          "IBC": 1
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Peter",
-        "timestamp": "13/07/2026 11:27"
       },
       {
         "customer": "PERSIMMON",
