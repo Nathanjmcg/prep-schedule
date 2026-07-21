@@ -10112,6 +10112,24 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "01/07/2026 15:47"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Premier Building Supplies Ltd",
+        "postcode": "",
+        "contract_number": "0000031774",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre) | Date moved by MCS Auto from 03/08/2026 to 28/07/2026 on 21/07/2026 13:52",
+        "added_by": "MCS Auto",
+        "timestamp": "21/07/2026 13:52",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-07-08": [
@@ -11266,25 +11284,7 @@
         "date_moved_by": "MCS Auto"
       }
     ],
-    "2026-08-03": [
-      {
-        "type": "On Hire",
-        "customer": "Premier Building Supplies Ltd",
-        "postcode": "",
-        "contract_number": "0000031774",
-        "units": {
-          "Mobile Welfare": 1
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre)",
-        "added_by": "MCS Auto",
-        "timestamp": "21/07/2026 13:22"
-      }
-    ]
+    "2026-08-03": []
   },
   "mcs": {
     "2026-03-19_1": "picked",
