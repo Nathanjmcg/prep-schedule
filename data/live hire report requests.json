@@ -1,4 +1,13 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "da5dde6633",
+      "customer": "A Connoly",
+      "requested_by": "Nathan McGuinness",
+      "requested_at": "21/07/2026 19:13",
+      "status": "pending",
+      "detail": ""
+    }
+  ],
   "history": []
 }
