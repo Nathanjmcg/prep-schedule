@@ -1,13 +1,15 @@
 {
-  "requests": [
+  "requests": [],
+  "history": [
     {
       "id": "9f5de78942",
       "customer": "h h smith & sons",
       "requested_by": "Ewa Roicka-Drake",
       "requested_at": "22/07/2026 06:53",
-      "status": "pending",
-      "detail": ""
+      "status": "done",
+      "detail": "Emailed to ewa.roicka-drake@kensite.co.uk",
+      "matched_customer": "H H Smith & Sons  Co Ltd - HHSMI001",
+      "processed_at": "22/07/2026 08:33"
     }
-  ],
-  "history": []
+  ]
 }
