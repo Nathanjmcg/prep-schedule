@@ -1,14 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "5ec65ae8f6",
-      "customer": "A Connoly",
-      "requested_by": "Nathan McGuinness",
-      "requested_at": "22/07/2026 10:36",
-      "status": "pending",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "1451e05482",
@@ -39,6 +30,16 @@
       "detail": "Customer 'A conolly' not found in MCS (search returned nothing)",
       "matched_customer": "",
       "processed_at": "22/07/2026 11:35"
+    },
+    {
+      "id": "5ec65ae8f6",
+      "customer": "A Connoly",
+      "requested_by": "Nathan McGuinness",
+      "requested_at": "22/07/2026 10:36",
+      "status": "done",
+      "detail": "Emailed to nathan.mcguinness@kensite.co.uk (fuzzy match 67%: A Connolly Limited - ACONN001)",
+      "matched_customer": "A Connolly Limited - ACONN001",
+      "processed_at": "22/07/2026 11:36"
     }
   ]
 }
