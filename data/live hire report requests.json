@@ -1,14 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "92f9c8f758",
-      "customer": "A conoly",
-      "requested_by": "Nathan McGuinness",
-      "requested_at": "22/07/2026 10:34",
-      "status": "pending",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "1451e05482",
@@ -19,6 +10,16 @@
       "detail": "Emailed to ewa.roicka-drake@kensite.co.uk (fuzzy match 62%: H H Smith & Sons  Co Ltd - HHSMI001)",
       "matched_customer": "H H Smith & Sons  Co Ltd - HHSMI001",
       "processed_at": "22/07/2026 11:12"
+    },
+    {
+      "id": "92f9c8f758",
+      "customer": "A conoly",
+      "requested_by": "Nathan McGuinness",
+      "requested_at": "22/07/2026 10:34",
+      "status": "failed",
+      "detail": "Customer 'A conoly' not found in MCS (search returned nothing)",
+      "matched_customer": "",
+      "processed_at": "22/07/2026 11:34"
     }
   ]
 }
