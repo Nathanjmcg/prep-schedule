@@ -1,15 +1,4 @@
 {
   "requests": [],
-  "history": [
-    {
-      "id": "6a020cb149",
-      "customer": "think hire",
-      "requested_by": "Nick Arnold",
-      "requested_at": "22/07/2026 08:07",
-      "status": "done",
-      "detail": "Emailed to nick.arnold@kensite.co.uk",
-      "matched_customer": "Think Hire  Ltd - THINK001",
-      "processed_at": "22/07/2026 09:13"
-    }
-  ]
+  "history": []
 }
