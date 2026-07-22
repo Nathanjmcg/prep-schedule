@@ -10969,6 +10969,21 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "13/07/2026 11:06"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Essential Access Platform Ltd",
+        "postcode": "BB3 3AU",
+        "contract_number": "0000030887",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: HOLDEN FOLD, DARWEN, Darwen, , BB3 3AU | Also on contract: 1x 12ft Anti-Vandal",
+        "added_by": "MCS Auto",
+        "timestamp": "22/07/2026 12:41"
       }
     ],
     "2026-08-17": [
