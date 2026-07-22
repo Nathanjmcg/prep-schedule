@@ -1,45 +1,4 @@
 {
   "requests": [],
-  "history": [
-    {
-      "id": "1451e05482",
-      "customer": "HH Smith",
-      "requested_by": "Ewa Roicka-Drake",
-      "requested_at": "22/07/2026 10:12",
-      "status": "done",
-      "detail": "Emailed to ewa.roicka-drake@kensite.co.uk (fuzzy match 62%: H H Smith & Sons  Co Ltd - HHSMI001)",
-      "matched_customer": "H H Smith & Sons  Co Ltd - HHSMI001",
-      "processed_at": "22/07/2026 11:12"
-    },
-    {
-      "id": "92f9c8f758",
-      "customer": "A conoly",
-      "requested_by": "Nathan McGuinness",
-      "requested_at": "22/07/2026 10:34",
-      "status": "failed",
-      "detail": "Customer 'A conoly' not found in MCS (search returned nothing)",
-      "matched_customer": "",
-      "processed_at": "22/07/2026 11:34"
-    },
-    {
-      "id": "3072715d09",
-      "customer": "A conolly",
-      "requested_by": "Nathan McGuinness",
-      "requested_at": "22/07/2026 10:35",
-      "status": "failed",
-      "detail": "Customer 'A conolly' not found in MCS (search returned nothing)",
-      "matched_customer": "",
-      "processed_at": "22/07/2026 11:35"
-    },
-    {
-      "id": "5ec65ae8f6",
-      "customer": "A Connoly",
-      "requested_by": "Nathan McGuinness",
-      "requested_at": "22/07/2026 10:36",
-      "status": "done",
-      "detail": "Emailed to nathan.mcguinness@kensite.co.uk (fuzzy match 67%: A Connolly Limited - ACONN001)",
-      "matched_customer": "A Connolly Limited - ACONN001",
-      "processed_at": "22/07/2026 11:36"
-    }
-  ]
+  "history": []
 }
