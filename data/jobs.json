@@ -11423,6 +11423,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Rear of 214 Richmond Road, Accrington, , BB5 0JN | Also on contract: 1x Replacement for Missing Keys",
         "added_by": "MCS Auto",
         "timestamp": "22/07/2026 14:51"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "BDW Trading Limited, Northwest",
+        "postcode": "CH4 7QL",
+        "contract_number": "0000031094",
+        "units": {
+          "Solar Loo Single": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Roman Green phase 4, Basilica Place, Chester, Cheshire, CH4 7QL | Also on contract: 53x Solar Loo Heater Top Up (Monthly) customer advised that they",
+        "added_by": "MCS Auto",
+        "timestamp": "22/07/2026 15:41"
       }
     ]
   },
