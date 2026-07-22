@@ -1588,16 +1588,17 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ── LIVE HIRE REPORTS ─────────────────────────────────────────────────────────
-# Version 1.0
+# Version 1.1
 LIVE_HIRE_REQ_FILE = "data/live hire report requests.json"
 
 # Names only - the worker on Nathan's machine maps these to email
 # addresses locally, so no addresses are stored in this public repo.
 # Must match the worker's PEOPLE list exactly.
 LIVE_HIRE_USERS = [
-    "Nathan McGuinness", "Chris Murdoch", "Jason Wiltshire",
-    "Claire Simmons", "Chloe Ainscough", "Nick Arnold",
-    "Joanne Dowling", "Ewa Roicka-Drake", "Lee McConville (AES)",
+    "Nathan McGuinness", "Chris Murdoch", "Mitch Garnett",
+    "Jason Wiltshire", "Claire Simmons", "Chloe Ainscough",
+    "Nick Arnold", "Joanne Dowling", "Ewa Roicka-Drake",
+    "Lee McConville (AES)",
 ]
 
 with st.expander("📊 Live Hire Report (runs in MCS, emailed to you as PDF and Excel)"):
