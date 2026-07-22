@@ -1,5 +1,14 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "5ec65ae8f6",
+      "customer": "A Connoly",
+      "requested_by": "Nathan McGuinness",
+      "requested_at": "22/07/2026 10:36",
+      "status": "pending",
+      "detail": ""
+    }
+  ],
   "history": [
     {
       "id": "1451e05482",
