@@ -10145,6 +10145,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: -, -, , WA15 8UU | Also on contract: 1x ReHire 110v hot wash Chemi Loo",
         "added_by": "MCS Auto",
         "timestamp": "22/07/2026 09:41"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Mellor Golf Club Ltd",
+        "postcode": "",
+        "contract_number": "0000031778",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "22/07/2026 11:01"
       }
     ],
     "2026-07-08": [
