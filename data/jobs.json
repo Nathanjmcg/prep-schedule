@@ -11389,6 +11389,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 22FT Towable Wlefare Unit",
         "added_by": "MCS Auto",
         "timestamp": "21/07/2026 18:58"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Wainhomes (North West) Ltd",
+        "postcode": "WN8 8UT",
+        "contract_number": "0000029736",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Firswood Road, Skelmersdale, , WN8 8UT | Also on contract: 1x 1000G Eflluent Tank; 2x Chargeable Weekly Tank Empty Tuesday",
+        "added_by": "MCS Auto",
+        "timestamp": "22/07/2026 12:51"
       }
     ]
   },
