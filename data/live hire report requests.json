@@ -1,4 +1,13 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "1451e05482",
+      "customer": "HH Smith",
+      "requested_by": "Ewa Roicka-Drake",
+      "requested_at": "22/07/2026 10:12",
+      "status": "pending",
+      "detail": ""
+    }
+  ],
   "history": []
 }
