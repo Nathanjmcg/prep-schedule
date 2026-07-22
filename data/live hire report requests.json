@@ -1,5 +1,14 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "85cc0432f0",
+      "customer": "h h smith & sons",
+      "requested_by": "Mitch Garnett",
+      "requested_at": "22/07/2026 07:44",
+      "status": "pending",
+      "detail": ""
+    }
+  ],
   "history": [
     {
       "id": "9f5de78942",
