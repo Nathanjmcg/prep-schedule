@@ -10130,6 +10130,21 @@
         "added_by": "MCS Auto",
         "timestamp": "21/07/2026 13:52",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Premier Building Supplies Ltd",
+        "postcode": "WA15 8UU",
+        "contract_number": "0000031659",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: -, -, , WA15 8UU | Also on contract: 1x ReHire 110v hot wash Chemi Loo",
+        "added_by": "MCS Auto",
+        "timestamp": "22/07/2026 09:41"
       }
     ],
     "2026-07-08": [
