@@ -10164,6 +10164,25 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "22/07/2026 11:21"
+      },
+      {
+        "customer": "CLC",
+        "postcode": "CW7 2DF",
+        "contract_number": "0000030856",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "23/07/2026 15:24"
       }
     ],
     "2026-07-08": [
