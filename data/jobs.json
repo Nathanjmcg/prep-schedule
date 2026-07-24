@@ -11536,6 +11536,28 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Exolum Eastham, Bankfields Drive, Wirral, , CH62 0BA",
         "added_by": "MCS Auto",
         "timestamp": "24/07/2026 12:21"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "F B Site Services Ltd",
+        "postcode": "CH62 0BA",
+        "contract_number": "0000029822",
+        "units": {
+          "20ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Exolum, Banksfields Drive, Eastham, Wirral, CH62 0BA | Also on contract: 1x Canteen Table; 6x Poly Chair",
+        "added_by": "MCS Auto",
+        "timestamp": "24/07/2026 12:31",
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-09-07": [
