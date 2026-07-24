@@ -9612,6 +9612,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Lilfford Park, Elmridge, Leigh, , WN7 1JB",
         "added_by": "MCS Auto",
         "timestamp": "24/07/2026 08:14"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Manchester and Cheshire construction Company Ltd",
+        "postcode": "",
+        "contract_number": "0000031789",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 12x Canteen Chair; 1x Fridge; 1x Kettle; 1x Microwave",
+        "added_by": "MCS Auto",
+        "timestamp": "24/07/2026 10:01"
       }
     ],
     "2026-07-27": [
