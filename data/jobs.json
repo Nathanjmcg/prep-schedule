@@ -11463,41 +11463,6 @@
         "timestamp": "23/07/2026 15:29"
       }
     ],
-    "2026-08-07": [
-      {
-        "type": "On Hire",
-        "customer": "Chandos Civil Engineering Ltd",
-        "postcode": "",
-        "contract_number": "0000031785",
-        "units": {
-          "20ft Store": 1,
-          "24ft AV": 2,
-          "2+1": 1,
-          "Tank": 1,
-          "Steps": 2,
-          "IBC": 1,
-          "32ft AV": 2
-        },
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 2No 1.5m Double Sided Cloakroom Bench; 1x Pump; 3x Weekly Water Fill; 1x Weekly Tank Empty; 1x Link; 1x Linking Charge",
-        "added_by": "MCS Auto",
-        "timestamp": "24/07/2026 07:27",
-        "av_configs": {
-          "24ft AV": {
-            "Canteen": 1,
-            "Drying Room": 1
-          },
-          "32ft AV": {
-            "Office": 1,
-            "Meeting Room": 1
-          }
-        }
-      }
-    ],
     "2026-08-10": [],
     "2026-07-31": [
       {
@@ -11554,6 +11519,44 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Corbell House, Clifton Road, Monton, , M30 9QS | Also on contract: 53x Initial Fuel Fill; 1x Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "24/07/2026 12:04"
+      }
+    ],
+    "2026-09-07": [
+      {
+        "type": "On Hire",
+        "customer": "Chandos Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031785",
+        "units": {
+          "20ft Store": 1,
+          "24ft AV": 2,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1,
+          "32ft AV": 2
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 2No 1.5m Double Sided Cloakroom Bench; 1x Pump; 3x Weekly Water Fill; 1x Weekly Tank Empty; 1x Link; 1x Linking Charge",
+        "added_by": "MCS Auto",
+        "timestamp": "24/07/2026 07:27",
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1,
+            "Drying Room": 1
+          },
+          "32ft AV": {
+            "Office": 1,
+            "Meeting Room": 1
+          }
+        },
+        "moved_by": "\u2014",
+        "moved_from": "2026-08-07",
+        "edited_at": "24/07/2026 11:19"
       }
     ]
   },
