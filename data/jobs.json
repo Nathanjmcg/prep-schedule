@@ -8560,23 +8560,6 @@
         "timestamp": "16/07/2026 10:27"
       },
       {
-        "type": "On Hire",
-        "customer": "AIS Vanguard Ltd",
-        "postcode": "CH2 4LB",
-        "contract_number": "0000031676",
-        "units": {
-          "Generator": 1
-        },
-        "haulage": "External Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Site: GRINSOME ROAD, INCE, CH2 4LB | Also on contract: 10x 32amp PLUG; 1x 6WAY Dist Board; 1x 60KVA Battery Packs; 2x 125 AMP three phase Ext Lead",
-        "added_by": "MCS Auto",
-        "timestamp": "16/07/2026 15:04"
-      },
-      {
         "customer": "J&J Design Ltd",
         "postcode": "CH5 2LW",
         "contract_number": "0000030027",
@@ -10017,31 +10000,6 @@
         "date_moved_by": "MCS Auto"
       },
       {
-        "customer": "DOMIS",
-        "postcode": "M15 4WB",
-        "contract_number": "0000031639",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "3+1": 1,
-          "Tank": 1,
-          "Steps": 2
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "12X8 EFFLUENT | Date moved by MCS Auto from 30/07/2026 to 27/07/2026 on 17/07/2026 16:22",
-        "added_by": "Peter",
-        "timestamp": "17/07/2026 16:22",
-        "moved_by": "\u2014",
-        "moved_from": "2026-07-20",
-        "edited_at": "16/07/2026 09:25",
-        "date_moved_by": "MCS Auto"
-      },
-      {
         "customer": "PEAK PLATFORMS",
         "postcode": "HD1 6AS",
         "contract_number": "0000030952",
@@ -11454,6 +11412,31 @@
         "moved_from": "2026-07-09",
         "edited_at": "06/07/2026 11:20",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "customer": "DOMIS",
+        "postcode": "M15 4WB",
+        "contract_number": "0000031639",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "3+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "12X8 EFFLUENT | Date moved by MCS Auto from 30/07/2026 to 27/07/2026 on 17/07/2026 16:22 | Date moved by MCS Auto from 27/07/2026 to 29/07/2026 on 24/07/2026 07:28",
+        "added_by": "Peter",
+        "timestamp": "24/07/2026 07:28",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-20",
+        "edited_at": "16/07/2026 09:25",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-08-03": [
@@ -11578,6 +11561,26 @@
             "Meeting Room": 1
           }
         }
+      }
+    ],
+    "2026-08-10": [
+      {
+        "type": "On Hire",
+        "customer": "AIS Vanguard Ltd",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031676",
+        "units": {
+          "Generator": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: GRINSOME ROAD, INCE, CH2 4LB | Also on contract: 10x 32amp PLUG; 1x 6WAY Dist Board; 1x 60KVA Battery Packs; 2x 125 AMP three phase Ext Lead | Date moved by MCS Auto from 23/07/2026 to 10/08/2026 on 24/07/2026 07:28",
+        "added_by": "MCS Auto",
+        "timestamp": "24/07/2026 07:28",
+        "date_moved_by": "MCS Auto"
       }
     ]
   },
