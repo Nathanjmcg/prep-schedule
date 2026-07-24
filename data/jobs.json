@@ -9678,6 +9678,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Harrison Way, newton le willows, COMMON ROAD, , WA12 9JQ",
         "added_by": "MCS Auto",
         "timestamp": "20/07/2026 13:52"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Rock & Stroll CIC",
+        "postcode": "WN7 1JB",
+        "contract_number": "0000031565",
+        "units": {
+          "Chemiloo": 6
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Lilfford Park, Elmridge, Leigh, , WN7 1JB",
+        "added_by": "MCS Auto",
+        "timestamp": "24/07/2026 08:14"
       }
     ],
     "2026-07-27": [
