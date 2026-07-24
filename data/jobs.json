@@ -11582,6 +11582,27 @@
         "timestamp": "24/07/2026 07:28",
         "date_moved_by": "MCS Auto"
       }
+    ],
+    "2026-07-31": [
+      {
+        "type": "On Hire",
+        "customer": "",
+        "postcode": "",
+        "contract_number": "0000031720",
+        "units": {
+          "32ft AV": 5,
+          "2+1": 4,
+          "Static Welfare": 8
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 7317",
+        "added_by": "MCS Auto",
+        "timestamp": "24/07/2026 07:28"
+      }
     ]
   },
   "mcs": {
