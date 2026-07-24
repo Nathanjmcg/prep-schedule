@@ -1,21 +1,25 @@
 {
-  "requests": [
+  "requests": [],
+  "history": [
     {
       "id": "4db3939c0c",
       "customer": "cheltenham green",
       "requested_by": "Mitch Garnett",
       "requested_at": "23/07/2026 07:46",
-      "status": "pending",
-      "detail": ""
+      "status": "done",
+      "detail": "Emailed to mitch.garnett@kensite.co.uk",
+      "matched_customer": "Cheltenham Green Property Ltd - CHELT001",
+      "processed_at": "24/07/2026 07:25"
     },
     {
       "id": "126f1470fc",
       "customer": "morris homes",
       "requested_by": "Mitch Garnett",
       "requested_at": "23/07/2026 07:46",
-      "status": "pending",
-      "detail": ""
+      "status": "done",
+      "detail": "Emailed to mitch.garnett@kensite.co.uk",
+      "matched_customer": "Morris Homes (North) Ltd - MORRI001",
+      "processed_at": "24/07/2026 07:25"
     }
-  ],
-  "history": []
+  ]
 }
