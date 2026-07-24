@@ -11519,6 +11519,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Corbell House, Clifton Road, Monton, , M30 9QS | Also on contract: 53x Initial Fuel Fill; 1x Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "24/07/2026 12:04"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "F B Site Services Ltd",
+        "postcode": "CH62 0BA",
+        "contract_number": "0000029784",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Exolum Eastham, Bankfields Drive, Wirral, , CH62 0BA",
+        "added_by": "MCS Auto",
+        "timestamp": "24/07/2026 12:21"
       }
     ],
     "2026-09-07": [
