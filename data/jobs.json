@@ -10183,6 +10183,21 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "23/07/2026 15:24"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Premier Building Supplies Ltd",
+        "postcode": "WA15 8UU",
+        "contract_number": "0000031659",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: -, -, , WA15 8UU | Also on contract: 1x ReHire 110v hot wash Chemi Loo",
+        "added_by": "MCS Auto",
+        "timestamp": "24/07/2026 07:27"
       }
     ],
     "2026-07-08": [
@@ -11528,6 +11543,41 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "23/07/2026 15:29"
+      }
+    ],
+    "2026-08-07": [
+      {
+        "type": "On Hire",
+        "customer": "Chandos Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031785",
+        "units": {
+          "20ft Store": 1,
+          "24ft AV": 2,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1,
+          "32ft AV": 2
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 2No 1.5m Double Sided Cloakroom Bench; 1x Pump; 3x Weekly Water Fill; 1x Weekly Tank Empty; 1x Link; 1x Linking Charge",
+        "added_by": "MCS Auto",
+        "timestamp": "24/07/2026 07:27",
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1,
+            "Drying Room": 1
+          },
+          "32ft AV": {
+            "Office": 1,
+            "Meeting Room": 1
+          }
+        }
       }
     ]
   },
