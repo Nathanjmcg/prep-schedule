@@ -4835,25 +4835,6 @@
         "edited_at": "22/05/2026 11:45"
       },
       {
-        "customer": "Probuk",
-        "postcode": "WA15 6RH",
-        "contract_number": "0000030222",
-        "type": "Off Hire",
-        "site_move_type": "",
-        "units": {
-          "10ft Store": 1
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Peter",
-        "timestamp": "20/05/2026 13:43"
-      },
-      {
         "customer": "BDW Trading",
         "postcode": "L26 0BQ",
         "contract_number": "0000030178",
@@ -11833,6 +11814,28 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "28/07/2026 08:50"
+      },
+      {
+        "customer": "Probuk",
+        "postcode": "WA15 6RH",
+        "contract_number": "0000030222",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "10ft Store": 1
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "20/05/2026 13:43",
+        "moved_by": "\u2014",
+        "moved_from": "2026-05-26",
+        "edited_at": "28/07/2026 09:32"
       }
     ],
     "2026-09-07": [
