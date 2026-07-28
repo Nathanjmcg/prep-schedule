@@ -1,14 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "8500343f50",
-      "customer": "morris homes",
-      "requested_by": "Mitch Garnett",
-      "requested_at": "28/07/2026 08:16",
-      "status": "pending",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "c6c588a7bf",
@@ -19,6 +10,16 @@
       "detail": "Emailed to mitch.garnett@kensite.co.uk",
       "matched_customer": "H H Smith & Sons  Co Ltd - HHSMI001",
       "processed_at": "28/07/2026 08:48"
+    },
+    {
+      "id": "8500343f50",
+      "customer": "morris homes",
+      "requested_by": "Mitch Garnett",
+      "requested_at": "28/07/2026 08:16",
+      "status": "done",
+      "detail": "Emailed to mitch.garnett@kensite.co.uk",
+      "matched_customer": "Morris Homes (North) Ltd - MORRI001",
+      "processed_at": "28/07/2026 09:20"
     }
   ]
 }
