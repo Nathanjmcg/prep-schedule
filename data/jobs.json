@@ -10997,6 +10997,84 @@
         "moved_by": "\u2014",
         "moved_from": "2026-07-20",
         "edited_at": "13/07/2026 11:24"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Helix Roofing Contractors LTD",
+        "postcode": "",
+        "contract_number": "0000031788",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "28/07/2026 08:50"
+      },
+      {
+        "type": "On Hire",
+        "customer": "F Parkinson Ltd",
+        "postcode": "",
+        "contract_number": "0000031643",
+        "units": {
+          "24ft AV": 2,
+          "32ft AV": 1,
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "28/07/2026 08:50",
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1,
+            "Canteen": 1
+          },
+          "32ft AV": {
+            "Drying Room": 1
+          }
+        }
+      },
+      {
+        "type": "On Hire",
+        "customer": "Aspire Construction Projects Ltd",
+        "postcode": "",
+        "contract_number": "0000031772",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 24FT Solar Powered Welfare",
+        "added_by": "MCS Auto",
+        "timestamp": "28/07/2026 08:50"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000031796",
+        "units": {
+          "20ft Store": 1,
+          "Static Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 80x Initial Fuel Fill; 1x Initial Water Fill; 1x Weekly Service",
+        "added_by": "MCS Auto",
+        "timestamp": "28/07/2026 08:50"
       }
     ],
     "2026-08-05": [
@@ -11418,6 +11496,38 @@
         "moved_from": "2026-07-20",
         "edited_at": "16/07/2026 09:25",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "J McRobb High Class Family Butchers LTD",
+        "postcode": "",
+        "contract_number": "0000031797",
+        "units": {
+          "32ft AV": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Fitting; 1x KimCroft Double Leaf Door; 1x Upgrade Electrical Installation (3 Phase; 2x LABOUR ELECTRICAL 2 DAYS",
+        "added_by": "MCS Auto",
+        "timestamp": "28/07/2026 08:50"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Falcon Tower Crance Services Ltd",
+        "postcode": "",
+        "contract_number": "0000031795",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x ReHire Chemi Loo",
+        "added_by": "MCS Auto",
+        "timestamp": "28/07/2026 08:50"
       }
     ],
     "2026-08-03": [
@@ -11507,6 +11617,33 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "23/07/2026 15:29"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Think Hire",
+        "postcode": "",
+        "contract_number": "0000031800",
+        "units": {
+          "24ft AV": 1,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1,
+          "20ft Store": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 8ft Anti-Vandal Dry Room; 1x Initial Water Fill; 1x Water Barrel; 1x Pump; 1x Weekly Water Fill; 1x Weekly Tank Empty",
+        "added_by": "MCS Auto",
+        "timestamp": "28/07/2026 08:50",
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-08-10": [],
@@ -11529,6 +11666,36 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 7317",
         "added_by": "MCS Auto",
         "timestamp": "24/07/2026 07:28"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Neo Property Solutions Ltd",
+        "postcode": "KT15 1RX",
+        "contract_number": "0000030172",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Lincombe Court, Addlestone Park, Surrey, , KT15 1RX | Also on contract: 1x ReHire 20ft Store",
+        "added_by": "MCS Auto",
+        "timestamp": "28/07/2026 08:50"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Neo Property Solutions Ltd",
+        "postcode": "KT15 1RX",
+        "contract_number": "0000030373",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Lincombe Court, Addlestone Park, Surrey, , KT15 1RX | Also on contract: 1x ReHire 20ft Store",
+        "added_by": "MCS Auto",
+        "timestamp": "28/07/2026 08:50"
       }
     ],
     "2026-08-14": [
@@ -11651,6 +11818,23 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "27/07/2026 08:21"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Alderley Homes (Cheadle) Ltd",
+        "postcode": "",
+        "contract_number": "0000031798",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "28/07/2026 08:50"
       }
     ],
     "2026-09-07": [
