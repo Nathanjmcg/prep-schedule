@@ -11117,6 +11117,23 @@
         "moved_by": "\u2014",
         "moved_from": "2026-07-24",
         "edited_at": "28/07/2026 09:33"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Martin Collins Joinery",
+        "postcode": "",
+        "contract_number": "0000031805",
+        "units": {
+          "20ft Store": 2
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "28/07/2026 14:21"
       }
     ],
     "2026-07-29": [
