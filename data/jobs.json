@@ -11947,6 +11947,31 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 80x Initial Fuel Fill; 1x Initial Water Fill; 1x Weekly Service",
         "added_by": "MCS Auto",
         "timestamp": "29/07/2026 07:27"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "H H Smith & Sons Co Ltd",
+        "postcode": "WA12 9BN",
+        "contract_number": "0000030321",
+        "units": {
+          "32ft AV": 4,
+          "3+1": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Earlstown Town Centre, Market Street, Earlstown, , WA12 9BN | Also on contract: 1x Staircase; 2x Link; 1x Destack",
+        "added_by": "MCS Auto",
+        "timestamp": "29/07/2026 09:31",
+        "av_configs": {
+          "32ft AV": {
+            "Meeting Room": 1,
+            "Canteen": 2,
+            "Drying Room": 1
+          }
+        }
       }
     ]
   },
