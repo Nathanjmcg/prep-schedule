@@ -11258,185 +11258,6 @@
         "date_moved_by": "MCS Auto"
       },
       {
-        "customer": "AIS Vanguard",
-        "postcode": "CH2 4LB",
-        "contract_number": "0000031655",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "Stairs": 2
-        },
-        "av_configs": {},
-        "install_dismantle": true,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32",
-        "added_by": "Peter",
-        "timestamp": "22/07/2026 09:32",
-        "moved_by": "\u2014",
-        "moved_from": "2026-07-10",
-        "edited_at": "06/07/2026 11:21",
-        "date_moved_by": "MCS Auto"
-      },
-      {
-        "customer": "AIS Vanguard",
-        "postcode": "CH2 4LB",
-        "contract_number": "0000031657",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "IBC": 4
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "x4 pumps | Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32",
-        "added_by": "Peter",
-        "timestamp": "22/07/2026 09:32",
-        "moved_by": "\u2014",
-        "moved_from": "2026-07-10",
-        "edited_at": "06/07/2026 11:21",
-        "date_moved_by": "MCS Auto"
-      },
-      {
-        "customer": "AIS Vanguard",
-        "postcode": "CH2 4LB",
-        "contract_number": "0000031651",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "32ft AV": 2
-        },
-        "av_configs": {
-          "32ft AV": {
-            "Canteen": 1,
-            "Office": 1
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32",
-        "added_by": "Peter",
-        "timestamp": "22/07/2026 09:32",
-        "edited_by": "Peter",
-        "edited_at": "06/07/2026 11:20",
-        "moved_by": "\u2014",
-        "moved_from": "2026-07-09",
-        "date_moved_by": "MCS Auto"
-      },
-      {
-        "customer": "AIS vanguard",
-        "postcode": "CH2 4LB",
-        "contract_number": "0000031652",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "32ft AV": 2
-        },
-        "av_configs": {
-          "32ft AV": {
-            "Meeting Room": 2
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32",
-        "added_by": "Peter",
-        "timestamp": "22/07/2026 09:32",
-        "moved_by": "\u2014",
-        "moved_from": "2026-07-09",
-        "edited_at": "06/07/2026 11:19",
-        "date_moved_by": "MCS Auto"
-      },
-      {
-        "customer": "AIS Vanguard",
-        "postcode": "CH2 4LB",
-        "contract_number": "0000031653",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "32ft AV": 1
-        },
-        "av_configs": {
-          "32ft AV": {
-            "Office": 1
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32",
-        "added_by": "Peter",
-        "timestamp": "22/07/2026 09:32",
-        "moved_by": "\u2014",
-        "moved_from": "2026-07-09",
-        "edited_at": "06/07/2026 11:20",
-        "date_moved_by": "MCS Auto"
-      },
-      {
-        "type": "On Hire",
-        "customer": "AIS Vanguard Ltd",
-        "postcode": "CH2 4LB",
-        "contract_number": "0000031654",
-        "units": {},
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Site: Grinsome Road, Ince, CH2 4LB | Also on contract: 1x cctv up to 4 hd cameras supplied and fitted; 1x flood light 100 watt | Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32",
-        "added_by": "MCS Auto",
-        "timestamp": "22/07/2026 09:32",
-        "date_moved_by": "MCS Auto"
-      },
-      {
-        "customer": "AIS Vanguard",
-        "postcode": "CH2 4LB",
-        "contract_number": "0000031650",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "32ft AV": 4,
-          "20ft Store": 1,
-          "4+2": 1,
-          "Tank": 1,
-          "Steps": 2,
-          "IBC": 1,
-          "Smoking Shelter": 1
-        },
-        "av_configs": {
-          "32ft AV": {
-            "Canteen": 3,
-            "Drying Room": 1
-          }
-        },
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32",
-        "added_by": "Peter",
-        "timestamp": "22/07/2026 09:32",
-        "moved_by": "\u2014",
-        "moved_from": "2026-07-09",
-        "edited_at": "06/07/2026 11:20",
-        "date_moved_by": "MCS Auto"
-      },
-      {
         "customer": "DOMIS",
         "postcode": "M15 4WB",
         "contract_number": "0000031639",
@@ -11661,7 +11482,187 @@
         }
       }
     ],
-    "2026-08-10": [],
+    "2026-08-10": [
+      {
+        "customer": "AIS Vanguard",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031655",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "Stairs": 2
+        },
+        "av_configs": {},
+        "install_dismantle": true,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32 | Date moved by MCS Auto from 29/07/2026 to 10/08/2026 on 29/07/2026 09:31",
+        "added_by": "Peter",
+        "timestamp": "29/07/2026 09:31",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-10",
+        "edited_at": "06/07/2026 11:21",
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "customer": "AIS Vanguard",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031657",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "IBC": 4
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "x4 pumps | Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32 | Date moved by MCS Auto from 29/07/2026 to 10/08/2026 on 29/07/2026 09:31",
+        "added_by": "Peter",
+        "timestamp": "29/07/2026 09:31",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-10",
+        "edited_at": "06/07/2026 11:21",
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "customer": "AIS Vanguard",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031651",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1,
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32 | Date moved by MCS Auto from 29/07/2026 to 10/08/2026 on 29/07/2026 09:31",
+        "added_by": "Peter",
+        "timestamp": "29/07/2026 09:31",
+        "edited_by": "Peter",
+        "edited_at": "06/07/2026 11:20",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-09",
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "customer": "AIS vanguard",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031652",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 2
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Meeting Room": 2
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32 | Date moved by MCS Auto from 29/07/2026 to 10/08/2026 on 29/07/2026 09:31",
+        "added_by": "Peter",
+        "timestamp": "29/07/2026 09:31",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-09",
+        "edited_at": "06/07/2026 11:19",
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "customer": "AIS Vanguard",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031653",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Office": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32 | Date moved by MCS Auto from 29/07/2026 to 10/08/2026 on 29/07/2026 09:31",
+        "added_by": "Peter",
+        "timestamp": "29/07/2026 09:31",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-09",
+        "edited_at": "06/07/2026 11:20",
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "AIS Vanguard Ltd",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031654",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Grinsome Road, Ince, CH2 4LB | Also on contract: 1x cctv up to 4 hd cameras supplied and fitted; 1x flood light 100 watt | Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32 | Date moved by MCS Auto from 29/07/2026 to 10/08/2026 on 29/07/2026 09:31",
+        "added_by": "MCS Auto",
+        "timestamp": "29/07/2026 09:31",
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "customer": "AIS Vanguard",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031650",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 4,
+          "20ft Store": 1,
+          "4+2": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1,
+          "Smoking Shelter": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 3,
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "Date moved by MCS Auto from 22/07/2026 to 29/07/2026 on 22/07/2026 09:32 | Date moved by MCS Auto from 29/07/2026 to 10/08/2026 on 29/07/2026 09:31",
+        "added_by": "Peter",
+        "timestamp": "29/07/2026 09:31",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-09",
+        "edited_at": "06/07/2026 11:20",
+        "date_moved_by": "MCS Auto"
+      }
+    ],
     "2026-07-31": [
       {
         "type": "On Hire",
