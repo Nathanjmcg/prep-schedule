@@ -11587,6 +11587,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 32ft JCOP Office; 1x 32ft JCOP Canteen / Sink; 1x Double Stack/ Erect Staircase; 1x Destack",
         "added_by": "MCS Auto",
         "timestamp": "30/07/2026 14:41"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Morris Homes (North) Ltd",
+        "postcode": "PR1 9JZ",
+        "contract_number": "0000031753",
+        "units": {
+          "Mobile Welfare": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: ST MARYS PARK, THE CAWSEY, Penwortham, , PR1 9JZ | Also on contract: 56x Initial Fuel Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "30/07/2026 16:01"
       }
     ],
     "2026-08-10": [
