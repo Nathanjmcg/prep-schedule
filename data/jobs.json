@@ -12081,6 +12081,38 @@
             "Office": 4
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Think Hire Ltd",
+        "postcode": "LE12 9BD",
+        "contract_number": "0000030371",
+        "units": {
+          "24ft AV": 4,
+          "3+1": 1,
+          "Steps": 2,
+          "IBC": 2,
+          "Smoking Shelter": 1,
+          "20ft AV": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: H&MV, COT, Leicester, , LE12 9BD | Customer's own transport | Also on contract: 1x Link; 1x 1000G Eflluent Tank; 1x Pump; 1x Pump; 1x Staircase",
+        "added_by": "MCS Auto",
+        "timestamp": "30/07/2026 12:01",
+        "av_configs": {
+          "24ft AV": {
+            "Office": 2,
+            "Canteen": 1,
+            "Meeting Room": 1
+          },
+          "20ft AV": {
+            "Drying Room": 1
+          }
+        }
       }
     ],
     "2026-08-07": [
