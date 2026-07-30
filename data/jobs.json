@@ -11717,6 +11717,25 @@
         "moved_from": "2026-07-09",
         "edited_at": "06/07/2026 11:20",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "customer": "Everton Stadium Development Holdings Ltd",
+        "postcode": "L3 0BW",
+        "contract_number": "31190",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "Chemiloo": 15
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Klaudia",
+        "timestamp": "30/07/2026 09:51"
       }
     ],
     "2026-07-31": [
