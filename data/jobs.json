@@ -12278,6 +12278,9 @@
     },
     "daily_2026-07-28": {
       "mcs_check": 1
+    },
+    "daily_2026-08-10": {
+      "partial_contracts": true
     }
   },
   "live_hire": {
