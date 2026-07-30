@@ -10908,6 +10908,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: HOLDEN FOLD, DARWEN, Darwen, , BB3 3AU | Also on contract: 1x 12ft Anti-Vandal",
         "added_by": "MCS Auto",
         "timestamp": "22/07/2026 12:41"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Stuart Energy Ltd",
+        "postcode": "",
+        "contract_number": "0000031815",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 22ft Solar Powered Welfare",
+        "added_by": "MCS Auto",
+        "timestamp": "30/07/2026 14:01"
       }
     ],
     "2026-08-17": [
