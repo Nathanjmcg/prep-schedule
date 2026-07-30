@@ -12094,6 +12094,45 @@
             "Drying Room": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Think Hire Ltd",
+        "postcode": "LE12 9BD",
+        "contract_number": "0000030239",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: H&MV, COT, Leicester, , LE12 9BD | Customer's own transport | Also on contract: 4x Office Table",
+        "added_by": "MCS Auto",
+        "timestamp": "30/07/2026 12:11"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Think Hire Ltd",
+        "postcode": "LE12 9BD",
+        "contract_number": "0000030241",
+        "units": {
+          "24ft AV": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: H&MV, COT, Leicester, , LE12 9BD | Customer's own transport | Also on contract: 1x Link",
+        "added_by": "MCS Auto",
+        "timestamp": "30/07/2026 12:11",
+        "av_configs": {
+          "24ft AV": {
+            "Meeting Room": 1
+          }
+        }
       }
     ],
     "2026-08-07": [
