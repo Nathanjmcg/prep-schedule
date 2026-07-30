@@ -11398,6 +11398,23 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "28/07/2026 09:41"
+      },
+      {
+        "type": "On Hire",
+        "customer": "MBC Building Contractors NW Ltd",
+        "postcode": "",
+        "contract_number": "0000031810",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "30/07/2026 09:31"
       }
     ],
     "2026-08-04": [
@@ -11477,6 +11494,28 @@
         "timestamp": "28/07/2026 08:50",
         "av_configs": {
           "24ft AV": {
+            "Canteen": 1
+          }
+        }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Cooke Cabin Hire",
+        "postcode": "SK9 7AD",
+        "contract_number": "0000029806",
+        "units": {
+          "20ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Millers Gate, Congleton Road, Alderley Edge, , SK9 7AD | Also on contract: 1x Event Toilet; 1x Event Toilet",
+        "added_by": "MCS Auto",
+        "timestamp": "30/07/2026 09:31",
+        "av_configs": {
+          "20ft AV": {
             "Canteen": 1
           }
         }
@@ -11999,6 +12038,29 @@
           },
           "20ft AV": {
             "Drying Room": 1
+          }
+        }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Proservice Building Services",
+        "postcode": "SN16 9DX",
+        "contract_number": "0000031586",
+        "units": {
+          "32ft AV": 6,
+          "IBC": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: MONETY SUBSTATION, WILTSHIRE, HARMLESSLY.BUILDING.JUST, , SN16 9DX | Also on contract: 15x Locker; 3x Double Stack/ Erect Staircase",
+        "added_by": "MCS Auto",
+        "timestamp": "30/07/2026 09:31",
+        "av_configs": {
+          "32ft AV": {
+            "Office": 4
           }
         }
       }
