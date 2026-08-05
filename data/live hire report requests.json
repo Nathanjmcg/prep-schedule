@@ -1,5 +1,14 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "58b15fc0e8",
+      "customer": "HHSMI001",
+      "requested_by": "Nathan McGuinness",
+      "requested_at": "05/08/2026 10:43",
+      "status": "pending",
+      "detail": ""
+    }
+  ],
   "history": [
     {
       "id": "2945ef7460",
