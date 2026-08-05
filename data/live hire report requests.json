@@ -1,13 +1,15 @@
 {
-  "requests": [
+  "requests": [],
+  "history": [
     {
       "id": "2945ef7460",
       "customer": "PERFE001",
       "requested_by": "Nick Arnold",
       "requested_at": "03/08/2026 13:19",
-      "status": "pending",
-      "detail": ""
+      "status": "failed",
+      "detail": "Customer 'PERFE001' not found in MCS (search returned nothing)",
+      "matched_customer": "",
+      "processed_at": "05/08/2026 10:02"
     }
-  ],
-  "history": []
+  ]
 }
