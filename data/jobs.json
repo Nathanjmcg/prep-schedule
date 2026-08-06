@@ -12470,6 +12470,32 @@
         "added_by": "Peter",
         "timestamp": "06/08/2026 11:36"
       }
+    ],
+    "2026-08-18": [
+      {
+        "customer": "KENNY WASTE",
+        "postcode": "M4 5EY",
+        "contract_number": "0000031846",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "32ft AV": 1,
+          "Stairs": 1
+        },
+        "av_configs": {
+          "32ft AV": {
+            "Drying Room": 1
+          }
+        },
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "06/08/2026 11:44"
+      }
     ]
   },
   "mcs": {
