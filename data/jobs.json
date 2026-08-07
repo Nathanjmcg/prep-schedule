@@ -11857,6 +11857,53 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "06/08/2026 10:56"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Wright Build Ltd",
+        "postcode": "",
+        "contract_number": "0000031852",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
+      },
+      {
+        "type": "On Hire",
+        "customer": "AIS Vanguard Ltd",
+        "postcode": "",
+        "contract_number": "0000031825",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Jack Pads and Connectors; 1x Installation; 1x Removal",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
+      },
+      {
+        "type": "On Hire",
+        "customer": "PAS (NW) Ltd",
+        "postcode": "",
+        "contract_number": "0000031845",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x ReHire Accessory - WATER COOLER; 10x ReHire Accessory - WATER BOTTLES; 10x ReHire - Bottle Deposit - Refundable",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
       }
     ],
     "2026-07-31": [
@@ -11987,6 +12034,49 @@
         "moved_by": "\u2014",
         "moved_from": "2026-07-27",
         "edited_at": "24/07/2026 11:43"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Think Hire",
+        "postcode": "",
+        "contract_number": "0000031847",
+        "units": {
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Pump; 1x Initial Water Fill; 1x Disposable Sanitary Bins. Pk10",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
+      },
+      {
+        "type": "On Hire",
+        "customer": "M Group NW Ltd",
+        "postcode": "",
+        "contract_number": "0000031843",
+        "units": {
+          "32ft AV": 1,
+          "IBC": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Initial Water Fill; 1x Weekly Water Fill; 1x Pump; 2x DECALS TO BOTH SIDES OF THE CABIN",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42",
+        "av_configs": {
+          "32ft AV": {
+            "Meeting Room": 1
+          }
+        }
       }
     ],
     "2026-08-06": [
@@ -12185,6 +12275,40 @@
             "Drying Room": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Bethell Plant Services Ltd",
+        "postcode": "M26 1GE",
+        "contract_number": "0000031751",
+        "units": {
+          "24ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: DANE HOUSE EUROPA PARK, MANCHESTER, , M26 1GE",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Exact Property Services Ltd",
+        "postcode": "HX2 9PF",
+        "contract_number": "0000031759",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Bradshaw Primary School, Ingham Lane, Halifax, , HX2 9PF | Also on contract: 1x Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
       }
     ],
     "2026-08-12": [
@@ -12377,6 +12501,23 @@
         "notes": "Office to have sink",
         "added_by": "Peter",
         "timestamp": "06/08/2026 14:23"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Persimmon Homes Limited",
+        "postcode": "NG14 6LE",
+        "contract_number": "0000031588",
+        "units": {
+          "Solar Loo Single": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: CALVERTON,FOREST VIEW, Forest View, Park Road, Calverton, Nottinghamshire, NG14 6LE | Also on contract: 1x Site move form WATER LANE PH2",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
       }
     ],
     "2026-08-07": [
@@ -12518,6 +12659,121 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "06/08/2026 08:20"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A J Field Electrical",
+        "postcode": "",
+        "contract_number": "0000031850",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Office Table; 1x Bookshelf",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Duncan Ross Land Drainage Ltd",
+        "postcode": "",
+        "contract_number": "0000031836",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Bellway Homes North West Division",
+        "postcode": "",
+        "contract_number": "0000031835",
+        "units": {
+          "IBC": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
+      },
+      {
+        "type": "On Hire",
+        "customer": "P E Jones Contractors ( Manchester) Ltd",
+        "postcode": "",
+        "contract_number": "0000031827",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre)",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
+      },
+      {
+        "type": "On Hire",
+        "customer": "J McRobb High Class Family Butchers LTD",
+        "postcode": "",
+        "contract_number": "0000031839",
+        "units": {
+          "32ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Fitting; 1x Upgrade Electrical Installation (3 Phase Board; 2x Electrical Labour to Install Above (2 Days); 1x PVC Windows; 1x Wall Boards x18; 1x Ceilling Panels x6; 1x Insolation x4; 1x Fitter Labour 12 days; 1x Replacement Worktop; 1x Trims; 1x Replacement Flooring - FOC Gesture of goodwill",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Hughes Brothers Joinery Ltd",
+        "postcode": "WN4 8PF",
+        "contract_number": "0000031560",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: 86A Bolton Road, Ashton-in-Makerfield, , WN4 8PF",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Morris Homes (North) Ltd",
+        "postcode": "L37 6BR",
+        "contract_number": "0000031061",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: The Grange, Liverpool Road, Formby, , L37 6BR | Also on contract: 1x 1000G Eflluent Tank; 1x Chargeable Weekly Tank Empty; 1x Chargeable One Off Tank Empty - same day service; 1x Chargeable Fortnightly Tank Empty",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
       }
     ],
     "2026-08-13": [
@@ -12718,6 +12974,36 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "06/08/2026 13:37"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Proservice Building Services Marketplace Plc",
+        "postcode": "",
+        "contract_number": "0000031813",
+        "units": {
+          "32ft AV": 2,
+          "Stairs": 1,
+          "3+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 3,
+          "20ft Store": 1,
+          "10ft Store": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Double Stack/ Erect Staircase; 1x Destack; 1x Pump; 1x Bootwash; 2x Initial Water Fill; 2x Pump",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42",
+        "av_configs": {
+          "32ft AV": {
+            "Office": 1,
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-08-27": [
@@ -12770,6 +13056,47 @@
         "notes": "32FT 3+1/DRY",
         "added_by": "Peter",
         "timestamp": "06/08/2026 13:45"
+      }
+    ],
+    "2026-08-11": [
+      {
+        "type": "Off Hire",
+        "customer": "COSAF Environments",
+        "postcode": "M13 0JQ",
+        "contract_number": "0000031566",
+        "units": {
+          "24ft AV": 1,
+          "3+1": 1,
+          "Steps": 2,
+          "IBC": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: iQ Wilmslow Park, 211 Hathersage Road, Manchester, , M13 0JQ | Also on contract: 1x 1000G Eflluent Tank; 1x Pump; 1x Disposable Sanitary Bins. Pk10; 1x 10ft COSHH STORE; 1x One Off Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
+      }
+    ],
+    "2026-08-20": [
+      {
+        "type": "Off Hire",
+        "customer": "Exact Property Services Ltd",
+        "postcode": "WA16 7LL",
+        "contract_number": "0000031415",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Barlow House,, New Hall Lane, Mobberley, KNUTSFORD, WA16 7LL",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42"
       }
     ]
   },
