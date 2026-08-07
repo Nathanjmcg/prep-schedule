@@ -7,6 +7,14 @@
       "requested_at": "07/08/2026 10:45",
       "status": "pending",
       "detail": ""
+    },
+    {
+      "id": "4935e77dc1",
+      "customer": "HH Smith",
+      "requested_by": "Mitch Garnett",
+      "requested_at": "07/08/2026 10:45",
+      "status": "pending",
+      "detail": ""
     }
   ],
   "history": [
