@@ -10908,21 +10908,6 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: HOLDEN FOLD, DARWEN, Darwen, , BB3 3AU | Also on contract: 1x 12ft Anti-Vandal",
         "added_by": "MCS Auto",
         "timestamp": "22/07/2026 12:41"
-      },
-      {
-        "type": "On Hire",
-        "customer": "Stuart Energy Ltd",
-        "postcode": "",
-        "contract_number": "0000031815",
-        "units": {},
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 22ft Solar Powered Welfare",
-        "added_by": "MCS Auto",
-        "timestamp": "30/07/2026 14:01"
       }
     ],
     "2026-08-17": [
@@ -12776,27 +12761,7 @@
         "timestamp": "07/08/2026 11:42"
       }
     ],
-    "2026-08-13": [
-      {
-        "customer": "A Connolly",
-        "postcode": "OL3 5EF",
-        "contract_number": "0000031841",
-        "type": "On Hire",
-        "site_move_type": "",
-        "units": {
-          "20ft Store": 4
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "22FT SOLAR WELFARE TO GO ASWELL",
-        "added_by": "Peter",
-        "timestamp": "06/08/2026 11:36"
-      }
-    ],
+    "2026-08-13": [],
     "2026-08-18": [
       {
         "customer": "KENNY WASTE",
@@ -13078,6 +13043,26 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: iQ Wilmslow Park, 211 Hathersage Road, Manchester, , M13 0JQ | Also on contract: 1x 1000G Eflluent Tank; 1x Pump; 1x Disposable Sanitary Bins. Pk10; 1x 10ft COSHH STORE; 1x One Off Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "07/08/2026 11:42"
+      },
+      {
+        "customer": "A Connolly",
+        "postcode": "OL3 5EF",
+        "contract_number": "0000031841",
+        "type": "On Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 4
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "22FT SOLAR WELFARE TO GO ASWELL | Date moved by MCS Auto from 13/08/2026 to 11/08/2026 on 07/08/2026 11:42",
+        "added_by": "Peter",
+        "timestamp": "07/08/2026 11:42",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-08-20": [
@@ -13097,6 +13082,24 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Barlow House,, New Hall Lane, Mobberley, KNUTSFORD, WA16 7LL",
         "added_by": "MCS Auto",
         "timestamp": "07/08/2026 11:42"
+      }
+    ],
+    "2026-08-26": [
+      {
+        "type": "On Hire",
+        "customer": "Stuart Energy Ltd",
+        "postcode": "",
+        "contract_number": "0000031815",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 22ft Solar Powered Welfare | Date moved by MCS Auto from 30/07/2026 to 26/08/2026 on 07/08/2026 11:42",
+        "added_by": "MCS Auto",
+        "timestamp": "07/08/2026 11:42",
+        "date_moved_by": "MCS Auto"
       }
     ]
   },
