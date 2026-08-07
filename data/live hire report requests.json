@@ -1,5 +1,14 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "47461065ab",
+      "customer": "PERFE001",
+      "requested_by": "Nick Arnold",
+      "requested_at": "07/08/2026 10:45",
+      "status": "pending",
+      "detail": ""
+    }
+  ],
   "history": [
     {
       "id": "2945ef7460",
