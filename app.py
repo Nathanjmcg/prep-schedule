@@ -77,7 +77,8 @@ HEADERS = {"Authorization": f"token {GITHUB_TOKEN}",
 
 def gh_get(path):
     url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{path}"
-    r = requests.get(url, headers=HEADERS, params={"ref": GITHUB_BRANCH})
+    r = requests.get(url, headers=HEADERS, params={"ref": GITHUB_BRANCH},
+                     timeout=10)
     if r.status_code == 404:
         return None, None
     r.raise_for_status()
@@ -91,7 +92,16 @@ def gh_put(path, obj, sha=None, msg="Update schedule"):
                "branch": GITHUB_BRANCH}
     if sha:
         payload["sha"] = sha
-    requests.put(url, headers=HEADERS, json=payload).raise_for_status()
+    requests.put(url, headers=HEADERS, json=payload,
+                 timeout=15).raise_for_status()
+
+@st.cache_data(ttl=30)
+def load_request_file(path):
+    """Cached read of a request-queue file: one GitHub call per file per
+    30s across every rerun and session, instead of one per rerun. Writers
+    must call load_request_file.clear() after a successful gh_put so the
+    change shows immediately."""
+    return gh_get(path)
 
 @st.cache_data(ttl=30)
 def load_data():
@@ -135,7 +145,7 @@ def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None,
         "materials":     mat_dict or {},
         "materials_totals": matt_dict or {},
     }
-    st.cache_data.clear()
+    load_data.clear()   # scoped: keep the bank-holiday + queue caches
     for attempt in range(3):
         fresh_obj, fresh_sha = gh_get(DATA_FILE)
         if fresh_obj:
@@ -1588,7 +1598,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ── LIVE HIRE REPORTS ─────────────────────────────────────────────────────────
-# Version 1.2
+# Version 1.3
 LIVE_HIRE_REQ_FILE = "data/live hire report requests.json"
 
 # Names only - the worker on Nathan's machine maps these to email
@@ -1602,7 +1612,7 @@ LIVE_HIRE_USERS = [
 ]
 
 with st.expander("📊 Live Hire Report (runs in MCS, emailed to you as PDF and Excel)"):
-    lh_data, lh_sha = gh_get(LIVE_HIRE_REQ_FILE)
+    lh_data, lh_sha = load_request_file(LIVE_HIRE_REQ_FILE)
     lh_data = lh_data or {"requests": []}
 
     # Auto-clear: completed log entries older than 10 minutes drop off so
@@ -1619,11 +1629,19 @@ with st.expander("📊 Live Hire Report (runs in MCS, emailed to you as PDF and 
     _lh_kept = [h for h in _lh_hist
                 if not (h.get("status") == "done" and _lh_older_than(h, 10))]
     if len(_lh_kept) != len(_lh_hist):
-        lh_data["history"] = _lh_kept
         try:
-            _, _lh_fresh_sha = gh_get(LIVE_HIRE_REQ_FILE)
-            gh_put(LIVE_HIRE_REQ_FILE, lh_data, sha=_lh_fresh_sha,
-                   msg="Auto-clear live hire report log")
+            # re-read and modify the FRESH file so a stale snapshot never
+            # overwrites the worker's status updates
+            _fresh, _lh_fresh_sha = gh_get(LIVE_HIRE_REQ_FILE)
+            if _fresh:
+                _fresh["history"] = [
+                    h for h in _fresh.get("history", [])
+                    if not (h.get("status") == "done"
+                            and _lh_older_than(h, 10))]
+                gh_put(LIVE_HIRE_REQ_FILE, _fresh, sha=_lh_fresh_sha,
+                       msg="Auto-clear live hire report log")
+                load_request_file.clear()
+                lh_data = _fresh
         except Exception:
             pass  # transient write clash retries on next refresh
 
@@ -1641,17 +1659,23 @@ with st.expander("📊 Live Hire Report (runs in MCS, emailed to you as PDF and 
             st.error("Enter a customer name or account number.")
         else:
             import uuid as _lhuuid
-            lh_data["requests"].append({
+            _new_req = {
                 "id": _lhuuid.uuid4().hex[:10],
                 "customer": lh_cust.strip(),
                 "requested_by": lh_by,
                 "requested_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
                 "status": "pending",
                 "detail": "",
-            })
-            _, lh_fresh_sha = gh_get(LIVE_HIRE_REQ_FILE)
-            gh_put(LIVE_HIRE_REQ_FILE, lh_data, sha=lh_fresh_sha,
+            }
+            # append to the FRESH file, not the cached snapshot, so the
+            # worker's status updates in between are never overwritten
+            lh_fresh, lh_fresh_sha = gh_get(LIVE_HIRE_REQ_FILE)
+            lh_fresh = lh_fresh or {"requests": []}
+            lh_fresh.setdefault("requests", []).append(_new_req)
+            gh_put(LIVE_HIRE_REQ_FILE, lh_fresh, sha=lh_fresh_sha,
                    msg="Live hire report request added")
+            load_request_file.clear()
+            lh_data = lh_fresh
             st.success("Request queued. The report worker picks it up "
                        "within about 10 minutes and emails you the "
                        "report as PDF and Excel.")
@@ -1678,13 +1702,15 @@ with st.expander("📊 Live Hire Report (runs in MCS, emailed to you as PDF and 
     if st.button("Clear log", key="lh_clear",
                  help="Removes completed and failed entries now. Pending "
                       "requests are kept."):
-        lh_data["history"] = []
-        lh_data["requests"] = [r for r in lh_data.get("requests", [])
-                               if r.get("status") == "pending"]
         try:
-            _, _lh_clr_sha = gh_get(LIVE_HIRE_REQ_FILE)
-            gh_put(LIVE_HIRE_REQ_FILE, lh_data, sha=_lh_clr_sha,
+            _clr, _lh_clr_sha = gh_get(LIVE_HIRE_REQ_FILE)
+            _clr = _clr or {"requests": []}
+            _clr["history"] = []
+            _clr["requests"] = [r for r in _clr.get("requests", [])
+                                if r.get("status") == "pending"]
+            gh_put(LIVE_HIRE_REQ_FILE, _clr, sha=_lh_clr_sha,
                    msg="Live hire report log cleared")
+            load_request_file.clear()
             st.success("Live hire report log cleared.")
         except Exception:
             st.error("Could not clear the log just now, please try again.")
@@ -1697,7 +1723,7 @@ QUOTE_REQ_FILE = "data/quote requests.json"
 OFFER_CODES = ["MOBILEOFFER"]
 
 with st.expander("📨 Request a Quote (auto-created in MCS, emailed to Enquiries)"):
-    qr_data, qr_sha = gh_get(QUOTE_REQ_FILE)
+    qr_data, qr_sha = load_request_file(QUOTE_REQ_FILE)
     qr_data = qr_data or {"requests": []}
 
     # Auto-clear: completed log entries older than 10 minutes drop off on
@@ -1716,11 +1742,19 @@ with st.expander("📨 Request a Quote (auto-created in MCS, emailed to Enquirie
     _kept = [h for h in _hist
              if not (h.get("status") == "done" and _qr_older_than(h, 10))]
     if len(_kept) != len(_hist):
-        qr_data["history"] = _kept
         try:
-            _, _fresh_sha = gh_get(QUOTE_REQ_FILE)
-            gh_put(QUOTE_REQ_FILE, qr_data, sha=_fresh_sha,
-                   msg="Auto-clear quote log")
+            # re-read and modify the FRESH file so a stale snapshot never
+            # overwrites the worker's status updates
+            _freshq, _fresh_sha = gh_get(QUOTE_REQ_FILE)
+            if _freshq:
+                _freshq["history"] = [
+                    h for h in _freshq.get("history", [])
+                    if not (h.get("status") == "done"
+                            and _qr_older_than(h, 10))]
+                gh_put(QUOTE_REQ_FILE, _freshq, sha=_fresh_sha,
+                       msg="Auto-clear quote log")
+                load_request_file.clear()
+                qr_data = _freshq
         except Exception:
             pass  # a transient write clash just retries on the next refresh
 
@@ -1745,7 +1779,7 @@ with st.expander("📨 Request a Quote (auto-created in MCS, emailed to Enquirie
             st.error("Customer code and Requested by are needed.")
         else:
             import uuid as _qruuid
-            qr_data["requests"].append({
+            _new_qr = {
                 "id": _qruuid.uuid4().hex[:10],
                 "customer_code": qr_cust.strip().upper(),
                 "offer_code": qr_offer,
@@ -1758,10 +1792,16 @@ with st.expander("📨 Request a Quote (auto-created in MCS, emailed to Enquirie
                 "status": "pending",
                 "quote_ref": "",
                 "detail": "",
-            })
-            _, fresh_sha = gh_get(QUOTE_REQ_FILE)
-            gh_put(QUOTE_REQ_FILE, qr_data, sha=fresh_sha,
+            }
+            # append to the FRESH file, not the cached snapshot, so the
+            # worker's status updates in between are never overwritten
+            qr_fresh, fresh_sha = gh_get(QUOTE_REQ_FILE)
+            qr_fresh = qr_fresh or {"requests": []}
+            qr_fresh.setdefault("requests", []).append(_new_qr)
+            gh_put(QUOTE_REQ_FILE, qr_fresh, sha=fresh_sha,
                    msg="Quote request added")
+            load_request_file.clear()
+            qr_data = qr_fresh
             st.success("Request queued. The worker picks it up within "
                        "a few minutes and it lands with Enquiries.")
 
@@ -1787,13 +1827,15 @@ with st.expander("📨 Request a Quote (auto-created in MCS, emailed to Enquirie
     if st.button("Clear log", key="qr_clear",
                  help="Removes all completed and failed entries now. "
                       "Pending requests waiting to be created are kept."):
-        qr_data["history"] = []
-        qr_data["requests"] = [r for r in qr_data.get("requests", [])
-                               if r.get("status") == "pending"]
         try:
-            _, _clr_sha = gh_get(QUOTE_REQ_FILE)
-            gh_put(QUOTE_REQ_FILE, qr_data, sha=_clr_sha,
+            _clrq, _clr_sha = gh_get(QUOTE_REQ_FILE)
+            _clrq = _clrq or {"requests": []}
+            _clrq["history"] = []
+            _clrq["requests"] = [r for r in _clrq.get("requests", [])
+                                 if r.get("status") == "pending"]
+            gh_put(QUOTE_REQ_FILE, _clrq, sha=_clr_sha,
                    msg="Quote log cleared")
+            load_request_file.clear()
             st.success("Quote request log cleared.")
         except Exception:
             st.error("Could not clear the log just now, please try again.")
@@ -2362,9 +2404,14 @@ with st.expander("📸 Snapshot — export current view"):
 
 # ── EXPORT ────────────────────────────────────────────────────────────────────
 st.markdown("---")
-with st.expander("📥 Export to Excel / CSV"):
+
+@st.cache_data(ttl=60)
+def build_export_files(jobs_json):
+    """Build the export DataFrame, Excel bytes and CSV once per minute
+    per schedule state, instead of on every rerun in every session."""
+    jobs_x = json.loads(jobs_json)
     rows = []
-    for dk, jlist in sorted(jobs.items()):
+    for dk, jlist in sorted(jobs_x.items()):
         d = datetime.strptime(dk, "%Y-%m-%d").date()
         for j in jlist:
             unit_str = ", ".join(f'{u}×{q}' for u, q in j.get("units", {}).items() if q)
@@ -2378,7 +2425,7 @@ with st.expander("📥 Export to Excel / CSV"):
                 "Customer":          j.get("customer", ""),
                 "Contract No.":      j.get("contract_number", ""),
                 "Postcode":          j.get("postcode", ""),
-                "Type":              j["type"],
+                "Type":              j.get("type", ""),
                 "Site Move Type":    j.get("site_move_type", ""),
                 "Units":             unit_str,
                 "AV Configs":        av_cfg_str,
@@ -2392,21 +2439,28 @@ with st.expander("📥 Export to Excel / CSV"):
                 "Edited By":         j.get("edited_by", ""),
                 "Edited At":         j.get("edited_at", ""),
             })
-    if rows:
-        df = pd.DataFrame(rows)
+    if not rows:
+        return None, None, None
+    df = pd.DataFrame(rows)
+    buf = io.BytesIO()
+    with pd.ExcelWriter(buf, engine="openpyxl") as writer:
+        df.to_excel(writer, index=False, sheet_name="Prep Schedule")
+    return df, buf.getvalue(), df.to_csv(index=False)
+
+with st.expander("📥 Export to Excel / CSV"):
+    df, xlsx_bytes, csv_text = build_export_files(
+        json.dumps(jobs, sort_keys=True))
+    if df is not None:
         ec1, ec2 = st.columns(2)
         with ec1:
-            buf = io.BytesIO()
-            with pd.ExcelWriter(buf, engine="openpyxl") as writer:
-                df.to_excel(writer, index=False, sheet_name="Prep Schedule")
             st.download_button(
-                "⬇ Download Excel", data=buf.getvalue(),
+                "⬇ Download Excel", data=xlsx_bytes,
                 file_name=f"kensite_prep_{today}.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 use_container_width=True)
         with ec2:
             st.download_button(
-                "⬇ Download CSV", data=df.to_csv(index=False),
+                "⬇ Download CSV", data=csv_text,
                 file_name=f"kensite_prep_{today}.csv",
                 mime="text/csv", use_container_width=True)
         st.dataframe(df, use_container_width=True, hide_index=True)
