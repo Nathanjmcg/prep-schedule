@@ -12071,6 +12071,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 22ft Solar Powered Welfare",
         "added_by": "MCS Auto",
         "timestamp": "07/08/2026 21:42"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Richard O'Brien Joinery",
+        "postcode": "",
+        "contract_number": "0000031858",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "10/08/2026 12:00"
       }
     ],
     "2026-08-06": [
