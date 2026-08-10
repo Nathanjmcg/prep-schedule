@@ -47,6 +47,8 @@ ASSET_UNITS = {
 JOB_TYPES = ["On Hire", "Off Hire", "Site Move"]
 TEAM_MEMBERS = ["Jake", "Ewa", "Klaudia", "Chris", "Nick", "Chloe", "Peter", "Claude", "Nathan"]
 MATERIALS_NAMES = ["Alex", "Baz", "Carl", "Cliff", "Dan", "Jim", "Keaton", "Matt", "Mel", "Mitch", "Ste"]
+# Who can mark a materials request as ordered
+MATERIALS_ORDERERS = ["Mitch", "Pete", "Ken"]
 
 # Materials request categories -> items (A-Z, every category ends with
 # Other). "Vinyl Floor" under Joinery is floor covering; "Vinyls"
@@ -1657,7 +1659,8 @@ def materials_view_dialog(mid):
 
     if status == "pending":
         st.markdown("**Mark whole request as Ordered:**")
-        orderer = st.selectbox("Ordered by", ["— Select *"] + MATERIALS_NAMES + TEAM_MEMBERS,
+        orderer = st.selectbox("Ordered by",
+                               ["— Select *"] + MATERIALS_ORDERERS,
                                key=f"mat_orderer_{mid}")
         if st.button("✅ Mark Ordered", type="primary", use_container_width=True):
             if orderer == "— Select *":
@@ -2569,67 +2572,70 @@ with mat_col:
                 "ordered":      ("#fff9e6", "#7a5c00", "#fff0c2"),
                 "pod_received": (K_GREEN_PALE, K_GREEN_DARK, "#d4ecdd"),
             }
+            # One pill PER REQUEST: the button is the pill header, the
+            # block beneath it holds a sub-pill per item and is styled
+            # to read as the lower half of the same pill.
             btn_css = "<style>"
             for gkey in order:
                 members = groups[gkey]
-                # status is per REQUEST, so all its pills share a colour
                 g_status = members[0][1].get("status", "pending")
                 c_bg, c_fg, c_hov = STATUS_COLS.get(
                     g_status, ("#f0f0f0", K_GREY, "#e6e6e6"))
-                for pos, (mid, req) in enumerate(members):
-                    bkey = f"matview_{mid}"
-                    last = (pos == len(members) - 1)
-                    btn_css += (
-                        f".st-key-{bkey} button{{background:{c_bg} !important;"
-                        f"color:{c_fg} !important;}}"
-                        f".st-key-{bkey} button:hover{{background:{c_hov} "
-                        f"!important;color:{c_fg} !important;}}"
-                    )
-                    if len(members) > 1:
-                        # tree: vertical spine + horizontal branch
-                        vert = ("top:0;height:calc(50% + 1px);" if last
-                                else "top:0;bottom:0;")
-                        btn_css += (
-                            f".st-key-{bkey}{{position:relative;"
-                            f"margin-left:14px;}}"
-                            f".st-key-{bkey}::before{{content:'';"
-                            f"position:absolute;left:-12px;{vert}"
-                            f"width:2px;background:{c_fg};opacity:.45;}}"
-                            f".st-key-{bkey}::after{{content:'';"
-                            f"position:absolute;left:-12px;top:50%;"
-                            f"width:12px;height:2px;background:{c_fg};"
-                            f"opacity:.45;}}"
-                        )
+                bkey = f"matreq_{members[0][0]}"
+                btn_css += (
+                    f".st-key-{bkey} button{{background:{c_bg} !important;"
+                    f"color:{c_fg} !important;border:none !important;"
+                    f"border-radius:8px 8px 0 0 !important;"
+                    f"font-weight:700 !important;text-align:left "
+                    f"!important;justify-content:flex-start !important;"
+                    f"padding:6px 10px !important;}}"
+                    f".st-key-{bkey} button:hover{{background:{c_hov} "
+                    f"!important;color:{c_fg} !important;}}"
+                    f".st-key-{bkey}{{margin-bottom:-14px !important;}}"
+                )
             btn_css += "</style>"
             st.markdown(btn_css, unsafe_allow_html=True)
 
             for gkey in order:
                 members = groups[gkey]
-                head = members[0][1]
+                head    = members[0][1]
                 reqby   = head.get("requester", "")
                 created = head.get("created_at", "")
-                if len(members) > 1:
-                    st.markdown(
-                        f"<div style='font-size:11px;font-weight:700;"
-                        f"color:{K_GREY};margin:6px 2px 2px;'>"
-                        f"{reqby} <span style='opacity:.55;font-weight:600;'>"
-                        f"{created}</span></div>",
-                        unsafe_allow_html=True)
-                    for mid, req in members:
-                        if st.button(req.get("item", ""),
-                                     key=f"matview_{mid}",
-                                     use_container_width=True):
-                            st.session_state["mat_view_id"]     = mid
-                            st.session_state["any_dialog_open"] = True
-                            st.rerun()
-                else:
-                    mid, req = members[0]
-                    btn_label = f"{req.get('item', '')}  —  {reqby}"
-                    if st.button(btn_label, key=f"matview_{mid}",
-                                 use_container_width=True):
-                        st.session_state["mat_view_id"]     = mid
-                        st.session_state["any_dialog_open"] = True
-                        st.rerun()
+                g_status = head.get("status", "pending")
+                c_bg, c_fg, _hov = STATUS_COLS.get(
+                    g_status, ("#f0f0f0", K_GREY, "#e6e6e6"))
+                n_items = len(members)
+
+                # pill header — clicking anywhere opens the request
+                if st.button(f"{reqby}   ·   {created}   ·   "
+                             f"{n_items} item{'s' if n_items != 1 else ''}",
+                             key=f"matreq_{members[0][0]}",
+                             use_container_width=True):
+                    st.session_state["mat_view_id"]     = members[0][0]
+                    st.session_state["any_dialog_open"] = True
+                    st.rerun()
+
+                # sub-pills, one per item, with that item's notes
+                subs = ""
+                for _m, r in members:
+                    note = r.get("notes", "")
+                    subs += (
+                        f'<div style="background:rgba(255,255,255,.6);'
+                        f'border-radius:6px;padding:4px 8px;'
+                        f'margin-top:4px;">'
+                        f'<div style="font-size:11.5px;font-weight:700;'
+                        f'color:{c_fg};line-height:1.3;">'
+                        f'{_html_esc.escape(str(r.get("item","")))}</div>'
+                        + (f'<div style="font-size:10px;opacity:.75;'
+                           f'color:{c_fg};line-height:1.3;">'
+                           f'{_html_esc.escape(str(note))}</div>'
+                           if note else "")
+                        + '</div>')
+                st.markdown(
+                    f'<div style="background:{c_bg};'
+                    f'border-radius:0 0 8px 8px;padding:2px 8px 8px;'
+                    f'margin-bottom:8px;">{subs}</div>',
+                    unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
 
