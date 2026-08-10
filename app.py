@@ -1467,14 +1467,34 @@ def _mat_current_line(category, item_choice, item_other, notes,
 
 
 @st.dialog("New Materials Request", width="small")
+def _mat_request_key(req):
+    """Identity of the REQUEST an item belongs to. Newer items carry a
+    request_id; older ones fall back to requester + timestamp."""
+    return (req.get("request_id")
+            or f"{req.get('requester','')}|{req.get('created_at','')}")
+
+
+def _mat_group_members(mid):
+    """All items belonging to the same request as `mid`, newest
+    request order preserved."""
+    req = materials.get(mid)
+    if not req:
+        return []
+    key = _mat_request_key(req)
+    return [(m, r) for m, r in materials.items()
+            if _mat_request_key(r) == key]
+
+
 def _mat_save_lines(requester, final):
-    """Persist each line as its own pending materials request, sharing
-    one requester + timestamp so the panel can group them."""
+    """Persist a request: one entry per item, all sharing a request_id
+    so status and actions apply to the request as a whole."""
     now_stamp = datetime.now().strftime("%d/%m/%Y %H:%M")
+    rid = _uuid.uuid4().hex[:12]
     for ln in final:
         mid = _uuid.uuid4().hex[:12]
         materials[mid] = {
             "requester":  requester,
+            "request_id": rid,
             "item":       f"{ln['quantity']} × {ln['item_name']}",
             "category":   ln["category"],
             "item_name":  ln["item_name"],
@@ -1594,6 +1614,9 @@ def materials_view_dialog(mid):
     if not req:
         st.warning("Request not found."); return
 
+    # The whole REQUEST is the unit: status and actions apply to every
+    # item submitted together.
+    members = _mat_group_members(mid)
     status    = req.get("status", "pending")
     status_colours = {
         "pending":      ("#fdecea", "#7b1a1a"),
@@ -1603,33 +1626,49 @@ def materials_view_dialog(mid):
     bg, fg = status_colours.get(status, ("#f0f0f0", K_GREY))
     status_label = {"pending": "🔴 Pending", "ordered": "🟡 Ordered", "pod_received": "🟢 POD Received"}
 
+    items_html = ""
+    for _m, r in members:
+        detail = []
+        if r.get("category"):
+            detail.append(r["category"])
+        if r.get("supplier"):
+            detail.append(r["supplier"])
+        items_html += (
+            f'<div style="margin-top:6px;padding-top:6px;'
+            f'border-top:1px solid rgba(0,0,0,.08);">'
+            f'<div style="font-size:15px;font-weight:800;">'
+            f'{r.get("item","")}</div>'
+            + (f'<div style="font-size:11px;opacity:.6;">'
+               f'{" · ".join(detail)}</div>' if detail else "")
+            + (f'<div style="font-size:11px;opacity:.6;">'
+               f'{r["notes"]}</div>' if r.get("notes") else "")
+            + '</div>')
+
     st.markdown(f"""
     <div style="background:{bg};color:{fg};border-radius:8px;padding:12px 14px;margin-bottom:1rem;">
-      <div style="font-size:17px;font-weight:800;margin-bottom:4px;">{req.get("item","")}</div>
       <div style="font-size:12px;opacity:.7;">Requested by <b>{req.get("requester","")}</b> · {req.get("created_at","")}</div>
-      {f'<div style="font-size:11px;opacity:.6;margin-top:3px;">Category: {req["category"]}</div>' if req.get("category") else ""}
-      {f'<div style="font-size:11px;opacity:.6;">Notes: {req["notes"]}</div>' if req.get("notes") else ""}
-      {f'<div style="font-size:11px;opacity:.6;margin-top:3px;">Supplier: {req["supplier"]}</div>' if req.get("supplier") else ""}
-      <div style="margin-top:6px;font-size:12px;font-weight:700;">{status_label.get(status,"")}</div>
+      <div style="font-size:10px;opacity:.55;">{len(members)} item{"s" if len(members) != 1 else ""} on this request</div>
+      {items_html}
+      <div style="margin-top:8px;font-size:12px;font-weight:700;">{status_label.get(status,"")}</div>
       {f'<div style="font-size:10px;opacity:.6;">Ordered by {req.get("ordered_by","")} · {req.get("ordered_at","")}</div>' if status in ("ordered","pod_received") else ""}
       {f'<div style="font-size:10px;opacity:.6;">POD received {req.get("pod_received_at","")}</div>' if status == "pod_received" else ""}
     </div>
     """, unsafe_allow_html=True)
 
-    changed = False
-
     if status == "pending":
-        st.markdown("**Mark as Ordered:**")
+        st.markdown("**Mark whole request as Ordered:**")
         orderer = st.selectbox("Ordered by", ["— Select *"] + MATERIALS_NAMES + TEAM_MEMBERS,
                                key=f"mat_orderer_{mid}")
         if st.button("✅ Mark Ordered", type="primary", use_container_width=True):
             if orderer == "— Select *":
                 st.warning("Please select who ordered it.")
             else:
-                req["status"]     = "ordered"
-                req["ordered_by"] = orderer
-                req["ordered_at"] = datetime.now().strftime("%d/%m/%Y %H:%M")
-                materials[mid]    = req
+                stamp = datetime.now().strftime("%d/%m/%Y %H:%M")
+                for m, r in members:
+                    r["status"]     = "ordered"
+                    r["ordered_by"] = orderer
+                    r["ordered_at"] = stamp
+                    materials[m]    = r
                 save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
                 st.session_state["any_dialog_open"] = False
                 st.rerun()
@@ -1637,9 +1676,11 @@ def materials_view_dialog(mid):
     elif status == "ordered":
         st.markdown(f"**Requested by {req.get('requester','')} — tick when POD is in:**")
         if st.button("✅ POD Brought to Office", type="primary", use_container_width=True):
-            req["status"]         = "pod_received"
-            req["pod_received_at"] = datetime.now().strftime("%d/%m/%Y %H:%M")
-            materials[mid]        = req
+            stamp = datetime.now().strftime("%d/%m/%Y %H:%M")
+            for m, r in members:
+                r["status"]          = "pod_received"
+                r["pod_received_at"] = stamp
+                materials[m]         = r
             save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
             st.session_state["any_dialog_open"] = False
             st.rerun()
@@ -1648,7 +1689,8 @@ def materials_view_dialog(mid):
     dc1, dc2 = st.columns(2)
     with dc1:
         if st.button("🗑 Delete request", use_container_width=True):
-            del materials[mid]
+            for m, _r in members:
+                materials.pop(m, None)
             save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
             st.session_state["any_dialog_open"] = False
             st.rerun()
@@ -2512,51 +2554,67 @@ with mat_col:
             st.markdown("<div class='day-empty' style='padding:8px;'>No requests</div>",
                         unsafe_allow_html=True)
         else:
-            # Group items submitted together (same requester, same
-            # timestamp) so multi-item requests read as one request
-            # with indented offspring lines beneath it.
+            # One REQUEST = one group: requester + date header, with a
+            # tree line branching down to each of its item pills.
             groups, order = {}, []
             for mid, req in mat_items:
-                gkey = (req.get("requester", ""), req.get("created_at", ""))
+                gkey = _mat_request_key(req)
                 if gkey not in groups:
                     groups[gkey] = []
                     order.append(gkey)
                 groups[gkey].append((mid, req))
 
+            STATUS_COLS = {
+                "pending":      ("#fdecea", "#7b1a1a", "#fbddd8"),
+                "ordered":      ("#fff9e6", "#7a5c00", "#fff0c2"),
+                "pod_received": (K_GREEN_PALE, K_GREEN_DARK, "#d4ecdd"),
+            }
             btn_css = "<style>"
-            for mid, req in mat_items:
-                status = req.get("status", "pending")
-                if status == "pending":
-                    c_bg, c_fg, c_hov = "#fdecea", "#7b1a1a", "#fbddd8"
-                elif status == "ordered":
-                    c_bg, c_fg, c_hov = "#fff9e6", "#7a5c00", "#fff0c2"
-                else:
-                    c_bg, c_fg, c_hov = K_GREEN_PALE, K_GREEN_DARK, "#d4ecdd"
-                bkey = f"matview_{mid}"
-                btn_css += (
-                    f".st-key-{bkey} button{{background:{c_bg} !important;"
-                    f"color:{c_fg} !important;}}"
-                    f".st-key-{bkey} button:hover{{background:{c_hov} !important;"
-                    f"color:{c_fg} !important;}}"
-                )
-            # indent + joining line for offspring rows of a multi-item request
-            btn_css += (".mat-child{margin-left:12px;border-left:2px solid "
-                        "#c8cdd2;padding-left:8px;}")
+            for gkey in order:
+                members = groups[gkey]
+                # status is per REQUEST, so all its pills share a colour
+                g_status = members[0][1].get("status", "pending")
+                c_bg, c_fg, c_hov = STATUS_COLS.get(
+                    g_status, ("#f0f0f0", K_GREY, "#e6e6e6"))
+                for pos, (mid, req) in enumerate(members):
+                    bkey = f"matview_{mid}"
+                    last = (pos == len(members) - 1)
+                    btn_css += (
+                        f".st-key-{bkey} button{{background:{c_bg} !important;"
+                        f"color:{c_fg} !important;}}"
+                        f".st-key-{bkey} button:hover{{background:{c_hov} "
+                        f"!important;color:{c_fg} !important;}}"
+                    )
+                    if len(members) > 1:
+                        # tree: vertical spine + horizontal branch
+                        vert = ("top:0;height:calc(50% + 1px);" if last
+                                else "top:0;bottom:0;")
+                        btn_css += (
+                            f".st-key-{bkey}{{position:relative;"
+                            f"margin-left:14px;}}"
+                            f".st-key-{bkey}::before{{content:'';"
+                            f"position:absolute;left:-12px;{vert}"
+                            f"width:2px;background:{c_fg};opacity:.45;}}"
+                            f".st-key-{bkey}::after{{content:'';"
+                            f"position:absolute;left:-12px;top:50%;"
+                            f"width:12px;height:2px;background:{c_fg};"
+                            f"opacity:.45;}}"
+                        )
             btn_css += "</style>"
             st.markdown(btn_css, unsafe_allow_html=True)
 
             for gkey in order:
                 members = groups[gkey]
-                reqby, created = gkey
+                head = members[0][1]
+                reqby   = head.get("requester", "")
+                created = head.get("created_at", "")
                 if len(members) > 1:
                     st.markdown(
                         f"<div style='font-size:11px;font-weight:700;"
-                        f"color:{K_GREY};margin:4px 2px 2px;'>"
+                        f"color:{K_GREY};margin:6px 2px 2px;'>"
                         f"{reqby} <span style='opacity:.55;font-weight:600;'>"
                         f"{created}</span></div>",
                         unsafe_allow_html=True)
-                    st.markdown("<div class='mat-child'>",
-                                unsafe_allow_html=True)
                     for mid, req in members:
                         if st.button(req.get("item", ""),
                                      key=f"matview_{mid}",
@@ -2564,7 +2622,6 @@ with mat_col:
                             st.session_state["mat_view_id"]     = mid
                             st.session_state["any_dialog_open"] = True
                             st.rerun()
-                    st.markdown("</div>", unsafe_allow_html=True)
                 else:
                     mid, req = members[0]
                     btn_label = f"{req.get('item', '')}  —  {reqby}"
