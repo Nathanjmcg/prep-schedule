@@ -1621,10 +1621,12 @@ div[data-testid="stTextInput"]:has(input[aria-label="Search"])
 </style>
 """, unsafe_allow_html=True)
 
-_hdr_left, _hdr_mid, _hdr_pad = st.columns([2.6, 6, 3.4])
+_hdr_left, _hdr_mid, _hdr_pad = st.columns(
+    [2.0, 5.5, 4.5], vertical_alignment="center")
 with _hdr_left:
     st.markdown(f"""
-<div class="ks-header" style="border-bottom:none;margin-bottom:0;">
+<div class="ks-header" style="border-bottom:none;margin-bottom:0;
+     padding:0;">
   {KENSITE_LOGO_HTML}
   <span class="ks-title">Prep Schedule</span>
 </div>
