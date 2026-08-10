@@ -47,6 +47,26 @@ ASSET_UNITS = {
 JOB_TYPES = ["On Hire", "Off Hire", "Site Move"]
 TEAM_MEMBERS = ["Jake", "Ewa", "Klaudia", "Chris", "Nick", "Chloe", "Peter", "Claude", "Nathan"]
 MATERIALS_NAMES = ["Alex", "Baz", "Carl", "Cliff", "Dan", "Jim", "Keaton", "Matt", "Mel", "Mitch", "Ste"]
+
+# Materials request categories -> items (A-Z, every category ends with
+# Other). "Vinyl" under Fit Out is floor covering; "Vinyls" under
+# External is livery/graphics.
+MATERIALS_CATEGORIES = {
+    "Joinery": ["Base Units", "Ceiling Boards", "Doors", "JCOP Boards",
+                "Shutters", "Timber", "Trims", "Wall Boards", "Windows",
+                "Worktops", "Other"],
+    "Plumbing": ["Pipe", "Plumbing Fittings", "Sinks", "Taps",
+                 "Water Heater (Oversink)", "Water Heater (Undersink)",
+                 "Other"],
+    "Electrical": ["Appliances", "Downflow Heater", "Electrical Trunking",
+                   "Light Fittings", "Panel Heater", "PIR Sensors",
+                   "Switches and Boxes", "Wiring", "Other"],
+    "External": ["Signage", "Vinyls", "Other"],
+    "Fit Out": ["Brushes/Rollers", "Paint", "Vinyl", "Other"],
+    "Cleaning": ["Cleaning Consumables", "Floor Cleaner", "Spray Cleaner",
+                 "Other"],
+    "Other": ["Other"],
+}
 TYPE_STYLE = {
     "On Hire":      (K_GREEN_PALE, K_GREEN_DARK, "●"),
     "Off Hire":     ("#fdecea",    "#7b1a1a",    "●"),
@@ -1429,21 +1449,55 @@ def job_modal(date_key, edit_idx=None):
 def materials_add_dialog():
     name_opts = ["— Select your name *"] + MATERIALS_NAMES
     requester = st.selectbox("Your name *", name_opts, key="mat_name")
-    item      = st.text_input("What do you need? *", placeholder="e.g. M10 bolts, cable ties, paint...", key="mat_item")
-    supplier  = st.text_input("Usual supplier (if known)", placeholder="e.g. Screwfix, Travis Perkins...", key="mat_supplier")
+
+    category = st.selectbox("Category *",
+                            ["— Select category *"]
+                            + list(MATERIALS_CATEGORIES),
+                            key="mat_category")
+    item_choice, item_other = None, ""
+    if category in MATERIALS_CATEGORIES:
+        item_choice = st.selectbox(
+            "What do you need? *",
+            ["— Select item *"] + MATERIALS_CATEGORIES[category],
+            key=f"mat_item_{category.replace(' ', '_')}")
+        if item_choice == "Other":
+            item_other = st.text_input(
+                "Describe what you need *", key="mat_item_other",
+                placeholder="e.g. M10 bolts, cable ties...")
+
+    notes    = st.text_area("Notes", key="mat_notes",
+                            placeholder="Sizes, colours, spec, which "
+                                        "unit it's for...")
+    quantity = st.number_input("Quantity *", min_value=1, step=1,
+                               value=1, key="mat_qty")
+    supplier = st.text_input("Supplier (if known)",
+                             placeholder="e.g. Screwfix, Travis "
+                                         "Perkins...", key="mat_supplier")
 
     mc1, mc2 = st.columns(2)
     with mc1:
         if st.button("✅ Submit Request", type="primary", use_container_width=True):
             errors = []
-            if requester == "— Select your name *": errors.append("Please select your name.")
-            if not item.strip():                    errors.append("Please describe what you need.")
+            if requester == "— Select your name *":
+                errors.append("Please select your name.")
+            if category not in MATERIALS_CATEGORIES:
+                errors.append("Please select a category.")
+            elif item_choice in (None, "— Select item *"):
+                errors.append("Please select what you need.")
+            elif item_choice == "Other" and not item_other.strip():
+                errors.append("Please describe what you need.")
             for e in errors: st.warning(e)
             if not errors:
+                item_label = (item_other.strip() if item_choice == "Other"
+                              else item_choice)
                 mid = _uuid.uuid4().hex[:12]
                 materials[mid] = {
                     "requester":  requester,
-                    "item":       item.strip(),
+                    "item":       f"{int(quantity)} × {item_label}",
+                    "category":   category,
+                    "item_name":  item_label,
+                    "quantity":   int(quantity),
+                    "notes":      notes.strip(),
                     "supplier":   supplier.strip(),
                     "status":     "pending",
                     "created_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
@@ -1476,6 +1530,8 @@ def materials_view_dialog(mid):
     <div style="background:{bg};color:{fg};border-radius:8px;padding:12px 14px;margin-bottom:1rem;">
       <div style="font-size:17px;font-weight:800;margin-bottom:4px;">{req.get("item","")}</div>
       <div style="font-size:12px;opacity:.7;">Requested by <b>{req.get("requester","")}</b> · {req.get("created_at","")}</div>
+      {f'<div style="font-size:11px;opacity:.6;margin-top:3px;">Category: {req["category"]}</div>' if req.get("category") else ""}
+      {f'<div style="font-size:11px;opacity:.6;">Notes: {req["notes"]}</div>' if req.get("notes") else ""}
       {f'<div style="font-size:11px;opacity:.6;margin-top:3px;">Supplier: {req["supplier"]}</div>' if req.get("supplier") else ""}
       <div style="margin-top:6px;font-size:12px;font-weight:700;">{status_label.get(status,"")}</div>
       {f'<div style="font-size:10px;opacity:.6;">Ordered by {req.get("ordered_by","")} · {req.get("ordered_at","")} · £{req.get("value","?")}</div>' if status in ("ordered","pod_received") else ""}
