@@ -1597,6 +1597,68 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+# ── SEARCH ────────────────────────────────────────────────────────────────────
+# Version 1.0. Searches the WHOLE schedule (past and future, all weeks),
+# not just the weeks currently on screen. Every space-separated term must
+# match somewhere on the job: customer, contract number (splits like
+# 31815#1 included), postcode, type, units, haulage, notes, livery, who
+# added or edited it, or the date (2026-08-26, 26/08/2026, 26 Aug 2026
+# or the day name all work).
+
+def _job_search_hits(jobs_dict, query):
+    hits = []
+    terms = [t for t in query.lower().split() if t]
+    if not terms:
+        return hits
+    for dk, jlist in sorted(jobs_dict.items()):
+        try:
+            d = datetime.strptime(dk, "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        date_blob = " ".join([
+            dk, d.strftime("%d/%m/%Y"), d.strftime("%d/%m/%y"),
+            d.strftime("%d %b %Y"), d.strftime("%d %B %Y"),
+            d.strftime("%A")]).lower()
+        for j in jlist or []:
+            units_str = ", ".join(
+                f"{u}×{q}" for u, q in (j.get("units") or {}).items() if q)
+            blob = " ".join(str(x) for x in [
+                j.get("customer", ""), j.get("contract_number", ""),
+                j.get("postcode", ""), j.get("type", ""),
+                j.get("site_move_type", ""), j.get("notes", ""),
+                j.get("haulage", ""), j.get("haulage_who", ""),
+                j.get("livery", ""), j.get("livery_note", ""),
+                j.get("added_by", ""), j.get("edited_by", ""),
+                units_str]).lower()
+            if all(t in blob or t in date_blob for t in terms):
+                hits.append({
+                    "Date": d.strftime("%d/%m/%Y"),
+                    "Day": d.strftime("%A"),
+                    "Type": j.get("type", ""),
+                    "Customer": j.get("customer", ""),
+                    "Contract No.": j.get("contract_number", ""),
+                    "Postcode": j.get("postcode", ""),
+                    "Units": units_str,
+                    "Haulage": j.get("haulage", ""),
+                    "Notes": j.get("notes", ""),
+                    "Added By": j.get("added_by", ""),
+                })
+    return hits
+
+with st.expander("🔍 Search jobs (customer, contract, postcode, date, notes...)"):
+    search_q = st.text_input(
+        "Search", key="job_search", label_visibility="collapsed",
+        placeholder="e.g. Stuart Energy · 31815 · CA8 9AW · 26/08/2026 · "
+                    "external haulage · 20ft AV")
+    if search_q.strip():
+        search_hits = _job_search_hits(jobs, search_q)
+        if search_hits:
+            st.markdown(f"**{len(search_hits)} job(s) found**")
+            st.dataframe(pd.DataFrame(search_hits),
+                         use_container_width=True, hide_index=True)
+        else:
+            st.info("No jobs match that search.")
+
 # ── LIVE HIRE REPORTS ─────────────────────────────────────────────────────────
 # Version 1.3
 LIVE_HIRE_REQ_FILE = "data/live hire report requests.json"
