@@ -11013,6 +11013,23 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "F Parkinson Ltd",
+        "postcode": "CH65 0HW",
+        "contract_number": "0000031238",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Market Square, Market St, Ellesmere Port, , CH65 0HW",
+        "added_by": "MCS Auto",
+        "timestamp": "10/08/2026 12:20"
       }
     ],
     "2026-08-05": [
@@ -12088,6 +12105,23 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "10/08/2026 12:00"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "F Parkinson Ltd",
+        "postcode": "CH65 0HW",
+        "contract_number": "0000031192",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Market Square, Market St, Ellesmere Port, , CH65 0HW",
+        "added_by": "MCS Auto",
+        "timestamp": "10/08/2026 12:20"
       }
     ],
     "2026-08-06": [
