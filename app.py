@@ -1622,7 +1622,7 @@ div[data-testid="stTextInput"]:has(input[aria-label="Search"])
 """, unsafe_allow_html=True)
 
 _hdr_left, _hdr_mid, _hdr_pad = st.columns(
-    [2.0, 5.5, 4.5], vertical_alignment="center")
+    [1.6, 5.5, 4.9], vertical_alignment="bottom")
 with _hdr_left:
     st.markdown(f"""
 <div class="ks-header" style="border-bottom:none;margin-bottom:0;
