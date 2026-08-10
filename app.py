@@ -2351,251 +2351,215 @@ def render_chip(job, chip_id=""):
 DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri"]
 MAT_NAMES_DISPLAY = ["Sat", "Sun"]  # kept for reference but column is now Materials
 
-# Day name headers — 5 weekday cols + 1 materials col (spanning Sat+Sun space)
-hcols = st.columns([1, 1, 1, 1, 1, 2])
-for i, col in enumerate(hcols[:5]):
-    with col:
-        st.markdown(
-            f"<div style='text-align:center;font-size:11px;font-weight:700;"
-            f"color:{K_GREY};opacity:.45;letter-spacing:.07em;text-transform:uppercase;"
-            f"padding-bottom:3px;'>{DAY_NAMES[i]}</div>",
-            unsafe_allow_html=True)
-with hcols[5]:
-    # Count pending materials requests for header badge
-    _pending_count = sum(1 for r in materials.values() if r.get("status") == "pending")
-    _badge = f' <span style="background:#c0392b;color:white;border-radius:10px;padding:1px 6px;font-size:10px;">{_pending_count}</span>' if _pending_count else ""
+# ── CALENDAR LAYOUT: schedule left, one continuous materials panel right ──
+sched_col, mat_col = st.columns([5, 1.4], gap="medium")
+
+with sched_col:
+    # Day name headers — 5 weekday cols + 1 materials col (spanning Sat+Sun space)
+    hcols = st.columns(5)
+    for i, col in enumerate(hcols[:5]):
+        with col:
+            st.markdown(
+                f"<div style='text-align:center;font-size:11px;font-weight:700;"
+                f"color:{K_GREY};opacity:.45;letter-spacing:.07em;text-transform:uppercase;"
+                f"padding-bottom:3px;'>{DAY_NAMES[i]}</div>",
+                unsafe_allow_html=True)
+    for w in range(n_weeks):
+        ws = start_date + timedelta(weeks=w)
+        on_u, off_u, on_total, off_total, internal_dels, external_dels = week_unit_summary(ws)
+        st.markdown(render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_dels, live_hire), unsafe_allow_html=True)
+        cols = st.columns(5)
+
+        # Mon–Fri day cards (cols 0–4)
+        for d in range(5):
+            day        = ws + timedelta(days=d)
+            dk         = fmt_key(day)
+            is_today   = day == today
+            is_bh      = dk in bank_holidays
+            bh_name    = bank_holidays.get(dk, "")
+
+            card_cls = "is-today" if is_today else ("is-bh" if is_bh else "")
+            if not is_today and not is_bh:
+                if day_jobs_fulfilment_complete(dk) and daily_checklist_done(dk) and jobs.get(dk):
+                    card_cls = "is-complete"
+            date_cls = "is-today" if is_today else ""
+
+            with cols[d]:
+                day_jobs = jobs.get(dk, [])
+                summary_html = ""
+                if day_jobs:
+                    type_counts = {}
+                    for job in day_jobs:
+                        t = job.get("type", "On Hire")
+                        type_counts[t] = type_counts.get(t, 0) + 1
+                    for t, cnt in type_counts.items():
+                        bg, fg, _ = TYPE_STYLE[t]
+                        label = f"{cnt} × {t}"
+                        summary_html += (
+                            f'<div class="day-sum-pill" style="background:{bg};color:{fg};">'
+                            f'<div class="day-sum-dot" style="background:{fg};opacity:.5;"></div>'
+                            f'<span class="day-sum-label">{label}</span>'
+                            f'</div>'
+                        )
+                    on_hire_jobs  = [j for j in day_jobs if j.get("type") == "On Hire"]
+                    off_hire_jobs = [j for j in day_jobs if j.get("type") == "Off Hire"]
+                    picked  = sum(1 for ji, j in enumerate(on_hire_jobs)
+                                  if mcs.get(f"{dk}_{jobs.get(dk,[]).index(j) if j in jobs.get(dk,[]) else ji}", "") == "picked")
+                    checked = sum(1 for ji, j in enumerate(off_hire_jobs)
+                                  if mcs.get(f"{dk}_{jobs.get(dk,[]).index(j) if j in jobs.get(dk,[]) else ji}", "") == "checked")
+                    if on_hire_jobs and picked == len(on_hire_jobs):
+                        summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};font-weight:700;padding:1px 5px;">✅ All picked on MCS</div>'
+                    elif picked > 0:
+                        summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ {picked}/{len(on_hire_jobs)} picked MCS</div>'
+                    if off_hire_jobs and checked == len(off_hire_jobs):
+                        summary_html += f'<div style="font-size:9px;color:#7b1a1a;font-weight:700;padding:1px 5px;">✅ All processed MCS</div>'
+                    elif checked > 0:
+                        summary_html += f'<div style="font-size:9px;color:#7b1a1a;padding:1px 5px;">✅ {checked}/{len(off_hire_jobs)} processed MCS</div>'
+                    haul_icons = []
+                    for job in day_jobs:
+                        h = job.get("haulage", "None")
+                        if h == "Internal Haulage" and "🚛" not in haul_icons:
+                            haul_icons.append("🚛")
+                        elif h == "External Haulage" and "🚚" not in haul_icons:
+                            haul_icons.append("🚚")
+                    if haul_icons:
+                        summary_html += (
+                            f'<div style="font-size:10px;padding:2px 5px;opacity:.6;">'
+                            f'{" ".join(haul_icons)}</div>'
+                        )
+                else:
+                    summary_html = "<div class='day-empty'>No jobs</div>"
+
+                jobs_done   = day_jobs_fulfilment_complete(dk)
+                dailys_done = daily_checklist_done(dk)
+                if day_jobs and jobs_done and dailys_done:
+                    summary_html += (
+                        f'<div style="font-size:9px;font-weight:700;color:#7a5c00;'
+                        f'background:#fff3b0;border-radius:3px;padding:1px 5px;margin-top:1px;'
+                        f'display:inline-block;">✨ Daily\'s Complete</div>'
+                    )
+                elif day_jobs and dailys_done:
+                    summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ Dailys done</div>'
+                elif day_jobs and jobs_done:
+                    summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ Jobs complete</div>'
+
+                sv_count = len(site_visits.get(dk, []))
+                if sv_count:
+                    summary_html += (
+                        f'<div style="font-size:10px;font-weight:700;'
+                        f'color:{K_PURPLE_DARK};padding:2px 5px;margin-top:1px;">'
+                        f'🔍 {sv_count} Site Visit{"s" if sv_count > 1 else ""}</div>'
+                    )
+
+                bh_tag = (f"<div class='bh-label'>🏴󠁧󠁢󠁥󠁮󠁧󠁿 {bh_name}</div>" if is_bh else "")
+                st.markdown(
+                    f"<div class='day-card {card_cls}'>"
+                    f"<div class='day-head'>"
+                    f"<div class='day-name'>{day.strftime('%a')}</div>"
+                    f"<div class='day-date {date_cls}'>{day.strftime('%-d %b')}</div>"
+                    f"{bh_tag}</div>"
+                    f"<div class='day-body'>{summary_html}</div>"
+                    f"</div>",
+                    unsafe_allow_html=True)
+
+        # ── Button row — Mon–Fri only ─────────────────────────────────────────────
+        btn_cols = st.columns(5)
+        for d in range(5):
+            day      = ws + timedelta(days=d)
+            dk       = fmt_key(day)
+            day_jobs = jobs.get(dk, [])
+            with btn_cols[d]:
+                st.markdown("<div class='ks-add-btn'>", unsafe_allow_html=True)
+                if st.button("＋ Add / View", key=f"day_{dk}", use_container_width=True):
+                    if day_jobs:
+                        open_dialog(day_view_date=dk)
+                    else:
+                        open_dialog(modal_date=dk, modal_edit_idx=None)
+                    st.rerun()
+                st.markdown("</div>", unsafe_allow_html=True)
+
+with mat_col:
+    _pending_count = sum(1 for r in materials.values()
+                         if r.get("status") == "pending")
+    _badge = (f' <span style="background:#c0392b;color:white;'
+              f'border-radius:10px;padding:1px 6px;font-size:10px;">'
+              f'{_pending_count}</span>' if _pending_count else "")
     st.markdown(
-        f"<div style='text-align:center;font-size:11px;font-weight:700;"
-        f"color:{K_GREY};opacity:.7;letter-spacing:.07em;text-transform:uppercase;"
-        f"padding-bottom:3px;'>🔧 Materials{_badge}</div>",
+        f"<div style='font-size:11px;font-weight:700;color:{K_GREY};"
+        f"opacity:.7;letter-spacing:.07em;text-transform:uppercase;"
+        f"padding-bottom:3px;text-align:center;'>🔧 Materials{_badge}</div>",
         unsafe_allow_html=True)
 
-for w in range(n_weeks):
-    ws = start_date + timedelta(weeks=w)
-    on_u, off_u, on_total, off_total, internal_dels, external_dels = week_unit_summary(ws)
-    st.markdown(render_week_bar(on_u, off_u, on_total, off_total, internal_dels, external_dels, live_hire), unsafe_allow_html=True)
-    cols = st.columns([1, 1, 1, 1, 1, 2])
+    st.markdown("<div class='ks-add-btn'>", unsafe_allow_html=True)
+    if st.button("＋ Add Request", key="matadd_main", use_container_width=True):
+        st.session_state["mat_add"]         = True
+        st.session_state["any_dialog_open"] = True
+        st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
 
-    # Mon–Fri day cards (cols 0–4)
-    for d in range(5):
-        day        = ws + timedelta(days=d)
-        dk         = fmt_key(day)
-        is_today   = day == today
-        is_bh      = dk in bank_holidays
-        bh_name    = bank_holidays.get(dk, "")
+    mat_items = list(materials.items())
+    mat_items.sort(key=lambda x: x[1].get("created_at", ""), reverse=True)
+    n_pending  = sum(1 for _, r in mat_items if r.get("status") == "pending")
+    n_ordered  = sum(1 for _, r in mat_items if r.get("status") == "ordered")
+    n_received = sum(1 for _, r in mat_items if r.get("status") == "pod_received")
 
-        card_cls = "is-today" if is_today else ("is-bh" if is_bh else "")
-        if not is_today and not is_bh:
-            if day_jobs_fulfilment_complete(dk) and daily_checklist_done(dk) and jobs.get(dk):
-                card_cls = "is-complete"
-        date_cls = "is-today" if is_today else ""
-
-        with cols[d]:
-            day_jobs = jobs.get(dk, [])
-            summary_html = ""
-            if day_jobs:
-                type_counts = {}
-                for job in day_jobs:
-                    t = job.get("type", "On Hire")
-                    type_counts[t] = type_counts.get(t, 0) + 1
-                for t, cnt in type_counts.items():
-                    bg, fg, _ = TYPE_STYLE[t]
-                    label = f"{cnt} × {t}"
-                    summary_html += (
-                        f'<div class="day-sum-pill" style="background:{bg};color:{fg};">'
-                        f'<div class="day-sum-dot" style="background:{fg};opacity:.5;"></div>'
-                        f'<span class="day-sum-label">{label}</span>'
-                        f'</div>'
-                    )
-                on_hire_jobs  = [j for j in day_jobs if j.get("type") == "On Hire"]
-                off_hire_jobs = [j for j in day_jobs if j.get("type") == "Off Hire"]
-                picked  = sum(1 for ji, j in enumerate(on_hire_jobs)
-                              if mcs.get(f"{dk}_{jobs.get(dk,[]).index(j) if j in jobs.get(dk,[]) else ji}", "") == "picked")
-                checked = sum(1 for ji, j in enumerate(off_hire_jobs)
-                              if mcs.get(f"{dk}_{jobs.get(dk,[]).index(j) if j in jobs.get(dk,[]) else ji}", "") == "checked")
-                if on_hire_jobs and picked == len(on_hire_jobs):
-                    summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};font-weight:700;padding:1px 5px;">✅ All picked on MCS</div>'
-                elif picked > 0:
-                    summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ {picked}/{len(on_hire_jobs)} picked MCS</div>'
-                if off_hire_jobs and checked == len(off_hire_jobs):
-                    summary_html += f'<div style="font-size:9px;color:#7b1a1a;font-weight:700;padding:1px 5px;">✅ All processed MCS</div>'
-                elif checked > 0:
-                    summary_html += f'<div style="font-size:9px;color:#7b1a1a;padding:1px 5px;">✅ {checked}/{len(off_hire_jobs)} processed MCS</div>'
-                haul_icons = []
-                for job in day_jobs:
-                    h = job.get("haulage", "None")
-                    if h == "Internal Haulage" and "🚛" not in haul_icons:
-                        haul_icons.append("🚛")
-                    elif h == "External Haulage" and "🚚" not in haul_icons:
-                        haul_icons.append("🚚")
-                if haul_icons:
-                    summary_html += (
-                        f'<div style="font-size:10px;padding:2px 5px;opacity:.6;">'
-                        f'{" ".join(haul_icons)}</div>'
-                    )
-
-                # What's going OUT that day: units across the day's
-                # On Hire jobs, so the yard sees the workload without
-                # opening the day
-                out_units = {}
-                for job in day_jobs:
-                    if job.get("type") == "On Hire":
-                        for u, q in (job.get("units") or {}).items():
-                            if q:
-                                out_units[u] = out_units.get(u, 0) + q
-                if out_units:
-                    out_pills = "".join(
-                        f'<span style="background:{K_GREEN};color:#fff;'
-                        f'border-radius:3px;padding:1px 5px;font-size:9px;'
-                        f'font-weight:700;margin:1px 2px 0 0;'
-                        f'display:inline-block;">{u} ×{q}</span>'
-                        for u, q in sorted(out_units.items()))
-                    summary_html += (
-                        f'<div style="margin-top:5px;padding:4px 5px 1px;'
-                        f'border-top:1px dashed rgba(0,0,0,.15);">'
-                        f'<div style="font-size:8.5px;font-weight:700;'
-                        f'opacity:.55;letter-spacing:.05em;margin-bottom:2px;">'
-                        f'GOING OUT</div>{out_pills}</div>'
-                    )
-            else:
-                summary_html = "<div class='day-empty'>No jobs</div>"
-
-            jobs_done   = day_jobs_fulfilment_complete(dk)
-            dailys_done = daily_checklist_done(dk)
-            if day_jobs and jobs_done and dailys_done:
-                summary_html += (
-                    f'<div style="font-size:9px;font-weight:700;color:#7a5c00;'
-                    f'background:#fff3b0;border-radius:3px;padding:1px 5px;margin-top:1px;'
-                    f'display:inline-block;">✨ Daily\'s Complete</div>'
-                )
-            elif day_jobs and dailys_done:
-                summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ Dailys done</div>'
-            elif day_jobs and jobs_done:
-                summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ Jobs complete</div>'
-
-            sv_count = len(site_visits.get(dk, []))
-            if sv_count:
-                summary_html += (
-                    f'<div style="font-size:10px;font-weight:700;'
-                    f'color:{K_PURPLE_DARK};padding:2px 5px;margin-top:1px;">'
-                    f'🔍 {sv_count} Site Visit{"s" if sv_count > 1 else ""}</div>'
-                )
-
-            bh_tag = (f"<div class='bh-label'>🏴󠁧󠁢󠁥󠁮󠁧󠁿 {bh_name}</div>" if is_bh else "")
-            st.markdown(
-                f"<div class='day-card {card_cls}'>"
-                f"<div class='day-head'>"
-                f"<div class='day-name'>{day.strftime('%a')}</div>"
-                f"<div class='day-date {date_cls}'>{day.strftime('%-d %b')}</div>"
-                f"{bh_tag}</div>"
-                f"<div class='day-body'>{summary_html}</div>"
-                f"</div>",
-                unsafe_allow_html=True)
-
-    # Materials panel — col 5 (spans Sat+Sun space)
-    with cols[5]:
-        mat_items = list(materials.items())
-
-        # Sort: most recent first
-        mat_items.sort(key=lambda x: x[1].get("created_at", ""), reverse=True)
-
-        # Status counts for legend
-        n_pending  = sum(1 for _, r in mat_items if r.get("status") == "pending")
-        n_ordered  = sum(1 for _, r in mat_items if r.get("status") == "ordered")
-        n_received = sum(1 for _, r in mat_items if r.get("status") == "pod_received")
-
-        # Weekly total
-        wk_key   = ws.strftime("%Y-W%V")
-        wk_total = materials_totals.get(wk_key, 0)
-        wk_total_html = (
-            f'<span style="font-size:10px;font-weight:700;color:{K_GREEN_DARK};">'
-            f'💰 £{wk_total:,.2f}</span>'
-            if wk_total else ""
-        )
-
-        # Header with title + weekly total
+    wk_key   = date.today().strftime("%Y-W%V")
+    wk_total = materials_totals.get(wk_key, 0)
+    if wk_total:
         st.markdown(
-            f"<div style='display:flex;justify-content:space-between;align-items:center;"
-            f"margin:2px 2px 4px;'>"
-            f"<div style='font-size:11px;font-weight:700;color:{K_GREY};opacity:.6;"
-            f"text-transform:uppercase;letter-spacing:.06em;'>🔧 Materials</div>"
-            f"{wk_total_html}</div>",
-            unsafe_allow_html=True)
+            f"<div style='text-align:center;font-size:10px;font-weight:700;"
+            f"color:{K_GREEN_DARK};margin:2px 0 4px;'>💰 £{wk_total:,.2f} "
+            f"this week</div>", unsafe_allow_html=True)
 
-        # Legend with counts
-        st.markdown(
-            f"<div style='display:flex;gap:4px;margin:0 2px 5px;'>"
-            f"<span style='background:#fdecea;color:#7b1a1a;border-radius:4px;"
-            f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🔴 {n_pending} Requested</span>"
-            f"<span style='background:#fff9e6;color:#7a5c00;border-radius:4px;"
-            f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🟡 {n_ordered} Ordered</span>"
-            f"<span style='background:{K_GREEN_PALE};color:{K_GREEN_DARK};border-radius:4px;"
-            f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🟢 {n_received} Received</span>"
-            f"</div>",
-            unsafe_allow_html=True)
+    st.markdown(
+        f"<div style='display:flex;gap:4px;margin:0 2px 5px;flex-wrap:wrap;"
+        f"justify-content:center;'>"
+        f"<span style='background:#fdecea;color:#7b1a1a;border-radius:4px;"
+        f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🔴 {n_pending} Requested</span>"
+        f"<span style='background:#fff9e6;color:#7a5c00;border-radius:4px;"
+        f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🟡 {n_ordered} Ordered</span>"
+        f"<span style='background:{K_GREEN_PALE};color:{K_GREEN_DARK};border-radius:4px;"
+        f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🟢 {n_received} Received</span>"
+        f"</div>",
+        unsafe_allow_html=True)
 
-        # Scrollable container with clickable pill-buttons
-        st.markdown("<div class='mat-scroll'>", unsafe_allow_html=True)
-        mat_box = st.container(height=160)
-        with mat_box:
-            if not mat_items:
-                st.markdown("<div class='day-empty' style='padding:8px;'>No requests</div>",
-                            unsafe_allow_html=True)
-            else:
-                # Build per-button CSS targeting each button's st-key class
-                btn_css = "<style>"
-                for mid, req in mat_items:
-                    status = req.get("status", "pending")
-                    if status == "pending":
-                        c_bg, c_fg, c_hov = "#fdecea", "#7b1a1a", "#fbddd8"
-                    elif status == "ordered":
-                        c_bg, c_fg, c_hov = "#fff9e6", "#7a5c00", "#fff0c2"
-                    else:
-                        c_bg, c_fg, c_hov = K_GREEN_PALE, K_GREEN_DARK, "#d4ecdd"
-                    bkey = f"matview_{w}_{mid}"
-                    btn_css += (
-                        f".st-key-{bkey} button{{background:{c_bg} !important;"
-                        f"color:{c_fg} !important;}}"
-                        f".st-key-{bkey} button:hover{{background:{c_hov} !important;"
-                        f"color:{c_fg} !important;}}"
-                    )
-                btn_css += "</style>"
-                st.markdown(btn_css, unsafe_allow_html=True)
-
-                for mid, req in mat_items:
-                    item     = req.get("item", "")
-                    reqby    = req.get("requester", "")
-                    val_str  = f" · £{req['value']}" if req.get("value") else ""
-                    btn_label = f"{item}  —  {reqby}{val_str}"
-                    if st.button(btn_label, key=f"matview_{w}_{mid}", use_container_width=True):
-                        st.session_state["mat_view_id"]     = mid
-                        st.session_state["any_dialog_open"] = True
-                        st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    # ── Button row — Mon–Fri only ─────────────────────────────────────────────
-    btn_cols = st.columns([1, 1, 1, 1, 1, 2])
-    for d in range(5):
-        day      = ws + timedelta(days=d)
-        dk       = fmt_key(day)
-        day_jobs = jobs.get(dk, [])
-        with btn_cols[d]:
-            st.markdown("<div class='ks-add-btn'>", unsafe_allow_html=True)
-            if st.button("＋ Add / View", key=f"day_{dk}", use_container_width=True):
-                if day_jobs:
-                    open_dialog(day_view_date=dk)
+    st.markdown("<div class='mat-scroll'>", unsafe_allow_html=True)
+    mat_box = st.container(height=min(900, max(400, 330 * n_weeks)))
+    with mat_box:
+        if not mat_items:
+            st.markdown("<div class='day-empty' style='padding:8px;'>No requests</div>",
+                        unsafe_allow_html=True)
+        else:
+            btn_css = "<style>"
+            for mid, req in mat_items:
+                status = req.get("status", "pending")
+                if status == "pending":
+                    c_bg, c_fg, c_hov = "#fdecea", "#7b1a1a", "#fbddd8"
+                elif status == "ordered":
+                    c_bg, c_fg, c_hov = "#fff9e6", "#7a5c00", "#fff0c2"
                 else:
-                    open_dialog(modal_date=dk, modal_edit_idx=None)
-                st.rerun()
-            st.markdown("</div>", unsafe_allow_html=True)
-    # Materials add button
-    with btn_cols[5]:
-        st.markdown("<div class='ks-add-btn'>", unsafe_allow_html=True)
-        if st.button("＋ Add Request", key=f"matadd_{w}", use_container_width=True):
-            st.session_state["mat_add"]           = True
-            st.session_state["any_dialog_open"]   = True
-            st.rerun()
-        st.markdown("</div>", unsafe_allow_html=True)
+                    c_bg, c_fg, c_hov = K_GREEN_PALE, K_GREEN_DARK, "#d4ecdd"
+                bkey = f"matview_{mid}"
+                btn_css += (
+                    f".st-key-{bkey} button{{background:{c_bg} !important;"
+                    f"color:{c_fg} !important;}}"
+                    f".st-key-{bkey} button:hover{{background:{c_hov} !important;"
+                    f"color:{c_fg} !important;}}"
+                )
+            btn_css += "</style>"
+            st.markdown(btn_css, unsafe_allow_html=True)
+
+            for mid, req in mat_items:
+                item     = req.get("item", "")
+                reqby    = req.get("requester", "")
+                val_str  = f" · £{req['value']}" if req.get("value") else ""
+                btn_label = f"{item}  —  {reqby}{val_str}"
+                if st.button(btn_label, key=f"matview_{mid}", use_container_width=True):
+                    st.session_state["mat_view_id"]     = mid
+                    st.session_state["any_dialog_open"] = True
+                    st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
+
 
 # ── SNAPSHOT ─────────────────────────────────────────────────────────────────
 st.markdown("---")
