@@ -1758,13 +1758,13 @@ div[data-testid="stTextInput"]:has(input[placeholder*="Search Jobs"]) {{
 """, unsafe_allow_html=True)
 
 _hdr_left, _hdr_mid, _hdr_pad = st.columns(
-    [1.6, 5.5, 4.9], vertical_alignment="bottom")
+    [1.9, 5.5, 4.6], vertical_alignment="bottom")
 with _hdr_left:
     st.markdown(f"""
 <div class="ks-header" style="border-bottom:none;margin-bottom:0;
-     padding:0;">
+     padding:0;flex-wrap:nowrap;">
   {KENSITE_LOGO_HTML}
-  <span class="ks-title">Prep Schedule</span>
+  <span class="ks-title" style="white-space:nowrap;">Prep Schedule</span>
 </div>
 """, unsafe_allow_html=True)
 with _hdr_mid:
