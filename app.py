@@ -1605,18 +1605,24 @@ st.markdown("<style>[data-testid=\"stSidebar\"],[data-testid=\"collapsedControl\
 
 st.markdown(f"""
 <style>
-/* green outline on the header search box only */
-.st-key-job_search div[data-baseweb="input"],
-div[data-testid="stTextInput"]:has(input[aria-label="Search"])
-    div[data-baseweb="input"] {{
+/* green outline on the header search box only - targeted by its
+   placeholder text so it survives Streamlit DOM differences */
+div[data-baseweb="input"]:has(input[placeholder*="Search Jobs"]) {{
   border: 2px solid {K_GREEN} !important;
   border-radius: 8px;
-  background: {K_WHITE};
+  background: {K_WHITE} !important;
 }}
-.st-key-job_search div[data-baseweb="input"]:focus-within,
-div[data-testid="stTextInput"]:has(input[aria-label="Search"])
-    div[data-baseweb="input"]:focus-within {{
+div[data-baseweb="input"]:has(input[placeholder*="Search Jobs"])
+    input {{
+  background: {K_WHITE} !important;
+}}
+div[data-baseweb="input"]:has(input[placeholder*="Search Jobs"])
+    :focus-within {{
   box-shadow: 0 0 0 3px {K_GREEN_PALE};
+}}
+/* drop the box so its bottom sits on the title baseline */
+div[data-testid="stTextInput"]:has(input[placeholder*="Search Jobs"]) {{
+  transform: translateY(14px);
 }}
 </style>
 """, unsafe_allow_html=True)
