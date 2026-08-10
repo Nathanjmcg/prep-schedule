@@ -1599,21 +1599,45 @@ st.markdown("<style>[data-testid=\"stSidebar\"],[data-testid=\"collapsedControl\
 # 26/08/2026, 26 Aug 2026 or the day name all work). V1.1: results are
 # clickable - View opens the job in the same dialog as clicking it on
 # the schedule. V1.2: search box moved into the header bar; results
-# render as colour-coded pills in schedule styling.
+# render as colour-coded pills in schedule styling. V1.3: search box
+# sits tight against the title with a green outline, and the green
+# header rule runs the full page width.
 
-_hdr_left, _hdr_right = st.columns([5, 7])
+st.markdown(f"""
+<style>
+/* green outline on the header search box only */
+.st-key-job_search div[data-baseweb="input"],
+div[data-testid="stTextInput"]:has(input[aria-label="Search"])
+    div[data-baseweb="input"] {{
+  border: 2px solid {K_GREEN} !important;
+  border-radius: 8px;
+  background: {K_WHITE};
+}}
+.st-key-job_search div[data-baseweb="input"]:focus-within,
+div[data-testid="stTextInput"]:has(input[aria-label="Search"])
+    div[data-baseweb="input"]:focus-within {{
+  box-shadow: 0 0 0 3px {K_GREEN_PALE};
+}}
+</style>
+""", unsafe_allow_html=True)
+
+_hdr_left, _hdr_mid, _hdr_pad = st.columns([2.6, 6, 3.4])
 with _hdr_left:
     st.markdown(f"""
-<div class="ks-header">
+<div class="ks-header" style="border-bottom:none;margin-bottom:0;">
   {KENSITE_LOGO_HTML}
   <span class="ks-title">Prep Schedule</span>
 </div>
 """, unsafe_allow_html=True)
-with _hdr_right:
+with _hdr_mid:
     search_q = st.text_input(
         "Search", key="job_search", label_visibility="collapsed",
-        placeholder="🔍  Search jobs - customer, contract, postcode, "
-                    "date, notes...")
+        placeholder="🔍  Search Jobs")
+
+# full-width green rule under the whole header row (matches the width
+# of the panels below)
+st.markdown(f"<div style='border-bottom:2px solid {K_GREEN};"
+            f"margin:2px 0 1rem;'></div>", unsafe_allow_html=True)
 
 def _job_search_hits(jobs_dict, query):
     hits = []
