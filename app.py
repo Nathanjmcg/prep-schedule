@@ -1447,14 +1447,6 @@ def job_modal(date_key, edit_idx=None):
                 st.rerun()
 
 # ── MATERIALS REQUEST — ADD DIALOG ───────────────────────────────────────────
-def _mat_clear_item_fields():
-    """Reset the item entry widgets ready for the next item."""
-    for k in list(st.session_state.keys()):
-        if k in ("mat_category", "mat_item_other", "mat_notes",
-                 "mat_qty", "mat_supplier") or k.startswith("mat_item_"):
-            del st.session_state[k]
-
-
 def _mat_current_line(category, item_choice, item_other, notes,
                       quantity, supplier):
     """Validate the item fields; returns (line_dict, errors)."""
@@ -1475,11 +1467,36 @@ def _mat_current_line(category, item_choice, item_other, notes,
 
 
 @st.dialog("New Materials Request", width="small")
+def _mat_save_lines(requester, final):
+    """Persist each line as its own pending materials request, sharing
+    one requester + timestamp so the panel can group them."""
+    now_stamp = datetime.now().strftime("%d/%m/%Y %H:%M")
+    for ln in final:
+        mid = _uuid.uuid4().hex[:12]
+        materials[mid] = {
+            "requester":  requester,
+            "item":       f"{ln['quantity']} × {ln['item_name']}",
+            "category":   ln["category"],
+            "item_name":  ln["item_name"],
+            "quantity":   ln["quantity"],
+            "notes":      ln["notes"],
+            "supplier":   ln["supplier"],
+            "status":     "pending",
+            "created_at": now_stamp,
+        }
+    save_data(jobs, mcs, site_visits, svr_confirmed, checklist,
+              live_hire, materials, materials_totals)
+
+
 def materials_add_dialog():
     name_opts = ["— Select your name *"] + MATERIALS_NAMES
     requester = st.selectbox("Your name *", name_opts, key="mat_name")
 
     lines = st.session_state.setdefault("mat_lines", [])
+    # nonce is appended to the item-field keys; bumping it gives fresh
+    # empty widgets after an item is added, without deleting any keys
+    n = st.session_state.setdefault("mat_nonce", 0)
+
     if lines:
         st.markdown("**Items on this request:**")
         for i, ln in enumerate(lines):
@@ -1492,7 +1509,6 @@ def materials_add_dialog():
                 if st.button("❌", key=f"mat_rm_{i}",
                              help="Remove this item"):
                     lines.pop(i)
-                    # keep the dialog open across the rerun
                     st.session_state["mat_add"] = True
                     st.rerun()
         st.markdown("---")
@@ -1500,27 +1516,27 @@ def materials_add_dialog():
     category = st.selectbox("Category *",
                             ["— Select category *"]
                             + list(MATERIALS_CATEGORIES),
-                            key="mat_category")
+                            key=f"mat_category_{n}")
     item_choice, item_other = None, ""
     if category in MATERIALS_CATEGORIES:
         item_choice = st.selectbox(
             "What do you need? *",
             ["— Select item *"] + MATERIALS_CATEGORIES[category],
-            key=f"mat_item_{category.replace(' ', '_')}")
+            key=f"mat_item_{n}")
         if item_choice == "Other":
             item_other = st.text_input(
-                "Describe what you need *", key="mat_item_other",
+                "Describe what you need *", key=f"mat_item_other_{n}",
                 placeholder="e.g. M10 bolts, cable ties...")
 
-    notes    = st.text_area("Notes", key="mat_notes",
+    notes    = st.text_area("Notes", key=f"mat_notes_{n}",
                             placeholder="Specific Detail E.G - 8x4 "
                                         "Marine Ply Sheet, Push Fit "
                                         "Elbow, M10 Bolts and Nuts etc")
     quantity = st.number_input("Quantity *", min_value=1, step=1,
-                               value=1, key="mat_qty")
+                               value=1, key=f"mat_qty_{n}")
     supplier = st.text_input("Supplier (if known)",
                              placeholder="e.g. Screwfix, Travis "
-                                         "Perkins...", key="mat_supplier")
+                                         "Perkins...", key=f"mat_supplier_{n}")
 
     if st.button("➕ Additional Item", use_container_width=True,
                  help="Add this item to the request and enter another"):
@@ -1531,9 +1547,8 @@ def materials_add_dialog():
             st.warning(e)
         if line:
             lines.append(line)
-            _mat_clear_item_fields()
-            # keep the dialog open across the rerun
-            st.session_state["mat_add"] = True
+            st.session_state["mat_nonce"] = n + 1   # fresh blank fields
+            st.session_state["mat_add"] = True       # reopen the dialog
             st.rerun()
 
     mc1, mc2 = st.columns(2)
@@ -1542,49 +1557,33 @@ def materials_add_dialog():
             errors = []
             if requester == "— Select your name *":
                 errors.append("Please select your name.")
-            # whatever is currently typed counts as the final item; if
-            # the fields are untouched but items were already added,
-            # submit just those
-            fields_touched = (category in MATERIALS_CATEGORIES
-                              or not lines)
+
             final = list(lines)
-            if fields_touched:
-                line, line_errors = _mat_current_line(
-                    category, item_choice, item_other, notes,
-                    quantity, supplier)
-                if line:
-                    final.append(line)
-                else:
-                    errors.extend(line_errors)
-            if not final and not errors:
-                errors.append("Please add at least one item.")
+            # count the current form as a final item only if it is
+            # completely and validly filled; otherwise ignore it when
+            # items are already added, or nag only if it is the sole
+            # content of the request
+            cur_line, cur_errs = _mat_current_line(
+                category, item_choice, item_other, notes,
+                quantity, supplier)
+            if cur_line:
+                final.append(cur_line)
+            elif not lines:
+                errors.extend(cur_errs or
+                              ["Please add at least one item."])
+
             for e in errors:
                 st.warning(e)
             if not errors:
-                now_stamp = datetime.now().strftime("%d/%m/%Y %H:%M")
-                for ln in final:
-                    mid = _uuid.uuid4().hex[:12]
-                    materials[mid] = {
-                        "requester":  requester,
-                        "item":       f"{ln['quantity']} × "
-                                      f"{ln['item_name']}",
-                        "category":   ln["category"],
-                        "item_name":  ln["item_name"],
-                        "quantity":   ln["quantity"],
-                        "notes":      ln["notes"],
-                        "supplier":   ln["supplier"],
-                        "status":     "pending",
-                        "created_at": now_stamp,
-                    }
-                save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
+                _mat_save_lines(requester, final)
                 st.session_state["mat_lines"] = []
-                _mat_clear_item_fields()
+                st.session_state["mat_nonce"] = n + 1
                 st.session_state["any_dialog_open"] = False
                 st.rerun()
     with mc2:
         if st.button("Cancel", use_container_width=True):
             st.session_state["mat_lines"] = []
-            _mat_clear_item_fields()
+            st.session_state["mat_nonce"] = n + 1
             st.session_state["any_dialog_open"] = False
             st.rerun()
 
