@@ -1598,12 +1598,13 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ── SEARCH ────────────────────────────────────────────────────────────────────
-# Version 1.0. Searches the WHOLE schedule (past and future, all weeks),
+# Version 1.1. Searches the WHOLE schedule (past and future, all weeks),
 # not just the weeks currently on screen. Every space-separated term must
 # match somewhere on the job: customer, contract number (splits like
 # 31815#1 included), postcode, type, units, haulage, notes, livery, who
 # added or edited it, or the date (2026-08-26, 26/08/2026, 26 Aug 2026
-# or the day name all work).
+# or the day name all work). V1.1: results are clickable - View opens
+# the job in the same dialog as clicking it on the schedule.
 
 def _job_search_hits(jobs_dict, query):
     hits = []
@@ -1619,7 +1620,7 @@ def _job_search_hits(jobs_dict, query):
             dk, d.strftime("%d/%m/%Y"), d.strftime("%d/%m/%y"),
             d.strftime("%d %b %Y"), d.strftime("%d %B %Y"),
             d.strftime("%A")]).lower()
-        for j in jlist or []:
+        for idx, j in enumerate(jlist or []):
             units_str = ", ".join(
                 f"{u}×{q}" for u, q in (j.get("units") or {}).items() if q)
             blob = " ".join(str(x) for x in [
@@ -1642,6 +1643,8 @@ def _job_search_hits(jobs_dict, query):
                     "Haulage": j.get("haulage", ""),
                     "Notes": j.get("notes", ""),
                     "Added By": j.get("added_by", ""),
+                    "_dk": dk,       # date key for click-to-open
+                    "_idx": idx,     # position within that day's list
                 })
     return hits
 
@@ -1652,12 +1655,36 @@ with st.expander("🔍 Search jobs (customer, contract, postcode, date, notes...
                     "external haulage · 20ft AV")
     if search_q.strip():
         search_hits = _job_search_hits(jobs, search_q)
-        if search_hits:
-            st.markdown(f"**{len(search_hits)} job(s) found**")
-            st.dataframe(pd.DataFrame(search_hits),
-                         use_container_width=True, hide_index=True)
-        else:
+        MAX_CLICKABLE = 30
+        if not search_hits:
             st.info("No jobs match that search.")
+        elif len(search_hits) > MAX_CLICKABLE:
+            st.markdown(f"**{len(search_hits)} jobs found** - narrow the "
+                        f"search to open one directly.")
+            st.dataframe(
+                pd.DataFrame(search_hits).drop(columns=["_dk", "_idx"]),
+                use_container_width=True, hide_index=True)
+        else:
+            st.markdown(f"**{len(search_hits)} job(s) found** - click "
+                        f"View to open a job as on the schedule.")
+            for h in search_hits:
+                bc1, bc2 = st.columns([1, 9])
+                with bc1:
+                    if st.button("👁 View",
+                                 key=f"srch_{h['_dk']}_{h['_idx']}",
+                                 use_container_width=True):
+                        open_dialog(expand_date=h["_dk"],
+                                    expand_idx=h["_idx"])
+                        st.rerun()
+                with bc2:
+                    bits = [h["Date"], h["Day"], h["Type"], h["Customer"]]
+                    if h["Contract No."]:
+                        bits.append(h["Contract No."])
+                    if h["Postcode"]:
+                        bits.append(h["Postcode"])
+                    if h["Units"]:
+                        bits.append(h["Units"])
+                    st.markdown("  ·  ".join(str(b) for b in bits))
 
 # ── LIVE HIRE REPORTS ─────────────────────────────────────────────────────────
 # Version 1.3
