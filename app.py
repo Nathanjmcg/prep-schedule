@@ -1447,7 +1447,6 @@ def job_modal(date_key, edit_idx=None):
                 st.rerun()
 
 # ── MATERIALS REQUEST — ADD DIALOG ───────────────────────────────────────────
-@st.dialog("New Materials Request", width="small")
 def _mat_clear_item_fields():
     """Reset the item entry widgets ready for the next item."""
     for k in list(st.session_state.keys()):
@@ -1475,6 +1474,7 @@ def _mat_current_line(category, item_choice, item_other, notes,
             "supplier": supplier.strip()}, []
 
 
+@st.dialog("New Materials Request", width="small")
 def materials_add_dialog():
     name_opts = ["— Select your name *"] + MATERIALS_NAMES
     requester = st.selectbox("Your name *", name_opts, key="mat_name")
