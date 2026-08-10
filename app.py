@@ -1590,21 +1590,30 @@ else:
 # ── HEADER ────────────────────────────────────────────────────────────────────
 st.markdown("<style>[data-testid=\"stSidebar\"],[data-testid=\"collapsedControl\"]{display:none !important;}</style>", unsafe_allow_html=True)
 
-st.markdown(f"""
+# ── HEADER + SEARCH ──────────────────────────────────────────────────────────
+# Search Version 1.2. Searches the WHOLE schedule (past and future, all
+# weeks), not just the weeks currently on screen. Every space-separated
+# term must match somewhere on the job: customer, contract number
+# (splits like 31815#1 included), postcode, type, units, haulage,
+# notes, livery, who added or edited it, or the date (2026-08-26,
+# 26/08/2026, 26 Aug 2026 or the day name all work). V1.1: results are
+# clickable - View opens the job in the same dialog as clicking it on
+# the schedule. V1.2: search box moved into the header bar; results
+# render as colour-coded pills in schedule styling.
+
+_hdr_left, _hdr_right = st.columns([5, 7])
+with _hdr_left:
+    st.markdown(f"""
 <div class="ks-header">
   {KENSITE_LOGO_HTML}
   <span class="ks-title">Prep Schedule</span>
 </div>
 """, unsafe_allow_html=True)
-
-# ── SEARCH ────────────────────────────────────────────────────────────────────
-# Version 1.1. Searches the WHOLE schedule (past and future, all weeks),
-# not just the weeks currently on screen. Every space-separated term must
-# match somewhere on the job: customer, contract number (splits like
-# 31815#1 included), postcode, type, units, haulage, notes, livery, who
-# added or edited it, or the date (2026-08-26, 26/08/2026, 26 Aug 2026
-# or the day name all work). V1.1: results are clickable - View opens
-# the job in the same dialog as clicking it on the schedule.
+with _hdr_right:
+    search_q = st.text_input(
+        "Search", key="job_search", label_visibility="collapsed",
+        placeholder="🔍  Search jobs - customer, contract, postcode, "
+                    "date, notes...")
 
 def _job_search_hits(jobs_dict, query):
     hits = []
@@ -1648,43 +1657,64 @@ def _job_search_hits(jobs_dict, query):
                 })
     return hits
 
-with st.expander("🔍 Search jobs (customer, contract, postcode, date, notes...)"):
-    search_q = st.text_input(
-        "Search", key="job_search", label_visibility="collapsed",
-        placeholder="e.g. Stuart Energy · 31815 · CA8 9AW · 26/08/2026 · "
-                    "external haulage · 20ft AV")
-    if search_q.strip():
-        search_hits = _job_search_hits(jobs, search_q)
-        MAX_CLICKABLE = 30
-        if not search_hits:
-            st.info("No jobs match that search.")
-        elif len(search_hits) > MAX_CLICKABLE:
-            st.markdown(f"**{len(search_hits)} jobs found** - narrow the "
-                        f"search to open one directly.")
-            st.dataframe(
-                pd.DataFrame(search_hits).drop(columns=["_dk", "_idx"]),
-                use_container_width=True, hide_index=True)
-        else:
-            st.markdown(f"**{len(search_hits)} job(s) found** - click "
-                        f"View to open a job as on the schedule.")
-            for h in search_hits:
-                bc1, bc2 = st.columns([1, 9])
-                with bc1:
-                    if st.button("👁 View",
-                                 key=f"srch_{h['_dk']}_{h['_idx']}",
-                                 use_container_width=True):
-                        open_dialog(expand_date=h["_dk"],
-                                    expand_idx=h["_idx"])
-                        st.rerun()
-                with bc2:
-                    bits = [h["Date"], h["Day"], h["Type"], h["Customer"]]
-                    if h["Contract No."]:
-                        bits.append(h["Contract No."])
-                    if h["Postcode"]:
-                        bits.append(h["Postcode"])
-                    if h["Units"]:
-                        bits.append(h["Units"])
-                    st.markdown("  ·  ".join(str(b) for b in bits))
+import html as _html_esc
+
+
+def _pill(text, bg="#f1f3f4", fg=K_GREY):
+    return (f"<span style='background:{bg};color:{fg};border-radius:6px;"
+            f"padding:3px 9px;font-size:12px;font-weight:700;"
+            f"margin-right:6px;white-space:nowrap;display:inline-block;"
+            f"margin-bottom:3px;'>{_html_esc.escape(str(text))}</span>")
+
+
+if search_q.strip():
+    search_hits = _job_search_hits(jobs, search_q)
+    MAX_CLICKABLE = 30
+    if not search_hits:
+        st.info("No jobs match that search.")
+    elif len(search_hits) > MAX_CLICKABLE:
+        st.markdown(f"**{len(search_hits)} jobs found** - narrow the "
+                    f"search to open one directly.")
+        st.dataframe(
+            pd.DataFrame(search_hits).drop(columns=["_dk", "_idx"]),
+            use_container_width=True, hide_index=True)
+    else:
+        st.markdown(f"**{len(search_hits)} job(s) found** - click View "
+                    f"to open a job as on the schedule.")
+        for h in search_hits:
+            bc1, bc2 = st.columns([1, 11])
+            with bc1:
+                if st.button("👁 View",
+                             key=f"srch_{h['_dk']}_{h['_idx']}",
+                             use_container_width=True):
+                    open_dialog(expand_date=h["_dk"],
+                                expand_idx=h["_idx"])
+                    st.rerun()
+            with bc2:
+                tbg, tfg, _ = TYPE_STYLE.get(
+                    h["Type"], ("#f1f3f4", K_GREY, ""))
+                pills = [
+                    _pill(h["Type"] or "Unknown", tbg, tfg),
+                    _pill(f"{h['Day'][:3]} {h['Date']}",
+                          K_GREEN_PALE, K_GREEN_DARK),
+                    _pill(h["Customer"] or "No customer"),
+                ]
+                if h["Contract No."]:
+                    pills.append(_pill(h["Contract No."]))
+                if h["Postcode"]:
+                    pills.append(_pill(h["Postcode"]))
+                if h["Units"]:
+                    pills.append(_pill(h["Units"]))
+                if h["Haulage"] and h["Haulage"] != "None":
+                    hbg, hfg = ((K_GREEN_PALE, K_GREEN_DARK)
+                                if h["Haulage"] == "Internal Haulage"
+                                else ("#fdecea", "#7b1a1a"))
+                    pills.append(_pill(("🚛 " if h["Haulage"] ==
+                                        "Internal Haulage" else "🚚 ")
+                                       + h["Haulage"], hbg, hfg))
+                st.markdown(
+                    "<div style='padding-top:6px;'>" + "".join(pills)
+                    + "</div>", unsafe_allow_html=True)
 
 # ── LIVE HIRE REPORTS ─────────────────────────────────────────────────────────
 # Version 1.3
