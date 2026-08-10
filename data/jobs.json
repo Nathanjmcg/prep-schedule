@@ -13828,19 +13828,7 @@
       }
     ]
   },
-  "materials": {
-    "f17088aba7ad": {
-      "requester": "Cliff",
-      "item": "1 \u00d7 Trims",
-      "category": "Joinery",
-      "item_name": "Trims",
-      "quantity": 1,
-      "notes": "White J Trim (per Pack)",
-      "supplier": "Danfast",
-      "status": "pending",
-      "created_at": "10/08/2026 20:17"
-    }
-  },
+  "materials": {},
   "materials_totals": {
     "2026-W22": 575.99,
     "2026-W23": 0,
