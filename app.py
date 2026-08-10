@@ -2433,6 +2433,30 @@ for w in range(n_weeks):
                         f'<div style="font-size:10px;padding:2px 5px;opacity:.6;">'
                         f'{" ".join(haul_icons)}</div>'
                     )
+
+                # What's going OUT that day: units across the day's
+                # On Hire jobs, so the yard sees the workload without
+                # opening the day
+                out_units = {}
+                for job in day_jobs:
+                    if job.get("type") == "On Hire":
+                        for u, q in (job.get("units") or {}).items():
+                            if q:
+                                out_units[u] = out_units.get(u, 0) + q
+                if out_units:
+                    out_pills = "".join(
+                        f'<span style="background:{K_GREEN};color:#fff;'
+                        f'border-radius:3px;padding:1px 5px;font-size:9px;'
+                        f'font-weight:700;margin:1px 2px 0 0;'
+                        f'display:inline-block;">{u} ×{q}</span>'
+                        for u, q in sorted(out_units.items()))
+                    summary_html += (
+                        f'<div style="margin-top:5px;padding:4px 5px 1px;'
+                        f'border-top:1px dashed rgba(0,0,0,.15);">'
+                        f'<div style="font-size:8.5px;font-weight:700;'
+                        f'opacity:.55;letter-spacing:.05em;margin-bottom:2px;">'
+                        f'GOING OUT</div>{out_pills}</div>'
+                    )
             else:
                 summary_html = "<div class='day-empty'>No jobs</div>"
 
