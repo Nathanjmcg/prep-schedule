@@ -12090,23 +12090,6 @@
         "timestamp": "07/08/2026 21:42"
       },
       {
-        "type": "On Hire",
-        "customer": "Richard O'Brien Joinery",
-        "postcode": "",
-        "contract_number": "0000031858",
-        "units": {
-          "Chemiloo": 1
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "10/08/2026 12:00"
-      },
-      {
         "type": "Off Hire",
         "customer": "F Parkinson Ltd",
         "postcode": "CH65 0HW",
@@ -13230,6 +13213,24 @@
         "timestamp": "07/08/2026 11:42",
         "edited_by": "Peter",
         "edited_at": "10/08/2026 11:01"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Richard O'Brien Joinery",
+        "postcode": "",
+        "contract_number": "0000031858",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 14/08/2026 to 11/08/2026 on 10/08/2026 15:30",
+        "added_by": "MCS Auto",
+        "timestamp": "10/08/2026 15:30",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-08-20": [
