@@ -1492,6 +1492,8 @@ def materials_add_dialog():
                 if st.button("❌", key=f"mat_rm_{i}",
                              help="Remove this item"):
                     lines.pop(i)
+                    # keep the dialog open across the rerun
+                    st.session_state["mat_add"] = True
                     st.rerun()
         st.markdown("---")
 
@@ -1530,6 +1532,8 @@ def materials_add_dialog():
         if line:
             lines.append(line)
             _mat_clear_item_fields()
+            # keep the dialog open across the rerun
+            st.session_state["mat_add"] = True
             st.rerun()
 
     mc1, mc2 = st.columns(2)
@@ -1608,7 +1612,7 @@ def materials_view_dialog(mid):
       {f'<div style="font-size:11px;opacity:.6;">Notes: {req["notes"]}</div>' if req.get("notes") else ""}
       {f'<div style="font-size:11px;opacity:.6;margin-top:3px;">Supplier: {req["supplier"]}</div>' if req.get("supplier") else ""}
       <div style="margin-top:6px;font-size:12px;font-weight:700;">{status_label.get(status,"")}</div>
-      {f'<div style="font-size:10px;opacity:.6;">Ordered by {req.get("ordered_by","")} · {req.get("ordered_at","")} · £{req.get("value","?")}</div>' if status in ("ordered","pod_received") else ""}
+      {f'<div style="font-size:10px;opacity:.6;">Ordered by {req.get("ordered_by","")} · {req.get("ordered_at","")}</div>' if status in ("ordered","pod_received") else ""}
       {f'<div style="font-size:10px;opacity:.6;">POD received {req.get("pod_received_at","")}</div>' if status == "pod_received" else ""}
     </div>
     """, unsafe_allow_html=True)
@@ -1617,12 +1621,8 @@ def materials_view_dialog(mid):
 
     if status == "pending":
         st.markdown("**Mark as Ordered:**")
-        vc1, vc2 = st.columns([3, 2])
-        with vc1:
-            orderer = st.selectbox("Ordered by", ["— Select *"] + MATERIALS_NAMES + TEAM_MEMBERS,
-                                   key=f"mat_orderer_{mid}")
-        with vc2:
-            value = st.text_input("Value (£)", placeholder="e.g. 24.99", key=f"mat_value_{mid}")
+        orderer = st.selectbox("Ordered by", ["— Select *"] + MATERIALS_NAMES + TEAM_MEMBERS,
+                               key=f"mat_orderer_{mid}")
         if st.button("✅ Mark Ordered", type="primary", use_container_width=True):
             if orderer == "— Select *":
                 st.warning("Please select who ordered it.")
@@ -1630,16 +1630,7 @@ def materials_view_dialog(mid):
                 req["status"]     = "ordered"
                 req["ordered_by"] = orderer
                 req["ordered_at"] = datetime.now().strftime("%d/%m/%Y %H:%M")
-                req["value"]      = value.strip()
-                req["week_key"]   = datetime.now().strftime("%Y-W%V")
                 materials[mid]    = req
-                # Accumulate into weekly total — persists even after request deleted
-                try:
-                    spend = float(value.replace("£","").replace(",","").strip()) if value.strip() else 0
-                except ValueError:
-                    spend = 0
-                wk = req["week_key"]
-                materials_totals[wk] = round(materials_totals.get(wk, 0) + spend, 2)
                 save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
                 st.session_state["any_dialog_open"] = False
                 st.rerun()
@@ -2503,14 +2494,6 @@ with mat_col:
     n_ordered  = sum(1 for _, r in mat_items if r.get("status") == "ordered")
     n_received = sum(1 for _, r in mat_items if r.get("status") == "pod_received")
 
-    wk_key   = date.today().strftime("%Y-W%V")
-    wk_total = materials_totals.get(wk_key, 0)
-    if wk_total:
-        st.markdown(
-            f"<div style='text-align:center;font-size:10px;font-weight:700;"
-            f"color:{K_GREEN_DARK};margin:2px 0 4px;'>💰 £{wk_total:,.2f} "
-            f"this week</div>", unsafe_allow_html=True)
-
     st.markdown(
         f"<div style='display:flex;gap:4px;margin:0 2px 5px;flex-wrap:wrap;"
         f"justify-content:center;'>"
@@ -2530,6 +2513,17 @@ with mat_col:
             st.markdown("<div class='day-empty' style='padding:8px;'>No requests</div>",
                         unsafe_allow_html=True)
         else:
+            # Group items submitted together (same requester, same
+            # timestamp) so multi-item requests read as one request
+            # with indented offspring lines beneath it.
+            groups, order = {}, []
+            for mid, req in mat_items:
+                gkey = (req.get("requester", ""), req.get("created_at", ""))
+                if gkey not in groups:
+                    groups[gkey] = []
+                    order.append(gkey)
+                groups[gkey].append((mid, req))
+
             btn_css = "<style>"
             for mid, req in mat_items:
                 status = req.get("status", "pending")
@@ -2546,18 +2540,40 @@ with mat_col:
                     f".st-key-{bkey} button:hover{{background:{c_hov} !important;"
                     f"color:{c_fg} !important;}}"
                 )
+            # indent + joining line for offspring rows of a multi-item request
+            btn_css += (".mat-child{margin-left:12px;border-left:2px solid "
+                        "#c8cdd2;padding-left:8px;}")
             btn_css += "</style>"
             st.markdown(btn_css, unsafe_allow_html=True)
 
-            for mid, req in mat_items:
-                item     = req.get("item", "")
-                reqby    = req.get("requester", "")
-                val_str  = f" · £{req['value']}" if req.get("value") else ""
-                btn_label = f"{item}  —  {reqby}{val_str}"
-                if st.button(btn_label, key=f"matview_{mid}", use_container_width=True):
-                    st.session_state["mat_view_id"]     = mid
-                    st.session_state["any_dialog_open"] = True
-                    st.rerun()
+            for gkey in order:
+                members = groups[gkey]
+                reqby, created = gkey
+                if len(members) > 1:
+                    st.markdown(
+                        f"<div style='font-size:11px;font-weight:700;"
+                        f"color:{K_GREY};margin:4px 2px 2px;'>"
+                        f"{reqby} <span style='opacity:.55;font-weight:600;'>"
+                        f"{created}</span></div>",
+                        unsafe_allow_html=True)
+                    st.markdown("<div class='mat-child'>",
+                                unsafe_allow_html=True)
+                    for mid, req in members:
+                        if st.button(req.get("item", ""),
+                                     key=f"matview_{mid}",
+                                     use_container_width=True):
+                            st.session_state["mat_view_id"]     = mid
+                            st.session_state["any_dialog_open"] = True
+                            st.rerun()
+                    st.markdown("</div>", unsafe_allow_html=True)
+                else:
+                    mid, req = members[0]
+                    btn_label = f"{req.get('item', '')}  —  {reqby}"
+                    if st.button(btn_label, key=f"matview_{mid}",
+                                 use_container_width=True):
+                        st.session_state["mat_view_id"]     = mid
+                        st.session_state["any_dialog_open"] = True
+                        st.rerun()
     st.markdown("</div>", unsafe_allow_html=True)
 
 
