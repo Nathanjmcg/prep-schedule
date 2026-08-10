@@ -13172,9 +13172,7 @@
         "contract_number": "0000031841",
         "type": "On Hire",
         "site_move_type": "",
-        "units": {
-          "20ft Store": 4
-        },
+        "units": {},
         "av_configs": {},
         "install_dismantle": false,
         "haulage": "Internal Haulage",
@@ -13184,7 +13182,8 @@
         "notes": "22FT SOLAR WELFARE TO GO ASWELL | Date moved by MCS Auto from 13/08/2026 to 11/08/2026 on 07/08/2026 11:42",
         "added_by": "Peter",
         "timestamp": "07/08/2026 11:42",
-        "date_moved_by": "MCS Auto"
+        "edited_by": "Peter",
+        "edited_at": "10/08/2026 11:01"
       }
     ],
     "2026-08-20": [
