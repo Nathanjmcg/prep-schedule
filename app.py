@@ -1468,6 +1468,28 @@ def _mat_current_line(category, item_choice, item_other, notes,
             "supplier": supplier.strip()}, []
 
 
+MAT_RECEIVED_TTL_HOURS = 24   # received requests drop off after this
+
+
+def _mat_received_expired(req):
+    """True if this is a received request older than the TTL."""
+    if req.get("status") != "pod_received":
+        return False
+    try:
+        ts = datetime.strptime(req.get("pod_received_at", ""),
+                               "%d/%m/%Y %H:%M")
+    except (ValueError, TypeError):
+        return False      # undateable: keep it rather than lose it
+    return (datetime.now() - ts) > timedelta(hours=MAT_RECEIVED_TTL_HOURS)
+
+
+def _mat_purge_received():
+    """Remove expired received requests. Called only alongside writes
+    that are happening anyway, so no extra saves and no write races."""
+    for m in [m for m, r in materials.items() if _mat_received_expired(r)]:
+        materials.pop(m, None)
+
+
 def _mat_request_key(req):
     """Identity of the REQUEST an item belongs to. Newer items carry a
     request_id; older ones fall back to requester + timestamp."""
@@ -1505,6 +1527,7 @@ def _mat_save_lines(requester, final):
             "status":     "pending",
             "created_at": now_stamp,
         }
+    _mat_purge_received()
     save_data(jobs, mcs, site_visits, svr_confirmed, checklist,
               live_hire, materials, materials_totals)
 
@@ -1672,6 +1695,7 @@ def materials_view_dialog(mid):
                     r["ordered_by"] = orderer
                     r["ordered_at"] = stamp
                     materials[m]    = r
+                _mat_purge_received()
                 save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
                 st.session_state["any_dialog_open"] = False
                 st.rerun()
@@ -1684,6 +1708,7 @@ def materials_view_dialog(mid):
                 r["status"]          = "pod_received"
                 r["pod_received_at"] = stamp
                 materials[m]         = r
+            _mat_purge_received()
             save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
             st.session_state["any_dialog_open"] = False
             st.rerun()
@@ -2532,7 +2557,8 @@ with mat_col:
         st.rerun()
     st.markdown("</div>", unsafe_allow_html=True)
 
-    mat_items = list(materials.items())
+    mat_items = [(m, r) for m, r in materials.items()
+                 if not _mat_received_expired(r)]
     mat_items.sort(key=lambda x: x[1].get("created_at", ""), reverse=True)
     n_pending  = sum(1 for _, r in mat_items if r.get("status") == "pending")
     n_ordered  = sum(1 for _, r in mat_items if r.get("status") == "ordered")
@@ -2550,8 +2576,9 @@ with mat_col:
         f"</div>",
         unsafe_allow_html=True)
 
-    st.markdown("<div class='mat-scroll'>", unsafe_allow_html=True)
-    mat_box = st.container(height=min(900, max(400, 330 * n_weeks)))
+    # fixed height: the panel scrolls internally once full, rather
+    # than stretching the page
+    mat_box = st.container(height=620)
     with mat_box:
         if not mat_items:
             st.markdown("<div class='day-empty' style='padding:8px;'>No requests</div>",
@@ -2636,7 +2663,6 @@ with mat_col:
                     f'border-radius:0 0 8px 8px;padding:2px 8px 8px;'
                     f'margin-bottom:8px;">{subs}</div>',
                     unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True)
 
 
 # ── SNAPSHOT ─────────────────────────────────────────────────────────────────
