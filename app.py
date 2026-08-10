@@ -49,20 +49,22 @@ TEAM_MEMBERS = ["Jake", "Ewa", "Klaudia", "Chris", "Nick", "Chloe", "Peter", "Cl
 MATERIALS_NAMES = ["Alex", "Baz", "Carl", "Cliff", "Dan", "Jim", "Keaton", "Matt", "Mel", "Mitch", "Ste"]
 
 # Materials request categories -> items (A-Z, every category ends with
-# Other). "Vinyl" under Fit Out is floor covering; "Vinyls" under
-# External is livery/graphics.
+# Other). "Vinyl Floor" under Joinery is floor covering; "Vinyls"
+# under External is livery/graphics.
 MATERIALS_CATEGORIES = {
     "Joinery": ["Base Units", "Ceiling Boards", "Doors", "JCOP Boards",
-                "Shutters", "Timber", "Trims", "Wall Boards", "Windows",
-                "Worktops", "Other"],
+                "Shutters", "Timber", "Trims", "Vinyl Floor",
+                "Wall Boards", "Windows", "Worktops", "Other"],
     "Plumbing": ["Pipe", "Plumbing Fittings", "Sinks", "Taps",
                  "Water Heater (Oversink)", "Water Heater (Undersink)",
                  "Other"],
     "Electrical": ["Appliances", "Downflow Heater", "Electrical Trunking",
                    "Light Fittings", "Panel Heater", "PIR Sensors",
                    "Switches and Boxes", "Wiring", "Other"],
-    "External": ["Signage", "Vinyls", "Other"],
-    "Fit Out": ["Brushes/Rollers", "Paint", "Vinyl", "Other"],
+    "External": ["Brushes/Rollers", "Paint", "Signage", "Vinyls",
+                 "Other"],
+    "Fasteners and Fittings": ["Nails", "Nuts & Bolts", "Screws",
+                               "Washers", "Other"],
     "Cleaning": ["Cleaning Consumables", "Floor Cleaner", "Spray Cleaner",
                  "Other"],
     "Other": ["Other"],
