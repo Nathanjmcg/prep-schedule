@@ -1466,7 +1466,6 @@ def _mat_current_line(category, item_choice, item_other, notes,
             "supplier": supplier.strip()}, []
 
 
-@st.dialog("New Materials Request", width="small")
 def _mat_request_key(req):
     """Identity of the REQUEST an item belongs to. Newer items carry a
     request_id; older ones fall back to requester + timestamp."""
@@ -1508,6 +1507,7 @@ def _mat_save_lines(requester, final):
               live_hire, materials, materials_totals)
 
 
+@st.dialog("New Materials Request", width="small")
 def materials_add_dialog():
     name_opts = ["— Select your name *"] + MATERIALS_NAMES
     requester = st.selectbox("Your name *", name_opts, key="mat_name")
