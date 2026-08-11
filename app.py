@@ -2270,8 +2270,53 @@ with st.expander("🧾 Request Copy Invoice (emailed to you as PDF from MCS)"):
                        f"worker picks it up within about 5 minutes and "
                        f"emails you the PDFs.")
 
+    # ── log tidy-up ───────────────────────────────────────────────────
+    # A request is "finished" once it is sent or failed. Anything still
+    # pending, or being sent right now by the worker, is never removed.
+    INV_LIVE = ("pending", "sending")
+
+    def _inv_clear_finished(reason):
+        """Drop finished requests, working from a FRESH read so the
+        worker's status updates are never overwritten."""
+        try:
+            fresh, fsha = gh_get(INVOICE_REQ_FILE)
+            if not fresh:
+                return None
+            keep = [r for r in fresh.get("requests", [])
+                    if r.get("status", "pending") in INV_LIVE]
+            if len(keep) == len(fresh.get("requests", [])):
+                return fresh          # nothing to clear
+            fresh["requests"] = keep
+            gh_put(INVOICE_REQ_FILE, fresh, sha=fsha, msg=reason)
+            load_request_file.clear()
+            return fresh
+        except Exception:
+            return None               # transient clash, try again later
+
+    _finished = [r for r in inv_data.get("requests", [])
+                 if r.get("status", "pending") not in INV_LIVE]
+
+    # auto-clear once three have finished, so the log stays short
+    if len(_finished) >= 3:
+        _after = _inv_clear_finished("Auto-clear copy invoice log")
+        if _after is not None:
+            inv_data = _after
+            _finished = []
+
     inv_recent = (list(reversed(inv_data.get("requests", [])))
                   + list(reversed(inv_data.get("history", []))))[:8]
+    if _finished and st.button(
+            f"🧹 Clear log ({len(_finished)} finished)",
+            key="inv_clear",
+            help="Removes sent and failed requests. Anything still "
+                 "queued or being sent is kept."):
+        _after = _inv_clear_finished("Copy invoice log cleared")
+        if _after is None:
+            st.error("Could not clear the log just now, please try again.")
+        else:
+            st.success("Copy invoice log cleared.")
+            st.rerun()
+
     if inv_recent:
         st.markdown("---")
         for q in inv_recent:
