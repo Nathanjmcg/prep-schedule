@@ -2182,6 +2182,114 @@ with st.expander("📨 Request a Quote (auto-created in MCS, emailed to Enquirie
             st.error("Could not clear the log just now, please try again.")
         st.rerun()
 
+
+# ── COPY INVOICE REQUESTS ─────────────────────────────────────────────────────
+# Version 1.0. The desk asks for copy invoices here; the Copy Invoice
+# Worker on Nathan's machine picks the queue up every 5 minutes, pulls
+# the PDFs out of MCS and emails them to the requester (CC'ing the
+# customer address if one was given). Names only in this file - the
+# worker maps them to email addresses locally, so no addresses are
+# stored in the public repo.
+INVOICE_REQ_FILE = "data/invoice requests.json"
+INVOICE_USERS = ["Ewa", "Fiona", "Jo", "Chloe", "Nathan", "Nick"]
+_EMAIL_OK = re.compile(r"^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$")
+
+
+def parse_invoice_numbers(text):
+    """Pull invoice numbers out of whatever gets pasted in - one per
+    line, comma separated, or a column copied straight from Excel.
+    Order is kept and duplicates dropped."""
+    out = []
+    for tok in re.split(r"[^0-9]+", str(text or "")):
+        if len(tok) >= 4 and tok not in out:
+            out.append(tok)
+    return out
+
+
+with st.expander("🧾 Request Copy Invoice (emailed to you as PDF from MCS)"):
+    inv_data, inv_sha = load_request_file(INVOICE_REQ_FILE)
+    inv_data = inv_data or {"requests": []}
+
+    ic1, ic2 = st.columns(2)
+    with ic1:
+        inv_by = st.selectbox("Your name *",
+                              ["— Select your name *"] + INVOICE_USERS,
+                              key="inv_by")
+    with ic2:
+        inv_cc = st.text_input(
+            "CC the customer (optional)", key="inv_cc",
+            placeholder="accounts@customer.co.uk")
+
+    inv_raw = st.text_area(
+        "Invoice numbers *", key="inv_nums", height=110,
+        placeholder="Paste a column straight from Excel, or type them "
+                    "one per line / separated by commas:\n919190\n919187\n919186")
+    inv_nums = parse_invoice_numbers(inv_raw)
+    if inv_raw.strip():
+        if inv_nums:
+            st.caption(f"✅ {len(inv_nums)} invoice number"
+                       f"{'s' if len(inv_nums) != 1 else ''} recognised: "
+                       + ", ".join(inv_nums[:12])
+                       + (" ..." if len(inv_nums) > 12 else ""))
+        else:
+            st.caption("⚠️ No invoice numbers recognised in that text.")
+
+    if st.button("📧 Request Copy Invoices", key="inv_submit"):
+        errors = []
+        if inv_by == "— Select your name *":
+            errors.append("Please select your name.")
+        if not inv_nums:
+            errors.append("Please enter at least one invoice number.")
+        if inv_cc.strip() and not _EMAIL_OK.match(inv_cc.strip()):
+            errors.append("That CC email address does not look right.")
+        for e in errors:
+            st.warning(e)
+        if not errors:
+            import uuid as _invuuid
+            _new_inv = {
+                "id": _invuuid.uuid4().hex[:10],
+                "requested_by": inv_by,
+                "invoices": inv_nums,
+                "cc_email": inv_cc.strip(),
+                "requested_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
+                "status": "pending",
+                "detail": "",
+            }
+            # append to the FRESH file so the worker's status updates
+            # are never overwritten
+            inv_fresh, inv_fresh_sha = gh_get(INVOICE_REQ_FILE)
+            inv_fresh = inv_fresh or {"requests": []}
+            inv_fresh.setdefault("requests", []).append(_new_inv)
+            gh_put(INVOICE_REQ_FILE, inv_fresh, sha=inv_fresh_sha,
+                   msg="Copy invoice request added")
+            load_request_file.clear()
+            inv_data = inv_fresh
+            st.success(f"{len(inv_nums)} invoice"
+                       f"{'s' if len(inv_nums) != 1 else ''} queued. The "
+                       f"worker picks it up within about 5 minutes and "
+                       f"emails you the PDFs.")
+
+    inv_recent = (list(reversed(inv_data.get("requests", [])))
+                  + list(reversed(inv_data.get("history", []))))[:8]
+    if inv_recent:
+        st.markdown("---")
+        for q in inv_recent:
+            stat = q.get("status", "pending")
+            icon = {"pending": "🔴 Queued", "done": "🟢 Sent",
+                    "failed": "⚠️ Failed"}.get(stat, stat)
+            nums = ", ".join(q.get("invoices", [])[:8])
+            if len(q.get("invoices", [])) > 8:
+                nums += f" (+{len(q['invoices']) - 8} more)"
+            cc = f" · cc {q['cc_email']}" if q.get("cc_email") else ""
+            st.markdown(
+                f"<div style='font-size:11.5px;padding:3px 0;'>"
+                f"<b>{icon}</b> · {q.get('requested_by','')} · {nums}{cc} "
+                f"<span style='opacity:.55;'>{q.get('requested_at','')}</span>"
+                + (f"<br><span style='opacity:.7;font-size:10.5px;'>"
+                   f"{q['detail']}</span>" if q.get("detail") else "")
+                + "</div>", unsafe_allow_html=True)
+# ── END COPY INVOICE REQUESTS ─────────────────────────────────────────────────
+
 # ── NAV ROW ───────────────────────────────────────────────────────────────────
 n1, n2, n3, n4, n5 = st.columns([1.2, 0.8, 1.2, 0.8, 3])
 with n1:
