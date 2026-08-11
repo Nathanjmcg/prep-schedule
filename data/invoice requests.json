@@ -8,8 +8,8 @@
       ],
       "cc_email": "",
       "requested_at": "11/08/2026 12:32",
-      "status": "sending",
-      "detail": "Being processed by the worker",
+      "status": "failed",
+      "detail": "No invoices could be fetched. 919188 (MCS did not return a PDF (197582 bytes))",
       "processed_at": "11/08/2026 13:32"
     }
   ]
