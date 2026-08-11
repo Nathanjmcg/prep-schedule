@@ -1,28 +1,3 @@
 {
-  "requests": [
-    {
-      "id": "38b9ece0ba",
-      "requested_by": "Nathan",
-      "invoices": [
-        "919188"
-      ],
-      "cc_email": "",
-      "requested_at": "11/08/2026 12:06",
-      "status": "failed",
-      "detail": "None sent. 919188 (RetryError: HTTPSConnectionPool(host='kensite.rm.onmcs.com', port=443): Max retries exceeded)",
-      "processed_at": "11/08/2026 13:13"
-    },
-    {
-      "id": "e309441868",
-      "requested_by": "Nathan",
-      "invoices": [
-        "919188"
-      ],
-      "cc_email": "",
-      "requested_at": "11/08/2026 12:14",
-      "status": "failed",
-      "detail": "None sent. 919188 (RetryError: HTTPSConnectionPool(host='kensite.rm.onmcs.com', port=443): Max retries exceeded)",
-      "processed_at": "11/08/2026 13:15"
-    }
-  ]
+  "requests": []
 }
