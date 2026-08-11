@@ -8,8 +8,8 @@
       ],
       "cc_email": "",
       "requested_at": "11/08/2026 12:06",
-      "status": "sending",
-      "detail": "Being processed by the worker",
+      "status": "failed",
+      "detail": "None sent. 919188 (RetryError: HTTPSConnectionPool(host='kensite.rm.onmcs.com', port=443): Max retries exceeded)",
       "processed_at": "11/08/2026 13:13"
     }
   ]
