@@ -11030,6 +11030,28 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Market Square, Market St, Ellesmere Port, , CH65 0HW",
         "added_by": "MCS Auto",
         "timestamp": "10/08/2026 12:20"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Perfect Associates Ltd",
+        "postcode": "LA14 4LF",
+        "contract_number": "0000031235",
+        "units": {
+          "32ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Furness General Hospital, Dalton Lane, Barrow in Furness, , LA14 4LF | Also on contract: 1x Filing Cabinet; 10x Upholstered Chair",
+        "added_by": "MCS Auto",
+        "timestamp": "11/08/2026 15:10",
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-08-05": [
