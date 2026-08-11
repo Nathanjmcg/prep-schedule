@@ -1,16 +1,3 @@
 {
-  "requests": [
-    {
-      "id": "639bdbac6a",
-      "requested_by": "Nathan",
-      "invoices": [
-        "919188"
-      ],
-      "cc_email": "",
-      "requested_at": "11/08/2026 12:32",
-      "status": "failed",
-      "detail": "No invoices could be fetched. 919188 (MCS did not return a PDF (197582 bytes))",
-      "processed_at": "11/08/2026 13:32"
-    }
-  ]
+  "requests": []
 }
