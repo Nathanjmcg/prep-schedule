@@ -1953,236 +1953,12 @@ LIVE_HIRE_USERS = [
     "Lee McConville (AES)", "Pete Billingham",
 ]
 
-with st.expander("📊 Live Hire Report (runs in MCS, emailed to you as PDF and Excel)"):
-    lh_data, lh_sha = load_request_file(LIVE_HIRE_REQ_FILE)
-    lh_data = lh_data or {"requests": []}
-
-    # Auto-clear: completed log entries older than 10 minutes drop off so
-    # the log stays tidy. Failed entries are kept until cleared.
-    def _lh_older_than(entry, minutes):
-        try:
-            ts = datetime.strptime(entry.get("processed_at", ""),
-                                   "%d/%m/%Y %H:%M")
-            return datetime.now() - ts > timedelta(minutes=minutes)
-        except Exception:
-            return False
-
-    _lh_hist = lh_data.get("history", [])
-    _lh_kept = [h for h in _lh_hist
-                if not (h.get("status") == "done" and _lh_older_than(h, 10))]
-    if len(_lh_kept) != len(_lh_hist):
-        try:
-            # re-read and modify the FRESH file so a stale snapshot never
-            # overwrites the worker's status updates
-            _fresh, _lh_fresh_sha = gh_get(LIVE_HIRE_REQ_FILE)
-            if _fresh:
-                _fresh["history"] = [
-                    h for h in _fresh.get("history", [])
-                    if not (h.get("status") == "done"
-                            and _lh_older_than(h, 10))]
-                gh_put(LIVE_HIRE_REQ_FILE, _fresh, sha=_lh_fresh_sha,
-                       msg="Auto-clear live hire report log")
-                load_request_file.clear()
-                lh_data = _fresh
-        except Exception:
-            pass  # transient write clash retries on next refresh
-
-    lhc1, lhc2 = st.columns(2)
-    with lhc1:
-        lh_cust = st.text_input(
-            "Customer name or account number",
-            key="lh_cust", placeholder="e.g. WRIGH001 or Wright Builders")
-    with lhc2:
-        lh_by = st.selectbox("Send the report to", LIVE_HIRE_USERS,
-                             key="lh_by")
-
-    if st.button("Run Live Hire Report", key="lh_submit"):
-        if not lh_cust.strip():
-            st.error("Enter a customer name or account number.")
-        else:
-            import uuid as _lhuuid
-            _new_req = {
-                "id": _lhuuid.uuid4().hex[:10],
-                "customer": lh_cust.strip(),
-                "requested_by": lh_by,
-                "requested_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
-                "status": "pending",
-                "detail": "",
-            }
-            # append to the FRESH file, not the cached snapshot, so the
-            # worker's status updates in between are never overwritten
-            lh_fresh, lh_fresh_sha = gh_get(LIVE_HIRE_REQ_FILE)
-            lh_fresh = lh_fresh or {"requests": []}
-            lh_fresh.setdefault("requests", []).append(_new_req)
-            gh_put(LIVE_HIRE_REQ_FILE, lh_fresh, sha=lh_fresh_sha,
-                   msg="Live hire report request added")
-            load_request_file.clear()
-            lh_data = lh_fresh
-            st.success("Request queued. The report worker picks it up "
-                       "within about 10 minutes and emails you the "
-                       "report as PDF and Excel.")
-
-    lh_recent = (list(reversed(lh_data.get("requests", [])))
-                 + list(reversed(lh_data.get("history", []))))[:8]
-    if lh_recent:
-        st.markdown("<div style='font-size:12px;font-weight:700;"
-                    "margin-top:.5rem;'>Recent requests</div>",
-                    unsafe_allow_html=True)
-        for r in lh_recent:
-            icon = {"pending": "⏳", "done": "✅",
-                    "failed": "❌"}.get(r.get("status"), "❓")
-            line = (f"{icon} {r.get('requested_at','')} · "
-                    f"{r.get('customer','')} · "
-                    f"{r.get('requested_by','')} · {r.get('status','')}")
-            if r.get("matched_customer"):
-                line += f" · {r['matched_customer']}"
-            if r.get("status") == "failed" and r.get("detail"):
-                line += f" · {r['detail'][:60]}"
-            st.markdown(f"<div style='font-size:12px;'>{line}</div>",
-                        unsafe_allow_html=True)
-
-    if st.button("Clear log", key="lh_clear",
-                 help="Removes completed and failed entries now. Pending "
-                      "requests are kept."):
-        try:
-            _clr, _lh_clr_sha = gh_get(LIVE_HIRE_REQ_FILE)
-            _clr = _clr or {"requests": []}
-            _clr["history"] = []
-            _clr["requests"] = [r for r in _clr.get("requests", [])
-                                if r.get("status") == "pending"]
-            gh_put(LIVE_HIRE_REQ_FILE, _clr, sha=_lh_clr_sha,
-                   msg="Live hire report log cleared")
-            load_request_file.clear()
-            st.success("Live hire report log cleared.")
-        except Exception:
-            st.error("Could not clear the log just now, please try again.")
-        st.rerun()
 # ── END LIVE HIRE REPORTS ─────────────────────────────────────────────────────
 
 
 # ── QUOTE REQUESTS ────────────────────────────────────────────────────────────
 QUOTE_REQ_FILE = "data/quote requests.json"
 OFFER_CODES = ["MOBILEOFFER"]
-
-with st.expander("📨 Request a Quote (auto-created in MCS, emailed to Enquiries)"):
-    qr_data, qr_sha = load_request_file(QUOTE_REQ_FILE)
-    qr_data = qr_data or {"requests": []}
-
-    # Auto-clear: completed log entries older than 10 minutes drop off on
-    # their own so the log stays tidy (the page refreshes every 30s, so
-    # done items disappear ~10 min after the worker finishes them). Failed
-    # entries are kept so they are not missed; use Clear log to remove them.
-    def _qr_older_than(entry, minutes):
-        try:
-            ts = datetime.strptime(entry.get("processed_at", ""),
-                                   "%d/%m/%Y %H:%M")
-            return datetime.now() - ts > timedelta(minutes=minutes)
-        except Exception:
-            return False
-
-    _hist = qr_data.get("history", [])
-    _kept = [h for h in _hist
-             if not (h.get("status") == "done" and _qr_older_than(h, 10))]
-    if len(_kept) != len(_hist):
-        try:
-            # re-read and modify the FRESH file so a stale snapshot never
-            # overwrites the worker's status updates
-            _freshq, _fresh_sha = gh_get(QUOTE_REQ_FILE)
-            if _freshq:
-                _freshq["history"] = [
-                    h for h in _freshq.get("history", [])
-                    if not (h.get("status") == "done"
-                            and _qr_older_than(h, 10))]
-                gh_put(QUOTE_REQ_FILE, _freshq, sha=_fresh_sha,
-                       msg="Auto-clear quote log")
-                load_request_file.clear()
-                qr_data = _freshq
-        except Exception:
-            pass  # a transient write clash just retries on the next refresh
-
-    qc1, qc2, qc3 = st.columns(3)
-    with qc1:
-        qr_cust = st.text_input("Customer account code (existing customers only)",
-                                key="qr_cust", placeholder="e.g. WRIGH001")
-        qr_offer = st.selectbox("Offer code", OFFER_CODES, key="qr_offer")
-    with qc2:
-        qr_start = st.date_input("Hire start date", key="qr_start")
-        qr_weeks = st.number_input("Duration (weeks, 0 = open ended)",
-                                   min_value=0, max_value=260, value=0,
-                                   key="qr_weeks")
-    with qc3:
-        qr_site = st.text_input("Site name / postcode", key="qr_site")
-        qr_notes = st.text_input("Notes for Enquiries (optional)",
-                                 key="qr_notes")
-    qr_by = st.text_input("Requested by", key="qr_by")
-
-    if st.button("Submit quote request", key="qr_submit"):
-        if not qr_cust.strip() or not qr_by.strip():
-            st.error("Customer code and Requested by are needed.")
-        else:
-            import uuid as _qruuid
-            _new_qr = {
-                "id": _qruuid.uuid4().hex[:10],
-                "customer_code": qr_cust.strip().upper(),
-                "offer_code": qr_offer,
-                "start_date": qr_start.isoformat(),
-                "weeks": int(qr_weeks),
-                "site": qr_site.strip(),
-                "notes": qr_notes.strip(),
-                "requested_by": qr_by.strip(),
-                "requested_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
-                "status": "pending",
-                "quote_ref": "",
-                "detail": "",
-            }
-            # append to the FRESH file, not the cached snapshot, so the
-            # worker's status updates in between are never overwritten
-            qr_fresh, fresh_sha = gh_get(QUOTE_REQ_FILE)
-            qr_fresh = qr_fresh or {"requests": []}
-            qr_fresh.setdefault("requests", []).append(_new_qr)
-            gh_put(QUOTE_REQ_FILE, qr_fresh, sha=fresh_sha,
-                   msg="Quote request added")
-            load_request_file.clear()
-            qr_data = qr_fresh
-            st.success("Request queued. The worker picks it up within "
-                       "a few minutes and it lands with Enquiries.")
-
-    recent = (list(reversed(qr_data.get("requests", [])))
-              + list(reversed(qr_data.get("history", []))))[:8]
-    if recent:
-        st.markdown("<div style='font-size:12px;font-weight:700;"
-                    "margin-top:.5rem;'>Recent requests</div>",
-                    unsafe_allow_html=True)
-        for r in recent:
-            icon = {"pending": "⏳", "done": "✅",
-                    "failed": "❌"}.get(r.get("status"), "❓")
-            line = (f"{icon} {r.get('requested_at','')} · "
-                    f"{r.get('customer_code','')} · "
-                    f"{r.get('offer_code','')} · {r.get('status','')}")
-            if r.get("quote_ref"):
-                line += f" · {r['quote_ref']}"
-            if r.get("status") == "failed" and r.get("detail"):
-                line += f" · {r['detail'][:60]}"
-            st.markdown(f"<div style='font-size:12px;'>{line}</div>",
-                        unsafe_allow_html=True)
-
-    if st.button("Clear log", key="qr_clear",
-                 help="Removes all completed and failed entries now. "
-                      "Pending requests waiting to be created are kept."):
-        try:
-            _clrq, _clr_sha = gh_get(QUOTE_REQ_FILE)
-            _clrq = _clrq or {"requests": []}
-            _clrq["history"] = []
-            _clrq["requests"] = [r for r in _clrq.get("requests", [])
-                                 if r.get("status") == "pending"]
-            gh_put(QUOTE_REQ_FILE, _clrq, sha=_clr_sha,
-                   msg="Quote log cleared")
-            load_request_file.clear()
-            st.success("Quote request log cleared.")
-        except Exception:
-            st.error("Could not clear the log just now, please try again.")
-        st.rerun()
-
 
 # ── COPY INVOICE REQUESTS ─────────────────────────────────────────────────────
 # Version 1.0. The desk asks for copy invoices here; the Copy Invoice
@@ -2207,133 +1983,367 @@ def parse_invoice_numbers(text):
     return out
 
 
-with st.expander("🧾 Request Copy Invoice (emailed to you as PDF from MCS)"):
-    inv_data, inv_sha = load_request_file(INVOICE_REQ_FILE)
-    inv_data = inv_data or {"requests": []}
+# ── REQUEST PANELS - three across one row ─────────────────────────────────────
+_pnl1, _pnl2, _pnl3 = st.columns(3, gap="small")
+with _pnl1:
+    with st.expander("📊 Live Hire Report"):
+        st.caption("Runs in MCS, emailed to you as PDF and Excel.")
+        lh_data, lh_sha = load_request_file(LIVE_HIRE_REQ_FILE)
+        lh_data = lh_data or {"requests": []}
 
-    ic1, ic2 = st.columns(2)
-    with ic1:
-        inv_by = st.selectbox("Your name *",
-                              ["— Select your name *"] + INVOICE_USERS,
-                              key="inv_by")
-    with ic2:
-        inv_cc = st.text_input(
-            "CC the customer (optional)", key="inv_cc",
-            placeholder="accounts@customer.co.uk")
+        # Auto-clear: completed log entries older than 10 minutes drop off so
+        # the log stays tidy. Failed entries are kept until cleared.
+        def _lh_older_than(entry, minutes):
+            try:
+                ts = datetime.strptime(entry.get("processed_at", ""),
+                                       "%d/%m/%Y %H:%M")
+                return datetime.now() - ts > timedelta(minutes=minutes)
+            except Exception:
+                return False
 
-    inv_raw = st.text_area(
-        "Invoice numbers *", key="inv_nums", height=110,
-        placeholder="Paste a column straight from Excel, or type them "
-                    "one per line / separated by commas:\n919190\n919187\n919186")
-    inv_nums = parse_invoice_numbers(inv_raw)
-    if inv_raw.strip():
-        if inv_nums:
-            st.caption(f"✅ {len(inv_nums)} invoice number"
-                       f"{'s' if len(inv_nums) != 1 else ''} recognised: "
-                       + ", ".join(inv_nums[:12])
-                       + (" ..." if len(inv_nums) > 12 else ""))
-        else:
-            st.caption("⚠️ No invoice numbers recognised in that text.")
+        _lh_hist = lh_data.get("history", [])
+        _lh_kept = [h for h in _lh_hist
+                    if not (h.get("status") == "done" and _lh_older_than(h, 10))]
+        if len(_lh_kept) != len(_lh_hist):
+            try:
+                # re-read and modify the FRESH file so a stale snapshot never
+                # overwrites the worker's status updates
+                _fresh, _lh_fresh_sha = gh_get(LIVE_HIRE_REQ_FILE)
+                if _fresh:
+                    _fresh["history"] = [
+                        h for h in _fresh.get("history", [])
+                        if not (h.get("status") == "done"
+                                and _lh_older_than(h, 10))]
+                    gh_put(LIVE_HIRE_REQ_FILE, _fresh, sha=_lh_fresh_sha,
+                           msg="Auto-clear live hire report log")
+                    load_request_file.clear()
+                    lh_data = _fresh
+            except Exception:
+                pass  # transient write clash retries on next refresh
 
-    if st.button("📧 Request Copy Invoices", key="inv_submit"):
-        errors = []
-        if inv_by == "— Select your name *":
-            errors.append("Please select your name.")
-        if not inv_nums:
-            errors.append("Please enter at least one invoice number.")
-        if inv_cc.strip() and not _EMAIL_OK.match(inv_cc.strip()):
-            errors.append("That CC email address does not look right.")
-        for e in errors:
-            st.warning(e)
-        if not errors:
-            import uuid as _invuuid
-            _new_inv = {
-                "id": _invuuid.uuid4().hex[:10],
-                "requested_by": inv_by,
-                "invoices": inv_nums,
-                "cc_email": inv_cc.strip(),
-                "requested_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
-                "status": "pending",
-                "detail": "",
-            }
-            # append to the FRESH file so the worker's status updates
-            # are never overwritten
-            inv_fresh, inv_fresh_sha = gh_get(INVOICE_REQ_FILE)
-            inv_fresh = inv_fresh or {"requests": []}
-            inv_fresh.setdefault("requests", []).append(_new_inv)
-            gh_put(INVOICE_REQ_FILE, inv_fresh, sha=inv_fresh_sha,
-                   msg="Copy invoice request added")
-            load_request_file.clear()
-            inv_data = inv_fresh
-            st.success(f"{len(inv_nums)} invoice"
-                       f"{'s' if len(inv_nums) != 1 else ''} queued. The "
-                       f"worker picks it up within about 5 minutes and "
-                       f"emails you the PDFs.")
+        lhc1, lhc2 = st.columns(2)
+        with lhc1:
+            lh_cust = st.text_input(
+                "Customer name or account number",
+                key="lh_cust", placeholder="e.g. WRIGH001 or Wright Builders")
+        with lhc2:
+            lh_by = st.selectbox("Send the report to", LIVE_HIRE_USERS,
+                                 key="lh_by")
 
-    # ── log tidy-up ───────────────────────────────────────────────────
-    # A request is "finished" once it is sent or failed. Anything still
-    # pending, or being sent right now by the worker, is never removed.
-    INV_LIVE = ("pending", "sending")
+        if st.button("Run Live Hire Report", key="lh_submit"):
+            if not lh_cust.strip():
+                st.error("Enter a customer name or account number.")
+            else:
+                import uuid as _lhuuid
+                _new_req = {
+                    "id": _lhuuid.uuid4().hex[:10],
+                    "customer": lh_cust.strip(),
+                    "requested_by": lh_by,
+                    "requested_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
+                    "status": "pending",
+                    "detail": "",
+                }
+                # append to the FRESH file, not the cached snapshot, so the
+                # worker's status updates in between are never overwritten
+                lh_fresh, lh_fresh_sha = gh_get(LIVE_HIRE_REQ_FILE)
+                lh_fresh = lh_fresh or {"requests": []}
+                lh_fresh.setdefault("requests", []).append(_new_req)
+                gh_put(LIVE_HIRE_REQ_FILE, lh_fresh, sha=lh_fresh_sha,
+                       msg="Live hire report request added")
+                load_request_file.clear()
+                lh_data = lh_fresh
+                st.success("Request queued. The report worker picks it up "
+                           "within about 10 minutes and emails you the "
+                           "report as PDF and Excel.")
 
-    def _inv_clear_finished(reason):
-        """Drop finished requests, working from a FRESH read so the
-        worker's status updates are never overwritten."""
-        try:
-            fresh, fsha = gh_get(INVOICE_REQ_FILE)
-            if not fresh:
-                return None
-            keep = [r for r in fresh.get("requests", [])
-                    if r.get("status", "pending") in INV_LIVE]
-            if len(keep) == len(fresh.get("requests", [])):
-                return fresh          # nothing to clear
-            fresh["requests"] = keep
-            gh_put(INVOICE_REQ_FILE, fresh, sha=fsha, msg=reason)
-            load_request_file.clear()
-            return fresh
-        except Exception:
-            return None               # transient clash, try again later
+        lh_recent = (list(reversed(lh_data.get("requests", [])))
+                     + list(reversed(lh_data.get("history", []))))[:8]
+        if lh_recent:
+            st.markdown("<div style='font-size:12px;font-weight:700;"
+                        "margin-top:.5rem;'>Recent requests</div>",
+                        unsafe_allow_html=True)
+            for r in lh_recent:
+                icon = {"pending": "⏳", "done": "✅",
+                        "failed": "❌"}.get(r.get("status"), "❓")
+                line = (f"{icon} {r.get('requested_at','')} · "
+                        f"{r.get('customer','')} · "
+                        f"{r.get('requested_by','')} · {r.get('status','')}")
+                if r.get("matched_customer"):
+                    line += f" · {r['matched_customer']}"
+                if r.get("status") == "failed" and r.get("detail"):
+                    line += f" · {r['detail'][:60]}"
+                st.markdown(f"<div style='font-size:12px;'>{line}</div>",
+                            unsafe_allow_html=True)
 
-    _finished = [r for r in inv_data.get("requests", [])
-                 if r.get("status", "pending") not in INV_LIVE]
+        if st.button("Clear log", key="lh_clear",
+                     help="Removes completed and failed entries now. Pending "
+                          "requests are kept."):
+            try:
+                _clr, _lh_clr_sha = gh_get(LIVE_HIRE_REQ_FILE)
+                _clr = _clr or {"requests": []}
+                _clr["history"] = []
+                _clr["requests"] = [r for r in _clr.get("requests", [])
+                                    if r.get("status") == "pending"]
+                gh_put(LIVE_HIRE_REQ_FILE, _clr, sha=_lh_clr_sha,
+                       msg="Live hire report log cleared")
+                load_request_file.clear()
+                st.success("Live hire report log cleared.")
+            except Exception:
+                st.error("Could not clear the log just now, please try again.")
+            st.rerun()
+with _pnl2:
+    with st.expander("📨 Request a Quote"):
+        st.caption("Auto-created in MCS, emailed to Enquiries.")
+        qr_data, qr_sha = load_request_file(QUOTE_REQ_FILE)
+        qr_data = qr_data or {"requests": []}
 
-    # auto-clear once three have finished, so the log stays short
-    if len(_finished) >= 3:
-        _after = _inv_clear_finished("Auto-clear copy invoice log")
-        if _after is not None:
-            inv_data = _after
-            _finished = []
+        # Auto-clear: completed log entries older than 10 minutes drop off on
+        # their own so the log stays tidy (the page refreshes every 30s, so
+        # done items disappear ~10 min after the worker finishes them). Failed
+        # entries are kept so they are not missed; use Clear log to remove them.
+        def _qr_older_than(entry, minutes):
+            try:
+                ts = datetime.strptime(entry.get("processed_at", ""),
+                                       "%d/%m/%Y %H:%M")
+                return datetime.now() - ts > timedelta(minutes=minutes)
+            except Exception:
+                return False
 
-    inv_recent = (list(reversed(inv_data.get("requests", [])))
-                  + list(reversed(inv_data.get("history", []))))[:8]
-    if _finished and st.button(
-            f"🧹 Clear log ({len(_finished)} finished)",
-            key="inv_clear",
-            help="Removes sent and failed requests. Anything still "
-                 "queued or being sent is kept."):
-        _after = _inv_clear_finished("Copy invoice log cleared")
-        if _after is None:
-            st.error("Could not clear the log just now, please try again.")
-        else:
-            st.success("Copy invoice log cleared.")
+        _hist = qr_data.get("history", [])
+        _kept = [h for h in _hist
+                 if not (h.get("status") == "done" and _qr_older_than(h, 10))]
+        if len(_kept) != len(_hist):
+            try:
+                # re-read and modify the FRESH file so a stale snapshot never
+                # overwrites the worker's status updates
+                _freshq, _fresh_sha = gh_get(QUOTE_REQ_FILE)
+                if _freshq:
+                    _freshq["history"] = [
+                        h for h in _freshq.get("history", [])
+                        if not (h.get("status") == "done"
+                                and _qr_older_than(h, 10))]
+                    gh_put(QUOTE_REQ_FILE, _freshq, sha=_fresh_sha,
+                           msg="Auto-clear quote log")
+                    load_request_file.clear()
+                    qr_data = _freshq
+            except Exception:
+                pass  # a transient write clash just retries on the next refresh
+
+        qc1, qc2, qc3 = st.columns(3)
+        with qc1:
+            qr_cust = st.text_input("Customer account code (existing customers only)",
+                                    key="qr_cust", placeholder="e.g. WRIGH001")
+            qr_offer = st.selectbox("Offer code", OFFER_CODES, key="qr_offer")
+        with qc2:
+            qr_start = st.date_input("Hire start date", key="qr_start")
+            qr_weeks = st.number_input("Duration (weeks, 0 = open ended)",
+                                       min_value=0, max_value=260, value=0,
+                                       key="qr_weeks")
+        with qc3:
+            qr_site = st.text_input("Site name / postcode", key="qr_site")
+            qr_notes = st.text_input("Notes for Enquiries (optional)",
+                                     key="qr_notes")
+        qr_by = st.text_input("Requested by", key="qr_by")
+
+        if st.button("Submit quote request", key="qr_submit"):
+            if not qr_cust.strip() or not qr_by.strip():
+                st.error("Customer code and Requested by are needed.")
+            else:
+                import uuid as _qruuid
+                _new_qr = {
+                    "id": _qruuid.uuid4().hex[:10],
+                    "customer_code": qr_cust.strip().upper(),
+                    "offer_code": qr_offer,
+                    "start_date": qr_start.isoformat(),
+                    "weeks": int(qr_weeks),
+                    "site": qr_site.strip(),
+                    "notes": qr_notes.strip(),
+                    "requested_by": qr_by.strip(),
+                    "requested_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
+                    "status": "pending",
+                    "quote_ref": "",
+                    "detail": "",
+                }
+                # append to the FRESH file, not the cached snapshot, so the
+                # worker's status updates in between are never overwritten
+                qr_fresh, fresh_sha = gh_get(QUOTE_REQ_FILE)
+                qr_fresh = qr_fresh or {"requests": []}
+                qr_fresh.setdefault("requests", []).append(_new_qr)
+                gh_put(QUOTE_REQ_FILE, qr_fresh, sha=fresh_sha,
+                       msg="Quote request added")
+                load_request_file.clear()
+                qr_data = qr_fresh
+                st.success("Request queued. The worker picks it up within "
+                           "a few minutes and it lands with Enquiries.")
+
+        recent = (list(reversed(qr_data.get("requests", [])))
+                  + list(reversed(qr_data.get("history", []))))[:8]
+        if recent:
+            st.markdown("<div style='font-size:12px;font-weight:700;"
+                        "margin-top:.5rem;'>Recent requests</div>",
+                        unsafe_allow_html=True)
+            for r in recent:
+                icon = {"pending": "⏳", "done": "✅",
+                        "failed": "❌"}.get(r.get("status"), "❓")
+                line = (f"{icon} {r.get('requested_at','')} · "
+                        f"{r.get('customer_code','')} · "
+                        f"{r.get('offer_code','')} · {r.get('status','')}")
+                if r.get("quote_ref"):
+                    line += f" · {r['quote_ref']}"
+                if r.get("status") == "failed" and r.get("detail"):
+                    line += f" · {r['detail'][:60]}"
+                st.markdown(f"<div style='font-size:12px;'>{line}</div>",
+                            unsafe_allow_html=True)
+
+        if st.button("Clear log", key="qr_clear",
+                     help="Removes all completed and failed entries now. "
+                          "Pending requests waiting to be created are kept."):
+            try:
+                _clrq, _clr_sha = gh_get(QUOTE_REQ_FILE)
+                _clrq = _clrq or {"requests": []}
+                _clrq["history"] = []
+                _clrq["requests"] = [r for r in _clrq.get("requests", [])
+                                     if r.get("status") == "pending"]
+                gh_put(QUOTE_REQ_FILE, _clrq, sha=_clr_sha,
+                       msg="Quote log cleared")
+                load_request_file.clear()
+                st.success("Quote request log cleared.")
+            except Exception:
+                st.error("Could not clear the log just now, please try again.")
             st.rerun()
 
-    if inv_recent:
-        st.markdown("---")
-        for q in inv_recent:
-            stat = q.get("status", "pending")
-            icon = {"pending": "🔴 Queued", "done": "🟢 Sent",
-                    "failed": "⚠️ Failed"}.get(stat, stat)
-            nums = ", ".join(q.get("invoices", [])[:8])
-            if len(q.get("invoices", [])) > 8:
-                nums += f" (+{len(q['invoices']) - 8} more)"
-            cc = f" · cc {q['cc_email']}" if q.get("cc_email") else ""
-            st.markdown(
-                f"<div style='font-size:11.5px;padding:3px 0;'>"
-                f"<b>{icon}</b> · {q.get('requested_by','')} · {nums}{cc} "
-                f"<span style='opacity:.55;'>{q.get('requested_at','')}</span>"
-                + (f"<br><span style='opacity:.7;font-size:10.5px;'>"
-                   f"{q['detail']}</span>" if q.get("detail") else "")
-                + "</div>", unsafe_allow_html=True)
+
+with _pnl3:
+    with st.expander("🧾 Request Copy Invoice"):
+        st.caption("Invoice PDFs emailed to you from MCS.")
+        inv_data, inv_sha = load_request_file(INVOICE_REQ_FILE)
+        inv_data = inv_data or {"requests": []}
+
+        ic1, ic2 = st.columns(2)
+        with ic1:
+            inv_by = st.selectbox("Your name *",
+                                  ["— Select your name *"] + INVOICE_USERS,
+                                  key="inv_by")
+        with ic2:
+            inv_cc = st.text_input(
+                "CC the customer (optional)", key="inv_cc",
+                placeholder="accounts@customer.co.uk")
+
+        inv_raw = st.text_area(
+            "Invoice numbers *", key="inv_nums", height=110,
+            placeholder="Paste a column straight from Excel, or type them "
+                        "one per line / separated by commas:\n919190\n919187\n919186")
+        inv_nums = parse_invoice_numbers(inv_raw)
+        if inv_raw.strip():
+            if inv_nums:
+                st.caption(f"✅ {len(inv_nums)} invoice number"
+                           f"{'s' if len(inv_nums) != 1 else ''} recognised: "
+                           + ", ".join(inv_nums[:12])
+                           + (" ..." if len(inv_nums) > 12 else ""))
+            else:
+                st.caption("⚠️ No invoice numbers recognised in that text.")
+
+        if st.button("📧 Request Copy Invoices", key="inv_submit"):
+            errors = []
+            if inv_by == "— Select your name *":
+                errors.append("Please select your name.")
+            if not inv_nums:
+                errors.append("Please enter at least one invoice number.")
+            if inv_cc.strip() and not _EMAIL_OK.match(inv_cc.strip()):
+                errors.append("That CC email address does not look right.")
+            for e in errors:
+                st.warning(e)
+            if not errors:
+                import uuid as _invuuid
+                _new_inv = {
+                    "id": _invuuid.uuid4().hex[:10],
+                    "requested_by": inv_by,
+                    "invoices": inv_nums,
+                    "cc_email": inv_cc.strip(),
+                    "requested_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
+                    "status": "pending",
+                    "detail": "",
+                }
+                # append to the FRESH file so the worker's status updates
+                # are never overwritten
+                inv_fresh, inv_fresh_sha = gh_get(INVOICE_REQ_FILE)
+                inv_fresh = inv_fresh or {"requests": []}
+                inv_fresh.setdefault("requests", []).append(_new_inv)
+                gh_put(INVOICE_REQ_FILE, inv_fresh, sha=inv_fresh_sha,
+                       msg="Copy invoice request added")
+                load_request_file.clear()
+                inv_data = inv_fresh
+                st.success(f"{len(inv_nums)} invoice"
+                           f"{'s' if len(inv_nums) != 1 else ''} queued. The "
+                           f"worker picks it up within about 5 minutes and "
+                           f"emails you the PDFs.")
+
+        # ── log tidy-up ───────────────────────────────────────────────────
+        # A request is "finished" once it is sent or failed. Anything still
+        # pending, or being sent right now by the worker, is never removed.
+        INV_LIVE = ("pending", "sending")
+
+        def _inv_clear_finished(reason):
+            """Drop finished requests, working from a FRESH read so the
+            worker's status updates are never overwritten."""
+            try:
+                fresh, fsha = gh_get(INVOICE_REQ_FILE)
+                if not fresh:
+                    return None
+                keep = [r for r in fresh.get("requests", [])
+                        if r.get("status", "pending") in INV_LIVE]
+                if len(keep) == len(fresh.get("requests", [])):
+                    return fresh          # nothing to clear
+                fresh["requests"] = keep
+                gh_put(INVOICE_REQ_FILE, fresh, sha=fsha, msg=reason)
+                load_request_file.clear()
+                return fresh
+            except Exception:
+                return None               # transient clash, try again later
+
+        _finished = [r for r in inv_data.get("requests", [])
+                     if r.get("status", "pending") not in INV_LIVE]
+
+        # auto-clear once three have finished, so the log stays short
+        if len(_finished) >= 3:
+            _after = _inv_clear_finished("Auto-clear copy invoice log")
+            if _after is not None:
+                inv_data = _after
+                _finished = []
+
+        inv_recent = (list(reversed(inv_data.get("requests", [])))
+                      + list(reversed(inv_data.get("history", []))))[:8]
+        if _finished and st.button(
+                f"🧹 Clear log ({len(_finished)} finished)",
+                key="inv_clear",
+                help="Removes sent and failed requests. Anything still "
+                     "queued or being sent is kept."):
+            _after = _inv_clear_finished("Copy invoice log cleared")
+            if _after is None:
+                st.error("Could not clear the log just now, please try again.")
+            else:
+                st.success("Copy invoice log cleared.")
+                st.rerun()
+
+        if inv_recent:
+            st.markdown("---")
+            for q in inv_recent:
+                stat = q.get("status", "pending")
+                icon = {"pending": "🔴 Queued", "done": "🟢 Sent",
+                        "failed": "⚠️ Failed"}.get(stat, stat)
+                nums = ", ".join(q.get("invoices", [])[:8])
+                if len(q.get("invoices", [])) > 8:
+                    nums += f" (+{len(q['invoices']) - 8} more)"
+                cc = f" · cc {q['cc_email']}" if q.get("cc_email") else ""
+                st.markdown(
+                    f"<div style='font-size:11.5px;padding:3px 0;'>"
+                    f"<b>{icon}</b> · {q.get('requested_by','')} · {nums}{cc} "
+                    f"<span style='opacity:.55;'>{q.get('requested_at','')}</span>"
+                    + (f"<br><span style='opacity:.7;font-size:10.5px;'>"
+                       f"{q['detail']}</span>" if q.get("detail") else "")
+                    + "</div>", unsafe_allow_html=True)
+# ── END REQUEST PANELS ───────────────────────────────────────────────────────
+
 # ── END COPY INVOICE REQUESTS ─────────────────────────────────────────────────
 
 # ── NAV ROW ───────────────────────────────────────────────────────────────────
