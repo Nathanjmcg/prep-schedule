@@ -1,18 +1,6 @@
 {
   "requests": [
     {
-      "id": "1e57433fcd",
-      "requested_by": "Nathan",
-      "invoices": [
-        "919188"
-      ],
-      "cc_email": "",
-      "requested_at": "11/08/2026 12:22",
-      "status": "done",
-      "detail": "1 invoice emailed to nathan.mcguinness@kensite.co.uk",
-      "processed_at": "11/08/2026 13:22"
-    },
-    {
       "id": "639bdbac6a",
       "requested_by": "Nathan",
       "invoices": [
