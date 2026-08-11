@@ -12800,21 +12800,6 @@
         "notes": "",
         "added_by": "Peter",
         "timestamp": "07/08/2026 15:08"
-      },
-      {
-        "type": "On Hire",
-        "customer": "",
-        "postcode": "",
-        "contract_number": "INVALID:0000031841231",
-        "units": {},
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "10/08/2026 13:50"
       }
     ],
     "2026-08-18": [
