@@ -12123,6 +12123,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Market Square, Market St, Ellesmere Port, , CH65 0HW",
         "added_by": "MCS Auto",
         "timestamp": "10/08/2026 12:20"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Chandos Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031874",
+        "units": {
+          "Static Welfare": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Move to from KEEPMOAT HOMES",
+        "added_by": "MCS Auto",
+        "timestamp": "12/08/2026 16:20"
       }
     ],
     "2026-08-06": [
