@@ -12140,6 +12140,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Move to from KEEPMOAT HOMES",
         "added_by": "MCS Auto",
         "timestamp": "12/08/2026 16:20"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Chandos Civil Engineering Ltd",
+        "postcode": "WA8 8LY",
+        "contract_number": "0000031701",
+        "units": {
+          "Static Welfare": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: KEEPMOAT HOMES, HALEGATE, , WA8 8LY | Also on contract: 80x Initial Fuel Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "12/08/2026 16:30"
       }
     ],
     "2026-08-06": [
