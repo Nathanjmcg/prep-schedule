@@ -11149,28 +11149,6 @@
         "edited_at": "24/07/2026 07:17"
       },
       {
-        "type": "Off Hire",
-        "customer": "A Connolly Limited",
-        "postcode": "M26 3GP",
-        "contract_number": "0000031372",
-        "units": {
-          "20ft Store": 1,
-          "Static Welfare": 1,
-          "Solar Loo Single": 1
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Site: RADCLIFFE CRICKET CLUB, HOMER STREET, RADCLIFFE, MANCHESTER, M26 3GP | Also on contract: 80x Initial Fuel Fill; 1x Initial Water Fill; 1x Event Toilet",
-        "added_by": "MCS Auto",
-        "timestamp": "24/07/2026 13:24",
-        "moved_by": "\u2014",
-        "moved_from": "2026-07-24",
-        "edited_at": "28/07/2026 09:33"
-      },
-      {
         "type": "On Hire",
         "customer": "Martin Collins Joinery",
         "postcode": "",
@@ -13098,6 +13076,28 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "11/08/2026 13:00"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "M26 3GP",
+        "contract_number": "0000031372",
+        "units": {
+          "20ft Store": 1,
+          "Static Welfare": 1,
+          "Solar Loo Single": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: RADCLIFFE CRICKET CLUB, HOMER STREET, RADCLIFFE, MANCHESTER, M26 3GP | Also on contract: 80x Initial Fuel Fill; 1x Initial Water Fill; 1x Event Toilet",
+        "added_by": "MCS Auto",
+        "timestamp": "24/07/2026 13:24",
+        "moved_by": "\u2014",
+        "moved_from": "2026-08-05",
+        "edited_at": "12/08/2026 08:38"
       }
     ],
     "2026-08-25": [
