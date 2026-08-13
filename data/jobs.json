@@ -14321,5 +14321,23 @@
     "2026-W22": 575.99,
     "2026-W23": 0,
     "2026-W26": 60.0
+  },
+  "queries": {
+    "d5aa7f57b4": {
+      "id": "d5aa7f57b4",
+      "date": "2026-08-10",
+      "job_idx": 1,
+      "job": {
+        "customer": "AIS Vanguard",
+        "contract": "0000031657",
+        "job_type": "On Hire",
+        "postcode": "CH2 4LB"
+      },
+      "raised_by": "Carl",
+      "raised_at": "13/08/2026 13:42",
+      "question": "Test",
+      "status": "open",
+      "answer": ""
+    }
   }
 }
