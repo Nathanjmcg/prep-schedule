@@ -11123,6 +11123,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Hmg Paints Ltd, Riverside Works, Collyhurst Road, , M40 7RU | Also on contract: 1x Pump",
         "added_by": "MCS Auto",
         "timestamp": "13/08/2026 09:50"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Yardlink",
+        "postcode": "WN2 5PD",
+        "contract_number": "0000031488",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Hindley Pumping Station, Off Warrington Road, Wigan, , WN2 5PD",
+        "added_by": "MCS Auto",
+        "timestamp": "13/08/2026 12:20"
       }
     ],
     "2026-08-05": [
