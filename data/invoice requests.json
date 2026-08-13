@@ -8,8 +8,8 @@
       ],
       "cc_email": "",
       "requested_at": "13/08/2026 11:39",
-      "status": "sending",
-      "detail": "Being processed by the worker",
+      "status": "failed",
+      "detail": "No invoices could be fetched. 9177118 (the PDF returned was not that invoice)",
       "processed_at": "13/08/2026 12:43"
     }
   ]
