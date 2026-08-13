@@ -14336,8 +14336,10 @@
       "raised_by": "Carl",
       "raised_at": "13/08/2026 13:42",
       "question": "Test",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "Test",
+      "answered_by": "Ewa",
+      "answered_at": "13/08/2026 13:45"
     },
     "aa3d18a7a4": {
       "id": "aa3d18a7a4",
