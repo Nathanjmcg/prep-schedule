@@ -1,15 +1,4 @@
 {
   "requests": [],
-  "history": [
-    {
-      "id": "896d361f7f",
-      "customer": "CHAND001",
-      "requested_by": "Nick Arnold",
-      "requested_at": "13/08/2026 13:54",
-      "status": "done",
-      "detail": "Emailed to nick.arnold@kensite.co.uk",
-      "matched_customer": "Chandos Civil Engineering Ltd - CHAND001",
-      "processed_at": "13/08/2026 14:54"
-    }
-  ]
+  "history": []
 }
