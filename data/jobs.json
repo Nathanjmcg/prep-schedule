@@ -14244,8 +14244,10 @@
       "quantity": 3,
       "notes": "White 1400mm",
       "supplier": "Danfast",
-      "status": "pending",
-      "created_at": "10/08/2026 20:27"
+      "status": "ordered",
+      "created_at": "10/08/2026 20:27",
+      "ordered_by": "Ken",
+      "ordered_at": "13/08/2026 12:55"
     },
     "922b60f93dcb": {
       "requester": "Cliff",
@@ -14255,8 +14257,10 @@
       "quantity": 3,
       "notes": "Black Bullnose 38mm",
       "supplier": "Danfast",
-      "status": "pending",
-      "created_at": "10/08/2026 20:27"
+      "status": "ordered",
+      "created_at": "10/08/2026 20:27",
+      "ordered_by": "Ken",
+      "ordered_at": "13/08/2026 12:55"
     },
     "fe13c30e3e28": {
       "requester": "Cliff",
@@ -14266,8 +14270,10 @@
       "quantity": 3,
       "notes": "Right Hand Drain, Roll Front",
       "supplier": "Danfast",
-      "status": "pending",
-      "created_at": "10/08/2026 20:27"
+      "status": "ordered",
+      "created_at": "10/08/2026 20:27",
+      "ordered_by": "Ken",
+      "ordered_at": "13/08/2026 12:55"
     },
     "ddf6cfee585b": {
       "requester": "Cliff",
@@ -14277,8 +14283,10 @@
       "quantity": 1,
       "notes": "3kW Water Heater",
       "supplier": "Danfast",
-      "status": "pending",
-      "created_at": "10/08/2026 20:27"
+      "status": "ordered",
+      "created_at": "10/08/2026 20:27",
+      "ordered_by": "Ken",
+      "ordered_at": "13/08/2026 12:55"
     },
     "800a8492b653": {
       "requester": "Carl",
