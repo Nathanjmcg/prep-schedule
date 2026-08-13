@@ -14289,8 +14289,10 @@
       "quantity": 3,
       "notes": "2kw",
       "supplier": "",
-      "status": "pending",
-      "created_at": "13/08/2026 12:37"
+      "status": "ordered",
+      "created_at": "13/08/2026 12:37",
+      "ordered_by": "Mitch",
+      "ordered_at": "13/08/2026 12:42"
     },
     "dcc44d779ee8": {
       "requester": "Mitch",
@@ -14301,8 +14303,10 @@
       "quantity": 2,
       "notes": "",
       "supplier": "",
-      "status": "pending",
-      "created_at": "13/08/2026 12:37"
+      "status": "ordered",
+      "created_at": "13/08/2026 12:37",
+      "ordered_by": "Mitch",
+      "ordered_at": "13/08/2026 12:42"
     }
   },
   "materials_totals": {
