@@ -132,11 +132,12 @@ def load_request_file(path):
 def load_data():
     data, sha = gh_get(DATA_FILE)
     if data is None:
-        return {}, {}, {}, {}, {}, {}, {}, {}, None
+        return {}, {}, {}, {}, {}, {}, {}, {}, {}, None
     return (data.get("jobs", {}), data.get("mcs", {}),
             data.get("site_visits", {}), data.get("svr_confirmed", {}),
             data.get("checklist", {}), data.get("live_hire", {}),
-            data.get("materials", {}), data.get("materials_totals", {}), sha)
+            data.get("materials", {}), data.get("materials_totals", {}),
+            data.get("queries", {}), sha)
 
 def _job_identity(j):
     """Identity used to spot the same job in two copies of the data."""
@@ -169,6 +170,9 @@ def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None,
         "live_hire":     lh_dict  or {},
         "materials":     mat_dict or {},
         "materials_totals": matt_dict or {},
+        # Yard job queries. Read from the module global rather than passed
+        # in, so every existing save_data call keeps working unchanged.
+        "queries":       globals().get("queries") or {},
     }
     load_data.clear()   # scoped: keep the bank-holiday + queue caches
     for attempt in range(3):
@@ -239,11 +243,12 @@ for k, v in [("week_offset", 0), ("n_weeks", 4),
              ("move_from_date", None), ("move_job_idx", None),
              ("svr_modal_date", None), ("svr_modal_idx", None),
              ("msv_from_date", None), ("msv_idx", None),
-             ("mat_add", False), ("mat_view_id", None)]:
+             ("mat_add", False), ("mat_view_id", None),
+             ("query_date", None), ("query_idx", None)]:
     if k not in st.session_state:
         st.session_state[k] = v
 
-jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals, sha = load_data()
+jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals, queries, sha = load_data()
 bank_holidays = get_bank_holidays()
 
 # Auto-expire materials with pod_received status older than 24h
@@ -276,6 +281,7 @@ def open_dialog(**kwargs):
         "move_from_date": "move_token",
         "msv_from_date":  "msv_token",
         "expand_date":    "expand_token",
+        "query_date":     "query_token",
     }
     for k in kwargs:
         if k in _token_map:
@@ -286,6 +292,57 @@ def close_dialog(**kwargs):
     for k, v in kwargs.items():
         st.session_state[k] = v
     st.session_state["any_dialog_open"] = False
+
+# ── Job queries (yard asks, office answers) ───────────────────────────────────
+# Queries live in their own store keyed by a random id. Each one records the
+# day and the job it was raised against, plus enough of the job's identity
+# (customer + contract) that it still reads correctly if jobs are reordered
+# or moved. Status runs open -> answered -> closed.
+#   open     the yard has asked something and nobody has replied. The day
+#            card pulses red while any query on that day is open.
+#   answered the office has replied. The pulse stops, the day shows a
+#            green reply flag and the answer is on the job.
+#   closed   the yard has seen the answer and cleared it away.
+QUERY_OFFICE = ["Ewa", "Klaudia", "Chloe", "Nick", "Chris", "Peter", "Nathan"]
+QUERY_YARD   = MATERIALS_NAMES
+
+def _job_query_ref(job):
+    """Stable-ish label for the job a query was raised against."""
+    cn = str(job.get("contract_number") or "").strip()
+    return {
+        "customer": job.get("customer", ""),
+        "contract": "" if cn in ("", "00000") else cn,
+        "job_type": job.get("type", ""),
+        "postcode": job.get("postcode", ""),
+    }
+
+def _queries_for_job(date_key, job_idx):
+    """Queries raised against one job, oldest first, excluding closed ones."""
+    out = []
+    for qid, q in queries.items():
+        if q.get("date") != date_key or q.get("status") == "closed":
+            continue
+        if int(q.get("job_idx", -1)) != int(job_idx):
+            continue
+        out.append((qid, q))
+    out.sort(key=lambda x: x[1].get("raised_at", ""))
+    return out
+
+def _day_query_counts(date_key):
+    """(open, answered) query counts for a day, ignoring closed ones."""
+    n_open = n_ans = 0
+    for q in queries.values():
+        if q.get("date") != date_key:
+            continue
+        if q.get("status") == "open":
+            n_open += 1
+        elif q.get("status") == "answered":
+            n_ans += 1
+    return n_open, n_ans
+
+def _save_all():
+    save_data(jobs, mcs, site_visits, svr_confirmed, checklist,
+              live_hire, materials, materials_totals)
 
 # ── Global CSS ────────────────────────────────────────────────────────────────
 st.markdown(f"""
@@ -492,6 +549,28 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
   animation: glow-pulse 2.5s ease-in-out infinite;
 }}
 
+/* Day card has a LIVE yard query — red glow, beats every other state */
+@keyframes query-pulse {{
+  0%, 100% {{ box-shadow: 0 0 0 2px #c0392b, 0 0 8px 2px rgba(192,57,43,.30); }}
+  50%       {{ box-shadow: 0 0 0 3px #e74c3c, 0 0 20px 7px rgba(192,57,43,.55); }}
+}}
+.day-card.has-query {{
+  border-color: #c0392b !important;
+  border-width: 2px !important;
+  background: #fffafa;
+  animation: query-pulse 1.3s ease-in-out infinite;
+}}
+.day-query-flag {{
+  font-size: 9px; font-weight: 800; color: #7b1a1a;
+  background: #fdecea; border-radius: 3px; padding: 1px 5px;
+  display: inline-block; margin-top: 1px;
+}}
+.day-answer-flag {{
+  font-size: 9px; font-weight: 800; color: {K_GREEN_DARK};
+  background: {K_GREEN_PALE}; border-radius: 3px; padding: 1px 5px;
+  display: inline-block; margin-top: 1px;
+}}
+
 /* MCS tick sparkle animation */
 @keyframes mcs-sparkle {{
   0%   {{ transform: scale(1);   opacity: 1; }}
@@ -607,14 +686,12 @@ def day_view_dialog(date_key):
                 ts_line += (f'<div style="font-size:10px;opacity:.5;">'
                             f'✏️ {job.get("edited_by","")} · {job["edited_at"]}</div>')
 
-            # MCS key — unique per date + job index
-            mcs_key      = f"{date_key}_{ji}"
-            mcs_status   = mcs.get(mcs_key, "")
             job_type_val = job["type"]
 
-            # Per-job fulfilment checks
+            # Per-job fulfilment checks. On Hire no longer carries POD /
+            # Contract / Picked on MCS - those were retired at Nathan's
+            # request, so only Off Hire has per-job checks now.
             JOB_CHECK_LABELS = {
-                "On Hire":  [("pod", "📦 POD Attached?"), ("contract", "📄 Contract Posted?")],
                 "Off Hire": [("poc", "📎 POC Attached?"), ("returns",  "🔄 Lines Returned?")],
             }
             job_checks   = JOB_CHECK_LABELS.get(job_type_val, [])
@@ -622,12 +699,7 @@ def day_view_dialog(date_key):
             checks_done  = bool(job_checks) and all(
                 checklist.get(f"{base_ck}_{ck}", False) for ck, _ in job_checks
             )
-            # On Hire: fully done = both checks + MCS picked
-            # Off Hire: fully done = both checks (replaces MCS)
-            if job_type_val == "On Hire":
-                all_job_done = checks_done and (mcs.get(f"{date_key}_{ji}", "") == "picked")
-            else:
-                all_job_done = checks_done
+            all_job_done = checks_done
             # Shiny gold border when all checks done
             card_border = (
                 "border:2px solid #f0b429;box-shadow:0 0 10px rgba(240,180,41,.35);"
@@ -639,13 +711,43 @@ def day_view_dialog(date_key):
                 if all_job_done else ""
             )
 
-            rc1, rc2, rc3 = st.columns([5, 1, 1])
+            # Queries raised against this job
+            job_qs      = _queries_for_job(date_key, ji)
+            job_q_open  = [q for _, q in job_qs if q.get("status") == "open"]
+            job_q_ans   = [q for _, q in job_qs if q.get("status") == "answered"]
+            if job_q_open:
+                q_btn_label, q_btn_help = "❗", "Open query on this job"
+            elif job_q_ans:
+                q_btn_label, q_btn_help = "💬", "The office has answered"
+            else:
+                q_btn_label, q_btn_help = "❓", "Query a detail on this job"
+
+            rc1, rc2, rc3, rc4 = st.columns([5, 1, 1, 1])
             with rc1:
-                # MCS status badge (On Hire only — shown in card)
-                mcs_badge = ""
-                if mcs_status == "picked" and job_type_val == "On Hire":
-                    mcs_badge = (f'<div class="mcs-done" style="margin-top:8px;">'
-                                 f'✅ Picked on MCS</div>')
+                # Query banner — live questions and answers, on the job card
+                q_html = ""
+                for _qid, q in job_qs:
+                    if q.get("status") == "open":
+                        q_html += (
+                            f'<div style="margin-top:6px;padding:6px 8px;'
+                            f'background:#fdecea;border-left:3px solid #c0392b;'
+                            f'border-radius:5px;font-size:11px;color:#7b1a1a;">'
+                            f'<b>❗ Query from {q.get("raised_by","")}</b> '
+                            f'<span style="opacity:.6;">{q.get("raised_at","")}</span>'
+                            f'<div style="margin-top:2px;">{q.get("question","")}</div>'
+                            f'</div>')
+                    else:
+                        q_html += (
+                            f'<div style="margin-top:6px;padding:6px 8px;'
+                            f'background:{K_GREEN_PALE};border-left:3px solid {K_GREEN};'
+                            f'border-radius:5px;font-size:11px;color:{K_GREEN_DARK};">'
+                            f'<div style="opacity:.75;">❓ {q.get("raised_by","")}: '
+                            f'{q.get("question","")}</div>'
+                            f'<div style="margin-top:3px;"><b>💬 '
+                            f'{q.get("answered_by","")}</b> '
+                            f'<span style="opacity:.6;">{q.get("answered_at","")}</span>'
+                            f'<br>{q.get("answer","")}</div>'
+                            f'</div>')
 
                 contract_num = job.get("contract_number", "")
                 contract_html = ""
@@ -678,8 +780,8 @@ def day_view_dialog(date_key):
                   {units_html}
                   {av_cfg_html}
                   {notes_html}
+                  {q_html}
                   {ts_line}
-                  {mcs_badge}
                 </div>
                 """, unsafe_allow_html=True)
 
@@ -702,21 +804,6 @@ def day_view_dialog(date_key):
                         save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
                         st.rerun()
 
-                # ── MCS button — On Hire only, below the checks ─────────────
-                if job_type_val == "On Hire":
-                    if mcs_status != "picked":
-                        if st.button("☐  Picked on MCS", key=f"mcs_{mcs_key}",
-                                     use_container_width=True):
-                            mcs[mcs_key] = "picked"
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
-                            st.rerun()
-                    else:
-                        if st.button("✅ Picked on MCS — undo", key=f"mcs_{mcs_key}",
-                                     use_container_width=True):
-                            mcs.pop(mcs_key, None)
-                            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
-                            st.rerun()
-                # Off Hire — no MCS button, POC/Returns IS the confirmation
             with rc2:
                 if st.button("✏️", key=f"dv_edit_{date_key}_{ji}",
                              use_container_width=True, help="Edit this job"):
@@ -734,6 +821,15 @@ def day_view_dialog(date_key):
                     st.session_state["any_dialog_open"] = True
                     st.session_state["move_job_idx"]   = ji
                     st.session_state["day_view_date"]  = None
+                    st.rerun()
+            with rc4:
+                if st.button(q_btn_label, key=f"dv_query_{date_key}_{ji}",
+                             use_container_width=True, help=q_btn_help):
+                    st.session_state["query_date"]      = date_key
+                    st.session_state["query_idx"]       = ji
+                    st.session_state["query_token"]     = _uuid.uuid4().hex[:8]
+                    st.session_state["any_dialog_open"] = True
+                    st.session_state["day_view_date"]   = None
                     st.rerun()
 
     st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
@@ -1155,8 +1251,31 @@ def expand_chip_dialog(date_key, job_idx):
     if job.get("edited_at"):
         st.markdown(f"<div style='font-size:11px;color:{K_GREY};opacity:.5;'>✏️ Edited by <b>{job.get('edited_by','')}</b> · {job['edited_at']}</div>", unsafe_allow_html=True)
 
+    # Queries raised against this job
+    _eq = _queries_for_job(date_key, job_idx)
+    for _qid, _q in _eq:
+        if _q.get("status") == "open":
+            st.markdown(
+                f'<div style="margin-top:8px;padding:7px 9px;background:#fdecea;'
+                f'border-left:3px solid #c0392b;border-radius:5px;font-size:11.5px;'
+                f'color:#7b1a1a;"><b>❗ Query from {_q.get("raised_by","")}</b> '
+                f'<span style="opacity:.6;">{_q.get("raised_at","")}</span>'
+                f'<div style="margin-top:2px;">{_q.get("question","")}</div></div>',
+                unsafe_allow_html=True)
+        else:
+            st.markdown(
+                f'<div style="margin-top:8px;padding:7px 9px;'
+                f'background:{K_GREEN_PALE};border-left:3px solid {K_GREEN};'
+                f'border-radius:5px;font-size:11.5px;color:{K_GREEN_DARK};">'
+                f'<div style="opacity:.75;">❓ {_q.get("raised_by","")}: '
+                f'{_q.get("question","")}</div><div style="margin-top:3px;">'
+                f'<b>💬 {_q.get("answered_by","")}</b> '
+                f'<span style="opacity:.6;">{_q.get("answered_at","")}</span>'
+                f'<br>{_q.get("answer","")}</div></div>',
+                unsafe_allow_html=True)
+
     st.markdown("<div style='margin-top:1rem'></div>", unsafe_allow_html=True)
-    ec1, ec2 = st.columns(2)
+    ec1, ec2, ec3 = st.columns(3)
     with ec1:
         if st.button("✏️ Edit this job", use_container_width=True, type="primary"):
             st.session_state["modal_date"]      = date_key
@@ -1167,10 +1286,155 @@ def expand_chip_dialog(date_key, job_idx):
             st.session_state["expand_idx"]      = None
             st.rerun()
     with ec2:
+        _eq_open = any(q.get("status") == "open" for _, q in _eq)
+        if st.button("❗ Query" if _eq_open else "❓ Query",
+                     use_container_width=True):
+            st.session_state["query_date"]      = date_key
+            st.session_state["query_idx"]       = job_idx
+            st.session_state["query_token"]     = _uuid.uuid4().hex[:8]
+            st.session_state["any_dialog_open"] = True
+            st.session_state["expand_date"]     = None
+            st.session_state["expand_idx"]      = None
+            st.rerun()
+    with ec3:
         if st.button("Close", use_container_width=True):
             st.session_state["expand_date"] = None
             st.session_state["expand_idx"]  = None
             st.rerun()
+
+# ── JOB QUERY DIALOG ──────────────────────────────────────────────────────────
+# The yard raises a question against a job; the day it sits on pulses red on
+# the schedule until somebody in the office answers it. The answer comes back
+# on the job itself, and the yard clears it once they have read it.
+@st.dialog("Job Query", width="small")
+def job_query_dialog(date_key, job_idx):
+    if date_key not in jobs or job_idx >= len(jobs[date_key]):
+        st.warning("Job not found."); return
+    job = jobs[date_key][job_idx]
+    bg, fg, _ = TYPE_STYLE[job["type"]]
+
+    day_label = datetime.strptime(date_key, "%Y-%m-%d").strftime("%A %-d %B %Y")
+    cn = str(job.get("contract_number") or "").strip()
+    cn_html = ("" if cn in ("", "00000") else
+               f'<span style="font-size:12px;font-weight:600;opacity:.6;'
+               f'margin-left:8px;background:rgba(0,0,0,.07);border-radius:4px;'
+               f'padding:1px 7px;">{cn}</span>')
+    st.markdown(
+        f'<div style="font-size:11px;color:{K_GREY};opacity:.55;'
+        f'margin-bottom:.4rem;">📅 {day_label}</div>'
+        f'<div style="background:{bg};color:{fg};border-radius:9px;'
+        f'padding:10px 13px;margin-bottom:.8rem;">'
+        f'<div style="font-size:16px;font-weight:800;">'
+        f'{job.get("customer","")}{cn_html}</div>'
+        f'<div style="font-size:11.5px;opacity:.7;">'
+        f'{job.get("postcode","")} · {job.get("type","")}</div></div>',
+        unsafe_allow_html=True)
+
+    existing = _queries_for_job(date_key, job_idx)
+
+    # ── Live and answered queries ────────────────────────────────────────────
+    for qid, q in existing:
+        if q.get("status") == "open":
+            st.markdown(
+                f'<div style="padding:8px 10px;background:#fdecea;'
+                f'border-left:4px solid #c0392b;border-radius:6px;'
+                f'font-size:12px;color:#7b1a1a;margin-bottom:.4rem;">'
+                f'<b>❗ LIVE — {q.get("raised_by","")}</b> '
+                f'<span style="opacity:.6;">{q.get("raised_at","")}</span>'
+                f'<div style="margin-top:3px;">{q.get("question","")}</div></div>',
+                unsafe_allow_html=True)
+            st.markdown(
+                f"<div style='font-size:11px;font-weight:700;color:{K_GREY};"
+                f"opacity:.7;'>Office answer</div>", unsafe_allow_html=True)
+            ans = st.text_area("Answer", key=f"qa_txt_{qid}", height=90,
+                               label_visibility="collapsed",
+                               placeholder="Answer for the yard…")
+            ac1, ac2 = st.columns([2, 3])
+            with ac1:
+                who = st.selectbox("Answered by", QUERY_OFFICE,
+                                   key=f"qa_who_{qid}",
+                                   label_visibility="collapsed")
+            with ac2:
+                if st.button("💬 Send Answer", key=f"qa_send_{qid}",
+                             type="primary", use_container_width=True):
+                    if not ans.strip():
+                        st.error("Type an answer first.")
+                    else:
+                        q["answer"]      = ans.strip()
+                        q["answered_by"] = who
+                        q["answered_at"] = datetime.now().strftime("%d/%m/%Y %H:%M")
+                        q["status"]      = "answered"
+                        queries[qid]     = q
+                        _save_all()
+                        st.rerun()
+            with st.expander("Cancel this query"):
+                if st.button("🗑️ Remove query", key=f"qa_del_{qid}",
+                             use_container_width=True):
+                    queries.pop(qid, None)
+                    _save_all()
+                    st.rerun()
+        else:
+            st.markdown(
+                f'<div style="padding:8px 10px;background:{K_GREEN_PALE};'
+                f'border-left:4px solid {K_GREEN};border-radius:6px;'
+                f'font-size:12px;color:{K_GREEN_DARK};margin-bottom:.4rem;">'
+                f'<div style="opacity:.75;">❓ {q.get("raised_by","")} · '
+                f'{q.get("raised_at","")}<br>{q.get("question","")}</div>'
+                f'<div style="margin-top:5px;padding-top:5px;'
+                f'border-top:1px solid rgba(0,0,0,.08);">'
+                f'<b>💬 {q.get("answered_by","")}</b> '
+                f'<span style="opacity:.6;">{q.get("answered_at","")}</span>'
+                f'<br>{q.get("answer","")}</div></div>',
+                unsafe_allow_html=True)
+            if st.button("👍 Got it — clear", key=f"qc_{qid}",
+                         use_container_width=True):
+                q["status"]    = "closed"
+                q["closed_at"] = datetime.now().strftime("%d/%m/%Y %H:%M")
+                queries[qid]   = q
+                _save_all()
+                st.rerun()
+        st.markdown("<hr style='margin:.7rem 0;'>", unsafe_allow_html=True)
+
+    # ── Raise a new query ────────────────────────────────────────────────────
+    st.markdown(
+        f"<div style='font-size:12px;font-weight:700;color:{K_GREY};'>"
+        f"❓ Raise a query</div>", unsafe_allow_html=True)
+    nq = st.text_area("New query", key=f"qn_txt_{date_key}_{job_idx}", height=90,
+                      label_visibility="collapsed",
+                      placeholder="What do you need to know about this job?")
+    nc1, nc2 = st.columns([2, 3])
+    with nc1:
+        nq_who = st.selectbox("Raised by", QUERY_YARD,
+                              key=f"qn_who_{date_key}_{job_idx}",
+                              label_visibility="collapsed")
+    with nc2:
+        if st.button("❗ Raise Query", type="primary", use_container_width=True,
+                     key=f"qn_send_{date_key}_{job_idx}"):
+            if not nq.strip():
+                st.error("Type your question first.")
+            else:
+                qid = _uuid.uuid4().hex[:10]
+                queries[qid] = {
+                    "id":        qid,
+                    "date":      date_key,
+                    "job_idx":   job_idx,
+                    "job":       _job_query_ref(job),
+                    "raised_by": nq_who,
+                    "raised_at": datetime.now().strftime("%d/%m/%Y %H:%M"),
+                    "question":  nq.strip(),
+                    "status":    "open",
+                    "answer":    "",
+                }
+                _save_all()
+                st.rerun()
+
+    st.markdown("<div style='margin-top:.6rem'></div>", unsafe_allow_html=True)
+    if st.button("Close", use_container_width=True, key=f"q_close_{date_key}_{job_idx}"):
+        st.session_state["query_date"] = None
+        st.session_state["query_idx"]  = None
+        st.session_state["day_view_date"] = date_key
+        st.session_state["dv_token"]   = _uuid.uuid4().hex[:8]
+        st.rerun()
 
 # ── MODAL DIALOG ──────────────────────────────────────────────────────────────
 @st.dialog("Add / Edit Job", width="large")
@@ -1759,6 +2023,9 @@ elif _should_open("move_from_date", "move_token") and st.session_state.get("move
 elif _should_open("day_view_date", "dv_token"):
     _mark_rendered("dv_token")
     day_view_dialog(st.session_state.day_view_date)
+elif _should_open("query_date", "query_token") and st.session_state.get("query_idx") is not None:
+    _mark_rendered("query_token")
+    job_query_dialog(st.session_state.query_date, st.session_state.query_idx)
 elif _should_open("expand_date", "expand_token") and st.session_state.get("expand_idx") is not None:
     _mark_rendered("expand_token")
     expand_chip_dialog(st.session_state.expand_date, st.session_state.expand_idx)
@@ -2399,12 +2666,7 @@ pills += (f'<span class="pill" style="background:#fdecea;color:#7b1a1a;">'
 def job_per_checks_done(dk, ji, job_type):
     """Return dict of per-job check states for a given job."""
     base = f"job_{dk}_{ji}"
-    if job_type == "On Hire":
-        return {
-            "pod":      checklist.get(f"{base}_pod", False),
-            "contract": checklist.get(f"{base}_contract", False),
-        }
-    elif job_type == "Off Hire":
+    if job_type == "Off Hire":
         return {
             "poc":     checklist.get(f"{base}_poc", False),
             "returns": checklist.get(f"{base}_returns", False),
@@ -2429,13 +2691,7 @@ def day_jobs_fulfilment_complete(dk):
     for ji, job in enumerate(day_job_list):
         jtype = job["type"]
         base  = f"job_{dk}_{ji}"
-        if jtype == "On Hire":
-            pod_ok      = checklist.get(f"{base}_pod", False)
-            contract_ok = checklist.get(f"{base}_contract", False)
-            mcs_ok      = mcs.get(f"{dk}_{ji}", "") == "picked"
-            if not (pod_ok and contract_ok and mcs_ok):
-                return False
-        elif jtype == "Off Hire":
+        if jtype == "Off Hire":
             poc_ok     = checklist.get(f"{base}_poc", False)
             returns_ok = checklist.get(f"{base}_returns", False)
             if not (poc_ok and returns_ok):
@@ -2602,10 +2858,15 @@ with sched_col:
             is_bh      = dk in bank_holidays
             bh_name    = bank_holidays.get(dk, "")
 
+            n_q_open, n_q_ans = _day_query_counts(dk)
+
             card_cls = "is-today" if is_today else ("is-bh" if is_bh else "")
             if not is_today and not is_bh:
                 if day_jobs_fulfilment_complete(dk) and daily_checklist_done(dk) and jobs.get(dk):
                     card_cls = "is-complete"
+            # A live yard query outranks every other state — the day glows red
+            if n_q_open:
+                card_cls = "has-query"
             date_cls = "is-today" if is_today else ""
 
             with cols[d]:
@@ -2625,20 +2886,6 @@ with sched_col:
                             f'<span class="day-sum-label">{label}</span>'
                             f'</div>'
                         )
-                    on_hire_jobs  = [j for j in day_jobs if j.get("type") == "On Hire"]
-                    off_hire_jobs = [j for j in day_jobs if j.get("type") == "Off Hire"]
-                    picked  = sum(1 for ji, j in enumerate(on_hire_jobs)
-                                  if mcs.get(f"{dk}_{jobs.get(dk,[]).index(j) if j in jobs.get(dk,[]) else ji}", "") == "picked")
-                    checked = sum(1 for ji, j in enumerate(off_hire_jobs)
-                                  if mcs.get(f"{dk}_{jobs.get(dk,[]).index(j) if j in jobs.get(dk,[]) else ji}", "") == "checked")
-                    if on_hire_jobs and picked == len(on_hire_jobs):
-                        summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};font-weight:700;padding:1px 5px;">✅ All picked on MCS</div>'
-                    elif picked > 0:
-                        summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ {picked}/{len(on_hire_jobs)} picked MCS</div>'
-                    if off_hire_jobs and checked == len(off_hire_jobs):
-                        summary_html += f'<div style="font-size:9px;color:#7b1a1a;font-weight:700;padding:1px 5px;">✅ All processed MCS</div>'
-                    elif checked > 0:
-                        summary_html += f'<div style="font-size:9px;color:#7b1a1a;padding:1px 5px;">✅ {checked}/{len(off_hire_jobs)} processed MCS</div>'
                     haul_icons = []
                     for job in day_jobs:
                         h = job.get("haulage", "None")
@@ -2666,6 +2913,15 @@ with sched_col:
                     summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ Dailys done</div>'
                 elif day_jobs and jobs_done:
                     summary_html += f'<div style="font-size:9px;color:{K_GREEN_DARK};padding:1px 5px;">✅ Jobs complete</div>'
+
+                if n_q_open:
+                    summary_html += (
+                        f"<div class='day-query-flag'>❗ {n_q_open} Query"
+                        f"{'s' if n_q_open > 1 else ''} — needs answer</div>")
+                if n_q_ans:
+                    summary_html += (
+                        f"<div class='day-answer-flag'>💬 {n_q_ans} Answered"
+                        f"</div>")
 
                 sv_count = len(site_visits.get(dk, []))
                 if sv_count:
