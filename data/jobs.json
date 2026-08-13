@@ -14289,10 +14289,11 @@
       "quantity": 3,
       "notes": "2kw",
       "supplier": "",
-      "status": "ordered",
+      "status": "pod_received",
       "created_at": "13/08/2026 12:37",
       "ordered_by": "Mitch",
-      "ordered_at": "13/08/2026 12:42"
+      "ordered_at": "13/08/2026 12:42",
+      "pod_received_at": "13/08/2026 12:44"
     },
     "dcc44d779ee8": {
       "requester": "Mitch",
@@ -14303,10 +14304,11 @@
       "quantity": 2,
       "notes": "",
       "supplier": "",
-      "status": "ordered",
+      "status": "pod_received",
       "created_at": "13/08/2026 12:37",
       "ordered_by": "Mitch",
-      "ordered_at": "13/08/2026 12:42"
+      "ordered_at": "13/08/2026 12:42",
+      "pod_received_at": "13/08/2026 12:44"
     }
   },
   "materials_totals": {
