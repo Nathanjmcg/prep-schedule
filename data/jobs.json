@@ -12174,6 +12174,24 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: KEEPMOAT HOMES, HALEGATE, , WA8 8LY | Also on contract: 80x Initial Fuel Fill",
         "added_by": "MCS Auto",
         "timestamp": "12/08/2026 16:30"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000031868",
+        "units": {
+          "20ft Store": 4
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 29/08/2026 to 14/08/2026 on 13/08/2026 09:01",
+        "added_by": "MCS Auto",
+        "timestamp": "13/08/2026 09:01",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-08-06": [
@@ -13656,25 +13674,7 @@
         }
       }
     ],
-    "2026-08-29": [
-      {
-        "type": "On Hire",
-        "customer": "A Connolly Limited",
-        "postcode": "",
-        "contract_number": "0000031868",
-        "units": {
-          "20ft Store": 4
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "12/08/2026 09:31"
-      }
-    ]
+    "2026-08-29": []
   },
   "mcs": {
     "2026-03-19_1": "picked",
