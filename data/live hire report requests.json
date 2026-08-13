@@ -1,4 +1,13 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "896d361f7f",
+      "customer": "CHAND001",
+      "requested_by": "Nick Arnold",
+      "requested_at": "13/08/2026 13:54",
+      "status": "pending",
+      "detail": ""
+    }
+  ],
   "history": []
 }
