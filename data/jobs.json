@@ -14315,6 +14315,90 @@
       "supplier": "Danfast",
       "status": "pending",
       "created_at": "13/08/2026 12:51"
+    },
+    "4a466582c106": {
+      "requester": "Jim",
+      "request_id": "18219fe05d42",
+      "item": "4 \u00d7 pumps",
+      "category": "Plumbing",
+      "item_name": "pumps",
+      "quantity": 4,
+      "notes": "",
+      "supplier": "danfast",
+      "status": "pending",
+      "created_at": "13/08/2026 14:31"
+    },
+    "f2545c46de48": {
+      "requester": "Jim",
+      "request_id": "18219fe05d42",
+      "item": "6 \u00d7 Water Heater (Oversink)",
+      "category": "Plumbing",
+      "item_name": "Water Heater (Oversink)",
+      "quantity": 6,
+      "notes": "triton handwash",
+      "supplier": "danfast",
+      "status": "pending",
+      "created_at": "13/08/2026 14:31"
+    },
+    "fa6a36607282": {
+      "requester": "Jim",
+      "request_id": "18219fe05d42",
+      "item": "20 \u00d7 Switches and Boxes",
+      "category": "Electrical",
+      "item_name": "Switches and Boxes",
+      "quantity": 20,
+      "notes": "single back boxes",
+      "supplier": "danfast",
+      "status": "pending",
+      "created_at": "13/08/2026 14:31"
+    },
+    "133161e957af": {
+      "requester": "Jim",
+      "request_id": "18219fe05d42",
+      "item": "50 \u00d7 Wall Boards",
+      "category": "Joinery",
+      "item_name": "Wall Boards",
+      "quantity": 50,
+      "notes": "3mm wall boards",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "13/08/2026 14:31"
+    },
+    "a28f3d4cb88a": {
+      "requester": "Jim",
+      "request_id": "18219fe05d42",
+      "item": "60 \u00d7 Timber",
+      "category": "Joinery",
+      "item_name": "Timber",
+      "quantity": 60,
+      "notes": "3x2",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "13/08/2026 14:31"
+    },
+    "e1f46b8a532b": {
+      "requester": "Jim",
+      "request_id": "18219fe05d42",
+      "item": "40 \u00d7 Signage",
+      "category": "External",
+      "item_name": "Signage",
+      "quantity": 40,
+      "notes": "kensite signs",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "13/08/2026 14:31"
+    },
+    "6d4278cab3eb": {
+      "requester": "Jim",
+      "request_id": "18219fe05d42",
+      "item": "5 \u00d7 pvc cova quick rolls",
+      "category": "Other",
+      "item_name": "pvc cova quick rolls",
+      "quantity": 5,
+      "notes": "",
+      "supplier": "danfast",
+      "status": "pending",
+      "created_at": "13/08/2026 14:31"
     }
   },
   "materials_totals": {
