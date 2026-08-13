@@ -11070,6 +11070,23 @@
         "added_by": "MCS Auto",
         "timestamp": "12/08/2026 11:50",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "P Hughes Construction Ltd",
+        "postcode": "",
+        "contract_number": "0000031875",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "13/08/2026 09:01"
       }
     ],
     "2026-08-05": [
@@ -12837,6 +12854,29 @@
         "timestamp": "07/08/2026 15:08",
         "edited_by": "Peter",
         "edited_at": "11/08/2026 11:01"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Think Hire",
+        "postcode": "",
+        "contract_number": "0000031876",
+        "units": {
+          "24ft AV": 2
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 8x Upholstered Chair",
+        "added_by": "MCS Auto",
+        "timestamp": "13/08/2026 09:01",
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1,
+            "Meeting Room": 1
+          }
+        }
       }
     ],
     "2026-08-18": [
