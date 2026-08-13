@@ -14279,6 +14279,30 @@
       "supplier": "Danfast",
       "status": "pending",
       "created_at": "10/08/2026 20:27"
+    },
+    "7b39a1f7dc34": {
+      "requester": "Mitch",
+      "request_id": "7c3bbeb13a12",
+      "item": "3 \u00d7 Panel Heater",
+      "category": "Electrical",
+      "item_name": "Panel Heater",
+      "quantity": 3,
+      "notes": "2kw",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "13/08/2026 12:37"
+    },
+    "dcc44d779ee8": {
+      "requester": "Mitch",
+      "request_id": "7c3bbeb13a12",
+      "item": "2 \u00d7 Base Units",
+      "category": "Joinery",
+      "item_name": "Base Units",
+      "quantity": 2,
+      "notes": "",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "13/08/2026 12:37"
     }
   },
   "materials_totals": {
