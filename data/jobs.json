@@ -14438,8 +14438,10 @@
       "raised_by": "Alex",
       "raised_at": "13/08/2026 13:43",
       "question": "Does this need a pump?",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "No job cancelled",
+      "answered_by": "Ewa",
+      "answered_at": "13/08/2026 15:50"
     }
   }
 }
