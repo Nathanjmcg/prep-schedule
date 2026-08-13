@@ -303,8 +303,13 @@ def close_dialog(**kwargs):
 #   answered the office has replied. The pulse stops, the day shows a
 #            green reply flag and the answer is on the job.
 #   closed   the yard has seen the answer and cleared it away.
-QUERY_OFFICE = ["Ewa", "Klaudia", "Chloe", "Nick", "Chris", "Peter", "Nathan"]
-QUERY_YARD   = MATERIALS_NAMES
+QUERY_OFFICE = ["Ewa", "Klaudia", "Chloe", "Nick", "Chris", "Mitch", "Peter",
+                "Nathan"]
+# Everyone on the weekly clocking report, plus Chris. Both Stephens are
+# spelled out so the yard can tell them apart.
+QUERY_YARD = ["Alex", "Baz", "Carl", "Chris", "Claude", "Cliff", "Dan",
+              "Jim", "Josh", "Keaton", "Mark", "Matt", "Mel", "Mitch",
+              "Rich", "Ste Barlow", "Steve Taylor"]
 
 def _job_query_ref(job):
     """Stable-ish label for the job a query was raised against."""
@@ -343,6 +348,44 @@ def _day_query_counts(date_key):
 def _save_all():
     save_data(jobs, mcs, site_visits, svr_confirmed, checklist,
               live_hire, materials, materials_totals)
+
+# ── Checked By ────────────────────────────────────────────────────────────────
+# The yard signs their name against a job once they have been over it. Stored
+# on the existing checklist so nothing new has to be threaded through save.
+# Same people as can raise a query: the clocking report plus Chris.
+CHECKED_BY_PEOPLE = QUERY_YARD
+CHECKED_BY_NONE   = "— Not checked —"
+
+def _checked_by_key(date_key, job_idx):
+    return f"checkedby_{date_key}_{job_idx}"
+
+def _checked_by(date_key, job_idx):
+    """Name of whoever checked this job over, or '' if nobody has."""
+    return str(checklist.get(_checked_by_key(date_key, job_idx), "") or "")
+
+def _query_delete_button(qid):
+    """Delete a query outright. Two clicks, so nothing goes by accident."""
+    confirm_key = f"qdel_confirm_{qid}"
+    if st.session_state.get(confirm_key):
+        st.warning("Delete this query for good?")
+        dc1, dc2 = st.columns(2)
+        with dc1:
+            if st.button("🗑️ Yes, delete", key=f"qdel_yes_{qid}",
+                         type="primary", use_container_width=True):
+                queries.pop(qid, None)
+                st.session_state[confirm_key] = False
+                _save_all()
+                st.rerun()
+        with dc2:
+            if st.button("Keep it", key=f"qdel_no_{qid}",
+                         use_container_width=True):
+                st.session_state[confirm_key] = False
+                st.rerun()
+    else:
+        if st.button("🗑️ Delete query", key=f"qdel_{qid}",
+                     use_container_width=True):
+            st.session_state[confirm_key] = True
+            st.rerun()
 
 # ── Global CSS ────────────────────────────────────────────────────────────────
 st.markdown(f"""
@@ -409,7 +452,15 @@ html,body,[class*="css"]{{font-family:'Figtree',Calibri,sans-serif;color:{K_GREY
 }}
 .mat-scroll button p {{ font-size: 11px !important; font-weight: 700 !important; }}
 .day-sum-pill{{display:flex;align-items:center;gap:5px;padding:3px 5px;
-               border-radius:5px;margin-bottom:2px;font-size:11px;font-weight:600;}}
+               border-radius:5px;margin-bottom:2px;font-size:11px;font-weight:600;
+               border:2px solid transparent;}}
+/* Every job of this type has been checked over by the yard */
+@keyframes checked-glow {{
+  0%, 100% {{ box-shadow: 0 0 3px 0 rgba(13,130,59,.35); }}
+  50%       {{ box-shadow: 0 0 9px 2px rgba(13,130,59,.60); }}
+}}
+.day-sum-pill.is-checked{{border-color:{K_GREEN} !important;
+               animation:checked-glow 2s ease-in-out infinite;}}
 .day-sum-dot{{width:8px;height:8px;border-radius:50%;flex-shrink:0;}}
 .day-sum-label{{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}}
 .day-sum-haul{{font-size:9px;opacity:.65;margin-left:2px;}}
@@ -700,16 +751,28 @@ def day_view_dialog(date_key):
                 checklist.get(f"{base_ck}_{ck}", False) for ck, _ in job_checks
             )
             all_job_done = checks_done
-            # Shiny gold border when all checks done
-            card_border = (
-                "border:2px solid #f0b429;box-shadow:0 0 10px rgba(240,180,41,.35);"
-                if all_job_done else f"border-left:5px solid {border_col};"
-            )
+            checked_by   = _checked_by(date_key, ji)
+            # Gold when every check is done, green when the yard has signed
+            # it off, plain otherwise
+            if all_job_done:
+                card_border = ("border:2px solid #f0b429;"
+                               "box-shadow:0 0 10px rgba(240,180,41,.35);")
+            elif checked_by:
+                card_border = (f"border:2px solid {K_GREEN};"
+                               "box-shadow:0 0 10px rgba(13,130,59,.35);")
+            else:
+                card_border = f"border-left:5px solid {border_col};"
             done_badge = (
                 ' <span style="font-size:10px;font-weight:700;background:#f0b429;'
                 'color:#7a5c00;border-radius:3px;padding:1px 6px;margin-left:4px;">✨ Done</span>'
                 if all_job_done else ""
             )
+            if checked_by:
+                done_badge += (
+                    f' <span style="font-size:10px;font-weight:700;'
+                    f'background:{K_GREEN};color:white;border-radius:3px;'
+                    f'padding:1px 6px;margin-left:4px;">✅ Checked by '
+                    f'{checked_by}</span>')
 
             # Queries raised against this job
             job_qs      = _queries_for_job(date_key, ji)
@@ -831,6 +894,27 @@ def day_view_dialog(date_key):
                     st.session_state["any_dialog_open"] = True
                     st.session_state["day_view_date"]   = None
                     st.rerun()
+
+            # ── Checked By — sits under the edit / move / query buttons ──
+            _cb_pad, _cb_col = st.columns([5, 3])
+            with _cb_col:
+                cb_opts = [CHECKED_BY_NONE] + CHECKED_BY_PEOPLE
+                cb_cur  = checked_by if checked_by in CHECKED_BY_PEOPLE else CHECKED_BY_NONE
+                cb_new  = st.selectbox(
+                    "Checked By", cb_opts, index=cb_opts.index(cb_cur),
+                    key=f"dv_checkedby_{date_key}_{ji}",
+                    help="Who has been over this job")
+                if cb_new != cb_cur:
+                    ck_key = _checked_by_key(date_key, ji)
+                    if cb_new == CHECKED_BY_NONE:
+                        checklist.pop(ck_key, None)
+                    else:
+                        checklist[ck_key] = cb_new
+                    _save_all()
+                    st.rerun()
+
+            st.markdown("<div style='margin-bottom:.6rem;'></div>",
+                        unsafe_allow_html=True)
 
     st.markdown("<hr style='margin:1rem 0;'>", unsafe_allow_html=True)
 
@@ -1367,12 +1451,7 @@ def job_query_dialog(date_key, job_idx):
                         queries[qid]     = q
                         _save_all()
                         st.rerun()
-            with st.expander("Cancel this query"):
-                if st.button("🗑️ Remove query", key=f"qa_del_{qid}",
-                             use_container_width=True):
-                    queries.pop(qid, None)
-                    _save_all()
-                    st.rerun()
+            _query_delete_button(qid)
         else:
             st.markdown(
                 f'<div style="padding:8px 10px;background:{K_GREEN_PALE};'
@@ -1393,6 +1472,7 @@ def job_query_dialog(date_key, job_idx):
                 queries[qid]   = q
                 _save_all()
                 st.rerun()
+            _query_delete_button(qid)
         st.markdown("<hr style='margin:.7rem 0;'>", unsafe_allow_html=True)
 
     # ── Raise a new query ────────────────────────────────────────────────────
@@ -2873,15 +2953,24 @@ with sched_col:
                 day_jobs = jobs.get(dk, [])
                 summary_html = ""
                 if day_jobs:
-                    type_counts = {}
-                    for job in day_jobs:
+                    type_counts, type_checked = {}, {}
+                    for _ji, job in enumerate(day_jobs):
                         t = job.get("type", "On Hire")
                         type_counts[t] = type_counts.get(t, 0) + 1
+                        if _checked_by(dk, _ji):
+                            type_checked[t] = type_checked.get(t, 0) + 1
                     for t, cnt in type_counts.items():
                         bg, fg, _ = TYPE_STYLE[t]
+                        n_ck  = type_checked.get(t, 0)
                         label = f"{cnt} × {t}"
+                        # green glow once every job of this type is checked
+                        pill_cls = "day-sum-pill is-checked" if n_ck == cnt else "day-sum-pill"
+                        if n_ck and n_ck < cnt:
+                            label += f"  ✅{n_ck}/{cnt}"
+                        elif n_ck == cnt:
+                            label += "  ✅"
                         summary_html += (
-                            f'<div class="day-sum-pill" style="background:{bg};color:{fg};">'
+                            f'<div class="{pill_cls}" style="background:{bg};color:{fg};">'
                             f'<div class="day-sum-dot" style="background:{fg};opacity:.5;"></div>'
                             f'<span class="day-sum-label">{label}</span>'
                             f'</div>'
