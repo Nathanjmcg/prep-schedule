@@ -11123,6 +11123,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 24FT Solar Powered Welfare",
         "added_by": "MCS Auto",
         "timestamp": "13/08/2026 16:30"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Rowland Homes Ltd",
+        "postcode": "",
+        "contract_number": "0000031811",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre)",
+        "added_by": "MCS Auto",
+        "timestamp": "14/08/2026 09:31"
       }
     ],
     "2026-08-05": [
