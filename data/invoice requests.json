@@ -1,16 +1,3 @@
 {
-  "requests": [
-    {
-      "id": "f2ae69c7a4",
-      "requested_by": "Fiona",
-      "invoices": [
-        "9177118"
-      ],
-      "cc_email": "",
-      "requested_at": "13/08/2026 11:39",
-      "status": "failed",
-      "detail": "No invoices could be fetched. 9177118 (the PDF returned was not that invoice)",
-      "processed_at": "13/08/2026 12:43"
-    }
-  ]
+  "requests": []
 }
