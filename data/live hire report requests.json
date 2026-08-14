@@ -1,15 +1,4 @@
 {
   "requests": [],
-  "history": [
-    {
-      "id": "ec76e1493e",
-      "customer": "A connolly",
-      "requested_by": "Nathan McGuinness",
-      "requested_at": "14/08/2026 11:51",
-      "status": "done",
-      "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
-      "matched_customer": "A Connolly Limited - ACONN001",
-      "processed_at": "14/08/2026 12:51"
-    }
-  ]
+  "history": []
 }
