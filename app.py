@@ -54,24 +54,1634 @@ MATERIALS_ORDERERS = ["Mitch", "Pete", "Ken"]
 # Materials request categories -> items (A-Z, every category ends with
 # Other). "Vinyl Floor" under Joinery is floor covering; "Vinyls"
 # under External is livery/graphics.
-MATERIALS_CATEGORIES = {
-    "Joinery": ["Base Units", "Ceiling Boards", "Doors", "JCOP Boards",
-                "Shutters", "Timber", "Trims", "Vinyl Floor",
-                "Wall Boards", "Windows", "Worktops", "Other"],
-    "Plumbing": ["Pipe", "Plumbing Fittings", "Sinks", "Taps",
-                 "Water Heater (Oversink)", "Water Heater (Undersink)",
-                 "Other"],
-    "Electrical": ["Appliances", "Downflow Heater", "Electrical Trunking",
-                   "Light Fittings", "Panel Heater", "PIR Sensors",
-                   "Switches and Boxes", "Wiring", "Other"],
-    "External": ["Brushes/Rollers", "Paint", "Signage", "Vinyls",
-                 "Other"],
-    "Fasteners and Fittings": ["Nails", "Nuts & Bolts", "Screws",
-                               "Washers", "Other"],
-    "Cleaning": ["Cleaning Consumables", "Floor Cleaner", "Spray Cleaner",
-                 "Other"],
-    "Other": ["Other"],
+# Generated from Danfast Catalogue.json (synced 14/08/2026, 937
+# products). Regenerate when the portal range changes.
+DANFAST_TREE = {
+    'Adhesives & Sealants': {
+        'CT1 Sealant & Adhesive': [
+            '*CT1 Grey Adhesive & Sealant 290ml',
+            '*CT1 White Adhesive & Sealant 290ml',
+        ],
+        'Expanding Foam': [
+            '750ml Soudafoam 1K Polyurethene Expanding Foam',
+        ],
+        'Flashband': [
+            'Grey 100mm Flashband (4") 10mtr Roll',
+            'Grey 150mm Flashband (6") 10mtr Roll',
+            'Grey 225mm Flashband (9") 10mtr Roll',
+            'Grey 300mm Flashband (12") 10mtr Roll',
+        ],
+        'General': [
+            '*Fix All High Tack White 290ml Super Strong SMX Sealant',
+            '*Seamseal CV Non Drying Bedding/Sealant White',
+            '380ml Evode Gunnable Adhesive C30 Hard Cartridges',
+            '400ml Silicone Spray',
+            'Clear 500ml Evode Gp Spray Adhesive',
+            'Grey 295ml Silirub A Silicone Low Modulus',
+            'White 290ml Fix All Adhesive Sealant With Fungicide',
+            'White 300ml Acryrub Int/Ext Acrylic Sealant',
+        ],
+        'Roofing Products': [
+            'Restec Acryltex Storm Grey Roof Coating 5KG Tin P168001',
+        ],
+        'Silicone Sealant': [
+            'Black 270ml Multi Purpose Silicone',
+            'Brown 270ml Multi Purpose Silicone',
+            'Clear 270ml Multi Purpose Silicone',
+            'White 270ml Multi Purpose Silicone',
+        ],
+    },
+    'Canteen & Furniture': {
+        '1000 x 600 Roll Front Stainless Steel Sink': [
+            '1000 x 600 Roll Front Left Hand Drainer St/Steel Sink',
+            '1000 x 600 Roll Front Right Hand Drainer St/Steel Sink',
+        ],
+        '1000 x 600 Square Front Stainless Steel Sink': [
+            '1000 x 600 Square Front LH Drainer St/Steel Sink',
+            '1000 x 600 Square Front RH Drainer St/Steel Sink',
+        ],
+        'Appliances': [
+            '2 Slice White Toaster',
+            '48cm Under Counter Fridge',
+            'Jug Kettle',
+            'Microwave Oven White',
+        ],
+        'Bench': [
+            'Thetford C402C Right Hand (OEM)',
+        ],
+        'Cabinets': [
+            '1000 x 600 Drawerline Base Unit, Plastic Legs',
+            'Double Wall Unit 1000 x 720',
+        ],
+        'Dometic 9222 Combi Unit': [
+            'Dometic 9222R Combi Unit RH Sink, Piezo Ign, Gas Shut Off',
+            'Dometic 9222S Combi Unit 2 Burner LH Sink',
+        ],
+        'Dometic 9722 Combi Unit': [
+            'Dometic 9722 Slim-Line Combi Unit c/w Piezo Ignition RH Sink',
+        ],
+        'General': [
+            '15mm x 3/4"BSP Appliance Valve DM Fit (Black)',
+            'Hat And Coat Hook Aluminium',
+            'Hat And Coat Hook SAA 4mm Thk Heavy Duty',
+        ],
+        'Hat & Coat Hooks': [
+            '4 Chrome Hooks On Teak Effect Wooden Mount',
+            '6 Hat And Coat Hooks Rail 708mm Long White Powder Coated',
+        ],
+        'LED - Mains': [
+            '5ft LED Batten c/w Microwave Sensor IP20 Adjustable',
+        ],
+        'Noticeboards & Drywipe': [
+            '1200 x 900 Blue Felt Combi Notice/Drywipe Boards',
+            "3' x 2' Blue Noticeboard Aluminium Frame",
+            "4' x 3' Blue Noticeboard Aluminium Frame",
+            "4' x 3' Magnetic Drywipe Board c/w Fixing Kit & Pen Tray",
+            "4' x 3' Reversible Notice Board / Magnetic Drywipe Board",
+            '900 x 600 Blue Felt Combi Notice/Drywipe Boards',
+        ],
+        'Refrigeration': [
+            'Dometic NRX 50C Fridge, 44L c/w Removable Freezer, 12/24v',
+        ],
+        'Sink Base Unit Kit': [
+            '1.1/2" Combined Sink Waste',
+            '1000 x 600 Gable Ended Base Unit 2 Door White',
+        ],
+        'Sink Plugs': [
+            'Sink Plug 1.1/2"',
+            'Sink Plug 1.3/4"',
+        ],
+    },
+    'Doors & Security': {
+        '12" Sweeping Brush': [
+            'Soft Sweeping Brush 12" c/w Handle',
+            'Stiff Sweeping Brush 12" c/w Handle',
+        ],
+        '24" Platform Broom': [
+            'Platform Broom Soft 24" c/w Handle',
+            'Platform Broom Stiff 24" c/w Handle',
+        ],
+        'Door Closers': [
+            'Arrone Door Closer Size 2-4',
+            'Arrone Door Closer Size 3 (Up To 60Kg Door)',
+            'Door Closer White Sprung Arm Architrave Fix',
+            'Union Door Closer Size 2 - 5 (100Kg Door)',
+            'Union Door Closer Size 3 60kg Door',
+            'Union Door Closer Up To 120Kg (Size 6)',
+        ],
+        'Door Furniture': [
+            '3" No.104 Hurlinge BZP (Pair) Fixed Pin',
+            'Door Stop Black 1.3/8"',
+            'Finger / Push Plate SAA 300mm x 75mm',
+            'Kick Plate SAA 760mm x 150mm',
+        ],
+        'Door Handles': [
+            'Black Plastic Pull Handle 246mm',
+            'Door Handle 19mm Bar Lever On Rose PAA (Pair)',
+            'SAA 19mm Sprung Euro Lock Handle',
+            'SAA 19mm Sprung Keyhole Lock Handle',
+            'SAA Latch Handle',
+            'SAA Lock Handle',
+        ],
+        'Door Signs': [
+            'Female Sign SAA 150mm x 100mm',
+            'Male Sign SAA 150mm x 100mm',
+        ],
+        'Era 3 Lever Sash Lock': [
+            'Era 3 Lever 2.1/2" Sash Lock 473-61',
+            'Era 3 Lever 3" Sash Lock 573-61',
+        ],
+        'Era 5 Lever Deadlock': [
+            'Era 5 Lever 2.1/2" Deadlock 201-31',
+            'Era 5 Lever 3" Deadlock 301-31',
+        ],
+        'Era 5 Lever Sash Lock': [
+            'Era 5 Lever 2.1/2" Sash Lock 202-61',
+            'Era 5 Lever 3" Sash Lock 302-61',
+        ],
+        'Era Fortress 5 Lever Deadlock': [
+            'Era Fortress 2.1/2" 5 Lever Deadlock 261-31 - Key No.1',
+            'Era Fortress 2.1/2" 5 Lever Deadlock 261-31 - Key No.2',
+            'Era Fortress 2.1/2" 5 Lever Deadlock 261-31 - Key No.3',
+            'Era Fortress 2.1/2" 5 Lever Deadlock 261-31 - Key No.4',
+            'Era Fortress 2.1/2" 5 Lever Deadlock 261-31 - Key No.5',
+            'Era Fortress 2.1/2" Deadlock 5 Lever 261-31',
+            'Era Fortress 3" Deadlock 5 Lever 361-31',
+        ],
+        'Era Fortress 5 Lever Sash Lock': [
+            'Era Fortress 2.1/2" Sash Lock 5 Lever 262-31',
+            'Era Fortress 3" Sash Lock 5 Lever 362-31',
+        ],
+        'General': [
+            'Auxiliary Lock To Suit Steel Security Door',
+            'Door Holder Male Part Only',
+            'Flush Bolt To Suit Steel Security Window Shutter',
+            'Hooply Lever Door Handles LH Hinged Door (Pair) 2018T',
+            'Hooply Lever Door Handles RH Hinged Door (Pair) 2018T',
+            'Hooply Mortice Lock',
+            'Modesty Screw Block White',
+            'Recessed Handle To Suit Steel Security Window Shutter',
+            'Scavenger Brush 13" c/w Handle',
+            'Soft Black Rubber Door Retainer Female',
+            'Stainless Hinge To Suit Steel Security Door (Single)',
+            'Stainless Left Hand Hinge For Steel Security Window Shutter',
+            'Stainless Right Hand Hinge For Steel Security Window Shutter',
+            'Wooden Mop Handle 48"',
+        ],
+        'Locks & Latches': [
+            '2.1/2" Union C Series 5 Lever Mortice Lock B-3G115',
+            '64mm Mortice Latch Face Plate Nickel Plated',
+            'Arrone Keysafe Unit',
+            'Arrone Mechanical Push Button Door Lock',
+            'Euro Profile Single Cylinder NP',
+        ],
+        'Paint Brushes & Rollers': [
+            '9" Soft Grip Roller Prolock Frame',
+        ],
+        'Security Door Accessories': [
+            '6Mtr Black Frame Seal for Steel Doors',
+            'Anti-Snap Thumbturn Cylinder T40/40N with 6 keys',
+            'Hooply Stainless Lever Door Handles for LH Hinged Door',
+            'Hooply Stainless Lever Door Handles for RH Hinged Door',
+        ],
+        'Steel Butt Hinge': [
+            'Butt Hinge Steel 3" (Pairs) 1838',
+            'Butt Hinge Steel 4" (Pairs) 1838',
+        ],
+        'Union 2 Lever Sash Lock': [
+            'Union Sash Lock 2.1/2" 2-Lever 2-Keyed J2295',
+            'Union Sash Lock 3" 2-Lever 2-Keyed J2295',
+        ],
+        'Union 3 Lever Sash Lock': [
+            'Union Sash Lock 2.1/2" 3-Lever J2277',
+            'Union Sash Lock 3" 3-Lever J2277',
+        ],
+        'Union 5 Lever Deadbolt': [
+            'Union Deadlock 2.1/2" 5-Lever J2101',
+            'Union Deadlock 3" 5-Lever J2101',
+        ],
+        'Union 5 Lever Sash Lock': [
+            'Union Sash Lock 3" 5-Lever J2201',
+        ],
+        'Union Mortice Latch': [
+            'Union Mortice Latch 2.1/2" J2642',
+            'Union Mortice Latch 3" J2642',
+        ],
+    },
+    'Electrical': {
+        '1.5mm Single Cable 6491X': [
+            '1.5mm Cable Blue 100M Coil',
+            '1.5mm Cable Brown 100M Coil',
+            '1.5mm Cable Green & Yellow 100M Coil',
+        ],
+        '13amp Plugs': [
+            '13A White Heavy Duty Plug Thermoplastic',
+            '13A White Plastic Plug',
+        ],
+        '2.5mm Single Cable 6491X': [
+            '2.5mm Cable Blue 100M Coil',
+            '2.5mm Cable Brown 100M Coil',
+            '2.5mm Cable Green & Yellow 100M Coil',
+        ],
+        '240v Plug IP44': [
+            'Gewiss GW60004H 16A 2P+E 240v Plug IP44',
+            'Gewiss GW60015H 32A 2P+E 240V Plug IP44',
+        ],
+        '240v Plug IP67': [
+            'Gewiss GW60026H 16a 2P+E 240v Plug IP67',
+            'Gewiss GW60037H 32A 2P+E 240V Plug IP67',
+        ],
+        '240v Plugs & Sockets': [
+            'Gewiss GW60437 32A 2P+E 240v Wall Mounted Plug IP67',
+            'Gewiss GW61448 63a 230v 2P&E Wall Mount Inlet IP67',
+            'Gewiss GW62488 32A 2P+E 240V Wall Mounted Socket IP44',
+        ],
+        '240v Socket Outlet IP44': [
+            'Gewiss GW62004H 16A 2P+E 240v IP44 Connector',
+            'Gewiss GW62015H 32A 2P+E 240v Connector IP44',
+        ],
+        '240v Socket Outlet IP67': [
+            'Gewiss GW62026H 16a 2P+E 240v Socket Outlet IP67',
+            'Gewiss GW62037H 32A 2P+E 240v Socket Outlet IP67',
+        ],
+        '240v Wall Mounted Plug IP44': [
+            'Gewiss GW60404 16A 2P+E 240V Wall Mounted Plug IP44',
+            'Gewiss GW60415 32A 2P+E 240v Wall Mounted Plug IP44',
+        ],
+        '3 Core Flex 3183Y': [
+            '1.5mm 3 Core Flex White 50M Coil',
+            '2.5mm Arctic Blue 3 Core Flex 100M Coil',
+            '2.5mm White 3 Core Flex 50M Coil',
+        ],
+        'Blank Plate': [
+            '1 Gang Blank Plate',
+            '2 Gang Blank Plate',
+        ],
+        'Cable': [
+            '1.5mm Grey Flat 3 Core & Earth Cable 100M 6243Y',
+            '10.0mm 3 Core PVC SWA Cable 10Mtr Coil 6493X',
+        ],
+        'Cable Grommet': [
+            '20mm Cable Grommet Blind',
+            '20mm Cable Grommet Open',
+            '25mm Cable Grommet Closed',
+        ],
+        'Cartridge Fuse Niglon': [
+            '13A Cartridge Fuse Niglon',
+            '3A Cartridge Fuse Niglon',
+            '5A Cartridge Fuse Niglon',
+        ],
+        'Conduit & Fittings': [
+            '20mm Conduit Coupler White',
+            '20mm Conduit Female Adaptor White',
+            '20mm Conduit Inspection Bend White',
+            '20mm Conduit Male Adaptor White',
+            '20mm Conduit Spring Saddle Clips White',
+            '20mm White Conduit Pvc 3Mtr',
+        ],
+        'Consumer Unit Spares': [
+            'Blanking Plate 3 Module',
+            'Hager JK01B MCB Blanks',
+            'Hager VAB08 8-Module Busbar (Insulated)',
+        ],
+        'Consumer Units': [
+            'Cudis RO232C/030 32A Dp Type C 30Ma RCBO',
+            'Hager CDA263U 63A Dp 30Ma RCD',
+        ],
+        'Control Switches': [
+            'CED Surface Mounting Switch TP&N 63A (Narrow Type) IP66',
+            'Rotary Control Switch Red 63A, 4 Pole, IP65',
+            'Timeguard Isolator Switch 63A 4 Pole IP66',
+        ],
+        'Controllers': [
+            'SLPBG Wireless Controller c/w Thermostat & Generator Program',
+            'SLVTG Wireless Control c/w Generator Program',
+        ],
+        'Dado Trunking': [
+            'Marco MT105 100 X 50mm Dado Trunking 3mtr',
+            'Marco MTC105 Dado Trunking Stop End',
+            'Marco MTSB1 1 Gang Back Box for Dado Trunking',
+            'Marco MTSB2 2 Gang Back Box for Dado Trunking',
+        ],
+        'Deligo Quick Connector Terminals': [
+            'Deligo 2 Pole Quick Connector Terminal Pack of 50',
+            'Deligo 3 Pole Quick Connector Terminal Pack of 50',
+        ],
+        'Dry Line Box': [
+            '1 Gang Dry Line Box',
+            '2 Gang Dry Line Box',
+        ],
+        'Garage Consumer Unit': [
+            'Live 4 Module Metal Bodied Garage Consumer Unit 63A RCD',
+        ],
+        'General': [
+            '15mm Straight Connector DM Fit',
+            '15mm x 10mm Straight Connector DM Fit',
+            '22mm Straight Connector DM Fit',
+            '22mm x 15mm Straight Connector DM Fit',
+            '25mm Chrome Round Socket',
+            'Aluminium Extension Pole Long Reach',
+            'Pull Cord Ceiling Switch 10A',
+            'Pull Cord Ceiling Switch With Neon 45Amp',
+            'SA62 White 110mm Screwed Access Plug',
+            'Socket Mop Head 12PY',
+            'White 300ml Paint Flex Filler Decorators Caulk',
+        ],
+        'Hager MTN MCB': [
+            'Hager MTN106 6A Sp MCB',
+            'Hager MTN110 10A Sp MCB',
+            'Hager MTN116 16A Sp MCB',
+            'Hager MTN120 20A Sp MCB',
+            'Hager MTN132 32A Sp MCB',
+            'Hager MTN140 40A Sp MCB',
+        ],
+        'Hager Metal Bodied Consumer Unit c/w 63A RCD': [
+            'Hager VME406AH 6-Module Metal Consumer Unit c/w 63A RCD',
+            'Hager VME410AH 10-Module Metal Consumer Unit c/w 63A RCD',
+        ],
+        'Misc Essentials': [
+            '20mm Compression Gland And Nut White',
+            '370 x 4.8 Natural Cable Ties',
+            'White 1 Hole 2.5mm P Type Cable Clip',
+        ],
+        'Pattress': [
+            '1 Gang Pattress 25mm Deep',
+            '1 Gang Pattress 32mm Deep',
+            '1 Gang Pattress 47mm Deep',
+            '2 Gang Pattress 25mm Deep',
+            '2 Gang Pattress 35mm Deep',
+        ],
+        'Plate Switch': [
+            '1 Gang 1 Way Plate Switch',
+            '1 Gang 2 Way Plate Switch',
+            '2 Gang 2 Way Plate Switch',
+            '3 Gang 2 Way Plate Switch',
+        ],
+        'Pozi Bits & Blades': [
+            '5/16 Mag Socket & Drive Bar To Suit Hex Head Screws',
+        ],
+        'Round Cable Clips White': [
+            '10-14mm Round Cable Clip White',
+            '7-10mm Round Cable Clip White',
+        ],
+        'Schneider Acti9 MCB': [
+            'Schneider 16A MCB C60HB 1P B BSEN Acti9',
+            'Schneider 20A MCB C60HB 1P B BSEN Acti9',
+        ],
+        'Socket Plug': [
+            'SP296 Grey 110mm Socket Plug',
+            'SP296 White 110mm Socket Plug',
+            'WP30 White 32mm Socket Plug',
+            'WP31 White 40mm Socket Plug',
+        ],
+        'Soil Double Socket': [
+            'SP105 Grey 110mm Double Socket Straight Coupling',
+            'SP105 White 110mm Double Socket Straight Coupling',
+        ],
+        'Soil Offset Bend 135°': [
+            'SP435 White 110mm Offset Bend Single Socket 135 Degree',
+            'SP440 White 110mm Offset Bend Double Socket 135 Degree',
+        ],
+        'Soil Single Socket': [
+            'SP124 White 110mm Single Socket',
+        ],
+        'Soil Socket Bend 92.5°': [
+            'SP161 Grey 110mm Single Socket Bend 92.5 Degree',
+            'SP161 White 110mm Single Socket Bend 92.5 Degree',
+            'SP561 Black 110mm Bend Double Socket 92.5 Degree',
+            'SP561 White 110mm Bend Double Socket 92.5 Degree',
+        ],
+        'Soudaflex 40FC Adhesive/Sealant': [
+            'Black 310ml Soudaflex 40FC',
+            'Grey 310ml Soudaflex 40FC',
+            'White 310ml Soudaflex 40FC',
+        ],
+        'Strip Connector': [
+            '15A Strip Connector',
+            '30A Strip Connector',
+            '5A Strip Connector',
+        ],
+        'Switched Fused Spurs': [
+            'Switched Fused Spurs',
+            'Switched Fused Spurs c/w Neon',
+        ],
+        'Switched Socket': [
+            '1 Gang Switched Socket',
+            '2 Gang Switched Socket',
+            '2 Gang Switched Socket c/w Dual USB Charger Type A & C',
+        ],
+        'Switches & Sockets': [
+            '20A Dp Switch',
+        ],
+        'Trunking': [
+            '25mm x 16mm Mini Trunking 3Mtr Self Adhesive',
+            '38mm x 25mm Mini Trunking 3Mtr Self Adhesive',
+        ],
+        'Trunking Fittings': [
+            '25mm x 16mm Adaptor To Suit Trunking',
+            '25mm x 16mm External Corner For Mini Trunking',
+            '25mm x 16mm Internal Corner For Mini Trunking',
+            '25mm x 16mm L Shaped Flat Corner For Mini Trunking',
+            '25mm x 16mm Tee For Mini Trunking',
+            '38mm Tee For Mini Trunking',
+            '38mm x 25mm Internal Corner For Mini Trunking',
+            '38mm x 25mm L Shaped Flat Corner For Mini Trunking',
+        ],
+        'Trunking Pattress': [
+            '1 Gang 32mm Pattress To Suit Trunking',
+            '2 Gang 25mm Pattress To Suit Trunking',
+            '2 Gang 32mm Pattress To Suit Trunking',
+        ],
+        'Twin & Earth Cable 6242Y': [
+            '1.0mm T & E Grey 100M Coil',
+            '1.5mm T & E Grey 100M Coil',
+            '2.5mm T & E Grey 100M Coil',
+            '6.0mm T & E Grey 50M Coil',
+        ],
+    },
+    'Fastenings & Fixings': {
+        '25mm x 14g Plastic Head Pins': [
+            '25mm x 14G Dk Brown Plastic Headed Pins Zinc Plated',
+            '25mm x 14G White Plastic Headed Pins Zinc Plated',
+        ],
+        '30mm x 14g Plastic Head Pins': [
+            '30mm x 14G Dk Brown Plastic Headed Pins Zinc Plated',
+            '30mm x 14G White Plastic Headed Pins Zinc Plated',
+        ],
+        '40mm x 10g Plastic Head Nails': [
+            '40mm x 10G White Plastic Headed Nails Large Head Zinc Plated',
+        ],
+        '40mm x 14g Plastic Head Pins': [
+            '40mm x 14G White Plastic Headed Pins Zinc Plated',
+        ],
+        'Black Drywall Screws': [
+            '3.5mm x 25 Bugle Hd Drywall Screw Black',
+            '3.5mm x 32 Bugle Hd Drywall Screw Black',
+            '3.5mm x 35 Bugle Hd Drywall Screw Black',
+            '3.5mm x 38 Bugle Hd Drywall Screw Black',
+            '3.5mm x 42 Bugle Hd Drywall Screw Black',
+            '3.5mm x 50 Bugle Hd Drywall Screw Black',
+            '4.2mm x 65 Bugle Hd Drywall Screw Black',
+            '4.2mm x 75 Bugle Hd Drywall Screw Black',
+        ],
+        'Bugle Head Self Drilling Screw': [
+            '3.5 x 50 Bugle Head Self Drill Screw',
+            '4.2 x 65 Bugle Head Self Drill Screw',
+        ],
+        'Csk Pozi Chipboard Screws Yellow': [
+            '3.5 x 16 Csk Pozi Chipboard Screw Z&Y',
+            '3.5 x 20 Csk Pozi Chipboard Screw Z&Y',
+            '3.5 x 25 Csk Pozi Chipboard Screw Z&Y',
+            '3.5 x 50 Csk Pozi Chipboard Screw Z&Y',
+            '4 x 20 Csk Pozi Chipboard Screw Z&Y',
+            '4 x 25 Csk Pozi Chipboard Screw Z&Y',
+            '4 x 30 Csk Pozi Chipboard Screw Z&Y',
+            '4 x 35 Csk Pozi Chipboard Screw Z&Y',
+            '4 x 40 Csk Pozi Chipboard Screw Z&Y',
+            '4 x 50 Csk Pozi Chipboard Screw Z&Y',
+            '4 x 60 Csk Pozi Chipboard Screw Z&Y',
+            '4 x 70 Csk Pozi Chipboard Screw Z&Y',
+            '4.5 x 25 Csk Pozi Chipboard Screw Z&Y',
+            '4.5 x 75 Csk Pozi Chipboard Screw Z&Y',
+            '5 x 100 Csk Pozi Chipboard Screw Z&Y',
+            '5 x 40 Csk Pozi Chipboard Screw Z&Y',
+            '5 x 50 Csk Pozi Chipboard Screw Z&Y',
+            '5 x 60 Csk Pozi Chipboard Screw Z&Y',
+            '5 x 70 Csk Pozi Chipboard Screw Z&Y',
+            '5 x 80 Csk Pozi Chipboard Screw Z&Y',
+        ],
+        'Csk Pozi Woodscrews BZP': [
+            '10 x 1" Csk Pozi Woodscrews BZP',
+            '10 x 1.1/2" Csk Pozi Woodscrews BZP',
+            '10 x 2" Csk Pozi Woodscrews BZP',
+            '10 x 2.1/2" Csk Pozi Woodscrews BZP',
+            '10 x 3" Csk Pozi Woodscrews BZP',
+            '10 x 4" Csk Pozi Woodscrews BZP',
+            '6 x 1" Csk Pozi Woodscrews BZP',
+            '6 x 1.1/2" Csk Pozi Woodscrews BZP',
+            '6 x 1.1/4" Csk Pozi Woodscrews BZP',
+            '6 x 3/4" Csk Pozi Woodscrews BZP',
+            '7 x 1" Csk Pozi Woodscrews BZP',
+            '8 x 1" Csk Pozi Woodscrews BZP',
+            '8 x 1.1/2" Csk Pozi Woodscrews BZP',
+            '8 x 1.1/4" Csk Pozi Woodscrews BZP',
+            '8 x 1.3/4" Csk Pozi Woodscrews BZP',
+            '8 x 1/2" Csk Pozi Woodscrews BZP',
+            '8 x 2" Csk Pozi Woodscrews BZP',
+            '8 x 2.1/2" Csk Pozi Woodscrews BZP',
+            '8 x 3" Csk Pozi Woodscrews BZP',
+            '8 x 3/4" Csk Pozi Woodscrews BZP',
+        ],
+        'Csk Self Drilling Screw': [
+            '4.8 x 32 Csk Self Drill Screw',
+            '4.8 x 50 Csk Self Drill Screw',
+            '5.5 x 40 Csk Self Drilling Screw',
+        ],
+        'Csk Winged Self Drilling Screw': [
+            '5.5 x 40 Csk Wing Drillscrew (Timber To Steel)',
+            '5.5 x 60 Csk Wing Drillscrew (Timber To Steel)',
+            '5.5 x 80 Csk Wing Drillscrew (Timber To Steel)',
+        ],
+        'Flat Washers Zinc Plated': [
+            'M10 Form B Washers BZP',
+            'M12 Form B Washers BZP',
+            'M6 Form B Washers BZP',
+            'M8 Form B Washers BZP',
+        ],
+        'General': [
+            '1.1/4" - 3/4" Straight Caravan Waste S/S Top / Rubber Washer',
+            '48mm Dia x 1.5mm Thick Galv Steel Washer With 5mm Hole',
+        ],
+        'HT Setscrews BZP': [
+            'M10 x 100 HT Setscrews BZP',
+            'M10 x 30 HT Setscrews BZP',
+            'M10 x 40 HT Setscrews BZP',
+            'M10 x 50 HT Setscrews BZP',
+            'M10 x 75 HT Setscrews BZP',
+            'M12 x 100 HT Setscrews BZP',
+            'M12 x 120 HT Setscrews BZP',
+            'M12 x 30 HT Setscrews BZP',
+            'M12 x 40 HT Setscrews BZP',
+            'M12 x 50 HT Setscrews BZP',
+            'M12 x 60 HT Setscrews BZP',
+            'M12 x 75 HT Setscrews BZP',
+            'M12 x 80 HT Setscrews BZP',
+            'M6 x 30 HT Setscrews BZP',
+            'M6 x 50 HT Setscrews BZP',
+            'M6 x 70 HT Setscrews BZP',
+            'M8 x 50 HT Setscrews BZP',
+        ],
+        'Hex Full Nuts Zinc Plated': [
+            'M10 Hex Full Nuts C/F BZP',
+            'M12 Hex Full Nuts C/F BZP',
+            'M6 Hex Full Nuts C/F BZP',
+            'M8 Hex Full Nuts C/F BZP',
+        ],
+        'Hex Hd Self Drilling Screws': [
+            '4.8 x 16mm Ind Hex Washer Hd BZP S/Drill Screw',
+            '5.5 x 25 Hex Hd Self Drill Screw c/w Washer',
+            '5.5 x 38 Hex Hd Self Drill Screw c/w Washer',
+            '5.5 x 50 Hex Hd Self Drill Screw c/w Washer',
+        ],
+        'Jerrycans': [
+            '25Ltr Natural Jerrycan With 61mm Screw Cap',
+        ],
+        'Repair Washers Zinc Plated': [
+            'M10 x 40 x 1.5 Repair Washers BZP',
+            'M12 x 38 x 1.5 Repair Washers BZP',
+        ],
+        'Self Drilling Screws': [
+            '4.2 x 16 Phillips Flange Head Self Drill Screw BZP',
+            '4.8 x 19 Pan Head Self Drill Screw',
+            'Plasterboard Self Drilling Anchor Metal',
+        ],
+        'Zinc Drywall Screws': [
+            '3.5mm x 32 Bugle Hd Drywall Screw Z&Y',
+            '3.5mm x 38 Bugle Hd Drywall Screw Z&Y',
+        ],
+    },
+    'Fire Safety': {
+        'Fire Clips': [
+            '30mm Fire Safe Metal Clips (Base Measurement 23mm)',
+            '40mm Fire Safe Metal Clips (Base Measurement 31mm)',
+        ],
+        'Fire Safety': [
+            'Aico Heat Detector Alarm Mains With Battery EI144E',
+        ],
+        'Firecryl FR Sealant': [
+            'Soudal Firecryl FR Sealant White 310ml',
+        ],
+        'Misc Gas': [
+            'Arctic PH Gas Leak Detector Spray 400ml',
+        ],
+        'Smoke/CO Alarms': [
+            'Aico EI208 Battery Carbon Monoxide Alarm',
+            'Combined Smoke/Carbon Monoxide Alarm',
+            'Kidde 5CO Carbon Monoxide Alarm',
+            'Optical Smoke Alarm',
+            'Smoke Detector 9v Battery',
+        ],
+    },
+    'Flooring': {
+        'General': [
+            'Tremco SF105 Vinyl Adhesive 15Kg',
+        ],
+        'PVC Cova-Quick Rolls': [
+            'Pvc Cova-Quick Roll 20Mtr x 210Cm',
+            'Pvc Cova-Quick Roll 33Mtr x 110Cm',
+            'Pvc Cova-Quick Roll 33Mtr x 55Cm',
+        ],
+        'Vinyl Flooring': [
+            '*Slate Grey 1.5mm Thick x 2mtr wide x 27.5mtr Polyflor Standard XL Vinyl',
+            'Black Panther 2mm thick x 2mtr wide x 20mtr Polyflor Standard XL Vinyl',
+            'Graphite 1.5mm thick x 2mtr wide x 27.5mtr Polyflor Standard XL Vinyl',
+            'Graphite 2mm thick x 2mtr wide x 20mtr Polyflor Standard XL Vinyl',
+            'Mushroom 2mm thick x 2mtr wide x 20mtr Polyflor Standard XL Vinyl',
+            'Slate Grey 2mm thick x 2mtr wide x 20mtr Polyflor Standard XL Vinyl',
+        ],
+        'Vinyl Weld Rod': [
+            'Black Panther weld rod to suit Polyflor vinyl 100mtr coil',
+            'Graphite weld rod to suit Polyflor vinyl 100mtr coil',
+            'Mushroom weld rod to suit Polyflor vinyl 100mtr coil',
+            'Slate Grey weld rod to suit Polyflor vinyl 100mtr coil',
+        ],
+    },
+    'General & Misc': {
+        'General': [
+            '15mm Equal Elbow DM Fit',
+            '15mm Equal Tee DM Fit',
+            '15mm Stem Elbow DM Fit',
+            '15mm x 1/2" BSP Male Coupler DMfit',
+            '15mm x 1/2" BSPT Brass Male Coupler Polyplumb',
+            '15mm x 1/2"BSP Male Coupler DM Fit',
+            '22mm Equal Elbow DM Fit',
+            '22mm Equal Tee DM Fit',
+            '22mm x 1" Straight Male Compression',
+            '22mm x 15mm Stem Reducer DM Fit',
+            '22mm x 22mm x 15mm Reducing Tee DM Fit',
+            '400ml Trade Skeleton Gun',
+            'Carpet Strip 2" x 2440mm Aluminium Pack Of 10',
+            'Double Euro Cylinder 40/40 Thumbturn Satin Finish',
+            'Mcalpine Bath Waste FBW2PC',
+            'Plastic Builders Bucket 10Ltr',
+            'Plastic Mop Bucket Blue 12Ltr c/w Wringer',
+            'Plastidome Cover Caps White',
+            'Pot Magnet 50mm Dia x 10mm Thk With 5mm Centre Hole 18kg Pull',
+            'Pozi Tops White',
+            'Room Thermostat 10A',
+            'Shrinking Bracket 2 Way Zinc Plated',
+            'Small Plastic Key Fob',
+            'Stockinette 2.4Kg Bag Length 6/7 All Cotton',
+            'Swipex Heavy Duty Wipes (100 Per Cannister)',
+            'TW471 Washing Machine Kit 76mm Seal',
+            'Tamper Resistant Room Thermostat',
+            'Timeguard 360 Degree Ceiling PIR',
+            'Twine Polypropylene Spools 450Mtr/Kg',
+            'White 110mm Reducer Waste Concentric - Requires Reducer',
+            'White Cotton Rags 10Kg',
+            'White Disposable Coverall Extra Large',
+            'Zona Surface PIR Movement Sensor',
+        ],
+        'Swivel Bend': [
+            'WP26 White 32mm Swivel Bend',
+            'WP27 White 40mm Swivel Bend',
+        ],
+    },
+    'Guttering & Roofline': {
+        'Downpipe Shoe': [
+            'RBS3 Black 65mm Downpipe Shoe',
+            'RBS3 White 65mm Downpipe Shoe',
+        ],
+        'Gutter Union Bracket': [
+            'RUS1 White Gutter Union Bracket',
+        ],
+        'Square Downpipe': [
+            'RPS2.5 Black 65mm x 2.5Mtr Square Downpipe',
+            'RPS2.5 White 65mm x 2.5Mtr Square Downpipe',
+        ],
+        'Stand-Off Downpipe Bracket': [
+            'RCS1 Black 65mm Square Standoff Pipe Bracket',
+            'RCS1 White 65mm Square Standoff Pipe Bracket',
+        ],
+    },
+    'Lighting': {
+        '2D External Bulkhead Light Square Base': [
+            '14w LED Square Bulkhead Light Int/Ext Black IP65',
+            '7w LED Square Bulkhead Light Int/Ext Black IP65',
+        ],
+        '50mm Bevelled Skirting SK022': [
+            '50mm Bevelled Skirting Grey 3.00 Mtr SK022',
+            '50mm Bevelled Skirting White 3.00 Mtr SK022',
+        ],
+        'Bulkhead Lights': [
+            'LED 12/18W Square Bulkhead Light',
+            'LED Bulb 8.5w GLS Bayonet Cap B22',
+            'LED Emergency Bulkhead Light IP65 3w',
+        ],
+        'CLEARANCE LED/12v Lights': [
+            '**** CLEARANCE **** Pierre 45mm Chrome LED Downlight Spring Mount',
+            '**** CLEARANCE **** Rotatable LED Strip Light Grey Switched',
+            '***** CLEARANCE ***** 120mm Surface Mount Switched Overhead LED Light',
+            '***** CLEARANCE ***** Small LED Recessed Light Downlight',
+        ],
+        'Copper Tube': [
+            '10mm x 1mm Wall Seamless Copper Tube 30Mtr Coils',
+            '8mm x 0.8mm Wall PVC Coated Copper Tube 25mtr Coil',
+            '8mm x 0.8mm Wall Seamless Copper Tube 30Mtr Coils',
+        ],
+        'Corners for 50mm Bevelled Skirting': [
+            'External Corner For 50mm Bevelled Skirting White ZSK499',
+            'Internal Corner For 50mm Bevelled Skirting White ZSK199',
+        ],
+        'Door Signs': [
+            'Disabled Sign SAA 150mm x100mm',
+        ],
+        'General': [
+            '1.1/4" - 3/4" Angled Caravan Waste c/w Plug',
+            '15mm Tube Stop End DM Fit',
+            '25mm Chrome x 2.5Mtr Round Tube',
+        ],
+        'LED - Mains': [
+            '5ft LED Batten ML BATMCW5 CCT 22 - 41w',
+            '5ft LED Bulkhead Light Fitting 45w 230v IP20',
+            '5ft Single LED Light Fitting 28w-50w Non Corrosive IP65',
+            'LED Starter To Suit T8 LED Tubes',
+            'Reeve IP65 45W Daylight 5ft LED Fitting',
+        ],
+        'LED T8 Glass Tube': [
+            '4ft 16W LED T8 Glass Tube 4000k',
+            '5ft 22W LED T8 Glass Tube 4000k',
+        ],
+        'Single LED Ready T8 Batten': [
+            '4ft Single LED Ready Batten Fitting T8',
+            '5ft Single LED Ready Batten Fitting T8',
+        ],
+        'Switches & Sockets': [
+            '1 Gang 10A Dp Emergency Test Key Switch',
+        ],
+    },
+    'Painting & Decorating': {
+        '4" Mini Roller Frames': [
+            '11" Mini Roller Frame',
+            '16" Mini Roller Frame',
+            '21" Mini Roller Frame',
+        ],
+        '4" Mini Rollers': [
+            '4" Silver Stripe Mini Roller (Pack Of 10)',
+            '4" Simulated Mohair Roller Refill (Pack Of 10)',
+            '4" Superfine Foam Roller Refill (Pack Of 10)',
+        ],
+        '9" Rollers': [
+            '9" x 1.75 Green Elite Roller Refill 18mm Pile',
+            '9" x 1.75" Roller Refill 11mm Pile',
+            '9"x1.75" Ecofibre Tigerstripe Roller Refill 12mm Pile',
+        ],
+        'All Rounder Paint Brushes': [
+            '1" All Rounder Mixed Bristle Brush',
+            '1.1/2" All Rounder Mixed Bristle Brush',
+            '1/2" All Rounder Mixed Bristle Brush',
+            '2" All Rounder Paint Brush',
+        ],
+        'Bannister Hand Brush': [
+            'Soft Bannister Brush',
+            'Stiff Bannister Brush',
+        ],
+        'General': [
+            'Scrubbing Brush PVC Shaped',
+        ],
+        'Paint Scuttles': [
+            '12ltr Plastic Paint Scuttle',
+            '15 Ltr Plastic Paint Scuttle',
+            '8ltr Plastic Paint Scuttle',
+        ],
+        'Paint Trays': [
+            '11" Plastic Roller Tray',
+            'Paint Tray to suit 4" Roller',
+            'Paint Tray to suit 9" Roller',
+        ],
+        'Painting Sundries': [
+            '3" Soft Grip Paint Scraper',
+        ],
+    },
+    'Plastics & Profiles': {
+        '13.5mm J-Section JT013': [
+            '13.5mm J-Section Cream 2.44 Mtr JT013',
+            '13.5mm J-Section White 2.44 Mtr JT013',
+            '13.5mm J-Section White 3.00 Mtr JT013',
+        ],
+        '13mm One Part H-Section HS033': [
+            '13mm One Part H-Section White 2.44 Mtr HS033',
+            '13mm One Part H-Section White 3.05 Mtr HS033',
+        ],
+        '15mm J-Section JT015': [
+            '15mm J-Section White 2.44 Mtr JT015',
+            '15mm J-Section White 3.00 Mtr JT015',
+        ],
+        '25 x 25 Angle AN010': [
+            '25 x 25 Angle White 2.44 Mtr AN010',
+            '25 x 25 Angle White 3.00 Mtr AN010',
+        ],
+        '25 x 25 Int Ribbed Angle TM035': [
+            '25 x 25 Int Ribbed Angle Grey 3.00 Mtr TM035',
+            '25 x 25 Int Ribbed Angle White 2.44 Mtr TM035',
+            '25 x 25 Int Ribbed Angle White 3.00 Mtr TM035',
+        ],
+        '25 x 3 H-Section Base HS072': [
+            '25 x 3 H-Section Base Mix 2.44 Mtr HS072',
+            '25 x 3 H-Section Base Mix 3.05 Mtr HS072',
+        ],
+        '27mm D-Mould DM028/DM029': [
+            '27mm D-Mould Base White 4.00 Mtr DM028',
+            '27mm D-Mould Lid White 4.00 Mtr DM029',
+        ],
+        '32 x 32 Angle AN025': [
+            '32 x 32 Angle White 2.44 Mtr AN025',
+            '32 x 32 Angle White 3.00 Mtr AN025',
+        ],
+        '32mm D-Mould DM033/DM034': [
+            '32mm D-Mould Base White 2.44 Mtr DM033',
+            '32mm D-Mould Lid White 2.44 Mtr DM034',
+        ],
+        '38 x 38 Angle AN035': [
+            '38 x 38 Angle White 2.44 Mtr AN035',
+            '38 x 38 Angle White 3.00 Mtr AN035',
+        ],
+        '40 x 12.5 H-Section Base HS014': [
+            '40 x 12.5 H Section Base Mix 3.66 Mtr HS014',
+            '40 x 12.5 H-Section Base Mix 2.44 Mtr HS014',
+            '40 x 12.5 H-Section Base Mix 3.05 Mtr HS014',
+        ],
+        '40 x 12.5 H-Section Lid HS068': [
+            '40 x 12.5 H Section Lid White 3.66 Mtr HS018',
+            '40 x 12.5 H-Section Lid White 2.44 Mtr HS018',
+            '40 x 12.5 H-Section Lid White 3.05 Mtr HS018',
+        ],
+        '40 x 17 H-Section Base HS034': [
+            '40 x 17 H-Section Base Mix 3.05Mtr HS034',
+        ],
+        '40 x 5 H-Section Lid HS039': [
+            '40 x 5 H-Section Lid White 2.44 Mtr HS039',
+            '40 x 5 H-Section Lid White 3.05 Mtr HS039',
+        ],
+        '40 x 9 H-Section Lid HS069': [
+            '40 x 9 H-Section Lid White 2.44 Mtr HS069',
+            '40 x 9 H-Section Lid White 3.05 Mtr HS069',
+        ],
+        '5/6mm J-Section JT016': [
+            '5/6mm J-Section White 2.44 Mtr JT016',
+        ],
+        '50 x 50 Angle AN052': [
+            '50 x 50 Angle White 2.44 Mtr AN052',
+            '50 x 50 Angle White 3.00 Mtr AN052',
+        ],
+        '5mm One Part H-Section HS005': [
+            '5mm One Part H-Section White 2.44 Mtr HS005',
+            '5mm One Part H-Section White 3.05 Mtr HS005',
+        ],
+        '60mm Window Liner WL060': [
+            '60mm Window Liner White 3.00 Mtr WL060',
+        ],
+        '75mm Skirting/Architrave SK034/SK035': [
+            '75mm Skirting / Architrave Base Grey 3.00 Mtr SK034',
+            '75mm Skirting / Architrave Lid Grey 3.00 Mtr SK035',
+        ],
+        '85mm Window Liner WL085': [
+            '85mm Window Liner White 3.00 Mtr WL085',
+        ],
+        'Corners for Architrave ZST034': [
+            'Corner Cap For 34mm Architrave White ZST034',
+        ],
+        'Flat Architrave for Window Liner ST034': [
+            '34mm Architrave To Suit Window Liner White 3.00 Mtr ST034',
+        ],
+        'General': [
+            'Angle Bracket 19mm x 19mm Zinc Plated',
+            'Trimming Knife Blade Heavy Duty',
+        ],
+        'J-Section': [
+            '3.5mm J-Section White 3.00 Mtr JT003',
+        ],
+        'Low Profile Head Self Drilling Screw': [
+            '4.2 x 25 Low Profile Self Drill Screw',
+            '4.8 x 50 Low Profile Self Drill Screw',
+        ],
+        'Pencil Round Architrave': [
+            '45 x 6 Pencil Round White PVC Architrave 5.00 Mtr',
+        ],
+        'Skirting': [
+            '50mm Skirting (Rubber Seals) White 3.00 Mtr - SK011',
+        ],
+        'Two Part': [
+            '40 x 12 H-Section Lid White 3.05 Mtr HS062',
+        ],
+    },
+    'Plumbing': {
+        '12mm Bore Reinforced Plastic Hose': [
+            'Blue Reinforced Plastic Hose 12mm Bore x 3mm Wall 30Mtr Coil',
+            'Red Reinforced Plastic Hose 12mm Bore x 3mm Wall 30Mtr Coil',
+        ],
+        '12mm x 100Mtr LLDPE Pushfit Pipe': [
+            '12mm x 9mm x 100Mtr LLDPE Blue Pipe Pushfit',
+            '12mm x 9mm x 100Mtr LLDPE Red Pipe Pushfit',
+        ],
+        'Air Admittance Valve': [
+            'AV110 White 110mm Air Admittance Valve',
+        ],
+        'Barrier Pipe': [
+            '15mm x 25Mtr White Barrier Pipe',
+            '15mm x 3Mtr White Barrier Pipe',
+            '15mm x 6Mtr Blue Barrier Pipe',
+            '15mm x 6Mtr Red Barrier Pipe',
+            '15mm x 6Mtr White Barrier Pipe',
+            '22mm x 3Mtr White Barrier Pipe',
+        ],
+        'Brass Compression Nut & Olive': [
+            '8mm Olive Brass',
+        ],
+        'Compressioned Ended Ball Valves': [
+            '8mm Compression Ended Ball Valve c/w Yellow Insert',
+        ],
+        'Danfast Stamped Manifolds & Fittings': [
+            '8mm Blanking Olive Brass 13780-8',
+            'Connector 8mm x 3/8" BSPT Male Stud Brass',
+            'Danfast 8mm 2 Way Stamped N/Pltd Manifold Set',
+            'Danfast 8mm 3 Way Stamped N/Pltd Manifold Set',
+            'Danfast 8mm 4 Way Stamped N/Pltd Manifold Set',
+            'Elbow 90 Deg 8mm x 3/8" Male BSPT Brass',
+        ],
+        'Equal Elbow Brass Compression Fitting': [
+            '10mm Equal Elbow Brass Compression Fitting',
+            '15mm Equal Elbow Brass Compression Fitting',
+            '8mm Equal Elbow Brass Compression Fitting',
+        ],
+        'Equal Straight Brass Compression Fitting': [
+            '15mm Straight Coupling Brass Compression',
+            '8mm Equal Straight Brass Compression Fitting',
+        ],
+        'Equal Tee Brass Compression Fitting': [
+            '10mm Equal Tee Brass Compression Fitting',
+            '15mm Equal Tee Brass Compression Fitting',
+            '8mm Equal Tee Brass Compression Fitting',
+        ],
+        'Female Thread Brass Compression Fitting': [
+            '10mm x 1/2" BSP Female Stud Brass Compression Fitting',
+        ],
+        'Foot Mounted Compression Ended Ball Valves': [
+            '10mm Foot Mounted Compression Ended Ball Valve c/w Yellow Insert',
+            '8mm Foot Mounted Compression Ended Ball Valve c/w Green Insert',
+            '8mm Foot Mounted Compression Ended Ball Valve c/w Yellow Insert',
+            '8mm Red Foot Mounted Ball Valve Compression Ended C/W',
+        ],
+        'General': [
+            '15mm Brass Compression Non Return Valve',
+            '15mm Double Check Valve Blk Pushfit',
+            '15mm Double Check Valve DM Fit',
+            '15mm Drain Cock Pushfit',
+            '15mm End Stop Speedfit',
+            '15mm Equal Elbow Connector Speedfit',
+            '15mm Equal Straight Connector Speedfit',
+            '15mm Equal Tee Connector Speedfit',
+            '15mm Flexi Hose 300mm Pushfit Both Ends',
+            '15mm Hand Valve Connector DM Fit (Black)',
+            '15mm Pipe Clips - Snap On White Plastic',
+            '15mm Service Valve DM Fit',
+            '15mm Service Valve DMfit',
+            '15mm Service Valve Speedfit',
+            '15mm Stem Elbow Speedfit',
+            '15mm Stop Valve DM Fit',
+            '15mm Stop Valve Speedfit',
+            '15mm Thermostatic Mixing Valve',
+            '15mm x 1/2" BSP Female 300mm Flexi Hose Pushfit',
+            '15mm x 1/2" id Hose Barb Conn Pushfit Blk',
+            '22mm End Stop Pushfit Speedfit',
+            '22mm Equal Elbow Connector Speedfit',
+            '22mm Equal Straight Connector Speedfit',
+            '22mm Equal Tee Connector Speedfit',
+            '22mm Service Valve Speedfit',
+            '22mm Stem Elbow Speedfit',
+            '22mm Stop Valve DM Fit',
+            '22mm Stop Valve Speedfit',
+            '22mm x 1" Brass Female Cylinder Adaptor Speedfit',
+            '22mm x 15mm x 15mm Reducing Tee Speedfit',
+            '22mm x 15mm x 22mm Reducing Tee Speedfit',
+            '22mm x 22mm x 15mm Reducing Branch Tee Speedfit',
+            '250ml Solvent Cement',
+            'Plastic Pipe Cutter (up to 28mm)',
+            'SP300 Grey Weathering Collar 110mm',
+            'TB37 White 32mm x 76mm Seal Waste Bottle Trap',
+            'TB47 White 40mm x 76mm Seal Waste Bottle Trap',
+            'TP37 White 32mm x 76mm Swivel P Trap',
+            'TP47 White 40mm x 76mm Swivel P Trap',
+            'TS47 White 40mm x 76mm Seal S Trap',
+            'WT64PV White 32mm x 75mm P Trap Telescopic Anti-Syphon',
+        ],
+        'Hose Clips, Worm Drive': [
+            'Hose Clips 1" - 1.3/8" M/S 1 (25mm - 35mm)',
+            'Hose Clips 1/2" - 3/4" M/S 00 (13mm - 20mm)',
+            'Hose Clips 1/2" - 5/8" M/S M00 (11mm - 16mm)',
+            'Hose Clips 3/4" - 1" M/S 0X (18mm - 25mm)',
+            'Hose Clips 3/8" - 1/2" M/S 000 (9.5mm - 12mm)',
+            'Hose Clips 5/8" - 7/8" M/S 0 (16mm - 22mm)',
+            'Hose Clips 7/8" - 1.1/8" M/S 1A (22mm - 30mm)',
+        ],
+        'Knuckle Bend': [
+            'WP10 White 32mm Knuckle Bend',
+            'WP11 Grey 40mm Knuckle Bend',
+            'WP11 White 40mm Knuckle Bend',
+        ],
+        'Macerators': [
+            'Sanibest Pro Macerator Pump',
+            'Saniflo Sanicom 1 Macerator Pump',
+            'Saniflo Sanicubic 1 Macerator Pump',
+            'Sanispeed+ Waste Water Pump',
+        ],
+        'Misc Gas': [
+            'Gas Bottle Strap Kit 1200mm c/w Bracket & Spacer',
+        ],
+        'Obtuse Bend 45°': [
+            'WP18 White 32mm Obtuse Bend 45 Degree',
+            'WP19 White 40mm Obtuse Bend 45 Degree',
+        ],
+        'Pipe Clip': [
+            'WP34 White 32mm Pipe Clip',
+            'WP35 White 40mm Pipe Clip',
+        ],
+        'Pipe Insulation': [
+            '15mm x 9mm x 1Mtr Grey Pipe Insulation',
+            '22mm x 9mm x 1Mtr Grey Pipe Insulation',
+        ],
+        'Pipe Support': [
+            '15mm Double Seal Pipe Support Sleeve Pushfit Blk',
+            '15mm Pipe Support Pushfit Sleeve Blk',
+            '22mm Pipe Support Sleeve Pushfit Blk',
+        ],
+        'Plastic Pipe Clips': [
+            '15mm Plastic Pipe Clips',
+            '22mm Plastic Pipe Clips',
+        ],
+        'Plastic Pipe Collars': [
+            '110mm Pipe Collar White Plastic',
+            '15mm Pipe Collar Chrome Finish',
+            '15mm Pipe Collar White Plastic',
+            '35mm Pipe Collar White Plastic',
+            '42mm Pipe Collar White Plastic',
+        ],
+        'Pushfit Equal Elbow': [
+            '12mm Equal Elbow Connector Pushfit',
+        ],
+        'Pushfit Equal Straight': [
+            '12mm Equal Straight Connector Pushfit',
+        ],
+        'Pushfit Equal Tee': [
+            '12mm Equal Tee Connector Pushfit',
+        ],
+        'Pushfit Fittings': [
+            '12mm Divider Pushfit',
+            '12mm x 1/2"BSP Female Adapter Pushfit',
+        ],
+        'Pushfit Stem Elbow': [
+            '12mm Stem Elbow Pushfit',
+        ],
+        'Pushfit Stem Reducer': [
+            '15mm Stem x 12mm Tube Reducer DMfit',
+        ],
+        'Pushfit Unequal Straight': [
+            '12mm x 10mm Straight Reducing Coupling Pushfit',
+            '15mm x 12mm Straight Reducing Coupling DMfit',
+        ],
+        'Rainwater Pipe & Fittings': [
+            'RBS5 White 25-67mm Adjustable Offset Bend',
+        ],
+        'Reducer': [
+            'WP38 White 40mm x 32mm Reducer',
+        ],
+        'Rubber Boss Adaptor': [
+            'SP10 Black 32mm Boss Adaptor (Rubber Push Fit)',
+            'SP11 Black 40mm Boss Adaptor (Rubber Push Fit)',
+        ],
+        'Soil Pipe': [
+            'SP1 White 110mm x 3Mtr Pipe Plain Ends',
+            'SP3 Grey 110mm Single Socket Soil Pipe 3Mtr',
+            'SP3 White 110mm Single Socket Soil Pipe 3Mtr',
+        ],
+        'Soil Pipe Clips': [
+            'SP82 Grey 110mm Plastic Pipe Clip',
+            'SP82 White 110mm Plastic Pipe Clip',
+        ],
+        'Soil Single Branch Tee 92.5°': [
+            'SP190 Grey 110mm Single Branch Tee 92.5 Degree (2Boss)',
+            'SP190 White 110mm Single Branch Tee 92.5 Degree (2Boss)',
+        ],
+        'Solvent Weld Knuckle Bend': [
+            'WS10 White 32mm Solvent Weld Knuckle Bend',
+            'WS11 White 40mm Solvent Weld Knuckle Bend',
+            'WS12 White 50mm Solvent Weld Knuckle Bend',
+        ],
+        'Solvent Weld Obtuse Bend': [
+            'WS18 White 32mm Solvent Weld Obtuse Bend',
+            'WS19 White 40mm Solvent Weld Obtuse Bend',
+            'WS20 50mm White Solvent Weld Obtuse Bend',
+        ],
+        'Solvent Weld Pipe': [
+            'WS01 White 32mm x 3Mtr Solvent Weld Waste Pipe',
+            'WS02 White 40mm x 3Mtr Solvent Weld Waste Pipe',
+            'WS03 White 50mm x 3Mtr Solvent Weld Waste Pipe',
+        ],
+        'Solvent Weld Pipe Clip': [
+            'WS34 White 32mm Solvent Weld Pipe Clip',
+            'WS35 White 40mm Solvent Weld Pipe Clip',
+            'WS36 White 50mm Solvent Weld Pipe Clip',
+        ],
+        'Solvent Weld Reducer': [
+            'WS38 White 40mm x 32mm Reducer Solvent Weld',
+            'WS39 White 50mm x 32mm Reducer Solvent Weld',
+            'WS40 White 50mm x 40mm Reducer Solvent Weld',
+        ],
+        'Solvent Weld Screwed Access Plug': [
+            'WS30 White 32mm Screwed Access Plug Solvent Weld',
+            'WS31 White 40mm Screwed Access Plug Solvent Weld',
+        ],
+        'Solvent Weld Straight Coupling': [
+            'WS07 White 32mm Solvent Weld Straight Coupling',
+            'WS08 White 40mm Solvent Weld Straight Coupling',
+            'WS09 White 50mm Solvent Weld Straight Coupling',
+        ],
+        'Solvent Weld Tee': [
+            'WS22 White 32mm Solvent Weld Swept Tee',
+            'WS23 White 40mm Solvent Weld Swept Tee',
+            'WS24 White 50mm Solvent Weld Swept Tee',
+        ],
+        'Solvnet Weld Swivel Bend': [
+            'WS26 White 32mm Solvent Weld Swivel Bend',
+            'WS27 White 40mm Solvent Weld Swivel Bend',
+            'WS28 White 50mm Solvent Weld Swivel Bend',
+        ],
+        'Spare Valve Blades': [
+            'Gas Manifold Blade Blue',
+            'Gas Manifold Blade Green',
+            'Gas Manifold Blade Red',
+            'Gas Manifold Blade White',
+        ],
+        'Sparge Pipes (Exposed) Top Inlet': [
+            'Range Of 2 Sparge Pipes (Exposed) Top Inlet',
+            'Range Of 3 Sparge Pipes (Exposed) Top Inlet',
+            'Range Of 4 Sparge Pipes (Exposed) Top Inlet',
+        ],
+        'Straight Coupling': [
+            'WP07 White 32mm Straight Coupling',
+            'WP08 White 40mm Straight Coupling',
+        ],
+        'Strap On Boss Clip': [
+            'SP319 Grey 110mm Soil Strap Boss',
+            'SP319 White 110mm Soil Strap Boss',
+        ],
+        'Swept Elbow': [
+            'WP14 White 32mm Swept Elbow',
+            'WP15 White 40mm Swept Elbow',
+        ],
+        'Swept Tee': [
+            'WP22 White 32mm Swept Tee',
+            'WP23 White 40mm Swept Tee',
+        ],
+        'Unequal Elbow Brass Compression Fitting': [
+            '22mm x 15mm Elbow Brass Compression Fitting',
+        ],
+        'Unequal Straight Brass Compression Fitting': [
+            '10mm x 8mm Straight Brass Compression Fitting',
+            '15mm x 10mm Straight Brass Compression Fitting',
+            '15mm x 8mm Straight Brass Compression Fitting',
+            '22mm x 15mm Straight Brass Compression Fitting',
+        ],
+        'Unequal Tee Brass Compression Fitting': [
+            '10mm x 10mm x 8mm Unequal Tee Brass Fitting Branch Reduced',
+            '22mm x 15mm x 15mm Unequal Tee Brass Compression Fitting',
+        ],
+        'Waste Pipe': [
+            'WP01 White 32mm Waste Pipe x 3Mtr',
+            'WP02 Grey 40mm Waste Pipe x 3Mtr',
+            'WP02 White 40mm Waste Pipe x 3Mtr',
+        ],
+        'Waste Pipe & Fittings': [
+            'Convoluted Hose Sealing Sleeve 23.5mm id',
+            'Grey Convolute Polyprop Hose 23.5mm id, 50Mtr Coil',
+        ],
+        'Water Pumps': [
+            'DAB Jetinox 82M Control-D 220-240v 50Hz Water Pump',
+            'Stuart Turner Brass Pump Body For Boostmatic Pump',
+        ],
+        'Water Pumps 12v/24v': [
+            'Comet Eco-Plus 12V 13Ltr Submersible Pump',
+        ],
+        'Whale Watermaster Pump': [
+            'Whale Hose Barb Stem Adaptor 15mm x 1/2" Barb',
+            'Whale Watermaster 12v Pump 11.5ltr 30psi c/w filter',
+            'Whale Watermaster 12v Pump 11.5ltr 45psi c/w filter',
+            'Whale Watermaster 24v Pump 11.5ltr 45psi c/w filter',
+        ],
+    },
+    'Space Heating': {
+        'Downflow Heaters': [
+            '*Stiebel CK 20 Premium 2kw Downflow Heater',
+            'Consort BFH2E 2kw Downflow Heater Metal Body',
+            'Consort DF2E 2kw Downflow Heater With 7 Day 24/7 Timer',
+            'Stiebel CK 20 Trend 2kw Downflow Heater',
+        ],
+        'Drying Room': [
+            'Replacement Filter for TTK170 Dehumidifier',
+            'Replacement Tank For TTK170 Dehumidifier',
+            'Trotec TTK170Eco Dehumidifier c/w Fixing Bracket',
+        ],
+        'Heaters': [
+            'Consort 3kW High Level Fan Heater Wireless Control c/w Flex',
+            'Consort BFH2SL Downflow 2kW Metal Bodied Wireless',
+            'Consort PSL200T 2kW Panel Heater Wireless c/w Thermostat',
+        ],
+        'Oil Filled Heaters': [
+            '2kW Column Oil Filled Radiator c/w Timer',
+        ],
+        'Panel Heaters': [
+            'Consort PLE150 1.5kW Panel Heater c/w 7 Day Electronic Timer',
+            'Consort PVE200 2kw Panel Heater c/w Electronic 7 Day',
+        ],
+        'Single Tubular Heater': [
+            '2ft Single Tubular Heater 80W White',
+            '3ft Single Tubular Heater 135W White',
+            '4ft Single Tubular Heater 180W White',
+        ],
+        'Space Heating': [
+            'Heatsource Single Outlet Vehicle Heater HS2000/V1-D',
+            'Heatsource Twin Outlet Marine Heater HS2000/12/M2',
+        ],
+        'Stiebel CNS-U LCD Panel Heaters': [
+            'Stiebel CNS-U 1000 Plus LCD 1KW Panel Heater',
+            'Stiebel CNS-U 2000 Plus LCD 2kw Panel Heater',
+        ],
+        'Tubular Heater Guard': [
+            'Guard To Suit 2ft Tubular Heater',
+            'Guard To Suit 3ft Tubular Heater',
+            'Guard To Suit 4ft Tubular Heater',
+        ],
+    },
+    'Tools & Consumables': {
+        '25mm Pozi Bits': [
+            'No 1 Pozi Insert Bit 1/4 Hex 25mm',
+            'No 2 Pozi Insert Bit 1/4 Hex 25mm',
+            'No 3 Pozi Insert Bit 1/4 Hex 25mm',
+        ],
+        'Abrasive Rolls': [
+            'Abrasive Roll 120 Grit x 115mm 50Mtr Roll',
+            'Abrasive Roll 80 Grit x 115mm 50Mtr Roll',
+        ],
+        'Aluminium Stencil Sets': [
+            'Stencil Set 0-9 Flat Plate Aluminium 50mm',
+            'Stencil Set A-Z Flat Plate Aluminium 50mm',
+        ],
+        'Cleaning Products': [
+            'Bleach 5 litre',
+            'Detergent 15% 5 litre',
+            'Pine Disinfectant 5 litre',
+            'Selden Blast Air Freshener Cranberry 750ml',
+            'Selden S Lemon Industrial Maintenance Cleaner',
+            'Selden Stainless Steel Cleaner And Polish 750ml',
+            'Selden Traffic Film Remover 5 Litre',
+        ],
+        'Cobalt Ground Flute Drill Bits': [
+            '3mm Ground Flute Cobalt Drill',
+            '4mm Ground Flute Cobalt Drill',
+            '5mm Ground Flute Cobalt Drill',
+            '6mm Ground Flute Cobalt Drill',
+            '8mm Ground Flute Cobalt Drill',
+        ],
+        'Disposable Gloves': [
+            'Blue Powder Free Nitrile Gloves - Extra Large (Box 100)',
+            'Blue Powder Free Nitrile Gloves - Large (Box 100)',
+        ],
+        'General': [
+            '400ml Multi Spray',
+            'Gloves Canadian Style Riggers (Pair)',
+            'Magnetic Bit Holder',
+            'Microfibre Cleaning Cloth 380G (Pack Of 10)',
+            'No 2 Philips Bit 1/4 Hex',
+        ],
+        'HSS Flute Ground Jobber Drill Bits': [
+            '10mm HSS Flute Ground Jobber Drills',
+            '12.5mm HSS Flute Ground Jobber Drills',
+            '2.5mm HSS Flute Ground Jobber Drills',
+            '2mm HSS Flute Ground Jobber Drills',
+            '3.5mm HSS Flute Ground Jobber Drills',
+            '3mm HSS Flute Ground Jobber Drills',
+            '4.5mm HSS Flute Ground Jobber Drills',
+            '4mm HSS Flute Ground Jobber Drills',
+            '5.5mm HSS Flute Ground Jobber Drills',
+            '5mm HSS Flute Ground Jobber Drills',
+            '6mm HSS Flute Ground Jobber Drills',
+            '7mm HSS Flute Ground Jobber Drills',
+            '8mm HSS Flute Ground Jobber Drills',
+        ],
+        'Misc Essentials': [
+            'Adaptable Box 100 x 100 x 50mm Galvanised',
+            'Weatherproof Plexo Box (IP56) 100 x 100 x 50mm',
+        ],
+        'PVC Sleeving': [
+            '3mm PVC Sleeving Green/Yellow 100M Coil',
+        ],
+    },
+    'Ventilation & Vents': {
+        '170 x 90 BS Louvre Vent': [
+            'Ivory Louvre Int. Vent 170 x 90 NCC Approved',
+            'Larch Louvre Int. Vent 170 x 90 NCC Approved',
+            'Mosaic-Beige Louvre Int. Vent 170 x 90 NCC Approved',
+            'White Louvre Int Vent 170 x 90 NCC Approved',
+        ],
+        'Aluminium Louvre Vent': [
+            '6.5" x 3.5" Fixed Louvre Alloy Vent Without Flyscreen',
+            '9.5" x 3.5" Fixed Louvre Alloy Vent Without Flyscreen',
+            '9.5" x 6.5" Fixed Louvre Alloy Vent Without Flyscreen',
+        ],
+        'External Grill Vent': [
+            '100mm/4" External Gravity Grille Vent',
+            '150mm/6" External Gravity Grille Vent',
+        ],
+        'External Wall Grille': [
+            '100mm/4" Ext Wall Grille White',
+            '150mm/6" Ext Wall Grille White',
+        ],
+        'Extractor Fans': [
+            '100mm/4" Extractor Fan c/w Timer',
+            '100mm/4" Pull Cord Extractor Fan',
+            '150mm/6" Extractor Fan c/w Timer & Shutters',
+        ],
+        'General': [
+            '10A 3 Pole Fan Isolator Switch',
+            'Air Break (Back Flow Preventer) 15mm/22mm UC00/001',
+            'Grill Vent White 6.3/4"x3.1/2"',
+            'Louvre Vent White 9.1/2" x 3.1/2"',
+            'Vent Hexagon White 2.3/4"',
+        ],
+        'Map Plastic Louvre Vent with Flyscreen': [
+            'Vent Map Louvre White 6" x 3" With Flyscreen',
+            'Vent Map Louvre White 9" x 6" With Flyscreen',
+        ],
+        'Soffit Vent': [
+            '90mm Dia Brown Plastic Soffit Vent',
+            '90mm Dia White Plastic Soffit Vent',
+        ],
+    },
+    'Washroom': {
+        '40mm Staple Skirting SK003': [
+            '40mm Staple Skirting White 3.00 Mtr SK003',
+        ],
+        'Accessories': [
+            '12" x 9" Mirror, Drilled 2 Holes Polished Edges, Safety Backed',
+            'SAA Toilet Roll Holder',
+            'Toilet Indicator Bolt SAA',
+            'Toilet Roll Holder Inserts Black',
+        ],
+        'Bathroom': [
+            'Contessa Vanity Cabinet White',
+        ],
+        'Complete WC Components': [
+            'Dudley Acclaim V Push Button Dual Flush Cistern BIIO L/L',
+            'Dudley Contract Slimline Dual Flush Lever Cistern SIIO RH Inlet',
+            'Flush Pipe Internal Cone Clear',
+            'SK57 White 110mm Flexi Pan Connector',
+            'SP101 White 110mm Kwickfit Straight Pan Connector',
+            'SP102 White Kwickfit Offset Pan Connector 110mm',
+            'SP103 White 110mm Pan Connector 90Deg (225mm Leg)',
+            'White Low Level Lever Plastic Cistern SIIO',
+            'White Low Level WC Pan',
+        ],
+        'Compression Elbow': [
+            'WC10 White 32mm Unicom Equal Elbow',
+            'WC11 White 40mm Unicom Equal Elbow',
+        ],
+        'Compression Straight Coupling': [
+            'WC07 White 32mm Unicom Straight Coupling',
+            'WC08 White 40mm Unicom Straight Coupling',
+        ],
+        'Compression Tee': [
+            'WC22 White 32mm Unicom Equal Tee',
+            'WC23 White 40mm Unicom Equal Tee',
+        ],
+        'Danfast Stamped Manifolds & Fittings': [
+            'Taper Plug 3/8" BSPT Male N/Pltd',
+        ],
+        'Dudley Auto Cistern': [
+            'Dudley 1 Gallon Auto Cistern White',
+            'Dudley 2 Gallon Auto Cistern White',
+        ],
+        'Flexi Tail Barb Connection': [
+            'Comet Florenz Single Tap CP c/w 1/2" Barb Flexi Tails',
+        ],
+        'Flexi Tail Pushfit Connection': [
+            'Comet Florenz Mixer Tap CP c/w 12mm Push Fit Connections',
+            'Comet Florenz Single Tap CP c/w 12mm Push Fit Connections',
+        ],
+        'Flooring': [
+            '50mm Hazard Warning Anti-Slip Adhesive Tape 18.3Mtr',
+        ],
+        'General': [
+            '15mm Emergency Shut Off Tap Speedfit',
+            '15mm Stop Tap Brass Compression Ended',
+            '15mm Straight Washing Machine Tap',
+            '15mm X 3/4" X 300mm Flexi Hose Tap Connection',
+            '15mm x 1/2" BSP Tap Connector Straight Speedfit',
+            '15mm x 1/2"BSP Bent Tap Connector Brass Nut Speedfit',
+            '15mm x 1/2"BSP Bent Tap Connector Steel Nut DM Fit',
+            '15mm x 1/2"BSP Straight Tap Connector Steel Nut DM Fit',
+            '15mm x 1/2"BSP Tap Connector (Plastic Nut) DM Fit',
+            '15mm x 3/4"BSP Tap Connector (Plastic Nut) DM Fit',
+            'Mcalpine Shower Waste BSW9P-F Centre Pin',
+            'Non Concussive Exposed Shower Valve',
+            'PTFE Tape Rolls (Water)',
+            'WC38 White 40mm x 32mm Unicom Straight Reducer',
+        ],
+        'Hand Dryers': [
+            'ATC Cub Hand Dryer White',
+            'Hurricane 1.8kW Automatic Hand Dryer',
+            'Paper Hand Towel 1 Ply Z Fold Blue Re-Cycled (15Pks x 200)',
+            'Paper Towel Dispenser',
+        ],
+        'Kinedo Consort Shower Cubicle': [
+            'Consort Shower Cubicle 810 x 810mm',
+        ],
+        'Masking Tape': [
+            '24mm x 50Mtr Pro Masking Tape',
+            '48mm x 50Mtr Pro Masking Tape',
+        ],
+        'Misc Gas': [
+            'Arctic Gas Identification Tape',
+            'Roll PTFE Tape Gas BSEN 751 Part 3',
+        ],
+        'PVC Insulation Tape': [
+            'Black PVC Insulation Tape 19mm x 20M',
+            'Blue PVC Insulation Tape 19mm x 20M',
+            'Brown PVC Insulation Tape 19mm x 20M',
+            'Green/Yellow PVC Insulation Tape 19mm x 20M',
+            'Red PVC Insulation Tape 19mm x 20M',
+        ],
+        'Puma Toilet Seat': [
+            'Black Toilet Seat Puma',
+            'White Toilet Seat Puma',
+        ],
+        'Redring Pure Electric Shower': [
+            '7.5kW Pure Instantaneous Electric Shower',
+            '8.5kW Pure Instantaneous Electric Shower',
+        ],
+        'Showers & Cubicles': [
+            '800mm x 800mm Shower Tray 30mm Depth Includes 90mm Waste',
+            '90mm Fast Flow Shower Waste Chrome',
+            'Shower Curtain Rings (Pack 12)',
+            'White Shower Curtain',
+        ],
+        'Sink Base Unit Kit': [
+            'Chrome High Neck Pillar Taps',
+            'Chrome Taphole Stopper Plastic',
+        ],
+        'Swivel': [
+            'Thetford C223CS Swivel Toilet 12V Flush (OEM) Bulk',
+        ],
+        'Taps & Wastes': [
+            '1.1/4" x 3.1/2" Chrome Slotted Waste For 45cm & 56cm Basins',
+            '1/2" Brass Backnut 39mm Flange',
+            '1/2" Top Hat Washer (Pack Of 100)',
+            'Basin Taps Chrome Plated (pair)',
+            'Mcalpine Basin Waste 1.1/4 BSW1Pt',
+            'Non Concussive Basin Taps (Pair)',
+            'Non Concussive Basin Taps (Pairs) - NCT001',
+            'Sink Waste Chain And Stay 12"',
+        ],
+        'Urinals & Accessories': [
+            '1.1/2" Plastic Wastes To Suit Urinal',
+            '1.1/2" St/St Dome Unslotted Urinal Waste',
+            '50cm Urinal Bowl White',
+            'Cistermiser - 1/2" BSP Female Thread',
+            'Top Inlet Urinal Spreader, Fixing Stud, Nut & Washer',
+            'Urinal Bracket (Pair)',
+        ],
+        "WC's": [
+            'Cistern Lever Assembly Pack',
+            'Close Coupled Doc M Kit (LABC Approved)',
+            'Disabled Toilet Alarm Kit',
+        ],
+        'Wash Basins': [
+            '*555mm 2-Taphole Washbasin White - Atlas',
+            '12" Cast Iron Towel Rail Brackets (Pair)',
+            '459mm 2 taphole White Washbasin',
+            '590mm 2 taphole White Washbasin',
+            'Basin Brackets (Pair) For Wall Hung 459mm Basin',
+            'Dudley Support Bracket (Single)',
+            'Dudley Support Leg (Single)',
+            'Full Pedestal To Suit Atlas Washbasin',
+        ],
+        'Waterless Urinals': [
+            'Saracen Powerballs To Suit Waterless Urinal System (Pack/50)',
+            'Saracen Waterless Maintenance Pack c/w Cleaner & 3 Powerballs',
+            'Saracen Waterless Urinal Installation Pack',
+        ],
+    },
+    'Water Heating': {
+        'Catering Boilers': [
+            '*Hyco Water Filter F2ST for Microboil/Omega',
+            '*Hyco Water Filter Spare Cart F2STCAR for Microboil/Omega',
+            'Catering Urn St/St',
+        ],
+        'Frost Protection': [
+            'Hyco Mojave Frost Protector',
+        ],
+        'Hand Dryers': [
+            '*Hyco Blade 1.6kw Automatic Hand Dryer',
+            'Hyco Arc Hand Dryer',
+            'Hyco Prism Hand Dryer',
+        ],
+        'Handwash': [
+            'Hyco Wave 3kW Instantaneous Hand Wash Automatic',
+            'Hyco Wave 3kW Instantaneous Hand Wash Manual',
+            'Hyco Wave PRV Repair Kit incl. Silicone Balls & Tool',
+            'Maxima Hand Soap Perfumed Pink 5Ltr',
+            'Redring Instant 3kw Automatic Hand Wash Unit',
+            'Redring Instant 3kw Manual Hand Wash Unit',
+            'Soap Dispenser Bulk Fill',
+            'Triton 3kW Hand Wash Unit',
+        ],
+        'Hyco Accona Panel Heater c/w 7 Day Digital Timer': [
+            'Hyco Accona 1.5kW Panel Heater c/w 7 Day Digital Timer',
+            'Hyco Accona 2kW Panel Heater c/w 7 Day Digital Timer',
+        ],
+        'Hyco Microboil Smart Boiling Water Heater': [
+            'Hyco MS3W Microboil Smart 3L Water Heater 20Cup',
+            'Hyco MS6W Microboil Smart 6L Water Heater 38Cup',
+        ],
+        'Over Sink Water Heaters': [
+            'Handyflow 2kW 5L Water Heater Auto Reset',
+            'Stiebel Eltron Water Heater Oversink SN5 5Ltr',
+            'Zip Tudor Water Heater 2kw 5.5 Litre',
+        ],
+        'Powerflow Water Heaters': [
+            'Hyco Powerflow Smart 30Ltr Unvented Multipoint Water Heater',
+        ],
+        'Speedflow 2kW Undersink Water Heater': [
+            'Speedflow 2kW 15L Water Heater Undersink Unvented',
+        ],
+        'Speedflow v2 Undersink Water Heater': [
+            'Hyco Speedflow 10ltr 1.2kw Undersink Water Heater',
+            'Hyco Speedflow 10ltr 2kw Undersink Water Heater',
+            'Hyco Speedflow 15ltr 1.2kw Undersink Water Heater',
+            'Hyco Speedflow 5ltr 2kw Undersink Water Heater',
+        ],
+        'Under Sink Water Heaters': [
+            'Handyflow 5Ltr Undersink Water Heater 2kW c/w Vented Tap',
+        ],
+        'Water Heater Spares': [
+            '2Ltr Expansion Vessel And Check Valve To Suit Speedflow SF3',
+            'Expansion Vessel Kit For Speedflow SF4',
+            'Hyco Handyflow Spout Only',
+            'Hyco Spare Tap To Suit Handyflow Oversink Water Heater',
+            'Hyco Vented Tap For Handyflow Undersink Water Heater',
+            'Pressure Reducing Valve 15mm SF5',
+            'Thermal Cut Out To Suit Santon A7/3 & Elson EOS7',
+        ],
+        'Water Heating': [
+            'Malaga 5E Caravan Water Heater c/w Remote Switch (LPG/Mains)',
+            'Propex Storage Water Heater 6L',
+        ],
+    },
 }
+
+# Non-Danfast lanes: timber and sheet from BBM and Timb-Ply, bulk
+# paint from Manor, signage from Pinnacle (item names drawn from the
+# invoice history so the PO worker prices them where it can).
+OTHER_CATEGORIES = {
+    "Timber & Sheet Materials": [
+        "3x2 CLS Timber", "4x2 CLS Timber", "2x2 Timber",
+        "Treated Battens 25x50mm", "18mm OSB3 Board 2440x1220",
+        "9mm OSB3 Board 2440x1220", "18mm Plywood 2440x1220",
+        "12mm Plywood 2440x1220", "Hardwood Ply Class 2",
+        "CSM10 White Ceiling Boards", "3mm Wall Boards",
+        "JCOP Boards", "MDF Sheet", "Windows", "Worktops",
+        "Base Units", "Shutters",
+    ],
+    "Bulk Paint": [
+        "Kensite Green Paint", "White Paint", "Primer",
+        "Customer Colour Paint (put the colour in notes)",
+    ],
+    "Signage & Graphics": [
+        "Printed Signage", "Cabin Graphics", "Stickers / Decals",
+        "Printed Boards",
+    ],
+}
+ANYTHING_ELSE = "Anything Else"
+OTHER_ITEM = "Other / not listed"
+
+# category order and emoji for the picker: most-used trades first
+FORM_CAT_LABELS = {
+    "Plumbing": "🚰 Plumbing",
+    "Electrical": "🔌 Electrical",
+    "Space Heating": "🔥 Space Heating",
+    "Water Heating": "♨️ Water Heating",
+    "Washroom": "🚿 Washroom",
+    "Doors & Security": "🚪 Doors & Security",
+    "Fastenings & Fixings": "🔩 Fastenings & Fixings",
+    "Timber & Sheet Materials": "🪵 Timber & Sheet Materials",
+    "Lighting": "💡 Lighting",
+    "Flooring": "🟫 Flooring",
+    "Plastics & Profiles": "📐 Plastics & Profiles",
+    "Adhesives & Sealants": "🧴 Adhesives & Sealants",
+    "Canteen & Furniture": "🍽 Canteen & Furniture",
+    "Ventilation & Vents": "🌬 Ventilation & Vents",
+    "Fire Safety": "🧯 Fire Safety",
+    "Guttering & Roofline": "🏠 Guttering & Roofline",
+    "Painting & Decorating": "🖌 Painting & Decorating",
+    "Bulk Paint": "🎨 Bulk Paint",
+    "Signage & Graphics": "🪧 Signage & Graphics",
+    "Tools & Consumables": "🧰 Tools & Consumables",
+    "General & Misc": "📦 General & Misc",
+    "Anything Else": "❔ Anything Else",
+}
+FORM_CATEGORY_ORDER = [c for c in FORM_CAT_LABELS
+                       if c in DANFAST_TREE or c in OTHER_CATEGORIES
+                       or c == ANYTHING_ELSE]
+
 TYPE_STYLE = {
     "On Hire":      (K_GREEN_PALE, K_GREEN_DARK, "●"),
     "Off Hire":     ("#fdecea",    "#7b1a1a",    "●"),
@@ -1815,22 +3425,26 @@ def job_modal(date_key, edit_idx=None):
 
 # ── MATERIALS REQUEST — ADD DIALOG ───────────────────────────────────────────
 def _mat_current_line(category, item_choice, item_other, notes,
-                      quantity, supplier):
+                      quantity, supplier=""):
     """Validate the item fields; returns (line_dict, errors)."""
     errors = []
-    if category not in MATERIALS_CATEGORIES:
+    valid_cat = (category in DANFAST_TREE
+                 or category in OTHER_CATEGORIES
+                 or category == ANYTHING_ELSE)
+    if not valid_cat:
         errors.append("Please select a category.")
     elif item_choice in (None, "— Select item *"):
         errors.append("Please select what you need.")
-    elif item_choice == "Other" and not item_other.strip():
+    elif item_choice in (OTHER_ITEM, "Other") and not item_other.strip():
         errors.append("Please describe what you need.")
     if errors:
         return None, errors
-    item_label = (item_other.strip() if item_choice == "Other"
+    item_label = (item_other.strip()
+                  if item_choice in (OTHER_ITEM, "Other")
                   else item_choice)
     return {"category": category, "item_name": item_label,
             "quantity": int(quantity), "notes": notes.strip(),
-            "supplier": supplier.strip()}, []
+            "supplier": str(supplier).strip()}, []
 
 
 MAT_RECEIVED_TTL_HOURS = 24   # received requests drop off after this
@@ -1960,28 +3574,56 @@ def materials_add_dialog():
 
     category = st.selectbox("Category *",
                             ["— Select category *"]
-                            + list(MATERIALS_CATEGORIES),
-                            key=f"mat_category_{n}")
+                            + FORM_CATEGORY_ORDER,
+                            key=f"mat_category_{n}",
+                            format_func=lambda c:
+                            FORM_CAT_LABELS.get(c, c))
     item_choice, item_other = None, ""
-    if category in MATERIALS_CATEGORIES:
+    if category in DANFAST_TREE:
+        subs = DANFAST_TREE[category]
+        n_items = sum(len(v) for v in subs.values())
+        if len(subs) > 1 and n_items > 24:
+            # big category: pick the type first, then the exact item
+            subcat = st.selectbox(
+                "Type of item *",
+                ["— Select type *"] + sorted(subs),
+                key=f"mat_subcat_{n}",
+                format_func=lambda s: (f"{s}  ({len(subs[s])})"
+                                       if s in subs else s))
+            if subcat in subs:
+                item_choice = st.selectbox(
+                    "Exact item *  (type to search)",
+                    ["— Select item *"] + subs[subcat] + [OTHER_ITEM],
+                    key=f"mat_item_{n}")
+        else:
+            flat = [p for v in subs.values() for p in v]
+            item_choice = st.selectbox(
+                "Exact item *  (type to search)",
+                ["— Select item *"] + sorted(flat) + [OTHER_ITEM],
+                key=f"mat_item_{n}")
+        if item_choice not in (None, "— Select item *", OTHER_ITEM):
+            st.caption("✅ Real Danfast product - Ken orders it with "
+                       "the exact code and price, no questions asked.")
+    elif category in OTHER_CATEGORIES:
         item_choice = st.selectbox(
             "What do you need? *",
-            ["— Select item *"] + MATERIALS_CATEGORIES[category],
+            ["— Select item *"] + OTHER_CATEGORIES[category]
+            + [OTHER_ITEM],
             key=f"mat_item_{n}")
-        if item_choice == "Other":
-            item_other = st.text_input(
-                "Describe what you need *", key=f"mat_item_other_{n}",
-                placeholder="e.g. M10 bolts, cable ties...")
+    elif category == ANYTHING_ELSE:
+        item_choice = OTHER_ITEM
+    if item_choice == OTHER_ITEM:
+        item_other = st.text_input(
+            "Describe what you need *", key=f"mat_item_other_{n}",
+            placeholder="e.g. 8x4 Marine Ply Sheet, M10 bolts and "
+                        "nuts, 15mm pipe...")
 
     notes    = st.text_area("Notes", key=f"mat_notes_{n}",
-                            placeholder="Specific Detail E.G - 8x4 "
-                                        "Marine Ply Sheet, Push Fit "
-                                        "Elbow, M10 Bolts and Nuts etc")
+                            placeholder="Sizes, colours, which unit "
+                                        "it is for...")
     quantity = st.number_input("Quantity *", min_value=1, step=1,
                                value=1, key=f"mat_qty_{n}")
-    supplier = st.text_input("Supplier (if known)",
-                             placeholder="e.g. Screwfix, Travis "
-                                         "Perkins...", key=f"mat_supplier_{n}")
+    supplier = ""
 
     if st.button("➕ Additional Item", use_container_width=True,
                  help="Add this item to the request and enter another"):
