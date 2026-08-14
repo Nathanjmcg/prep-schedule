@@ -2884,25 +2884,8 @@ end_date   = start_date + timedelta(days=n_weeks * 7 - 1)
 st.caption(f"**{start_date.strftime('%d %b')} – {end_date.strftime('%d %b %Y')}**"
            f"  ·  Week {week_num(start_date)}–{week_num(end_date)}")
 
-# ── SUMMARY PILLS ─────────────────────────────────────────────────────────────
-all_flat = [j for jl in jobs.values() for j in jl]
-counts   = {t: sum(1 for j in all_flat if j["type"] == t) for t in JOB_TYPES}
-pills    = "".join(
-    f'<span class="pill" style="background:{TYPE_STYLE[t][0]};color:{TYPE_STYLE[t][1]}">'
-    f'{TYPE_STYLE[t][2]} {counts[t]} {t}</span>'
-    for t in JOB_TYPES
-)
-pills += (f'<span class="pill" style="background:#f0f0f0;color:{K_GREY}">'
-          f'📦 {sum(counts.values())} Total</span>')
-
-# Total deliveries (On Hire) and collections (Off Hire) across the entire schedule
-total_deliveries   = sum(1 for j in all_flat if j.get("type") == "On Hire")
-total_collections  = sum(1 for j in all_flat if j.get("type") == "Off Hire")
-
-pills += (f'<span class="pill" style="background:{K_GREEN_PALE};color:{K_GREEN_DARK};">'
-          f'🚚 {total_deliveries} Deliveries</span>')
-pills += (f'<span class="pill" style="background:#fdecea;color:#7b1a1a;">'
-          f'📦 {total_collections} Collections</span>')
+# Summary pills removed 14/08/2026 (Nathan: obsolete) - the whole-file
+# counts told nobody anything the week totals do not.
 
 # ── Helper functions for fulfilment checks ────────────────────────────────────
 def job_per_checks_done(dk, ji, job_type):
@@ -2940,7 +2923,6 @@ def day_jobs_fulfilment_complete(dk):
                 return False
     return True
 
-st.markdown(pills, unsafe_allow_html=True)
 st.markdown("<div style='margin-bottom:.5rem'></div>", unsafe_allow_html=True)
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
