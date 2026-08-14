@@ -2055,8 +2055,26 @@ def materials_view_dialog(mid):
                       if _mat_line_state(r) == "delivered")
     n_awaiting = sum(1 for _m, r in members
                      if _mat_line_state(r) == "awaiting")
-    items_html = ""
-    for _m, r in members:
+
+    st.markdown(f"""
+    <div style="background:{bg};color:{fg};border-radius:8px 8px 0 0;padding:12px 14px 8px;">
+      <div style="font-size:12px;opacity:.7;">Requested by <b>{req.get("requester","")}</b> · {req.get("created_at","")}</div>
+      <div style="font-size:10px;opacity:.55;">{len(members)} item{"s" if len(members) != 1 else ""} on this request · {n_delivered} delivered{f" · {n_awaiting} awaiting PO approval" if n_awaiting else ""} · tap 📦 when an item arrives</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # one row per line, the 📦 tick ON the line itself: item text left,
+    # the delivered button (or its ✅ once ticked) right
+    st.markdown(
+        "<style>"
+        "[class*='st-key-mat_dlv_'] button{padding:2px 4px !important;"
+        "min-height:30px !important;height:30px !important;"
+        "border:1px solid rgba(0,0,0,.15) !important;"
+        "border-radius:6px !important;background:rgba(255,255,255,.7) "
+        "!important;font-size:15px !important;}"
+        "[class*='st-key-mat_row_'] {margin-bottom:-12px !important;}"
+        "</style>", unsafe_allow_html=True)
+    for m, r in members:
         state = _mat_line_state(r)
         mark = MAT_LINE_MARK.get(state, "")
         detail = []
@@ -2072,50 +2090,51 @@ def materials_view_dialog(mid):
             detail.append(r["supplier"])
         if state == "delivered":
             detail.append(f'Delivered {r.get("delivered_at") or r.get("pod_received_at","")}')
-        items_html += (
-            f'<div style="margin-top:6px;padding-top:6px;'
-            f'border-top:1px solid rgba(0,0,0,.08);">'
+        line_html = (
+            f'<div style="background:{bg};color:{fg};'
+            f'padding:5px 14px 6px;">'
+            f'<div style="border-top:1px solid rgba(0,0,0,.08);'
+            f'padding-top:5px;">'
             f'<div style="font-size:15px;font-weight:800;">'
             f'{mark + " " if mark else ""}{r.get("item","")}</div>'
             + (f'<div style="font-size:11px;opacity:.6;">'
                f'{" · ".join(detail)}</div>' if detail else "")
             + (f'<div style="font-size:11px;opacity:.6;">'
                f'{r["notes"]}</div>' if r.get("notes") else "")
-            + '</div>')
+            + '</div></div>')
+        row = st.container(key=f"mat_row_{m}")
+        with row:
+            lc, rc = st.columns([8, 1], vertical_alignment="center")
+            with lc:
+                st.markdown(line_html, unsafe_allow_html=True)
+            with rc:
+                if state != "delivered":
+                    if st.button("📦", key=f"mat_dlv_{m}",
+                                 help="Tick this item as delivered"):
+                        stamp = datetime.now().strftime("%d/%m/%Y %H:%M")
+                        r["delivered"] = True
+                        r["delivered_at"] = stamp
+                        materials[m] = r
+                        _mat_purge_received()
+                        save_data(jobs, mcs, site_visits, svr_confirmed,
+                                  checklist, live_hire, materials,
+                                  materials_totals)
+                        # reopen this dialog so several lines can be
+                        # ticked in one sitting
+                        st.session_state["mat_view_id"] = mid
+                        st.session_state["any_dialog_open"] = True
+                        st.rerun()
+                else:
+                    st.markdown(
+                        '<div style="font-size:16px;text-align:center;">'
+                        '✅</div>', unsafe_allow_html=True)
 
     st.markdown(f"""
-    <div style="background:{bg};color:{fg};border-radius:8px;padding:12px 14px;margin-bottom:1rem;">
-      <div style="font-size:12px;opacity:.7;">Requested by <b>{req.get("requester","")}</b> · {req.get("created_at","")}</div>
-      <div style="font-size:10px;opacity:.55;">{len(members)} item{"s" if len(members) != 1 else ""} on this request · {n_delivered} delivered{f" · {n_awaiting} awaiting PO approval" if n_awaiting else ""}</div>
-      {items_html}
-      <div style="margin-top:8px;font-size:12px;font-weight:700;">{status_label.get(g_state,"")}</div>
+    <div style="background:{bg};color:{fg};border-radius:0 0 8px 8px;padding:8px 14px 12px;margin-bottom:1rem;">
+      <div style="font-size:12px;font-weight:700;">{status_label.get(g_state,"")}</div>
       {f'<div style="font-size:10px;opacity:.6;">Ordered by {req.get("ordered_by","")} · {req.get("ordered_at","")}</div>' if req.get("ordered_by") else ""}
     </div>
     """, unsafe_allow_html=True)
-
-    # per-line Delivered buttons: any line not yet delivered gets one;
-    # when the last one is ticked the whole pill turns green
-    undelivered = [(m, r) for m, r in members
-                   if _mat_line_state(r) != "delivered"]
-    if undelivered:
-        st.markdown("**Tick each item off as it arrives:**")
-        for m, r in undelivered:
-            label = str(r.get("item", ""))[:60]
-            if st.button(f"📦 Delivered · {label}", key=f"mat_dlv_{m}",
-                         use_container_width=True):
-                stamp = datetime.now().strftime("%d/%m/%Y %H:%M")
-                r["delivered"] = True
-                r["delivered_at"] = stamp
-                materials[m] = r
-                _mat_purge_received()
-                save_data(jobs, mcs, site_visits, svr_confirmed,
-                          checklist, live_hire, materials,
-                          materials_totals)
-                # reopen this dialog so several lines can be ticked
-                # in one sitting
-                st.session_state["mat_view_id"] = mid
-                st.session_state["any_dialog_open"] = True
-                st.rerun()
 
     if g_state == "pending":
         st.markdown("**Or mark the whole request as Ordered by hand:**")
