@@ -1,4 +1,19 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "0af382b09b",
+      "customer_code": "A CONNOLLY",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-08-16",
+      "weeks": 2,
+      "site": "M46 9BE",
+      "notes": "",
+      "requested_by": "Nathan",
+      "requested_at": "14/08/2026 11:57",
+      "status": "pending",
+      "quote_ref": "",
+      "detail": ""
+    }
+  ],
   "history": []
 }
