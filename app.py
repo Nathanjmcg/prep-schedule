@@ -251,18 +251,38 @@ for k, v in [("week_offset", 0), ("n_weeks", 4),
 jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals, queries, sha = load_data()
 bank_holidays = get_bank_holidays()
 
-# Auto-expire materials with pod_received status older than 24h
+# Auto-expire finished materials older than 24h: legacy pod_received
+# lines, plus requests where EVERY line is ticked Delivered (the last
+# delivery stamp starts the clock).
 _now = datetime.now()
 _mat_changed = False
+
+def _mat_boot_stamp(raw):
+    try:
+        return datetime.strptime(raw or "", "%d/%m/%Y %H:%M")
+    except (ValueError, TypeError):
+        return None
+
 for mid, req in list(materials.items()):
     if req.get("status") == "pod_received" and req.get("pod_received_at"):
-        try:
-            pod_dt = datetime.strptime(req["pod_received_at"], "%d/%m/%Y %H:%M")
-            if (_now - pod_dt).total_seconds() > 86400:
-                del materials[mid]
-                _mat_changed = True
-        except Exception:
-            pass
+        _pod = _mat_boot_stamp(req["pod_received_at"])
+        if _pod and (_now - _pod).total_seconds() > 86400:
+            del materials[mid]
+            _mat_changed = True
+_boot_groups = {}
+for mid, req in materials.items():
+    _k = (req.get("request_id")
+          or f"{req.get('requester','')}|{req.get('created_at','')}")
+    _boot_groups.setdefault(_k, []).append(mid)
+for _k, _mids in _boot_groups.items():
+    _recs = [materials[m] for m in _mids]
+    if _recs and all(r.get("delivered") for r in _recs):
+        _stamps = [_mat_boot_stamp(r.get("delivered_at")) for r in _recs]
+        if all(_stamps) and \
+                (_now - max(_stamps)).total_seconds() > 86400:
+            for m in _mids:
+                del materials[m]
+            _mat_changed = True
 if _mat_changed:
     save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
 
@@ -1842,6 +1862,39 @@ def _mat_request_key(req):
             or f"{req.get('requester','')}|{req.get('created_at','')}")
 
 
+def _mat_line_state(r):
+    """One line's lifecycle. Ken (the PO worker) stamps po_number and
+    po_status on each line; a line whose PO exists but is not yet
+    approved shows the X.
+      pending    no PO yet (red)
+      awaiting   PO raised, NOT approved: the X
+      ordered    PO approved (or marked ordered by hand)
+      delivered  ticked Delivered in the app (legacy pod_received too)
+    """
+    if r.get("delivered") or r.get("status") == "pod_received":
+        return "delivered"
+    if r.get("status") == "ordered":
+        return "ordered"
+    if r.get("po_number"):
+        return "awaiting"
+    return "pending"
+
+
+def _mat_group_state(members):
+    """The whole request: green only when EVERY line is delivered; red
+    while any line has no PO; amber in between."""
+    states = {_mat_line_state(r) for _, r in members}
+    if states and states <= {"delivered"}:
+        return "delivered"
+    if "pending" in states:
+        return "pending"
+    return "ordered"
+
+
+MAT_LINE_MARK = {"pending": "", "awaiting": "❌", "ordered": "✔",
+                 "delivered": "✅"}
+
+
 def _mat_group_members(mid):
     """All items belonging to the same request as `mid`, newest
     request order preserved."""
@@ -1984,30 +2037,46 @@ def materials_view_dialog(mid):
     if not req:
         st.warning("Request not found."); return
 
-    # The whole REQUEST is the unit: status and actions apply to every
-    # item submitted together.
+    # The whole REQUEST is the unit for display, but each LINE carries
+    # its own PO, approval state and Delivered tick. The pill only
+    # turns green when every line is delivered.
     members = _mat_group_members(mid)
-    status    = req.get("status", "pending")
+    g_state = _mat_group_state(members)
     status_colours = {
-        "pending":      ("#fdecea", "#7b1a1a"),
-        "ordered":      ("#fff9e6", "#7a5c00"),
-        "pod_received": (K_GREEN_PALE, K_GREEN_DARK),
+        "pending":   ("#fdecea", "#7b1a1a"),
+        "ordered":   ("#fff9e6", "#7a5c00"),
+        "delivered": (K_GREEN_PALE, K_GREEN_DARK),
     }
-    bg, fg = status_colours.get(status, ("#f0f0f0", K_GREY))
-    status_label = {"pending": "🔴 Pending", "ordered": "🟡 Ordered", "pod_received": "🟢 POD Received"}
+    bg, fg = status_colours.get(g_state, ("#f0f0f0", K_GREY))
+    status_label = {"pending": "🔴 Pending", "ordered": "🟡 On Order",
+                    "delivered": "🟢 Delivered"}
 
+    n_delivered = sum(1 for _m, r in members
+                      if _mat_line_state(r) == "delivered")
+    n_awaiting = sum(1 for _m, r in members
+                     if _mat_line_state(r) == "awaiting")
     items_html = ""
     for _m, r in members:
+        state = _mat_line_state(r)
+        mark = MAT_LINE_MARK.get(state, "")
         detail = []
         if r.get("category"):
             detail.append(r["category"])
-        if r.get("supplier"):
+        if r.get("po_number"):
+            detail.append(f'PO {r["po_number"]}'
+                          + (f' · {r.get("po_supplier","")}'
+                             if r.get("po_supplier") else "")
+                          + (" · awaiting approval"
+                             if state == "awaiting" else ""))
+        elif r.get("supplier"):
             detail.append(r["supplier"])
+        if state == "delivered":
+            detail.append(f'Delivered {r.get("delivered_at") or r.get("pod_received_at","")}')
         items_html += (
             f'<div style="margin-top:6px;padding-top:6px;'
             f'border-top:1px solid rgba(0,0,0,.08);">'
             f'<div style="font-size:15px;font-weight:800;">'
-            f'{r.get("item","")}</div>'
+            f'{mark + " " if mark else ""}{r.get("item","")}</div>'
             + (f'<div style="font-size:11px;opacity:.6;">'
                f'{" · ".join(detail)}</div>' if detail else "")
             + (f'<div style="font-size:11px;opacity:.6;">'
@@ -2017,16 +2086,39 @@ def materials_view_dialog(mid):
     st.markdown(f"""
     <div style="background:{bg};color:{fg};border-radius:8px;padding:12px 14px;margin-bottom:1rem;">
       <div style="font-size:12px;opacity:.7;">Requested by <b>{req.get("requester","")}</b> · {req.get("created_at","")}</div>
-      <div style="font-size:10px;opacity:.55;">{len(members)} item{"s" if len(members) != 1 else ""} on this request</div>
+      <div style="font-size:10px;opacity:.55;">{len(members)} item{"s" if len(members) != 1 else ""} on this request · {n_delivered} delivered{f" · {n_awaiting} awaiting PO approval" if n_awaiting else ""}</div>
       {items_html}
-      <div style="margin-top:8px;font-size:12px;font-weight:700;">{status_label.get(status,"")}</div>
-      {f'<div style="font-size:10px;opacity:.6;">Ordered by {req.get("ordered_by","")} · {req.get("ordered_at","")}</div>' if status in ("ordered","pod_received") else ""}
-      {f'<div style="font-size:10px;opacity:.6;">POD received {req.get("pod_received_at","")}</div>' if status == "pod_received" else ""}
+      <div style="margin-top:8px;font-size:12px;font-weight:700;">{status_label.get(g_state,"")}</div>
+      {f'<div style="font-size:10px;opacity:.6;">Ordered by {req.get("ordered_by","")} · {req.get("ordered_at","")}</div>' if req.get("ordered_by") else ""}
     </div>
     """, unsafe_allow_html=True)
 
-    if status == "pending":
-        st.markdown("**Mark whole request as Ordered:**")
+    # per-line Delivered buttons: any line not yet delivered gets one;
+    # when the last one is ticked the whole pill turns green
+    undelivered = [(m, r) for m, r in members
+                   if _mat_line_state(r) != "delivered"]
+    if undelivered:
+        st.markdown("**Tick each item off as it arrives:**")
+        for m, r in undelivered:
+            label = str(r.get("item", ""))[:60]
+            if st.button(f"📦 Delivered · {label}", key=f"mat_dlv_{m}",
+                         use_container_width=True):
+                stamp = datetime.now().strftime("%d/%m/%Y %H:%M")
+                r["delivered"] = True
+                r["delivered_at"] = stamp
+                materials[m] = r
+                _mat_purge_received()
+                save_data(jobs, mcs, site_visits, svr_confirmed,
+                          checklist, live_hire, materials,
+                          materials_totals)
+                # reopen this dialog so several lines can be ticked
+                # in one sitting
+                st.session_state["mat_view_id"] = mid
+                st.session_state["any_dialog_open"] = True
+                st.rerun()
+
+    if g_state == "pending":
+        st.markdown("**Or mark the whole request as Ordered by hand:**")
         orderer = st.selectbox("Ordered by",
                                ["— Select *"] + MATERIALS_ORDERERS,
                                key=f"mat_orderer_{mid}")
@@ -2036,27 +2128,15 @@ def materials_view_dialog(mid):
             else:
                 stamp = datetime.now().strftime("%d/%m/%Y %H:%M")
                 for m, r in members:
-                    r["status"]     = "ordered"
-                    r["ordered_by"] = orderer
-                    r["ordered_at"] = stamp
-                    materials[m]    = r
+                    if _mat_line_state(r) in ("pending", "awaiting"):
+                        r["status"]     = "ordered"
+                        r["ordered_by"] = orderer
+                        r["ordered_at"] = stamp
+                        materials[m]    = r
                 _mat_purge_received()
                 save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
                 st.session_state["any_dialog_open"] = False
                 st.rerun()
-
-    elif status == "ordered":
-        st.markdown(f"**Requested by {req.get('requester','')} — tick when POD is in:**")
-        if st.button("✅ POD Brought to Office", type="primary", use_container_width=True):
-            stamp = datetime.now().strftime("%d/%m/%Y %H:%M")
-            for m, r in members:
-                r["status"]          = "pod_received"
-                r["pod_received_at"] = stamp
-                materials[m]         = r
-            _mat_purge_received()
-            save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
-            st.session_state["any_dialog_open"] = False
-            st.rerun()
 
     st.markdown("<div style='margin-top:.75rem'></div>", unsafe_allow_html=True)
     dc1, dc2 = st.columns(2)
@@ -3048,8 +3128,11 @@ with sched_col:
                 st.markdown("</div>", unsafe_allow_html=True)
 
 with mat_col:
-    _pending_count = sum(1 for r in materials.values()
-                         if r.get("status") == "pending")
+    _badge_groups = {}
+    for _r in materials.values():
+        _badge_groups.setdefault(_mat_request_key(_r), []).append((0, _r))
+    _pending_count = sum(1 for v in _badge_groups.values()
+                         if _mat_group_state(v) == "pending")
     _badge = (f' <span style="background:#c0392b;color:white;'
               f'border-radius:10px;padding:1px 6px;font-size:10px;">'
               f'{_pending_count}</span>' if _pending_count else "")
@@ -3069,9 +3152,13 @@ with mat_col:
     mat_items = [(m, r) for m, r in materials.items()
                  if not _mat_received_expired(r)]
     mat_items.sort(key=lambda x: x[1].get("created_at", ""), reverse=True)
-    n_pending  = sum(1 for _, r in mat_items if r.get("status") == "pending")
-    n_ordered  = sum(1 for _, r in mat_items if r.get("status") == "ordered")
-    n_received = sum(1 for _, r in mat_items if r.get("status") == "pod_received")
+    _cnt_groups = {}
+    for _m, _r in mat_items:
+        _cnt_groups.setdefault(_mat_request_key(_r), []).append((_m, _r))
+    _g_states  = [_mat_group_state(v) for v in _cnt_groups.values()]
+    n_pending  = sum(1 for s in _g_states if s == "pending")
+    n_ordered  = sum(1 for s in _g_states if s == "ordered")
+    n_received = sum(1 for s in _g_states if s == "delivered")
 
     st.markdown(
         f"<div style='display:flex;gap:4px;margin:0 2px 5px;flex-wrap:wrap;"
@@ -3079,9 +3166,9 @@ with mat_col:
         f"<span style='background:#fdecea;color:#7b1a1a;border-radius:4px;"
         f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🔴 {n_pending} Requested</span>"
         f"<span style='background:#fff9e6;color:#7a5c00;border-radius:4px;"
-        f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🟡 {n_ordered} Ordered</span>"
+        f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🟡 {n_ordered} On Order</span>"
         f"<span style='background:{K_GREEN_PALE};color:{K_GREEN_DARK};border-radius:4px;"
-        f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🟢 {n_received} Received</span>"
+        f"padding:1px 6px;font-size:9.5px;font-weight:700;'>🟢 {n_received} Delivered</span>"
         f"</div>",
         unsafe_allow_html=True)
 
@@ -3104,17 +3191,19 @@ with mat_col:
                 groups[gkey].append((mid, req))
 
             STATUS_COLS = {
-                "pending":      ("#fdecea", "#7b1a1a", "#fbddd8"),
-                "ordered":      ("#fff9e6", "#7a5c00", "#fff0c2"),
-                "pod_received": (K_GREEN_PALE, K_GREEN_DARK, "#d4ecdd"),
+                "pending":   ("#fdecea", "#7b1a1a", "#fbddd8"),
+                "ordered":   ("#fff9e6", "#7a5c00", "#fff0c2"),
+                "delivered": (K_GREEN_PALE, K_GREEN_DARK, "#d4ecdd"),
             }
             # One pill PER REQUEST: the button is the pill header, the
             # block beneath it holds a sub-pill per item and is styled
-            # to read as the lower half of the same pill.
+            # to read as the lower half of the same pill. Colour comes
+            # from the whole request's state: green ONLY when every
+            # line is ticked Delivered.
             btn_css = "<style>"
             for gkey in order:
                 members = groups[gkey]
-                g_status = members[0][1].get("status", "pending")
+                g_status = _mat_group_state(members)
                 c_bg, c_fg, c_hov = STATUS_COLS.get(
                     g_status, ("#f0f0f0", K_GREY, "#e6e6e6"))
                 bkey = f"matreq_{members[0][0]}"
@@ -3137,7 +3226,7 @@ with mat_col:
                 head    = members[0][1]
                 reqby   = head.get("requester", "")
                 created = head.get("created_at", "")
-                g_status = head.get("status", "pending")
+                g_status = _mat_group_state(members)
                 c_bg, c_fg, _hov = STATUS_COLS.get(
                     g_status, ("#f0f0f0", K_GREY, "#e6e6e6"))
                 n_items = len(members)
@@ -3151,17 +3240,34 @@ with mat_col:
                     st.session_state["any_dialog_open"] = True
                     st.rerun()
 
-                # sub-pills, one per item, with that item's notes
+                # sub-pills, one per item: X while its PO awaits
+                # approval, tick when approved, package when delivered
                 subs = ""
                 for _m, r in members:
                     note = r.get("notes", "")
+                    state = _mat_line_state(r)
+                    mark = MAT_LINE_MARK.get(state, "")
+                    po_bits = ""
+                    if r.get("po_number"):
+                        po_bits = (f'PO {r["po_number"]}'
+                                   + (" · awaiting approval"
+                                      if state == "awaiting" else ""))
+                    elif state == "delivered" and (r.get("delivered_at")
+                                                   or r.get("pod_received_at")):
+                        po_bits = (f'Delivered '
+                                   f'{r.get("delivered_at") or r.get("pod_received_at")}')
                     subs += (
                         f'<div style="background:rgba(255,255,255,.6);'
                         f'border-radius:6px;padding:4px 8px;'
                         f'margin-top:4px;">'
                         f'<div style="font-size:11.5px;font-weight:700;'
                         f'color:{c_fg};line-height:1.3;">'
+                        f'{mark + " " if mark else ""}'
                         f'{_html_esc.escape(str(r.get("item","")))}</div>'
+                        + (f'<div style="font-size:10px;opacity:.75;'
+                           f'color:{c_fg};line-height:1.3;">'
+                           f'{_html_esc.escape(po_bits)}</div>'
+                           if po_bits else "")
                         + (f'<div style="font-size:10px;opacity:.75;'
                            f'color:{c_fg};line-height:1.3;">'
                            f'{_html_esc.escape(str(note))}</div>'
