@@ -14292,30 +14292,6 @@
       "ordered_at": "13/08/2026 12:55",
       "pod_received_at": "13/08/2026 12:57"
     },
-    "800a8492b653": {
-      "requester": "Carl",
-      "request_id": "042fd437068c",
-      "item": "4 \u00d7 JCOP Boards",
-      "category": "Joinery",
-      "item_name": "JCOP Boards",
-      "quantity": 4,
-      "notes": "",
-      "supplier": "Morland",
-      "status": "pending",
-      "created_at": "13/08/2026 12:51"
-    },
-    "c536090c0147": {
-      "requester": "Carl",
-      "request_id": "042fd437068c",
-      "item": "2 \u00d7 Downflow Heater",
-      "category": "Electrical",
-      "item_name": "Downflow Heater",
-      "quantity": 2,
-      "notes": "",
-      "supplier": "Danfast",
-      "status": "pending",
-      "created_at": "13/08/2026 12:51"
-    },
     "4a466582c106": {
       "requester": "Jim",
       "request_id": "18219fe05d42",
