@@ -13783,6 +13783,23 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "14/08/2026 13:50"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "E E Thompson & Son Ltd",
+        "postcode": "LA2 9NH",
+        "contract_number": "0000031480",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Caton Primary School, Broadcare, Lancaster, , LA2 9NH",
+        "added_by": "MCS Auto",
+        "timestamp": "14/08/2026 15:50"
       }
     ],
     "2026-08-29": [],
