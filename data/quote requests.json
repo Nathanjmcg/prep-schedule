@@ -1,5 +1,6 @@
 {
-  "requests": [
+  "requests": [],
+  "history": [
     {
       "id": "0af382b09b",
       "customer_code": "A CONNOLLY",
@@ -10,10 +11,10 @@
       "notes": "",
       "requested_by": "Nathan",
       "requested_at": "14/08/2026 11:57",
-      "status": "pending",
+      "status": "failed",
       "quote_ref": "",
-      "detail": ""
+      "detail": "500 Server Error: Internal Server Error for url: https://kensite.rm.onmcs.com/QuickQuote/Details",
+      "processed_at": "14/08/2026 12:57"
     }
-  ],
-  "history": []
+  ]
 }
