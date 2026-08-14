@@ -13742,10 +13742,7 @@
             "Drying Room": 1
           }
         }
-      }
-    ],
-    "2026-08-29": [],
-    "2026-09-04": [
+      },
       {
         "type": "On Hire",
         "customer": "Pinington Ltd",
@@ -13760,16 +13757,19 @@
         "livery": "",
         "livery_note": "",
         "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Hot wash 110v",
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Hot wash 110v | Date moved by MCS Auto from 04/09/2026 to 01/09/2026 on 14/08/2026 11:10",
         "added_by": "MCS Auto",
-        "timestamp": "14/08/2026 10:50",
+        "timestamp": "14/08/2026 11:10",
         "av_configs": {
           "20ft AV": {
             "Canteen": 1
           }
-        }
+        },
+        "date_moved_by": "MCS Auto"
       }
-    ]
+    ],
+    "2026-08-29": [],
+    "2026-09-04": []
   },
   "mcs": {
     "2026-03-19_1": "picked",
