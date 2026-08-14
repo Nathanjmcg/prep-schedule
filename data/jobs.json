@@ -14432,8 +14432,10 @@
       "raised_by": "Cliff",
       "raised_at": "14/08/2026 08:36",
       "question": "DOes this need to be filled?",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "Yes fully filled 1000L",
+      "answered_by": "Ewa",
+      "answered_at": "14/08/2026 08:37"
     }
   }
 }
