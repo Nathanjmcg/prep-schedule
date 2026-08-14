@@ -1897,6 +1897,7 @@ if _mat_changed:
     save_data(jobs, mcs, site_visits, svr_confirmed, checklist, live_hire, materials, materials_totals)
 
 import uuid as _uuid
+import hashlib as _hashlib
 
 def open_dialog(**kwargs):
     """Set dialog state with a unique token so it only opens once per click."""
@@ -3424,29 +3425,6 @@ def job_modal(date_key, edit_idx=None):
                 st.rerun()
 
 # ── MATERIALS REQUEST — ADD DIALOG ───────────────────────────────────────────
-def _mat_current_line(category, item_choice, item_other, notes,
-                      quantity, supplier=""):
-    """Validate the item fields; returns (line_dict, errors)."""
-    errors = []
-    valid_cat = (category in DANFAST_TREE
-                 or category in OTHER_CATEGORIES
-                 or category == ANYTHING_ELSE)
-    if not valid_cat:
-        errors.append("Please select a category.")
-    elif item_choice in (None, "— Select item *"):
-        errors.append("Please select what you need.")
-    elif item_choice in (OTHER_ITEM, "Other") and not item_other.strip():
-        errors.append("Please describe what you need.")
-    if errors:
-        return None, errors
-    item_label = (item_other.strip()
-                  if item_choice in (OTHER_ITEM, "Other")
-                  else item_choice)
-    return {"category": category, "item_name": item_label,
-            "quantity": int(quantity), "notes": notes.strip(),
-            "supplier": str(supplier).strip()}, []
-
-
 MAT_RECEIVED_TTL_HOURS = 24   # received requests drop off after this
 
 
@@ -3546,131 +3524,200 @@ def _mat_save_lines(requester, final):
               live_hire, materials, materials_totals)
 
 
-@st.dialog("New Materials Request", width="small")
+# ── MATERIALS REQUEST — BASKET-STYLE ADD DIALOG ──────────────────────────────
+# One trip: search or browse the range, tick items, set quantities,
+# and everything collects in the basket below. Submit sends the lot
+# as a single request (Nathan, 14/08/2026).
+
+ITEM_INDEX = []
+for _top, _subs in DANFAST_TREE.items():
+    for _sub, _names in _subs.items():
+        for _nm in _names:
+            ITEM_INDEX.append((_nm, _top, _sub))
+for _top, _names in OTHER_CATEGORIES.items():
+    for _nm in _names:
+        ITEM_INDEX.append((_nm, _top, ""))
+
+
+def _mb_key(name):
+    return _hashlib.md5(str(name).encode()).hexdigest()[:12]
+
+
+def _mat_basket_reset():
+    st.session_state["mat_basket"] = {}
+    for k in list(st.session_state):
+        if k.startswith(("mbt_", "mbq_", "mbrm_")):
+            st.session_state.pop(k, None)
+    for k in ("mat_search", "mat_custom_desc", "mat_custom_qty",
+              "mat_req_notes"):
+        st.session_state.pop(k, None)
+
+
+@st.dialog("New Materials Request", width="large")
 def materials_add_dialog():
     name_opts = ["— Select your name *"] + MATERIALS_NAMES
     requester = st.selectbox("Your name *", name_opts, key="mat_name")
+    basket = st.session_state.setdefault("mat_basket", {})
 
-    lines = st.session_state.setdefault("mat_lines", [])
-    # nonce is appended to the item-field keys; bumping it gives fresh
-    # empty widgets after an item is added, without deleting any keys
-    n = st.session_state.setdefault("mat_nonce", 0)
+    # a basket-row ❌ queued a removal: process it BEFORE any checkbox
+    # renders, so its widget state can be cleared safely
+    rm = st.session_state.pop("mat_basket_rm", None)
+    if rm is not None:
+        basket.pop(rm, None)
+        st.session_state.pop("mbt_" + _mb_key(rm), None)
+        st.session_state.pop("mbq_" + _mb_key(rm), None)
 
-    if lines:
-        st.markdown("**Items on this request:**")
-        for i, ln in enumerate(lines):
-            lc1, lc2 = st.columns([10, 1])
-            with lc1:
-                st.markdown(f"• {ln['quantity']} × {ln['item_name']} "
-                            f"({ln['category']})"
-                            + (f" — {ln['notes']}" if ln["notes"] else ""))
-            with lc2:
-                if st.button("❌", key=f"mat_rm_{i}",
-                             help="Remove this item"):
-                    lines.pop(i)
+    def item_rows(rows):
+        """Tickable item rows; ticking shows a qty box and drops the
+        item straight into the basket."""
+        for nm, top, sub in rows:
+            k = _mb_key(nm)
+            c1, c2 = st.columns([7, 2], vertical_alignment="center")
+            with c1:
+                on = st.checkbox(nm, value=nm in basket,
+                                 key=f"mbt_{k}", help=(sub or top))
+            with c2:
+                if on:
+                    q0 = basket.get(nm, {}).get("qty", 1)
+                    qv = st.number_input(
+                        "Qty", min_value=1, step=1, value=int(q0),
+                        key=f"mbq_{k}", label_visibility="collapsed")
+                    basket[nm] = {"qty": int(qv), "category": top}
+            if not on and nm in basket:
+                basket.pop(nm, None)
+
+    st.text_input("🔍 Search the whole range", key="mat_search",
+                  placeholder="e.g. barrier pipe, downflow heater, "
+                              "M8 bolts, door handle...")
+    q = (st.session_state.get("mat_search") or "").strip()
+
+    if len(q) >= 2:
+        toks = q.lower().split()
+
+        def _in(t, nm, top, sub):
+            return t in nm.lower() or t in sub.lower() \
+                or t in top.lower()
+
+        hits = [(nm, top, sub) for nm, top, sub in ITEM_INDEX
+                if all(_in(t, nm, top, sub) for t in toks)]
+        loose = False
+        if not hits and len(toks) > 1:
+            # nothing matches every word: show close matches instead
+            # ("m8 bolt" still finds the M8 setscrews)
+            loose = True
+            hits = [(nm, top, sub) for nm, top, sub in ITEM_INDEX
+                    if any(_in(t, nm, top, sub) for t in toks)]
+        # best first: most words in the NAME itself, shortest name wins
+        hits.sort(key=lambda r: (
+            -sum(1 for t in toks if t in r[0].lower()), len(r[0])))
+        st.caption(
+            (f"No exact match for '{q}', showing close matches · "
+             if loose else "")
+            + f"{len(hits)} match(es)"
+            + (", showing the first 25" if len(hits) > 25 else "")
+            + " · clear the search to browse")
+        item_rows(hits[:25])
+    else:
+        bc1, bc2 = st.columns(2)
+        browse_opts = [c for c in FORM_CATEGORY_ORDER
+                       if c != ANYTHING_ELSE]
+        with bc1:
+            category = st.selectbox(
+                "Category", ["— Browse by category"] + browse_opts,
+                key="mat_cat_browse",
+                format_func=lambda c: FORM_CAT_LABELS.get(c, c))
+        rows = []
+        if category in DANFAST_TREE:
+            subs = DANFAST_TREE[category]
+            with bc2:
+                if len(subs) > 1:
+                    sub = st.selectbox(
+                        "Type", ["— Select type"] + sorted(subs),
+                        key=f"mat_sub_browse_{_mb_key(category)}",
+                        format_func=lambda s:
+                        (f"{s}  ({len(subs[s])})" if s in subs else s))
+                else:
+                    sub = list(subs)[0]
+            if sub in subs:
+                rows = [(nm, category, sub) for nm in subs[sub]]
+        elif category in OTHER_CATEGORIES:
+            rows = [(nm, category, "")
+                    for nm in OTHER_CATEGORIES[category]]
+        item_rows(rows)
+
+    with st.expander("➕ Can't find it? Add anything"):
+        cc1, cc2, cc3 = st.columns([6, 2, 2],
+                                   vertical_alignment="bottom")
+        with cc1:
+            custom = st.text_input(
+                "Describe it", key="mat_custom_desc",
+                placeholder="e.g. 8x4 marine ply, odd bracket...")
+        with cc2:
+            cqty = st.number_input("Qty", min_value=1, step=1,
+                                   value=1, key="mat_custom_qty")
+        with cc3:
+            if st.button("Add ➕", use_container_width=True,
+                         key="mat_custom_addbtn"):
+                if custom.strip():
+                    basket[custom.strip()[:120]] = {
+                        "qty": int(cqty), "category": ANYTHING_ELSE}
                     st.session_state["mat_add"] = True
                     st.rerun()
-        st.markdown("---")
 
-    category = st.selectbox("Category *",
-                            ["— Select category *"]
-                            + FORM_CATEGORY_ORDER,
-                            key=f"mat_category_{n}",
-                            format_func=lambda c:
-                            FORM_CAT_LABELS.get(c, c))
-    item_choice, item_other = None, ""
-    if category in DANFAST_TREE:
-        subs = DANFAST_TREE[category]
-        n_items = sum(len(v) for v in subs.values())
-        if len(subs) > 1 and n_items > 24:
-            # big category: pick the type first, then the exact item
-            subcat = st.selectbox(
-                "Type of item *",
-                ["— Select type *"] + sorted(subs),
-                key=f"mat_subcat_{n}",
-                format_func=lambda s: (f"{s}  ({len(subs[s])})"
-                                       if s in subs else s))
-            if subcat in subs:
-                item_choice = st.selectbox(
-                    "Exact item *  (type to search)",
-                    ["— Select item *"] + subs[subcat] + [OTHER_ITEM],
-                    key=f"mat_item_{n}")
-        else:
-            flat = [p for v in subs.values() for p in v]
-            item_choice = st.selectbox(
-                "Exact item *  (type to search)",
-                ["— Select item *"] + sorted(flat) + [OTHER_ITEM],
-                key=f"mat_item_{n}")
-        if item_choice not in (None, "— Select item *", OTHER_ITEM):
-            st.caption("✅ Real Danfast product - Ken orders it with "
-                       "the exact code and price, no questions asked.")
-    elif category in OTHER_CATEGORIES:
-        item_choice = st.selectbox(
-            "What do you need? *",
-            ["— Select item *"] + OTHER_CATEGORIES[category]
-            + [OTHER_ITEM],
-            key=f"mat_item_{n}")
-    elif category == ANYTHING_ELSE:
-        item_choice = OTHER_ITEM
-    if item_choice == OTHER_ITEM:
-        item_other = st.text_input(
-            "Describe what you need *", key=f"mat_item_other_{n}",
-            placeholder="e.g. 8x4 Marine Ply Sheet, M10 bolts and "
-                        "nuts, 15mm pipe...")
+    # ── the basket: everything ticked so far ─────────────────────────
+    st.markdown("---")
+    if basket:
+        st.markdown(
+            f"##### 🧺 This request · {len(basket)} line"
+            f"{'s' if len(basket) != 1 else ''}, "
+            f"{sum(v['qty'] for v in basket.values())} item"
+            f"{'s' if sum(v['qty'] for v in basket.values()) != 1 else ''}")
+        for nm, info in list(basket.items()):
+            b1, b2 = st.columns([9, 1], vertical_alignment="center")
+            with b1:
+                st.markdown(
+                    f"<div style='background:{K_GREEN_PALE};"
+                    f"border-radius:6px;padding:5px 10px;"
+                    f"font-size:13px;'><b>{info['qty']} ×</b> "
+                    f"{_html_esc.escape(nm)} "
+                    f"<span style='opacity:.5;font-size:11px;'>"
+                    f"({_html_esc.escape(info['category'])})</span></div>",
+                    unsafe_allow_html=True)
+            with b2:
+                if st.button("❌", key=f"mbrm_{_mb_key(nm)}",
+                             help="Remove from the request"):
+                    st.session_state["mat_basket_rm"] = nm
+                    st.session_state["mat_add"] = True
+                    st.rerun()
+    else:
+        st.caption("Nothing ticked yet. Search or browse above, tick "
+                   "what you need, and it collects here.")
 
-    notes    = st.text_area("Notes", key=f"mat_notes_{n}",
-                            placeholder="Sizes, colours, which unit "
-                                        "it is for...")
-    quantity = st.number_input("Quantity *", min_value=1, step=1,
-                               value=1, key=f"mat_qty_{n}")
-    supplier = ""
-
-    if st.button("➕ Additional Item", use_container_width=True,
-                 help="Add this item to the request and enter another"):
-        line, errors = _mat_current_line(category, item_choice,
-                                         item_other, notes, quantity,
-                                         supplier)
-        for e in errors:
-            st.warning(e)
-        if line:
-            lines.append(line)
-            st.session_state["mat_nonce"] = n + 1   # fresh blank fields
-            st.session_state["mat_add"] = True       # reopen the dialog
-            st.rerun()
+    st.text_area("Notes for the whole request", key="mat_req_notes",
+                 placeholder="Which unit or job it is for, colours, "
+                             "sizes...")
 
     mc1, mc2 = st.columns(2)
     with mc1:
-        if st.button("✅ Submit Request", type="primary", use_container_width=True):
-            errors = []
+        if st.button(f"✅ Submit Request ({len(basket)})",
+                     type="primary", use_container_width=True,
+                     disabled=not basket):
             if requester == "— Select your name *":
-                errors.append("Please select your name.")
-
-            final = list(lines)
-            # count the current form as a final item only if it is
-            # completely and validly filled; otherwise ignore it when
-            # items are already added, or nag only if it is the sole
-            # content of the request
-            cur_line, cur_errs = _mat_current_line(
-                category, item_choice, item_other, notes,
-                quantity, supplier)
-            if cur_line:
-                final.append(cur_line)
-            elif not lines:
-                errors.extend(cur_errs or
-                              ["Please add at least one item."])
-
-            for e in errors:
-                st.warning(e)
-            if not errors:
+                st.warning("Please select your name.")
+            else:
+                notes = (st.session_state.get("mat_req_notes")
+                         or "").strip()
+                final = [{"category": v["category"], "item_name": nm,
+                          "quantity": v["qty"], "notes": notes,
+                          "supplier": ""}
+                         for nm, v in basket.items()]
                 _mat_save_lines(requester, final)
-                st.session_state["mat_lines"] = []
-                st.session_state["mat_nonce"] = n + 1
+                _mat_basket_reset()
                 st.session_state["any_dialog_open"] = False
                 st.rerun()
     with mc2:
         if st.button("Cancel", use_container_width=True):
-            st.session_state["mat_lines"] = []
-            st.session_state["mat_nonce"] = n + 1
+            _mat_basket_reset()
             st.session_state["any_dialog_open"] = False
             st.rerun()
 
