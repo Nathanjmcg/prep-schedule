@@ -2067,7 +2067,8 @@ def materials_view_dialog(mid):
     # the delivered button (or its ✅ once ticked) right
     st.markdown(
         "<style>"
-        "[class*='st-key-mat_dlv_'] button{padding:2px 4px !important;"
+        "[class*='st-key-mat_dlv_'] button,"
+        "[class*='st-key-mat_undlv_'] button{padding:2px 4px !important;"
         "min-height:30px !important;height:30px !important;"
         "border:1px solid rgba(0,0,0,.15) !important;"
         "border-radius:6px !important;background:rgba(255,255,255,.7) "
@@ -2125,9 +2126,22 @@ def materials_view_dialog(mid):
                         st.session_state["any_dialog_open"] = True
                         st.rerun()
                 else:
-                    st.markdown(
-                        '<div style="font-size:16px;text-align:center;">'
-                        '✅</div>', unsafe_allow_html=True)
+                    if st.button("✅", key=f"mat_undlv_{m}",
+                                 help="Untick - not delivered after all"):
+                        r.pop("delivered", None)
+                        r.pop("delivered_at", None)
+                        if r.get("status") == "pod_received":
+                            # legacy lines delivered the old way go
+                            # back to ordered, not to red
+                            r["status"] = "ordered"
+                            r.pop("pod_received_at", None)
+                        materials[m] = r
+                        save_data(jobs, mcs, site_visits, svr_confirmed,
+                                  checklist, live_hire, materials,
+                                  materials_totals)
+                        st.session_state["mat_view_id"] = mid
+                        st.session_state["any_dialog_open"] = True
+                        st.rerun()
 
     st.markdown(f"""
     <div style="background:{bg};color:{fg};border-radius:0 0 8px 8px;padding:8px 14px 12px;margin-bottom:1rem;">
