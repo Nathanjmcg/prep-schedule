@@ -1877,6 +1877,8 @@ def _mat_line_state(r):
         return "ordered"
     if r.get("po_number"):
         return "awaiting"
+    if r.get("query") and not r.get("query_answer"):
+        return "query"      # Ken is asking: is this the right item?
     return "pending"
 
 
@@ -1886,13 +1888,13 @@ def _mat_group_state(members):
     states = {_mat_line_state(r) for _, r in members}
     if states and states <= {"delivered"}:
         return "delivered"
-    if "pending" in states:
+    if "pending" in states or "query" in states:
         return "pending"
     return "ordered"
 
 
 MAT_LINE_MARK = {"pending": "", "awaiting": "❌", "ordered": "✔",
-                 "delivered": "✅"}
+                 "delivered": "✅", "query": "❓"}
 
 
 def _mat_group_members(mid):
@@ -2091,6 +2093,19 @@ def materials_view_dialog(mid):
             detail.append(r["supplier"])
         if state == "delivered":
             detail.append(f'Delivered {r.get("delivered_at") or r.get("pod_received_at","")}')
+        q = r.get("query") or {}
+        query_html = ""
+        if state == "query":
+            price_bit = (f' at £{q.get("candidate_price"):.2f}'
+                         if isinstance(q.get("candidate_price"),
+                                       (int, float)) else "")
+            query_html = (
+                f'<div style="background:rgba(255,255,255,.75);'
+                f'border-radius:6px;padding:5px 8px;margin-top:4px;'
+                f'font-size:12px;font-weight:700;">'
+                f'Ken asks: is this '
+                f'"{_html_esc.escape(str(q.get("candidate_name","")))}"'
+                f'{price_bit}?</div>')
         line_html = (
             f'<div style="background:{bg};color:{fg};'
             f'padding:5px 14px 6px;">'
@@ -2102,12 +2117,46 @@ def materials_view_dialog(mid):
                f'{" · ".join(detail)}</div>' if detail else "")
             + (f'<div style="font-size:11px;opacity:.6;">'
                f'{r["notes"]}</div>' if r.get("notes") else "")
+            + query_html
             + '</div></div>')
         row = st.container(key=f"mat_row_{m}")
         with row:
             lc, rc = st.columns([8, 1], vertical_alignment="center")
             with lc:
                 st.markdown(line_html, unsafe_allow_html=True)
+                if state == "query":
+                    qc1, qc2 = st.columns(2)
+                    with qc1:
+                        if st.button("✔ Yes, that's it",
+                                     key=f"matq_yes_{m}",
+                                     use_container_width=True):
+                            r["query_answer"] = "yes"
+                            r["confirmed_code"] = q.get("candidate_code")
+                            r["query_answered_at"] = datetime.now() \
+                                .strftime("%d/%m/%Y %H:%M")
+                            materials[m] = r
+                            save_data(jobs, mcs, site_visits,
+                                      svr_confirmed, checklist,
+                                      live_hire, materials,
+                                      materials_totals)
+                            st.session_state["mat_view_id"] = mid
+                            st.session_state["any_dialog_open"] = True
+                            st.rerun()
+                    with qc2:
+                        if st.button("✖ No, not that",
+                                     key=f"matq_no_{m}",
+                                     use_container_width=True):
+                            r["query_answer"] = "no"
+                            r["query_answered_at"] = datetime.now() \
+                                .strftime("%d/%m/%Y %H:%M")
+                            materials[m] = r
+                            save_data(jobs, mcs, site_visits,
+                                      svr_confirmed, checklist,
+                                      live_hire, materials,
+                                      materials_totals)
+                            st.session_state["mat_view_id"] = mid
+                            st.session_state["any_dialog_open"] = True
+                            st.rerun()
             with rc:
                 if state != "delivered":
                     if st.button("📦", key=f"mat_dlv_{m}",
@@ -3285,6 +3334,11 @@ with mat_col:
                         po_bits = (f'PO {r["po_number"]}'
                                    + (" · awaiting approval"
                                       if state == "awaiting" else ""))
+                    elif state == "query":
+                        po_bits = ('Ken asks: is this "'
+                                   + str((r.get("query") or {})
+                                         .get("candidate_name", ""))[:45]
+                                   + '"? Open to answer')
                     elif state == "delivered" and (r.get("delivered_at")
                                                    or r.get("pod_received_at")):
                         po_bits = (f'Delivered '
