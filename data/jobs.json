@@ -14281,62 +14281,6 @@
     ]
   },
   "materials": {
-    "96061245f363": {
-      "requester": "Cliff",
-      "item": "3 \u00d7 Base Units",
-      "category": "Joinery",
-      "item_name": "Base Units",
-      "quantity": 3,
-      "notes": "White 1400mm",
-      "supplier": "Danfast",
-      "status": "pod_received",
-      "created_at": "10/08/2026 20:27",
-      "ordered_by": "Ken",
-      "ordered_at": "13/08/2026 12:55",
-      "pod_received_at": "13/08/2026 12:57"
-    },
-    "922b60f93dcb": {
-      "requester": "Cliff",
-      "item": "3 \u00d7 Worktops",
-      "category": "Joinery",
-      "item_name": "Worktops",
-      "quantity": 3,
-      "notes": "Black Bullnose 38mm",
-      "supplier": "Danfast",
-      "status": "pod_received",
-      "created_at": "10/08/2026 20:27",
-      "ordered_by": "Ken",
-      "ordered_at": "13/08/2026 12:55",
-      "pod_received_at": "13/08/2026 12:57"
-    },
-    "fe13c30e3e28": {
-      "requester": "Cliff",
-      "item": "3 \u00d7 Sinks",
-      "category": "Plumbing",
-      "item_name": "Sinks",
-      "quantity": 3,
-      "notes": "Right Hand Drain, Roll Front",
-      "supplier": "Danfast",
-      "status": "pod_received",
-      "created_at": "10/08/2026 20:27",
-      "ordered_by": "Ken",
-      "ordered_at": "13/08/2026 12:55",
-      "pod_received_at": "13/08/2026 12:57"
-    },
-    "ddf6cfee585b": {
-      "requester": "Cliff",
-      "item": "1 \u00d7 Water Heater (Oversink)",
-      "category": "Plumbing",
-      "item_name": "Water Heater (Oversink)",
-      "quantity": 1,
-      "notes": "3kW Water Heater",
-      "supplier": "Danfast",
-      "status": "pod_received",
-      "created_at": "10/08/2026 20:27",
-      "ordered_by": "Ken",
-      "ordered_at": "13/08/2026 12:55",
-      "pod_received_at": "13/08/2026 12:57"
-    },
     "4a466582c106": {
       "requester": "Jim",
       "request_id": "18219fe05d42",
