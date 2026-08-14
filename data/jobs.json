@@ -14307,8 +14307,10 @@
       "quantity": 4,
       "notes": "",
       "supplier": "danfast",
-      "status": "pending",
-      "created_at": "13/08/2026 14:31"
+      "status": "ordered",
+      "created_at": "13/08/2026 14:31",
+      "ordered_by": "Ken",
+      "ordered_at": "14/08/2026 14:32"
     },
     "f2545c46de48": {
       "requester": "Jim",
@@ -14319,8 +14321,10 @@
       "quantity": 6,
       "notes": "triton handwash",
       "supplier": "danfast",
-      "status": "pending",
-      "created_at": "13/08/2026 14:31"
+      "status": "ordered",
+      "created_at": "13/08/2026 14:31",
+      "ordered_by": "Ken",
+      "ordered_at": "14/08/2026 14:32"
     },
     "fa6a36607282": {
       "requester": "Jim",
@@ -14331,8 +14335,10 @@
       "quantity": 20,
       "notes": "single back boxes",
       "supplier": "danfast",
-      "status": "pending",
-      "created_at": "13/08/2026 14:31"
+      "status": "ordered",
+      "created_at": "13/08/2026 14:31",
+      "ordered_by": "Ken",
+      "ordered_at": "14/08/2026 14:32"
     },
     "133161e957af": {
       "requester": "Jim",
@@ -14343,8 +14349,10 @@
       "quantity": 50,
       "notes": "3mm wall boards",
       "supplier": "",
-      "status": "pending",
-      "created_at": "13/08/2026 14:31"
+      "status": "ordered",
+      "created_at": "13/08/2026 14:31",
+      "ordered_by": "Ken",
+      "ordered_at": "14/08/2026 14:32"
     },
     "a28f3d4cb88a": {
       "requester": "Jim",
@@ -14355,8 +14363,10 @@
       "quantity": 60,
       "notes": "3x2",
       "supplier": "",
-      "status": "pending",
-      "created_at": "13/08/2026 14:31"
+      "status": "ordered",
+      "created_at": "13/08/2026 14:31",
+      "ordered_by": "Ken",
+      "ordered_at": "14/08/2026 14:32"
     },
     "e1f46b8a532b": {
       "requester": "Jim",
@@ -14367,8 +14377,10 @@
       "quantity": 40,
       "notes": "kensite signs",
       "supplier": "",
-      "status": "pending",
-      "created_at": "13/08/2026 14:31"
+      "status": "ordered",
+      "created_at": "13/08/2026 14:31",
+      "ordered_by": "Ken",
+      "ordered_at": "14/08/2026 14:32"
     },
     "6d4278cab3eb": {
       "requester": "Jim",
@@ -14379,8 +14391,10 @@
       "quantity": 5,
       "notes": "",
       "supplier": "danfast",
-      "status": "pending",
-      "created_at": "13/08/2026 14:31"
+      "status": "ordered",
+      "created_at": "13/08/2026 14:31",
+      "ordered_by": "Ken",
+      "ordered_at": "14/08/2026 14:32"
     }
   },
   "materials_totals": {
