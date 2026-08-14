@@ -14440,7 +14440,12 @@
       "notes": "Downflow",
       "supplier": "",
       "status": "pending",
-      "created_at": "14/08/2026 16:00"
+      "created_at": "14/08/2026 16:00",
+      "po_number": "01985",
+      "po_supplier": "Danfast Ltd",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27653956",
+      "po_order_id": 27653956,
+      "po_status": "awaiting"
     },
     "b0e648139e8c": {
       "requester": "Alex",
@@ -14452,7 +14457,12 @@
       "notes": "15mm Pipe",
       "supplier": "",
       "status": "pending",
-      "created_at": "14/08/2026 16:00"
+      "created_at": "14/08/2026 16:00",
+      "po_number": "01985",
+      "po_supplier": "Danfast Ltd",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27653956",
+      "po_order_id": 27653956,
+      "po_status": "awaiting"
     },
     "bcd04707d80a": {
       "requester": "Alex",
@@ -14464,7 +14474,12 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "14/08/2026 16:00"
+      "created_at": "14/08/2026 16:00",
+      "po_number": "01985",
+      "po_supplier": "Danfast Ltd",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27653956",
+      "po_order_id": 27653956,
+      "po_status": "awaiting"
     }
   },
   "materials_totals": {
