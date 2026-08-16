@@ -35,8 +35,8 @@
       ],
       "cc_email": "",
       "requested_at": "16/08/2026 13:55",
-      "status": "sending",
-      "detail": "Being processed by the worker",
+      "status": "done",
+      "detail": "1 invoice emailed to nathan.mcguinness@kensite.co.uk",
       "processed_at": "16/08/2026 14:56"
     }
   ]
