@@ -14574,8 +14574,10 @@
       "raised_by": "Alex",
       "raised_at": "16/08/2026 14:09",
       "question": "What type of 32ft is it stacking on top of?",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "Test",
+      "answered_by": "Nathan",
+      "answered_at": "16/08/2026 14:09"
     }
   }
 }
