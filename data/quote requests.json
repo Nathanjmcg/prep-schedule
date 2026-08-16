@@ -1,20 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "0451918839",
-      "customer_code": "ACONN001",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-08-14",
-      "weeks": 1,
-      "site": "BL09JG",
-      "notes": "",
-      "requested_by": "NATHAN",
-      "requested_at": "16/08/2026 14:00",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "0af382b09b",
@@ -30,6 +15,21 @@
       "quote_ref": "",
       "detail": "500 Server Error: Internal Server Error for url: https://kensite.rm.onmcs.com/QuickQuote/Details",
       "processed_at": "14/08/2026 12:57"
+    },
+    {
+      "id": "0451918839",
+      "customer_code": "ACONN001",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-08-14",
+      "weeks": 1,
+      "site": "BL09JG",
+      "notes": "",
+      "requested_by": "NATHAN",
+      "requested_at": "16/08/2026 14:00",
+      "status": "failed",
+      "quote_ref": "",
+      "detail": "500 Server Error: Internal Server Error for url: https://kensite.rm.onmcs.com/QuickQuote/Details",
+      "processed_at": "16/08/2026 15:01"
     }
   ]
 }
