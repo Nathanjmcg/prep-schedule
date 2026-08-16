@@ -1,20 +1,5 @@
 {
-  "requests": [
-    {
-      "id": "5759d906d2",
-      "customer_code": "ACONN001",
-      "offer_code": "MOBILEOFFER",
-      "start_date": "2026-08-16",
-      "weeks": 2,
-      "site": "BL0 9JG",
-      "notes": "",
-      "requested_by": "nathan",
-      "requested_at": "16/08/2026 19:09",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
-    }
-  ],
+  "requests": [],
   "history": [
     {
       "id": "a4205ca3ed",
@@ -30,6 +15,21 @@
       "quote_ref": "01-001233",
       "detail": "Emailed to nathan.mcguinness@kensite.co.uk, document attached",
       "processed_at": "16/08/2026 19:30"
+    },
+    {
+      "id": "5759d906d2",
+      "customer_code": "ACONN001",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-08-16",
+      "weeks": 2,
+      "site": "BL0 9JG",
+      "notes": "",
+      "requested_by": "nathan",
+      "requested_at": "16/08/2026 19:09",
+      "status": "done",
+      "quote_ref": "01-001234",
+      "detail": "Emailed to nathan.mcguinness@kensite.co.uk, document attached",
+      "processed_at": "16/08/2026 20:09"
     }
   ]
 }
