@@ -14440,7 +14440,14 @@
       "notes": "For Test from Nathan",
       "supplier": "",
       "status": "pending",
-      "created_at": "16/08/2026 13:53"
+      "created_at": "16/08/2026 13:53",
+      "query": {
+        "candidate_code": "709070",
+        "candidate_name": "Blue Reinforced Plastic Hose 12mm Bore x 3mm Wall 30Mtr Coil",
+        "candidate_price": 23.79,
+        "score": 0.31,
+        "asked_at": "16/08/2026 14:53"
+      }
     },
     "2fda34cbe6cd": {
       "requester": "Cliff",
