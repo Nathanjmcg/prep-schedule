@@ -14459,7 +14459,12 @@
       "notes": "For Test from Nathan",
       "supplier": "",
       "status": "pending",
-      "created_at": "16/08/2026 13:53"
+      "created_at": "16/08/2026 13:53",
+      "po_number": "01987",
+      "po_supplier": "Danfast Ltd",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27656514",
+      "po_order_id": 27656514,
+      "po_status": "awaiting"
     },
     "522be2cc4f3a": {
       "requester": "Cliff",
@@ -14471,7 +14476,12 @@
       "notes": "For Test from Nathan",
       "supplier": "",
       "status": "pending",
-      "created_at": "16/08/2026 13:53"
+      "created_at": "16/08/2026 13:53",
+      "po_number": "01987",
+      "po_supplier": "Danfast Ltd",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27656514",
+      "po_order_id": 27656514,
+      "po_status": "awaiting"
     },
     "4cbcc4c219e1": {
       "requester": "Cliff",
