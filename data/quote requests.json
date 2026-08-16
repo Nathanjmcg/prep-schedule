@@ -1,5 +1,6 @@
 {
-  "requests": [
+  "requests": [],
+  "history": [
     {
       "id": "c1afad23c5",
       "customer_code": "ACONN001",
@@ -10,10 +11,10 @@
       "notes": "",
       "requested_by": "nathan",
       "requested_at": "16/08/2026 18:04",
-      "status": "pending",
-      "quote_ref": "",
-      "detail": ""
+      "status": "done",
+      "quote_ref": "01-001231",
+      "detail": "Emailed to nathan.mcguinness@kensite.co.uk",
+      "processed_at": "16/08/2026 19:05"
     }
-  ],
-  "history": []
+  ]
 }
