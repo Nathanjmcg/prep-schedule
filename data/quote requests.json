@@ -1,5 +1,20 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "7556a00148",
+      "customer_code": "ACONN001",
+      "offer_code": "MOBILEOFFER",
+      "start_date": "2026-08-14",
+      "weeks": 1,
+      "site": "BL09JG",
+      "notes": "",
+      "requested_by": "NATHAN",
+      "requested_at": "16/08/2026 14:10",
+      "status": "pending",
+      "quote_ref": "",
+      "detail": ""
+    }
+  ],
   "history": [
     {
       "id": "0af382b09b",
