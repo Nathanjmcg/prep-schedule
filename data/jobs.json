@@ -14637,12 +14637,7 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "17/08/2026 12:25",
-      "po_number": "01990",
-      "po_supplier": "Bolton Builders Merchants",
-      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670581",
-      "po_order_id": 27670581,
-      "po_status": "awaiting"
+      "created_at": "17/08/2026 12:25"
     },
     "b66126eb0854": {
       "requester": "Alex",
@@ -14784,8 +14779,10 @@
       "raised_by": "Jim",
       "raised_at": "17/08/2026 10:13",
       "question": "what furniture is going for the 32ft office? we can send this down in the drying room",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "We'll need to send 5 x Tables and 10 x Upholstered Chairs",
+      "answered_by": "Nathan",
+      "answered_at": "17/08/2026 12:36"
     }
   }
 }
