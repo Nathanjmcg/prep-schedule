@@ -1703,11 +1703,14 @@ K_PURPLE_DARK = "#5b21b6"
 if not st.session_state.get("authenticated", True):
     st.session_state["authenticated"] = True
 
-# Auto-refresh every 30 seconds — paused when a file is uploading OR any dialog is open
+# Auto-refresh every 10 seconds — paused when a file is uploading OR any dialog is open
+# (Nathan, 16/08/2026: was 30 seconds. The cache TTLs below were dropped
+# to 10 to match; leaving them at 30 would have meant two refreshes in
+# every three redrawing the same cached data.)
 _file_uploading  = st.session_state.get("lh_uploader") is not None
 _any_dialog_open = st.session_state.get("any_dialog_open", False)
 if not _file_uploading and not _any_dialog_open:
-    st_autorefresh(interval=30_000, limit=0, key="schedule_autorefresh")
+    st_autorefresh(interval=10_000, limit=0, key="schedule_autorefresh")
 
 # ── GitHub config ─────────────────────────────────────────────────────────────
 GITHUB_TOKEN  = st.secrets["GITHUB_TOKEN"]
@@ -1737,15 +1740,19 @@ def gh_put(path, obj, sha=None, msg="Update schedule"):
     requests.put(url, headers=HEADERS, json=payload,
                  timeout=15).raise_for_status()
 
-@st.cache_data(ttl=30)
+@st.cache_data(ttl=10)
 def load_request_file(path):
     """Cached read of a request-queue file: one GitHub call per file per
-    30s across every rerun and session, instead of one per rerun. Writers
+    10s across every rerun and session, instead of one per rerun. Writers
     must call load_request_file.clear() after a successful gh_put so the
-    change shows immediately."""
+    change shows immediately.
+
+    The TTL matches the auto-refresh interval on purpose. Set it higher
+    than the refresh and the extra reruns just redraw stale data; set it
+    lower and every rerun pays for a GitHub call it did not need."""
     return gh_get(path)
 
-@st.cache_data(ttl=30)
+@st.cache_data(ttl=10)
 def load_data():
     data, sha = gh_get(DATA_FILE)
     if data is None:
@@ -4301,7 +4308,7 @@ with _pnl2:
         qr_data = qr_data or {"requests": []}
 
         # Auto-clear: completed log entries older than 10 minutes drop off on
-        # their own so the log stays tidy (the page refreshes every 30s, so
+        # their own so the log stays tidy (the page refreshes every 10s, so
         # done items disappear ~10 min after the worker finishes them). Failed
         # entries are kept so they are not missed; use Clear log to remove them.
         def _qr_older_than(entry, minutes):
