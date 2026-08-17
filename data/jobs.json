@@ -14584,12 +14584,7 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "17/08/2026 12:21",
-      "po_number": "01988",
-      "po_supplier": "Danfast Ltd",
-      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670309",
-      "po_order_id": 27670309,
-      "po_status": "awaiting"
+      "created_at": "17/08/2026 12:21"
     },
     "31a056650af8": {
       "requester": "Mitch",
@@ -14601,12 +14596,7 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "17/08/2026 12:21",
-      "po_number": "01988",
-      "po_supplier": "Danfast Ltd",
-      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670309",
-      "po_order_id": 27670309,
-      "po_status": "awaiting"
+      "created_at": "17/08/2026 12:21"
     },
     "560b93c440b8": {
       "requester": "Mitch",
@@ -14618,12 +14608,7 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "17/08/2026 12:21",
-      "po_number": "01988",
-      "po_supplier": "Danfast Ltd",
-      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670309",
-      "po_order_id": 27670309,
-      "po_status": "awaiting"
+      "created_at": "17/08/2026 12:21"
     },
     "ad70b2af5518": {
       "requester": "Jim",
@@ -14636,6 +14621,18 @@
       "supplier": "",
       "status": "pending",
       "created_at": "17/08/2026 12:24"
+    },
+    "6259fa0c520b": {
+      "requester": "Cliff",
+      "request_id": "151c5f69d744",
+      "item": "50 \u00d7 3x2 CLS Timber",
+      "category": "Timber & Sheet Materials",
+      "item_name": "3x2 CLS Timber",
+      "quantity": 50,
+      "notes": "",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "17/08/2026 12:25"
     }
   },
   "materials_totals": {
