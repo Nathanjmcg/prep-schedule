@@ -14634,8 +14634,10 @@
       "raised_by": "Jim",
       "raised_at": "17/08/2026 08:46",
       "question": "does this job need steps for the 2 + 1?",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "Yeah 2 steps for the 2+1 please",
+      "answered_by": "Nathan",
+      "answered_at": "17/08/2026 08:52"
     }
   }
 }
