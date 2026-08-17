@@ -14648,13 +14648,15 @@
       "quantity": 5,
       "notes": "",
       "supplier": "",
-      "status": "pending",
+      "status": "ordered",
       "created_at": "17/08/2026 12:29",
       "po_number": "01991",
       "po_supplier": "Danfast Ltd",
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670770",
       "po_order_id": 27670770,
-      "po_status": "awaiting"
+      "po_status": "approved",
+      "ordered_by": "Ken",
+      "ordered_at": "17/08/2026 14:00"
     }
   },
   "materials_totals": {
