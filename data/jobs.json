@@ -14637,7 +14637,12 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "17/08/2026 12:25"
+      "created_at": "17/08/2026 12:25",
+      "po_number": "01990",
+      "po_supplier": "Bolton Builders Merchants",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670581",
+      "po_order_id": 27670581,
+      "po_status": "awaiting"
     },
     "b66126eb0854": {
       "requester": "Alex",
