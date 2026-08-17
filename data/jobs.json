@@ -14650,8 +14650,10 @@
       "raised_by": "Steve Taylor",
       "raised_at": "17/08/2026 09:42",
       "question": "What furniture is needed in the 20ft Drying Room?",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "Drying Room Benching Only - No lockers have been agreed.",
+      "answered_by": "Nathan",
+      "answered_at": "17/08/2026 09:43"
     }
   }
 }
