@@ -13606,31 +13606,29 @@
         "timestamp": "10/08/2026 13:45"
       },
       {
-        "type": "On Hire",
         "customer": "Proservice Building Services Marketplace Plc",
         "postcode": "",
         "contract_number": "0000031809",
+        "type": "On Hire",
+        "site_move_type": "",
         "units": {
-          "32ft AV": 1,
           "20ft AV": 1
         },
-        "haulage": "External Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Plumbing | Date moved by MCS Auto from 12/08/2026 to 20/08/2026 on 17/08/2026 09:32",
-        "added_by": "MCS Auto",
-        "timestamp": "17/08/2026 09:32",
         "av_configs": {
-          "32ft AV": {
-            "Office": 1
-          },
           "20ft AV": {
             "Drying Room": 1
           }
         },
-        "date_moved_by": "MCS Auto"
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Plumbing | Date moved by MCS Auto from 12/08/2026 to 20/08/2026 on 17/08/2026 09:32",
+        "added_by": "MCS Auto",
+        "timestamp": "17/08/2026 09:32",
+        "edited_by": "Claude",
+        "edited_at": "17/08/2026 09:41"
       }
     ],
     "2026-08-26": [
