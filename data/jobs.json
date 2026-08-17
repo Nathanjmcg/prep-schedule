@@ -14671,6 +14671,22 @@
       "answer": "Drying Room Benching Only - No lockers have been agreed.",
       "answered_by": "Nathan",
       "answered_at": "17/08/2026 09:43"
+    },
+    "da4bc02dbc": {
+      "id": "da4bc02dbc",
+      "date": "2026-08-20",
+      "job_idx": 2,
+      "job": {
+        "customer": "Proservice Building Services Marketplace Plc",
+        "contract": "0000031809",
+        "job_type": "On Hire",
+        "postcode": ""
+      },
+      "raised_by": "Jim",
+      "raised_at": "17/08/2026 10:13",
+      "question": "what furniture is going for the 32ft office? we can send this down in the drying room",
+      "status": "open",
+      "answer": ""
     }
   }
 }
