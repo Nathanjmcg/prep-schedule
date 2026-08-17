@@ -14633,6 +14633,18 @@
       "supplier": "",
       "status": "pending",
       "created_at": "17/08/2026 12:25"
+    },
+    "b66126eb0854": {
+      "requester": "Alex",
+      "request_id": "bfa7add0c691",
+      "item": "5 \u00d7 Hyco Accona 2kW Panel Heater c/w 7 Day Digital Timer",
+      "category": "Water Heating",
+      "item_name": "Hyco Accona 2kW Panel Heater c/w 7 Day Digital Timer",
+      "quantity": 5,
+      "notes": "",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "17/08/2026 12:29"
     }
   },
   "materials_totals": {
