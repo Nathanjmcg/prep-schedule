@@ -13425,6 +13425,24 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Split delivery #1 - later drop on this contract | Site: DLP Site Compound, Field Adjacent to 109 Ings Lane, Rochdale, , OL12 7LG | Also on contract: 1x Pump; 1x initial water fill; 1x Weekly Water Fill; 1x Weekly Water Fill - Every 4 weeks - 05.03",
         "added_by": "MCS Auto",
         "timestamp": "17/08/2026 14:00"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Winstanley Plumbing & Heating",
+        "postcode": "PR4 3SH",
+        "contract_number": "0000031705",
+        "units": {
+          "10ft Store": 1,
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: TREALES PRIMARY SCHOOL, CHURCH ROAD, KIRKHAM, , PR4 3SH | Also on contract: 1x Initial Water; 56x Initial Fuel",
+        "added_by": "MCS Auto",
+        "timestamp": "17/08/2026 14:10"
       }
     ],
     "2026-08-27": [
@@ -13719,6 +13737,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: DLP Site Compound, Field Adjacent to 109 Ings Lane, Rochdale, , OL12 7LG | Also on contract: 1x 32amp 230v 20m cable; 1x fuel tank no longer required; 60x Fuel Sin generator",
         "added_by": "MCS Auto",
         "timestamp": "17/08/2026 14:00"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Winstanley Plumbing & Heating",
+        "postcode": "BB5 3SQ",
+        "contract_number": "0000031706",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: GREEN HAWORTH SCHOOL, SCHOOL HOUSE LANE, ACCRINGTON, , BB5 3SQ",
+        "added_by": "MCS Auto",
+        "timestamp": "17/08/2026 14:10"
       }
     ],
     "2026-09-02": [
