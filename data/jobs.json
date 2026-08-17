@@ -14609,6 +14609,18 @@
       "supplier": "",
       "status": "pending",
       "created_at": "17/08/2026 12:21"
+    },
+    "ad70b2af5518": {
+      "requester": "Jim",
+      "request_id": "1442b3fd0922",
+      "item": "75 \u00d7 3mm Wall Boards",
+      "category": "Timber & Sheet Materials",
+      "item_name": "3mm Wall Boards",
+      "quantity": 75,
+      "notes": "",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "17/08/2026 12:24"
     }
   },
   "materials_totals": {
