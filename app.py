@@ -3579,6 +3579,35 @@ def _mat_group_state(members):
 MAT_LINE_MARK = {"pending": "", "awaiting": "❌", "ordered": "✔",
                  "delivered": "✅", "query": "❓"}
 
+# Ken stamps po_link on each line. This is the fallback shape for older
+# lines stamped before that field existed, and it is the same URL the PO
+# emails use.
+ZAHARA_PO_LINK = "https://myzahara.net/v3/documents/purchase-orders/view/{oid}"
+
+
+def _po_link_html(r):
+    """The PO number as a clickable link into Zahara, so Chris can go
+    straight to the order from the schedule instead of searching for it
+    (Nathan, 17/08/2026).
+
+    Returns TRUSTED HTML: the number and the URL are both escaped here,
+    so the caller must insert this without escaping it again. Falls back
+    to plain text when there is no link to give, which is the case for
+    the older lines Ken stamped before po_link existed and for anything
+    marked ordered by hand.
+    """
+    num = _html_esc.escape(str(r.get("po_number", "")))
+    link = str(r.get("po_link") or "").strip()
+    if not link and r.get("po_order_id"):
+        link = ZAHARA_PO_LINK.format(oid=r["po_order_id"])
+    if not link.startswith("https://"):
+        return f"PO {num}"
+    href = _html_esc.escape(link, quote=True)
+    return (f'PO <a href="{href}" target="_blank" rel="noopener noreferrer" '
+            f'style="color:inherit;text-decoration:underline;'
+            f'text-underline-offset:2px;font-weight:800;" '
+            f'title="Open this purchase order in Zahara">{num}</a>')
+
 
 def _mat_group_members(mid):
     """All items belonging to the same request as `mid`, newest
@@ -3860,19 +3889,22 @@ def materials_view_dialog(mid):
     for m, r in members:
         state = _mat_line_state(r)
         mark = MAT_LINE_MARK.get(state, "")
+        # detail is inserted as HTML below, so anything from the record is
+        # escaped here and only _po_link_html contributes real markup
         detail = []
         if r.get("category"):
-            detail.append(r["category"])
+            detail.append(_html_esc.escape(str(r["category"])))
         if r.get("po_number"):
-            detail.append(f'PO {r["po_number"]}'
-                          + (f' · {r.get("po_supplier","")}'
-                             if r.get("po_supplier") else "")
-                          + (" · awaiting approval"
-                             if state == "awaiting" else ""))
+            detail.append(
+                _po_link_html(r)
+                + (f' · {_html_esc.escape(str(r.get("po_supplier","")))}'
+                   if r.get("po_supplier") else "")
+                + (" · awaiting approval" if state == "awaiting" else ""))
         elif r.get("supplier"):
-            detail.append(r["supplier"])
+            detail.append(_html_esc.escape(str(r["supplier"])))
         if state == "delivered":
-            detail.append(f'Delivered {r.get("delivered_at") or r.get("pod_received_at","")}')
+            detail.append(_html_esc.escape(
+                f'Delivered {r.get("delivered_at") or r.get("pod_received_at","")}'))
         q = r.get("query") or {}
         query_html = ""
         if state == "query":
@@ -5089,20 +5121,27 @@ with mat_col:
                     note = r.get("notes", "")
                     state = _mat_line_state(r)
                     mark = MAT_LINE_MARK.get(state, "")
-                    po_bits = ""
+                    # po_html is HTML, not plain text, because the PO
+                    # number is a link into Zahara. Everything drawn from
+                    # the record is escaped as it goes in, so the caller
+                    # below must NOT escape it a second time or the
+                    # anchor would render as visible tags.
+                    po_html = ""
                     if r.get("po_number"):
-                        po_bits = (f'PO {r["po_number"]}'
+                        po_html = (_po_link_html(r)
                                    + (" · awaiting approval"
                                       if state == "awaiting" else ""))
                     elif state == "query":
-                        po_bits = ('Ken asks: is this "'
-                                   + str((r.get("query") or {})
-                                         .get("candidate_name", ""))[:45]
-                                   + '"? Open to answer')
+                        po_html = _html_esc.escape(
+                            'Ken asks: is this "'
+                            + str((r.get("query") or {})
+                                  .get("candidate_name", ""))[:45]
+                            + '"? Open to answer')
                     elif state == "delivered" and (r.get("delivered_at")
                                                    or r.get("pod_received_at")):
-                        po_bits = (f'Delivered '
-                                   f'{r.get("delivered_at") or r.get("pod_received_at")}')
+                        po_html = _html_esc.escape(
+                            f'Delivered '
+                            f'{r.get("delivered_at") or r.get("pod_received_at")}')
                     subs += (
                         f'<div style="background:rgba(255,255,255,.6);'
                         f'border-radius:6px;padding:4px 8px;'
@@ -5113,8 +5152,8 @@ with mat_col:
                         f'{_html_esc.escape(str(r.get("item","")))}</div>'
                         + (f'<div style="font-size:10px;opacity:.75;'
                            f'color:{c_fg};line-height:1.3;">'
-                           f'{_html_esc.escape(po_bits)}</div>'
-                           if po_bits else "")
+                           f'{po_html}</div>'
+                           if po_html else "")
                         + (f'<div style="font-size:10px;opacity:.75;'
                            f'color:{c_fg};line-height:1.3;">'
                            f'{_html_esc.escape(str(note))}</div>'
