@@ -12416,7 +12416,31 @@
         "timestamp": "06/08/2026 08:16"
       }
     ],
-    "2026-09-07": [],
+    "2026-09-07": [
+      {
+        "type": "On Hire",
+        "customer": "Pinington Ltd",
+        "postcode": "",
+        "contract_number": "0000031882",
+        "units": {
+          "20ft AV": 1,
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "17/08/2026 09:32",
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1
+          }
+        }
+      }
+    ],
     "2026-08-19": [
       {
         "type": "On Hire",
@@ -13157,6 +13181,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre)",
         "added_by": "MCS Auto",
         "timestamp": "14/08/2026 16:50"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Exact Property Services Ltd",
+        "postcode": "",
+        "contract_number": "0000031884",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "17/08/2026 09:32"
       }
     ],
     "2026-08-21": [
