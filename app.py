@@ -6,6 +6,13 @@ import requests
 import pandas as pd
 from datetime import date, timedelta, datetime
 import io
+# Streamlit runs this file top to bottom on every rerun, so an import
+# has to appear ABOVE the first line that runs and uses it, not just
+# above the function that references it. This one used to sit further
+# down next to _pill; the materials dialog is opened by module level
+# code earlier than that, so opening a materials request raised
+# NameError: _html_esc. Keep escaping imports up here.
+import html as _html_esc
 from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(page_title="Kensite Prep Schedule", layout="wide", page_icon="🏗️")
@@ -4077,8 +4084,6 @@ def _job_search_hits(jobs_dict, query):
                     "_idx": idx,     # position within that day's list
                 })
     return hits
-
-import html as _html_esc
 
 
 def _pill(text, bg="#f1f3f4", fg=K_GREY):
