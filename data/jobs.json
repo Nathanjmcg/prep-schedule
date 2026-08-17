@@ -13857,6 +13857,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Caton Primary School, Broadcare, Lancaster, , LA2 9NH",
         "added_by": "MCS Auto",
         "timestamp": "14/08/2026 15:50"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A P Group (UK) Ltd",
+        "postcode": "",
+        "contract_number": "0000031886",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "17/08/2026 11:10"
       }
     ],
     "2026-08-29": [],
