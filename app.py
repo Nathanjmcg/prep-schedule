@@ -1778,6 +1778,82 @@ def _recently_created(j):
     except Exception:
         return False
 
+# Fields on a materials line that belong to Ken (the PO worker), not to
+# this app. The app must never write an older value of these over a
+# newer one.
+#
+# 17/08/2026: it did exactly that. Ken raised PO 01988 for Mitch at
+# 13:25 and PO 01990 for Cliff at 13:35, stamped both onto their lines,
+# and emailed Chris. Somebody then used the app with a session whose
+# copy of jobs.json predated the stamp; save_data wrote the whole
+# materials dict back from that stale copy and the stamps vanished.
+# Both requests went back to red, and because the approval sweep looks
+# for lines carrying po_number, neither could ever flip to Ordered
+# again. Jim's 13:30 and Alex's 13:40 survived only because nobody
+# happened to save in those two windows.
+#
+# The jobs key was already protected by the merge above. Everything
+# else was not.
+# The exact field names Ken stamps in stamp_lines(). DELIBERATELY NOT
+# LISTED: delivered, status, ordered_by, query_answer. The app writes
+# all four itself - the Delivered button and its untick, the
+# mark-as-ordered button, and the Yes/No answers to Ken's queries.
+# Letting the fresh copy win on those would make an untick spring back,
+# which is a worse bug than the one being fixed. Only fields the app
+# never authors are protected here.
+_WORKER_FIELDS = ("po_number", "po_status", "po_supplier", "po_link",
+                  "po_order_id", "query", "query_candidate")
+
+
+def _recently_created_line(rec):
+    """Same idea as _recently_created, for a materials or live hire line,
+    which stamps created_at rather than timestamp."""
+    for field in ("created_at", "timestamp"):
+        raw = rec.get(field, "")
+        for fmt in ("%d/%m/%Y %H:%M", "%Y-%m-%d %H:%M", "%d/%m/%Y %H:%M:%S"):
+            try:
+                ts = datetime.strptime(raw, fmt)
+                return datetime.now() - ts <= timedelta(
+                    minutes=_MERGE_WINDOW_MIN)
+            except Exception:
+                continue
+    return False
+
+
+def _protect_worker_fields(payload_obj, fresh_obj):
+    """Never let this session's copy of a materials line undo something
+    Ken wrote while the page was sitting open.
+
+    materials and live_hire are FLAT dicts keyed by line id, so this
+    walks ids, not dates. For a line in both copies, any worker field
+    present in the fresh one wins. A line that exists only in the fresh
+    copy is carried over whole, so a line added since the page loaded is
+    not dropped on save.
+    """
+    for key in ("materials", "live_hire"):
+        fresh_map = fresh_obj.get(key)
+        local_map = payload_obj.get(key)
+        if not isinstance(fresh_map, dict) or not isinstance(local_map, dict):
+            continue
+        for lid, fresh_rec in fresh_map.items():
+            if not isinstance(fresh_rec, dict):
+                continue
+            mine = local_map.get(lid)
+            if not isinstance(mine, dict):
+                # Missing locally. That is either a line someone else
+                # added since this page loaded, or one this session
+                # deliberately deleted. Only the first is restored, on
+                # the same recency test the jobs merge uses, so a
+                # genuine delete is still honoured.
+                if _recently_created_line(fresh_rec):
+                    local_map[lid] = fresh_rec
+                continue
+            for f in _WORKER_FIELDS:
+                if f in fresh_rec and fresh_rec.get(f) not in (None, ""):
+                    mine[f] = fresh_rec[f]
+        payload_obj[key] = local_map
+
+
 def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None,
               cl_dict=None, lh_dict=None, mat_dict=None, matt_dict=None, _sha_hint=None):
     """Fetch latest data immediately before writing and merge in any jobs
@@ -1809,6 +1885,7 @@ def save_data(jobs_dict, mcs_dict, sv_dict=None, svr_dict=None,
                     if _job_identity(rj) not in local_keys and _recently_created(rj):
                         local_jobs.setdefault(dkey, []).append(rj)
                         local_keys.add(_job_identity(rj))
+            _protect_worker_fields(payload_obj, fresh_obj)
         try:
             gh_put(DATA_FILE, payload_obj, sha=fresh_sha)
             return
