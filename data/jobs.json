@@ -14573,6 +14573,42 @@
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27656513",
       "po_order_id": 27656513,
       "po_status": "awaiting"
+    },
+    "d6685fa47daf": {
+      "requester": "Mitch",
+      "request_id": "0b26fc1ecf06",
+      "item": "4 \u00d7 DAB Jetinox 82M Control-D 220-240v 50Hz Water Pump",
+      "category": "Plumbing",
+      "item_name": "DAB Jetinox 82M Control-D 220-240v 50Hz Water Pump",
+      "quantity": 4,
+      "notes": "",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "17/08/2026 12:21"
+    },
+    "31a056650af8": {
+      "requester": "Mitch",
+      "request_id": "0b26fc1ecf06",
+      "item": "5 \u00d7 Triton 3kW Hand Wash Unit",
+      "category": "Water Heating",
+      "item_name": "Triton 3kW Hand Wash Unit",
+      "quantity": 5,
+      "notes": "",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "17/08/2026 12:21"
+    },
+    "560b93c440b8": {
+      "requester": "Mitch",
+      "request_id": "0b26fc1ecf06",
+      "item": "10 \u00d7 Pvc Cova-Quick Roll 33Mtr x 110Cm",
+      "category": "Flooring",
+      "item_name": "Pvc Cova-Quick Roll 33Mtr x 110Cm",
+      "quantity": 10,
+      "notes": "",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "17/08/2026 12:21"
     }
   },
   "materials_totals": {
