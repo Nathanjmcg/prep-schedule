@@ -14584,7 +14584,12 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "17/08/2026 12:21"
+      "created_at": "17/08/2026 12:21",
+      "po_number": "01988",
+      "po_supplier": "Danfast Ltd",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670309",
+      "po_order_id": 27670309,
+      "po_status": "awaiting"
     },
     "31a056650af8": {
       "requester": "Mitch",
@@ -14596,7 +14601,12 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "17/08/2026 12:21"
+      "created_at": "17/08/2026 12:21",
+      "po_number": "01988",
+      "po_supplier": "Danfast Ltd",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670309",
+      "po_order_id": 27670309,
+      "po_status": "awaiting"
     },
     "560b93c440b8": {
       "requester": "Mitch",
@@ -14608,7 +14618,12 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "17/08/2026 12:21"
+      "created_at": "17/08/2026 12:21",
+      "po_number": "01988",
+      "po_supplier": "Danfast Ltd",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670309",
+      "po_order_id": 27670309,
+      "po_status": "awaiting"
     },
     "ad70b2af5518": {
       "requester": "Jim",
