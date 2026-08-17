@@ -14620,13 +14620,15 @@
       "quantity": 4,
       "notes": "",
       "supplier": "",
-      "status": "pending",
+      "status": "ordered",
       "created_at": "17/08/2026 12:21",
       "po_number": "01988",
       "po_supplier": "Danfast Ltd",
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670309",
       "po_order_id": 27670309,
-      "po_status": "awaiting"
+      "po_status": "approved",
+      "ordered_by": "Ken",
+      "ordered_at": "17/08/2026 15:30"
     },
     "31a056650af8": {
       "requester": "Mitch",
@@ -14637,13 +14639,15 @@
       "quantity": 5,
       "notes": "",
       "supplier": "",
-      "status": "pending",
+      "status": "ordered",
       "created_at": "17/08/2026 12:21",
       "po_number": "01988",
       "po_supplier": "Danfast Ltd",
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670309",
       "po_order_id": 27670309,
-      "po_status": "awaiting"
+      "po_status": "approved",
+      "ordered_by": "Ken",
+      "ordered_at": "17/08/2026 15:30"
     },
     "560b93c440b8": {
       "requester": "Mitch",
@@ -14654,13 +14658,15 @@
       "quantity": 10,
       "notes": "",
       "supplier": "",
-      "status": "pending",
+      "status": "ordered",
       "created_at": "17/08/2026 12:21",
       "po_number": "01988",
       "po_supplier": "Danfast Ltd",
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670309",
       "po_order_id": 27670309,
-      "po_status": "awaiting"
+      "po_status": "approved",
+      "ordered_by": "Ken",
+      "ordered_at": "17/08/2026 15:30"
     },
     "ad70b2af5518": {
       "requester": "Jim",
@@ -14688,13 +14694,15 @@
       "quantity": 50,
       "notes": "",
       "supplier": "",
-      "status": "pending",
+      "status": "ordered",
       "created_at": "17/08/2026 12:25",
       "po_number": "01990",
       "po_supplier": "Bolton Builders Merchants",
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670581",
       "po_order_id": 27670581,
-      "po_status": "awaiting"
+      "po_status": "approved",
+      "ordered_by": "Ken",
+      "ordered_at": "17/08/2026 15:30"
     },
     "b66126eb0854": {
       "requester": "Alex",
