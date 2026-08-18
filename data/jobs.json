@@ -14854,8 +14854,10 @@
       "raised_by": "Alex",
       "raised_at": "18/08/2026 10:51",
       "question": "Still havnt got any units with the doors opening out. Need to know the plan is",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "Pending update from Nick and the customer, delivery going back 1 week",
+      "answered_by": "Nathan",
+      "answered_at": "18/08/2026 11:47"
     }
   }
 }
