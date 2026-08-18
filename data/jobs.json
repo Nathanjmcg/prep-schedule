@@ -14700,7 +14700,15 @@
       "notes": "Only need the PZ1 head for my screwdriver as i already have the handle and my original PZ1 head snapped",
       "supplier": "",
       "status": "pending",
-      "created_at": "18/08/2026 13:20"
+      "created_at": "18/08/2026 13:20",
+      "query": {
+        "candidate_code": "350411",
+        "candidate_name": "25mm x 16mm Internal Corner For Mini Trunking",
+        "candidate_price": 0.56,
+        "score": 0.12,
+        "mismatch": "the request says 154mm and the product says 16, 25mm",
+        "asked_at": "18/08/2026 14:20"
+      }
     }
   },
   "materials_totals": {
