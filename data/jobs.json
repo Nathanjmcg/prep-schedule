@@ -14757,6 +14757,22 @@
       "answer": "We'll need to send 5 x Tables and 10 x Upholstered Chairs",
       "answered_by": "Nathan",
       "answered_at": "17/08/2026 12:36"
+    },
+    "52a4484342": {
+      "id": "52a4484342",
+      "date": "2026-08-19",
+      "job_idx": 0,
+      "job": {
+        "customer": "A Connolly Limited",
+        "contract": "0000031796",
+        "job_type": "On Hire",
+        "postcode": ""
+      },
+      "raised_by": "Alex",
+      "raised_at": "18/08/2026 06:29",
+      "question": "Is this having 1 store or 3? We have 3 down on our whiteboard",
+      "status": "open",
+      "answer": ""
     }
   }
 }
