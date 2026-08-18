@@ -14708,7 +14708,9 @@
         "score": 0.12,
         "mismatch": "the request says 154mm and the product says 16, 25mm",
         "asked_at": "18/08/2026 14:20"
-      }
+      },
+      "query_answer": "no",
+      "query_answered_at": "18/08/2026 13:22"
     }
   },
   "materials_totals": {
