@@ -14689,6 +14689,18 @@
       "po_status": "approved",
       "ordered_by": "Ken",
       "ordered_at": "17/08/2026 14:00"
+    },
+    "64f66b5da351": {
+      "requester": "Alex",
+      "request_id": "ba6176d125f7",
+      "item": "1 \u00d7 Wera interchangeable PZ1 x 154mm Kraftform Kompakt VDE blade",
+      "category": "Anything Else",
+      "item_name": "Wera interchangeable PZ1 x 154mm Kraftform Kompakt VDE blade",
+      "quantity": 1,
+      "notes": "Only need the PZ1 head for my screwdriver as i already have the handle and my original PZ1 head snapped",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "18/08/2026 13:20"
     }
   },
   "materials_totals": {
