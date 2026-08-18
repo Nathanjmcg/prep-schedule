@@ -13460,6 +13460,33 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: TREALES PRIMARY SCHOOL, CHURCH ROAD, KIRKHAM, , PR4 3SH | Also on contract: 1x Initial Water; 56x Initial Fuel",
         "added_by": "MCS Auto",
         "timestamp": "17/08/2026 14:10"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Think Hire",
+        "postcode": "",
+        "contract_number": "0000031890",
+        "units": {
+          "20ft AV": 2,
+          "10ft Store": 1,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "18/08/2026 12:09",
+        "av_configs": {
+          "20ft AV": {
+            "Office": 1,
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-08-27": [
@@ -13719,6 +13746,21 @@
         "timestamp": "17/08/2026 09:32",
         "edited_by": "Nathan",
         "edited_at": "17/08/2026 09:42"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "BD6 2AS",
+        "contract_number": "0000031758",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Stoned area facing 29 collingham ave, Bradford, , BD6 2AS | Also on contract: 1x 30kva 12x8ft Container Gen - Unlimited; 1x 415v 125amp 5mtr BSU Charge Lead; 1x 3 Way 32AMP 230V Distribution Box; 3x 32amp 230v 20mtr Plug",
+        "added_by": "MCS Auto",
+        "timestamp": "18/08/2026 12:09"
       }
     ],
     "2026-08-26": [
@@ -14020,6 +14062,25 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 80x Initial Fuel Fill; 1x Initial Water Fill; 1x Weekly Service",
         "added_by": "MCS Auto",
         "timestamp": "14/08/2026 11:50"
+      }
+    ],
+    "2026-09-08": [
+      {
+        "type": "Off Hire",
+        "customer": "F B Site Services Ltd",
+        "postcode": "CH65 1AJ",
+        "contract_number": "0000031485",
+        "units": {
+          "3+1": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Eastham Refinery Limited, North Road, ELLESMERE PORT, , CH65 1AJ",
+        "added_by": "MCS Auto",
+        "timestamp": "18/08/2026 12:09"
       }
     ]
   },
