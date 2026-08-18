@@ -14832,8 +14832,10 @@
       "raised_by": "Alex",
       "raised_at": "18/08/2026 06:29",
       "question": "Is this having 1 store or 3? We have 3 down on our whiteboard",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "Youre right its 3 and one should be half racked!",
+      "answered_by": "Nathan",
+      "answered_at": "18/08/2026 11:45"
     },
     "f2e9aaa7bd": {
       "id": "f2e9aaa7bd",
