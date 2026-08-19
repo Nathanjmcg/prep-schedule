@@ -30,16 +30,6 @@
       "detail": "Customer 'h h smiths' not found in MCS (closest match scored 59%, below the 60% threshold)",
       "matched_customer": "",
       "processed_at": "19/08/2026 12:01"
-    },
-    {
-      "id": "d97cf206e8",
-      "customer": "h h smith",
-      "requested_by": "Mitch Garnett",
-      "requested_at": "19/08/2026 11:29",
-      "status": "done",
-      "detail": "Emailed to mitch.garnett@kensite.co.uk",
-      "matched_customer": "H H Smith & Sons  Co Ltd - HHSMI001",
-      "processed_at": "19/08/2026 12:30"
     }
   ]
 }
