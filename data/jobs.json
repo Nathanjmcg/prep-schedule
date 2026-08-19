@@ -14850,7 +14850,12 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "19/08/2026 11:25"
+      "created_at": "19/08/2026 11:25",
+      "po_number": "01997",
+      "po_supplier": "Danfast Ltd",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27705385",
+      "po_order_id": 27705385,
+      "po_status": "awaiting"
     },
     "d5cb9d868969": {
       "requester": "Baz",
