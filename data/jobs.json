@@ -13529,6 +13529,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Market Square, Market St, Ellesmere Port, , CH65 0HW",
         "added_by": "MCS Auto",
         "timestamp": "12/08/2026 09:31"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Dovebrace Ltd",
+        "postcode": "L33 7TW",
+        "contract_number": "0000031823",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: South Boundary Road, Knowsley Industrial Estate, Liverpool, snook.loose.congested, L33 7TW | Also on contract: 1x Event Toilet",
+        "added_by": "MCS Auto",
+        "timestamp": "19/08/2026 11:35"
       }
     ],
     "2026-08-28": [
@@ -13594,6 +13609,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: DLP Site Compound, Field Adjacent to 109 Ings Lane, Rochdale, , OL12 7LG | Also on contract: 1x Pump; 1x initial water fill; 1x Weekly Water Fill; 1x Weekly Water Fill - Every 4 weeks - 05.03",
         "added_by": "MCS Auto",
         "timestamp": "17/08/2026 14:00"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000031894",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "19/08/2026 11:35"
       }
     ],
     "2026-08-11": [
@@ -13765,6 +13797,33 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Stoned area facing 29 collingham ave, Bradford, , BD6 2AS | Also on contract: 1x 30kva 12x8ft Container Gen - Unlimited; 1x 415v 125amp 5mtr BSU Charge Lead; 1x 3 Way 32AMP 230V Distribution Box; 3x 32amp 230v 20mtr Plug",
         "added_by": "MCS Auto",
         "timestamp": "18/08/2026 12:09"
+      },
+      {
+        "type": "On Hire",
+        "customer": "DLP Services (Northern) Ltd",
+        "postcode": "",
+        "contract_number": "0000031891",
+        "units": {
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1,
+          "20ft AV": 1,
+          "Generator": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Pump; 1x Initial Water Fill; 1x Weekly Water Fill; 1x Weekly Tank Empty; 1x Disposable Sanitary Bins. Pk10; 1x 3 way dist board; 1x Ext Leads",
+        "added_by": "MCS Auto",
+        "timestamp": "19/08/2026 11:35",
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-08-26": [
@@ -14085,6 +14144,70 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Eastham Refinery Limited, North Road, ELLESMERE PORT, , CH65 1AJ",
         "added_by": "MCS Auto",
         "timestamp": "18/08/2026 12:09"
+      },
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031893",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 24ft JCOP Office JR DECALS; 3x X3 DECAL",
+        "added_by": "MCS Auto",
+        "timestamp": "19/08/2026 11:35"
+      },
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031895",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 24ft JCOP Canteen",
+        "added_by": "MCS Auto",
+        "timestamp": "19/08/2026 11:35"
+      },
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031896",
+        "units": {
+          "Stairs": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Double Stack/ Erect Staircase; 1x Destack",
+        "added_by": "MCS Auto",
+        "timestamp": "19/08/2026 11:35"
+      },
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031897",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "19/08/2026 11:35"
       }
     ]
   },
