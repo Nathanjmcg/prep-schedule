@@ -14867,7 +14867,12 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "19/08/2026 11:25"
+      "created_at": "19/08/2026 11:25",
+      "po_number": "01998",
+      "po_supplier": "Bolton Builders Merchants",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27705392",
+      "po_order_id": 27705392,
+      "po_status": "awaiting"
     },
     "cafabb521b9e": {
       "requester": "Baz",
@@ -14879,7 +14884,12 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "19/08/2026 11:25"
+      "created_at": "19/08/2026 11:25",
+      "po_number": "01998",
+      "po_supplier": "Bolton Builders Merchants",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27705392",
+      "po_order_id": 27705392,
+      "po_status": "awaiting"
     }
   },
   "materials_totals": {
