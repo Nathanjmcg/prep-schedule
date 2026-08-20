@@ -15113,7 +15113,12 @@
       "notes": "For touching up cabins",
       "supplier": "",
       "status": "pending",
-      "created_at": "20/08/2026 11:58"
+      "created_at": "20/08/2026 11:58",
+      "po_number": "02001",
+      "po_supplier": "Manor Coating",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27723554",
+      "po_order_id": 27723554,
+      "po_status": "awaiting"
     }
   },
   "materials_totals": {
