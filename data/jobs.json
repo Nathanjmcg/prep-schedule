@@ -13983,6 +13983,33 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "20/08/2026 09:31"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Bethell Plant Services Ltd",
+        "postcode": "BL4 8AY",
+        "contract_number": "0000031742",
+        "units": {
+          "32ft AV": 2,
+          "IBC": 2,
+          "3+1": 1,
+          "Steps": 2,
+          "Generator": 1,
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Carter Street, Bolton, , BL4 8AY | Also on contract: 1x Staircase; 1x Pump; 1x 1000G Eflluent Tank; 1x Chargeable Weekly Tank Empty; 1x Weekly Water Fill every 2 weeks; 1x Pump; 1x ReHire Dist Board; 4x ReHire 32A 1PH Cable 25M; 1x Chargeable Weekly Tank Empty - Every 2 weeks",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 15:30",
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 2
+          }
+        }
       }
     ],
     "2026-08-26": [
