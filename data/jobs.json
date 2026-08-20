@@ -13348,6 +13348,38 @@
         "moved_by": "\u2014",
         "moved_from": "2026-08-05",
         "edited_at": "12/08/2026 08:38"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Hughes Brothers Joinery Ltd",
+        "postcode": "",
+        "contract_number": "0000031898",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 09:31"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "PAS (NW) Ltd",
+        "postcode": "WA2 9HF",
+        "contract_number": "0000031736",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: VISTRY, PEEL HALL, M&N., POPLARS AVENUE, OPP BRATHWAY CLOSE, WA2 9HF | Also on contract: 1x 24ft Solar Welfare - Reactive",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 09:31"
       }
     ],
     "2026-08-25": [
@@ -13626,6 +13658,40 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "19/08/2026 11:35"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Everton Stadium Development Holdings Ltd",
+        "postcode": "",
+        "contract_number": "0000031899",
+        "units": {
+          "Chemiloo": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 8x Event Toilet; 1x Chargeable One Off Service Chemi Toilet Saturday; 1x Chargeable One Off Service Chemi Toilet Sunday; 1x Chargeable One Off Service Chemi Toilet B/H Monday",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 09:31"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Greenmount Projects Ltd",
+        "postcode": "L36 2LF",
+        "contract_number": "0000031888",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: St Aloysius School Primary School, Twig Ln,, Liverpool, L36 2LF",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 09:31"
       }
     ],
     "2026-08-11": [
@@ -13824,6 +13890,40 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "On Hire",
+        "customer": "H H Smith",
+        "postcode": "",
+        "contract_number": "0000031901",
+        "units": {
+          "Chemiloo": 3
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 09:31"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Almond Civils Ltd",
+        "postcode": "",
+        "contract_number": "0000031900",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 09:31"
       }
     ],
     "2026-08-26": [
@@ -14208,6 +14308,61 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "19/08/2026 11:35"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Bethell Plant Services Ltd",
+        "postcode": "WA3 6PJ",
+        "contract_number": "0000031113",
+        "units": {
+          "20ft Store": 1,
+          "20ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Plant Rehire Overhead Contract, quietly.attending.spend, Junction 11 M62, , WA3 6PJ | Also on contract: 1x Staircase; 1x Filing Cabinet; 1x Double Stack/ Erect Staircase",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 09:31"
+      }
+    ],
+    "2026-09-10": [
+      {
+        "type": "On Hire",
+        "customer": "Ainscough Environmental Services Ltd",
+        "postcode": "",
+        "contract_number": "0000031532",
+        "units": {
+          "32ft AV": 18,
+          "24ft AV": 2
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 09:31"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Termrim Construction Ltd",
+        "postcode": "LS29 6AR",
+        "contract_number": "0000029647",
+        "units": {
+          "Smoking Shelter": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Moor Lane, Menston, Ilkley, , LS29 6AR",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 09:31"
       }
     ]
   },
