@@ -14890,6 +14890,18 @@
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27705392",
       "po_order_id": 27705392,
       "po_status": "awaiting"
+    },
+    "b2e45eee40b3": {
+      "requester": "Jim",
+      "request_id": "d57746fbd07c",
+      "item": "10 \u00d7 Customer Colour Paint (put the colour in notes)",
+      "category": "Bulk Paint",
+      "item_name": "Customer Colour Paint (put the colour in notes)",
+      "quantity": 10,
+      "notes": "kensite grey",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "20/08/2026 07:24"
     }
   },
   "materials_totals": {
