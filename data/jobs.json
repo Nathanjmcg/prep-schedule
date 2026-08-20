@@ -12439,6 +12439,28 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "PR26 6PU",
+        "contract_number": "0000030203",
+        "units": {
+          "24ft AV": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: KeepMoat Homes, Moss Lane, Farrington Moss, , PR26 6PU | Also on contract: 2x Filing Cabinet; 2x Upholstered Chair",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 09:40",
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        }
       }
     ],
     "2026-08-19": [
