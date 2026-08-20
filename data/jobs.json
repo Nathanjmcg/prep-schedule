@@ -14901,7 +14901,12 @@
       "notes": "kensite grey",
       "supplier": "",
       "status": "pending",
-      "created_at": "20/08/2026 07:24"
+      "created_at": "20/08/2026 07:24",
+      "po_number": "01999",
+      "po_supplier": "Manor Coating",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27717977",
+      "po_order_id": 27717977,
+      "po_status": "awaiting"
     }
   },
   "materials_totals": {
