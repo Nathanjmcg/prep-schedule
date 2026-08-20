@@ -13576,6 +13576,24 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: South Boundary Road, Knowsley Industrial Estate, Liverpool, snook.loose.congested, L33 7TW | Also on contract: 1x Event Toilet",
         "added_by": "MCS Auto",
         "timestamp": "19/08/2026 11:35"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000031894",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 28/08/2026 to 27/08/2026 on 20/08/2026 09:31",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 09:31",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-08-28": [
@@ -13641,23 +13659,6 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: DLP Site Compound, Field Adjacent to 109 Ings Lane, Rochdale, , OL12 7LG | Also on contract: 1x Pump; 1x initial water fill; 1x Weekly Water Fill; 1x Weekly Water Fill - Every 4 weeks - 05.03",
         "added_by": "MCS Auto",
         "timestamp": "17/08/2026 14:00"
-      },
-      {
-        "type": "On Hire",
-        "customer": "A Connolly Limited",
-        "postcode": "",
-        "contract_number": "0000031894",
-        "units": {
-          "20ft Store": 1
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "19/08/2026 11:35"
       },
       {
         "type": "On Hire",
