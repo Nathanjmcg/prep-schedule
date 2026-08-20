@@ -13732,6 +13732,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: St Aloysius School Primary School, Twig Ln,, Liverpool, L36 2LF",
         "added_by": "MCS Auto",
         "timestamp": "20/08/2026 09:31"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Aspire Construction Projects Ltd",
+        "postcode": "M20 3ZA",
+        "contract_number": "0000031601",
+        "units": {
+          "Mobile Welfare": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: 124 - 126 Palatine Mansions, Palatine road, Didsbury, , M20 3ZA | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "20/08/2026 13:10"
       }
     ],
     "2026-08-11": [
