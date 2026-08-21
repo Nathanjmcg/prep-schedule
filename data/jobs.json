@@ -14368,6 +14368,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Higher Lane, Rainford, , WA11 8BJ",
         "added_by": "MCS Auto",
         "timestamp": "20/08/2026 20:11"
+      },
+      {
+        "type": "On Hire",
+        "customer": "SBS Electrical",
+        "postcode": "",
+        "contract_number": "0000031905",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "21/08/2026 09:31"
       }
     ],
     "2026-09-08": [
