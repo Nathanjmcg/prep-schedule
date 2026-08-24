@@ -15404,6 +15404,30 @@
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27723554",
       "po_order_id": 27723554,
       "po_status": "awaiting"
+    },
+    "72b492f722dd": {
+      "requester": "Jim",
+      "request_id": "f01155fa71f0",
+      "item": "10 \u00d7 18mm Plywood 2440x1220",
+      "category": "Timber & Sheet Materials",
+      "item_name": "18mm Plywood 2440x1220",
+      "quantity": 10,
+      "notes": "",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "24/08/2026 12:57"
+    },
+    "4d0234140543": {
+      "requester": "Jim",
+      "request_id": "f01155fa71f0",
+      "item": "6 \u00d7 18mm OSB3 Board 2440x1220",
+      "category": "Timber & Sheet Materials",
+      "item_name": "18mm OSB3 Board 2440x1220",
+      "quantity": 6,
+      "notes": "",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "24/08/2026 12:57"
     }
   },
   "materials_totals": {
