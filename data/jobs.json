@@ -13620,6 +13620,23 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "21/08/2026 12:03"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Exact Property Services Ltd",
+        "postcode": "BL2 6EE",
+        "contract_number": "0000031754",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Mr & Mrs Armstrong, 45 Breightmet Drive, Bolton, , BL2 6EE",
+        "added_by": "MCS Auto",
+        "timestamp": "24/08/2026 09:31"
       }
     ],
     "2026-08-27": [
@@ -13841,6 +13858,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: 124 - 126 Palatine Mansions, Palatine road, Didsbury, , M20 3ZA | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "20/08/2026 13:10"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Manchester and Cheshire",
+        "postcode": "SK6 3EF",
+        "contract_number": "0000031883",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: OVERDALE CENTRE, POWICKE DRIVE, ROMLEY, STOCKPORT, SK6 3EF | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre)",
+        "added_by": "MCS Auto",
+        "timestamp": "24/08/2026 09:31"
       }
     ],
     "2026-08-11": [
@@ -14135,6 +14169,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: GREEN HAWORTH SCHOOL, SCHOOL HOUSE LANE, ACCRINGTON, , BB5 3SQ",
         "added_by": "MCS Auto",
         "timestamp": "17/08/2026 14:10"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Almond Civils Ltd",
+        "postcode": "",
+        "contract_number": "0000031910",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "24/08/2026 09:31"
       }
     ],
     "2026-09-02": [
