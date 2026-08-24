@@ -8815,25 +8815,6 @@
     ],
     "2026-07-06": [
       {
-        "customer": "TERMRIM",
-        "postcode": "LS29 6AR",
-        "contract_number": "0000030132",
-        "type": "Off Hire",
-        "site_move_type": "",
-        "units": {
-          "20ft Store": 2
-        },
-        "av_configs": {},
-        "install_dismantle": false,
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "Standard Livery",
-        "livery_note": "",
-        "notes": "",
-        "added_by": "Peter",
-        "timestamp": "25/06/2026 08:09"
-      },
-      {
         "customer": "Army of Shadows Production LTD",
         "postcode": "M24 4SB",
         "contract_number": "0000031631",
@@ -14640,6 +14621,28 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Moor Lane, Menston, Ilkley, , LS29 6AR",
         "added_by": "MCS Auto",
         "timestamp": "20/08/2026 09:31"
+      },
+      {
+        "customer": "TERMRIM",
+        "postcode": "LS29 6AR",
+        "contract_number": "0000030132",
+        "type": "Off Hire",
+        "site_move_type": "",
+        "units": {
+          "20ft Store": 2
+        },
+        "av_configs": {},
+        "install_dismantle": false,
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "Standard Livery",
+        "livery_note": "",
+        "notes": "",
+        "added_by": "Peter",
+        "timestamp": "25/06/2026 08:09",
+        "moved_by": "\u2014",
+        "moved_from": "2026-07-06",
+        "edited_at": "24/08/2026 09:00"
       }
     ]
   },
