@@ -15415,7 +15415,12 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "24/08/2026 12:57"
+      "created_at": "24/08/2026 12:57",
+      "po_number": "02017",
+      "po_supplier": "Bolton Builders Merchants",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27762870",
+      "po_order_id": 27762870,
+      "po_status": "awaiting"
     },
     "4d0234140543": {
       "requester": "Jim",
@@ -15427,7 +15432,12 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "24/08/2026 12:57"
+      "created_at": "24/08/2026 12:57",
+      "po_number": "02017",
+      "po_supplier": "Bolton Builders Merchants",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27762870",
+      "po_order_id": 27762870,
+      "po_status": "awaiting"
     }
   },
   "materials_totals": {
