@@ -14415,6 +14415,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre)",
         "added_by": "MCS Auto",
         "timestamp": "25/08/2026 09:31"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Hughes Brothers Joinery Ltd",
+        "postcode": "WA3 4DP",
+        "contract_number": "0000031606",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: 115 doeford close, Culcheth, , WA3 4DP",
+        "added_by": "MCS Auto",
+        "timestamp": "25/08/2026 13:07"
       }
     ],
     "2026-08-29": [],
