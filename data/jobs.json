@@ -15568,7 +15568,9 @@
         "score": 0.17,
         "mismatch": "the request is for a 'cabin' and the product name does not mention one",
         "asked_at": "25/08/2026 13:07"
-      }
+      },
+      "query_answer": "no",
+      "query_answered_at": "25/08/2026 13:25"
     }
   },
   "materials_totals": {
