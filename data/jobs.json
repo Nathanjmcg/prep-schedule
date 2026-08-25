@@ -15541,7 +15541,15 @@
       "notes": "Water tanks in solar cabins",
       "supplier": "",
       "status": "pending",
-      "created_at": "25/08/2026 12:04"
+      "created_at": "25/08/2026 12:04",
+      "query": {
+        "candidate_code": "602533",
+        "candidate_name": "Sanispeed+ Waste Water Pump",
+        "candidate_price": 537.59,
+        "score": 0.17,
+        "mismatch": "the request is for a 'cabin' and the product name does not mention one",
+        "asked_at": "25/08/2026 13:07"
+      }
     }
   },
   "materials_totals": {
