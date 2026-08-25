@@ -15521,7 +15521,15 @@
       "notes": "topping up battery levels",
       "supplier": "",
       "status": "pending",
-      "created_at": "25/08/2026 10:44"
+      "created_at": "25/08/2026 10:44",
+      "query": {
+        "candidate_code": "707937",
+        "candidate_name": "Special order \u2013 Up to 10 working days. This item can only be returned if faulty.",
+        "candidate_price": 294.0,
+        "score": 0.3,
+        "mismatch": "the request is for a 'level' and the product name does not mention one",
+        "asked_at": "25/08/2026 11:46"
+      }
     }
   },
   "materials_totals": {
