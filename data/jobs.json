@@ -15528,7 +15528,12 @@
         "asked_at": "25/08/2026 08:24"
       },
       "query_answer": "no",
-      "query_answered_at": "25/08/2026 13:26"
+      "query_answered_at": "25/08/2026 13:26",
+      "po_number": "02024",
+      "po_supplier": "Danfast Ltd",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27784583",
+      "po_order_id": 27784583,
+      "po_status": "awaiting"
     },
     "91aa1fc095bf": {
       "requester": "Carl",
