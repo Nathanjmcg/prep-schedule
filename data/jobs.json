@@ -15466,7 +15466,15 @@
       "notes": "For Solar Cabins",
       "supplier": "",
       "status": "pending",
-      "created_at": "25/08/2026 05:47"
+      "created_at": "25/08/2026 05:47",
+      "query": {
+        "candidate_code": "602065",
+        "candidate_name": "Stuart Turner Brass Pump Body For Boostmatic Pump",
+        "candidate_price": 45.0,
+        "score": 0.31,
+        "mismatch": "the request is for a 'cabin' and the product name does not mention one",
+        "asked_at": "25/08/2026 08:24"
+      }
     }
   },
   "materials_totals": {
