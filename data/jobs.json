@@ -15530,6 +15530,18 @@
         "mismatch": "the request is for a 'level' and the product name does not mention one",
         "asked_at": "25/08/2026 11:46"
       }
+    },
+    "b56f3b47a4f9": {
+      "requester": "Carl",
+      "request_id": "81c395a8ae04",
+      "item": "1 \u00d7 Anti freeze",
+      "category": "Anything Else",
+      "item_name": "Anti freeze",
+      "quantity": 1,
+      "notes": "Water tanks in solar cabins",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "25/08/2026 12:04"
     }
   },
   "materials_totals": {
