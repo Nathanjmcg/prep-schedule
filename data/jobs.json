@@ -15650,8 +15650,10 @@
       "raised_by": "Jim",
       "raised_at": "25/08/2026 06:11",
       "question": "is this customer having furniture in the cabins?",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "Furniture not wanted",
+      "answered_by": "Ewa",
+      "answered_at": "25/08/2026 07:24"
     }
   }
 }
