@@ -14199,6 +14199,28 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Meeting Room  Table 1400x800",
         "added_by": "MCS Auto",
         "timestamp": "25/08/2026 15:11"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Think Hire  Ltd",
+        "postcode": "DE13 7DL",
+        "contract_number": "0000030943",
+        "units": {
+          "24ft AV": 2
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Geda Construction site office adj to JT Leavesley, off Alrewas Rd, Burton-On-Trent, , DE13 7DL",
+        "added_by": "MCS Auto",
+        "timestamp": "26/08/2026 14:40",
+        "av_configs": {
+          "24ft AV": {
+            "Meeting Room": 2
+          }
+        }
       }
     ],
     "2026-09-02": [
@@ -14793,6 +14815,30 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre)",
         "added_by": "MCS Auto",
         "timestamp": "24/08/2026 13:07"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "P Casey & Co Ltd",
+        "postcode": "M40 2JB",
+        "contract_number": "0000030225",
+        "units": {
+          "32ft AV": 2,
+          "3+1": 1,
+          "Steps": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Phase 2, Newton Heath, Dulverton Street, Manchester, , M40 2JB | Also on contract: 2x Filing Cabinet; 2x Upholstered Chair; 2x Office Table; 8x Upholstered Chair; 3x Canteen Table; 18x Poly Chair; 1x 1000G Eflluent Tank; 1x Pump; 1x Pump; 1x Staircase; 1x Fortnightly Tank Empty; 1x Chargeable One Off Tank Empty -06.10",
+        "added_by": "MCS Auto",
+        "timestamp": "26/08/2026 14:40",
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 2
+          }
+        }
       }
     ]
   },
