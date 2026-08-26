@@ -15682,7 +15682,15 @@
       "notes": "Need ASAP",
       "supplier": "",
       "status": "pending",
-      "created_at": "26/08/2026 09:11"
+      "created_at": "26/08/2026 09:11",
+      "query": {
+        "candidate_code": "350357",
+        "candidate_name": "Gewiss GW60415 32A 2P+E 240v Wall Mounted Plug IP44",
+        "candidate_price": 10.45,
+        "score": 0.79,
+        "mismatch": "the request is for a 'asap' and the product name does not mention one",
+        "asked_at": "26/08/2026 10:14"
+      }
     }
   },
   "materials_totals": {
