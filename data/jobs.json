@@ -12401,6 +12401,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: KeepMoat Homes, Moss Lane, Farrington Moss, , PR26 6PU",
         "added_by": "MCS Auto",
         "timestamp": "20/08/2026 10:20"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Cheltenham Green Property Ltd",
+        "postcode": "M26 3BW",
+        "contract_number": "0000031457",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Millwood School, School St, Radcliffe, Manchester, M26 3BW",
+        "added_by": "MCS Auto",
+        "timestamp": "26/08/2026 09:31"
       }
     ],
     "2026-08-19": [
@@ -14491,6 +14508,38 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "On Hire",
+        "customer": "H H Smith",
+        "postcode": "",
+        "contract_number": "0000031916",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 8ft Anti-Vandal",
+        "added_by": "MCS Auto",
+        "timestamp": "26/08/2026 09:31"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Greenmount Projects Ltd",
+        "postcode": "M15 6GX",
+        "contract_number": "0000031461",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: BROOKS BUILDING, MAN MET UNIVERSITY, 53 BONSALL ST, , M15 6GX",
+        "added_by": "MCS Auto",
+        "timestamp": "26/08/2026 09:31"
       }
     ],
     "2026-09-03": [
