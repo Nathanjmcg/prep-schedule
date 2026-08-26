@@ -14545,22 +14545,26 @@
     ],
     "2026-09-03": [
       {
-        "type": "On Hire",
         "customer": "A Connolly Limited",
         "postcode": "",
         "contract_number": "0000031879",
+        "type": "On Hire",
+        "site_move_type": "",
         "units": {
           "Static Welfare": 1,
           "20ft Store": 2
         },
+        "av_configs": {},
+        "install_dismantle": false,
         "haulage": "Internal Haulage",
         "haulage_who": "",
-        "livery": "",
+        "livery": "Standard Livery",
         "livery_note": "",
-        "install_dismantle": false,
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 80x Initial Fuel Fill; 1x Initial Water Fill; 1x Weekly Service",
         "added_by": "MCS Auto",
-        "timestamp": "14/08/2026 11:50"
+        "timestamp": "14/08/2026 11:50",
+        "edited_by": "Peter",
+        "edited_at": "26/08/2026 12:38"
       },
       {
         "type": "Off Hire",
