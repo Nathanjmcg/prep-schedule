@@ -15665,7 +15665,12 @@
       "notes": "",
       "supplier": "",
       "status": "pending",
-      "created_at": "26/08/2026 08:49"
+      "created_at": "26/08/2026 08:49",
+      "po_number": "02027",
+      "po_supplier": "Timb-Ply Ltd",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27795388",
+      "po_order_id": 27795388,
+      "po_status": "awaiting"
     }
   },
   "materials_totals": {
