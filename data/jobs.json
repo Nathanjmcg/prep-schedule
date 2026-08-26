@@ -15671,6 +15671,18 @@
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27795388",
       "po_order_id": 27795388,
       "po_status": "awaiting"
+    },
+    "6536488aecf1": {
+      "requester": "Alex",
+      "request_id": "ca0685182c8f",
+      "item": "30 \u00d7 Gewiss GW60437 32A 2P+E 240v Wall Mounted Plug IP67",
+      "category": "Electrical",
+      "item_name": "Gewiss GW60437 32A 2P+E 240v Wall Mounted Plug IP67",
+      "quantity": 30,
+      "notes": "Need ASAP",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "26/08/2026 09:11"
     }
   },
   "materials_totals": {
