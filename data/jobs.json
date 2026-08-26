@@ -14651,6 +14651,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 13600L Waste tank; 1x Sewage Sump Chamber; 1x High Level Alarm",
         "added_by": "MCS Auto",
         "timestamp": "26/08/2026 15:00"
+      },
+      {
+        "type": "On Hire",
+        "customer": "AIS Vanguard Ltd",
+        "postcode": "",
+        "contract_number": "0000031919",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 32ft JCOP Office Split 70/30; 1x Dist Board; 2x Leads",
+        "added_by": "MCS Auto",
+        "timestamp": "26/08/2026 15:11"
       }
     ],
     "2026-09-08": [
