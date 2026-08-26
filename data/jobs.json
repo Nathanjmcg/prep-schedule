@@ -15318,7 +15318,9 @@
       "po_order_id": 27670309,
       "po_status": "approved",
       "ordered_by": "Ken",
-      "ordered_at": "17/08/2026 15:30"
+      "ordered_at": "17/08/2026 15:30",
+      "delivered": true,
+      "delivered_at": "26/08/2026 10:03"
     },
     "560b93c440b8": {
       "requester": "Mitch",
