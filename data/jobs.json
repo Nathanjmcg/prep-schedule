@@ -12401,23 +12401,6 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: KeepMoat Homes, Moss Lane, Farrington Moss, , PR26 6PU",
         "added_by": "MCS Auto",
         "timestamp": "20/08/2026 10:20"
-      },
-      {
-        "type": "Off Hire",
-        "customer": "Cheltenham Green Property Ltd",
-        "postcode": "M26 3BW",
-        "contract_number": "0000031457",
-        "units": {
-          "10ft Store": 1
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Site: Millwood School, School St, Radcliffe, Manchester, M26 3BW",
-        "added_by": "MCS Auto",
-        "timestamp": "26/08/2026 09:31"
       }
     ],
     "2026-08-19": [
@@ -13843,6 +13826,26 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "27/08/2026 09:31"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Cheltenham Green Property Ltd",
+        "postcode": "M26 3BW",
+        "contract_number": "0000031457",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Millwood School, School St, Radcliffe, Manchester, M26 3BW",
+        "added_by": "MCS Auto",
+        "timestamp": "26/08/2026 09:31",
+        "moved_by": "\u2014",
+        "moved_from": "2026-09-07",
+        "edited_at": "27/08/2026 08:45"
       }
     ],
     "2026-08-11": [
