@@ -12401,6 +12401,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: KeepMoat Homes, Moss Lane, Farrington Moss, , PR26 6PU",
         "added_by": "MCS Auto",
         "timestamp": "20/08/2026 10:20"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Technicare Ltd t/a Blyth Group Ltd",
+        "postcode": "",
+        "contract_number": "0000031925",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 24Ft Solar Powered Static",
+        "added_by": "MCS Auto",
+        "timestamp": "27/08/2026 15:12"
       }
     ],
     "2026-08-19": [
