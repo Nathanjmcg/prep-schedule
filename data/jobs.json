@@ -13723,21 +13723,6 @@
         "timestamp": "06/08/2026 13:45"
       },
       {
-        "type": "On Hire",
-        "customer": "DLP Services (Northern) Ltd",
-        "postcode": "",
-        "contract_number": "0000031870",
-        "units": {},
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x On site relocation of 3 units (22ft solar welfare",
-        "added_by": "MCS Auto",
-        "timestamp": "12/08/2026 11:10"
-      },
-      {
         "type": "Off Hire",
         "customer": "DLP Services (Northern) Ltd",
         "postcode": "OL12 7LG",
