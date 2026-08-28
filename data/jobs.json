@@ -14574,6 +14574,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 53x Initial Fuel Fill; 1x Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "27/08/2026 14:30"
+      },
+      {
+        "type": "On Hire",
+        "customer": "St Roccos Hospice",
+        "postcode": "",
+        "contract_number": "0000031933",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Event Toilet",
+        "added_by": "MCS Auto",
+        "timestamp": "28/08/2026 15:34"
       }
     ],
     "2026-09-03": [
