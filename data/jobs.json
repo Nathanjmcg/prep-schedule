@@ -14302,23 +14302,6 @@
         "type": "Off Hire",
         "customer": "Technicare Ltd t/a Blyth Group Ltd",
         "postcode": "DY2 8UZ",
-        "contract_number": "0000031387",
-        "units": {
-          "20ft Store": 2
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Site: BLOWERS GREEN PRIMARY, BLOWERS GREEN ROAD, DUDLEY, , DY2 8UZ | Also on contract: 1x Staircase; 1x Double Stack/ Erect Staircase; 1x Destack",
-        "added_by": "MCS Auto",
-        "timestamp": "11/08/2026 09:31"
-      },
-      {
-        "type": "Off Hire",
-        "customer": "Technicare Ltd t/a Blyth Group Ltd",
-        "postcode": "DY2 8UZ",
         "contract_number": "0000031407",
         "units": {
           "32ft AV": 2
