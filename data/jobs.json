@@ -15867,7 +15867,16 @@
       "notes": "Boss cabin batteries.",
       "supplier": "",
       "status": "pending",
-      "created_at": "28/08/2026 12:20"
+      "created_at": "28/08/2026 12:20",
+      "query": {
+        "candidate_code": "795238",
+        "candidate_name": "Smoke Detector 9v Battery",
+        "candidate_price": 6.2,
+        "score": 0.12,
+        "mismatch": "the request is for a 'batterie' and the product name does not mention one",
+        "invoice_says": "note: we have bought 'lucas 12v 140ah agm cyclic un 2800 battery' before, from Veloris - The Battery Partner UK Ltd, and that is a closer match to the request than this. Worth a look before approving",
+        "asked_at": "28/08/2026 13:23"
+      }
     },
     "49b68e3d3e89": {
       "requester": "Carl",
