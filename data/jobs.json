@@ -15037,6 +15037,30 @@
           }
         }
       }
+    ],
+    "2026-09-17": [
+      {
+        "type": "Off Hire",
+        "customer": "Essential Access Platform Ltd",
+        "postcode": "LS28 6SD",
+        "contract_number": "0000031049",
+        "units": {
+          "20ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: FORD & SLATER, GRANGEFIELD RD, PUDSEY, , LS28 6SD",
+        "added_by": "MCS Auto",
+        "timestamp": "28/08/2026 13:50",
+        "av_configs": {
+          "20ft AV": {
+            "Office": 1
+          }
+        }
+      }
     ]
   },
   "mcs": {
