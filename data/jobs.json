@@ -14300,29 +14300,6 @@
       },
       {
         "type": "Off Hire",
-        "customer": "Technicare Ltd t/a Blyth Group Ltd",
-        "postcode": "DY2 8UZ",
-        "contract_number": "0000031407",
-        "units": {
-          "32ft AV": 2
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Site: BLOWERS GREEN PRIMARY, BLOWERS GREEN ROAD, DUDLEY, , DY2 8UZ",
-        "added_by": "MCS Auto",
-        "timestamp": "11/08/2026 09:31",
-        "av_configs": {
-          "32ft AV": {
-            "Canteen": 1,
-            "Drying Room": 1
-          }
-        }
-      },
-      {
-        "type": "Off Hire",
         "customer": "Artium Construction Limited",
         "postcode": "HU15 1XB",
         "contract_number": "0000031172#1",
