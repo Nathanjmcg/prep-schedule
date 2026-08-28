@@ -13876,6 +13876,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x On site relocation of 3 units (22ft solar welfare",
         "added_by": "MCS Auto",
         "timestamp": "27/08/2026 09:51"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Exact Property Services Ltd",
+        "postcode": "OL8 3EP",
+        "contract_number": "0000031884",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: The Hathershaw College, Bellfield Ave, Oldham, , OL8 3EP",
+        "added_by": "MCS Auto",
+        "timestamp": "28/08/2026 09:31"
       }
     ],
     "2026-08-11": [
@@ -14721,6 +14738,28 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 13600L Waste tank; 1x Sewage Sump Chamber; 1x High Level Alarm",
         "added_by": "MCS Auto",
         "timestamp": "26/08/2026 15:00"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Chandos Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031927",
+        "units": {
+          "24ft AV": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "28/08/2026 09:31",
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-09-08": [
