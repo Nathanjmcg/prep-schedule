@@ -15905,6 +15905,18 @@
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27834209",
       "po_order_id": 27834209,
       "po_status": "awaiting"
+    },
+    "bcd8684ad4df": {
+      "requester": "Carl",
+      "request_id": "52c474d9e19e",
+      "item": "12 \u00d7 Platinum deep cycle battery  PLA-T1275 12v  150AH",
+      "category": "Anything Else",
+      "item_name": "Platinum deep cycle battery  PLA-T1275 12v  150AH",
+      "quantity": 12,
+      "notes": "Solar cabin deep cycle battery",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "28/08/2026 12:24"
     }
   },
   "materials_totals": {
