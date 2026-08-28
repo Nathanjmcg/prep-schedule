@@ -15876,7 +15876,9 @@
         "mismatch": "the request is for a 'batterie' and the product name does not mention one",
         "invoice_says": "note: we have bought 'lucas 12v 140ah agm cyclic un 2800 battery' before, from Veloris - The Battery Partner UK Ltd, and that is a closer match to the request than this. Worth a look before approving",
         "asked_at": "28/08/2026 13:23"
-      }
+      },
+      "query_answer": "no",
+      "query_answered_at": "28/08/2026 12:26"
     },
     "bcd8684ad4df": {
       "requester": "Carl",
