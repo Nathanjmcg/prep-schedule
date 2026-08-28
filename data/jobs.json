@@ -15856,6 +15856,18 @@
         "mismatch": "the request is for a 'asap' and the product name does not mention one",
         "asked_at": "26/08/2026 10:14"
       }
+    },
+    "49b68e3d3e89": {
+      "requester": "Carl",
+      "request_id": "1e512559905d",
+      "item": "1 \u00d7 Lucas 12v leisure battery LSLV140-12 140AH",
+      "category": "Anything Else",
+      "item_name": "Lucas 12v leisure battery LSLV140-12 140AH",
+      "quantity": 1,
+      "notes": "Boss cabin leisure batteries.",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "28/08/2026 12:16"
     }
   },
   "materials_totals": {
