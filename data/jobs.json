@@ -15879,6 +15879,18 @@
       },
       "query_answer": "no",
       "query_answered_at": "28/08/2026 12:17"
+    },
+    "415079b52ee5": {
+      "requester": "Carl",
+      "request_id": "cc4d5c18ce04",
+      "item": "8 \u00d7 Lucas 12v leisure battery LSLC140-12 140AH",
+      "category": "Anything Else",
+      "item_name": "Lucas 12v leisure battery LSLC140-12 140AH",
+      "quantity": 8,
+      "notes": "Boss cabin batteries.",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "28/08/2026 12:20"
     }
   },
   "materials_totals": {
