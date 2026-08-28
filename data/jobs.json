@@ -15031,6 +15031,25 @@
           }
         }
       }
+    ],
+    "2026-08-31": [
+      {
+        "type": "Off Hire",
+        "customer": "MBC Building Contractors NW Ltd",
+        "postcode": "M8 0SP",
+        "contract_number": "0000031704",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: St Chads Primary, Balmfield St,, Cheetham Hill,, Manchester, M8 0SP | Also on contract: 56x Fuel Shortage On Return (Per Litre)",
+        "added_by": "MCS Auto",
+        "timestamp": "28/08/2026 10:12"
+      }
     ]
   },
   "mcs": {
