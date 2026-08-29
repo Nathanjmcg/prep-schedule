@@ -15570,25 +15570,6 @@
     ]
   },
   "materials": {
-    "ad70b2af5518": {
-      "requester": "Jim",
-      "request_id": "1442b3fd0922",
-      "item": "75 \u00d7 3mm Wall Boards",
-      "category": "Timber & Sheet Materials",
-      "item_name": "3mm Wall Boards",
-      "quantity": 75,
-      "notes": "",
-      "supplier": "",
-      "status": "pending",
-      "created_at": "17/08/2026 12:24",
-      "po_number": "01989",
-      "po_supplier": "Danfast Ltd",
-      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27670449",
-      "po_order_id": 27670449,
-      "po_status": "awaiting",
-      "delivered": true,
-      "delivered_at": "28/08/2026 14:16"
-    },
     "6259fa0c520b": {
       "requester": "Cliff",
       "request_id": "151c5f69d744",
