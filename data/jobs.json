@@ -12416,6 +12416,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 24Ft Solar Powered Static",
         "added_by": "MCS Auto",
         "timestamp": "27/08/2026 15:12"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Wright Build Ltd",
+        "postcode": "WN7 2UU",
+        "contract_number": "0000031454",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: 32 Coronation Drive, Leigh, , WN72UU",
+        "added_by": "MCS Auto",
+        "timestamp": "01/09/2026 15:24"
       }
     ],
     "2026-08-19": [
