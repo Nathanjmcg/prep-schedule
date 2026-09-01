@@ -15053,6 +15053,23 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Proservice Building Services",
+        "postcode": "AMAZON, -, , DN1",
+        "contract_number": "0000031713",
+        "units": {
+          "24ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: AMAZON, -, , DN1 | Also on contract: 6x Box (20) 5sqmts Sprint carpet tile 500mm x 500mm Raven",
+        "added_by": "MCS Auto",
+        "timestamp": "01/09/2026 10:02"
       }
     ],
     "2026-09-17": [
