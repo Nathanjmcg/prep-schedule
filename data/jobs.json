@@ -14968,6 +14968,28 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "On Hire",
+        "customer": "Think Hire",
+        "postcode": "",
+        "contract_number": "0000031946",
+        "units": {
+          "24ft AV": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "02/09/2026 16:57",
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        }
       }
     ],
     "2026-09-09": [
