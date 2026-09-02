@@ -15087,6 +15087,46 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: AMAZON, -, , DN1 | Also on contract: 6x Box (20) 5sqmts Sprint carpet tile 500mm x 500mm Raven",
         "added_by": "MCS Auto",
         "timestamp": "01/09/2026 10:02"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "MBC Building Contractors NW Ltd",
+        "postcode": "OL9 6AA",
+        "contract_number": "0000031632",
+        "units": {
+          "20ft Store": 3,
+          "20ft AV": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: ROCHDALE ROAD, OLDHAM, , OL9 6AA | Also on contract: 1x Staircase; 1x Double Stack/ Erect Staircase; 1x Destack",
+        "added_by": "MCS Auto",
+        "timestamp": "02/09/2026 10:01",
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1
+          }
+        }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "MBC Building Contractors NW Ltd",
+        "postcode": "OL9 6AA",
+        "contract_number": "0000031802",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Oldham College, Alderson, , OL9 6AA",
+        "added_by": "MCS Auto",
+        "timestamp": "02/09/2026 10:01"
       }
     ],
     "2026-09-17": [
