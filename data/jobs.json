@@ -16382,8 +16382,10 @@
       "raised_by": "Jim",
       "raised_at": "02/09/2026 11:38",
       "question": "are this 24 jcop as we dont have these or are we just using 24 flat sided",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "Flat sided!",
+      "answered_by": "Ewa",
+      "answered_at": "02/09/2026 14:55"
     }
   }
 }
