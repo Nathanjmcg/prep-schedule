@@ -16145,6 +16145,18 @@
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27834330",
       "po_order_id": 27834330,
       "po_status": "awaiting"
+    },
+    "2e7eb497b3dc": {
+      "requester": "Jim",
+      "request_id": "fed7e9657d1b",
+      "item": "6 \u00d7 Worktops",
+      "category": "Timber & Sheet Materials",
+      "item_name": "Worktops",
+      "quantity": 6,
+      "notes": "",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "02/09/2026 13:40"
     }
   },
   "materials_totals": {
