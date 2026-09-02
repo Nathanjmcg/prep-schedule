@@ -14804,6 +14804,24 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Plant Rehire Overhead Contract, quietly.attending.spend, Junction 11 M62, , WA3 6PJ | Also on contract: 1x Staircase; 1x Filing Cabinet; 1x Double Stack/ Erect Staircase",
         "added_by": "MCS Auto",
         "timestamp": "20/08/2026 09:31"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Taylor Riding Construction",
+        "postcode": "",
+        "contract_number": "0000031940",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 15/09/2026 to 08/09/2026 on 02/09/2026 13:18",
+        "added_by": "MCS Auto",
+        "timestamp": "02/09/2026 13:18",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-09-10": [
@@ -15167,23 +15185,6 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 3x Relocation of the 3x stores on15.09.2026  from Bolton Cricke",
         "added_by": "MCS Auto",
         "timestamp": "02/09/2026 11:25"
-      },
-      {
-        "type": "On Hire",
-        "customer": "Taylor Riding Construction",
-        "postcode": "",
-        "contract_number": "0000031940",
-        "units": {
-          "10ft Store": 1
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "02/09/2026 12:16"
       }
     ],
     "2026-09-17": [
