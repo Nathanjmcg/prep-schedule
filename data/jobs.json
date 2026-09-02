@@ -14273,6 +14273,22 @@
         "moved_by": "\u2014",
         "moved_from": "2026-08-17",
         "edited_at": "10/08/2026 09:03"
+      },
+      {
+        "type": "On Hire",
+        "customer": "AIS Vanguard Ltd",
+        "postcode": "",
+        "contract_number": "0000031918",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 13600L Waste tank; 1x Sewage Sump Chamber; 1x High Level Alarm | Date moved by MCS Auto from 03/09/2026 to 02/09/2026 on 02/09/2026 15:23",
+        "added_by": "MCS Auto",
+        "timestamp": "02/09/2026 15:23",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-09-01": [
@@ -14683,21 +14699,6 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x On site move of the site setup",
         "added_by": "MCS Auto",
         "timestamp": "21/08/2026 11:12"
-      },
-      {
-        "type": "On Hire",
-        "customer": "AIS Vanguard Ltd",
-        "postcode": "",
-        "contract_number": "0000031918",
-        "units": {},
-        "haulage": "External Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 13600L Waste tank; 1x Sewage Sump Chamber; 1x High Level Alarm",
-        "added_by": "MCS Auto",
-        "timestamp": "26/08/2026 15:00"
       },
       {
         "type": "On Hire",
