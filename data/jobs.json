@@ -16310,6 +16310,22 @@
       "answer": "16 pls jimbo",
       "answered_by": "Mitch",
       "answered_at": "27/08/2026 11:49"
+    },
+    "198525f5de": {
+      "id": "198525f5de",
+      "date": "2026-09-08",
+      "job_idx": 1,
+      "job": {
+        "customer": "John Reilly Civil Engineering Ltd",
+        "contract": "0000031893",
+        "job_type": "On Hire",
+        "postcode": ""
+      },
+      "raised_by": "Jim",
+      "raised_at": "02/09/2026 11:38",
+      "question": "are this 24 jcop as we dont have these or are we just using 24 flat sided",
+      "status": "open",
+      "answer": ""
     }
   }
 }
