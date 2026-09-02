@@ -12403,21 +12403,6 @@
         "timestamp": "20/08/2026 10:20"
       },
       {
-        "type": "On Hire",
-        "customer": "Technicare Ltd t/a Blyth Group Ltd",
-        "postcode": "",
-        "contract_number": "0000031925",
-        "units": {},
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 24Ft Solar Powered Static",
-        "added_by": "MCS Auto",
-        "timestamp": "27/08/2026 15:12"
-      },
-      {
         "type": "Off Hire",
         "customer": "Wright Build Ltd",
         "postcode": "WN7 2UU",
@@ -15045,6 +15030,22 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 80x Initial Fuel Fill; 1x Initial Water Fill; 1x Weekly Service",
         "added_by": "MCS Auto",
         "timestamp": "28/08/2026 10:53"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Technicare Ltd t/a Blyth Group Ltd",
+        "postcode": "",
+        "contract_number": "0000031925",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 24Ft Solar Powered Static | Date moved by MCS Auto from 07/09/2026 to 14/09/2026 on 02/09/2026 11:56",
+        "added_by": "MCS Auto",
+        "timestamp": "02/09/2026 11:56",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-09-15": [
