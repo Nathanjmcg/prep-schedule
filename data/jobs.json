@@ -15127,6 +15127,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Oldham College, Alderson, , OL9 6AA",
         "added_by": "MCS Auto",
         "timestamp": "02/09/2026 10:01"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000031939",
+        "units": {
+          "20ft Store": 3
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 3x Relocation of the 3x stores on15.09.2026  from Bolton Cricke",
+        "added_by": "MCS Auto",
+        "timestamp": "02/09/2026 11:25"
       }
     ],
     "2026-09-17": [
@@ -15189,6 +15206,48 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "02/09/2026 10:11"
+      }
+    ],
+    "2026-09-12": [
+      {
+        "type": "Off Hire",
+        "customer": "Eric Charlesworth Ltd",
+        "postcode": "CW1 4QJ",
+        "contract_number": "0000029671",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Leighton Hospital, Middlewich Road, Crewe, , CW1 4QJ",
+        "added_by": "MCS Auto",
+        "timestamp": "02/09/2026 11:25"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Eric Charlesworth Ltd",
+        "postcode": "CW1 4QJ",
+        "contract_number": "0000030834",
+        "units": {
+          "32ft AV": 2
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: LEIGHTON HOSPITAL, MIDDLEWICH ROAD, CREWE, , CW1 4QJ | Also on contract: 1x Staircase",
+        "added_by": "MCS Auto",
+        "timestamp": "02/09/2026 11:25",
+        "av_configs": {
+          "32ft AV": {
+            "Office": 1,
+            "Canteen": 1
+          }
+        }
       }
     ]
   },
