@@ -15273,6 +15273,35 @@
             "Office": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Think Hire  Ltd",
+        "postcode": "NE61 3DA",
+        "contract_number": "0000031015",
+        "units": {
+          "20ft AV": 1,
+          "32ft AV": 1,
+          "10ft Store": 1,
+          "3+1": 1,
+          "Steps": 2
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Carnell, NE61 3DA, , NE61 3DA | Also on contract: 1x 1800G Eflluent Tank; 2x Upholstered Chair; 1x Bookshelf",
+        "added_by": "MCS Auto",
+        "timestamp": "03/09/2026 10:32",
+        "av_configs": {
+          "20ft AV": {
+            "Office": 1
+          },
+          "32ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-09-11": [
