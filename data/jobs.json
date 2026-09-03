@@ -15249,6 +15249,30 @@
             "Office": 1
           }
         }
+      },
+      {
+        "type": "On Hire",
+        "customer": "Silverglide Ltd",
+        "postcode": "",
+        "contract_number": "0000031947",
+        "units": {
+          "20ft AV": 1,
+          "IBC": 1,
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Initial Water Fill; 1x Weekly Water Fill; 1x Pump",
+        "added_by": "MCS Auto",
+        "timestamp": "03/09/2026 09:31",
+        "av_configs": {
+          "20ft AV": {
+            "Office": 1
+          }
+        }
       }
     ],
     "2026-09-11": [
@@ -15268,6 +15292,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 4x Event Toilet",
         "added_by": "MCS Auto",
         "timestamp": "02/09/2026 10:11"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000031949",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 20FT Towable Solar Welfare",
+        "added_by": "MCS Auto",
+        "timestamp": "03/09/2026 09:31"
       }
     ],
     "2026-09-16": [
@@ -15287,6 +15328,30 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "02/09/2026 10:11"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Greenmount Projects Ltd",
+        "postcode": "",
+        "contract_number": "0000031950",
+        "units": {
+          "24ft AV": 1,
+          "Stairs": 1,
+          "2+1": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 24ft Anti- Vandal canteen /dry room 70/30 Bottom; 1x Double Stack/ Erect Staircase; 1x Destack",
+        "added_by": "MCS Auto",
+        "timestamp": "03/09/2026 09:31",
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        }
       }
     ],
     "2026-09-12": [
