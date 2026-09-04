@@ -15491,6 +15491,24 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Kings School, Macclesfield, , SK10 4",
         "added_by": "MCS Auto",
         "timestamp": "04/09/2026 09:31"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Miller Homes Ltd",
+        "postcode": "PR7 5AB",
+        "contract_number": "0000030322",
+        "units": {
+          "32ft AV": 1,
+          "24ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Church View, Darlington Street, Coppull, , PR7 5AB",
+        "added_by": "MCS Auto",
+        "timestamp": "04/09/2026 10:43"
       }
     ],
     "2026-09-25": [
