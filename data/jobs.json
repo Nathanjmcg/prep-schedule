@@ -15523,6 +15523,31 @@
         },
         "date_moved_by": "MCS Auto"
       }
+    ],
+    "2026-09-22": [
+      {
+        "type": "Off Hire",
+        "customer": "Greenmount Projects Ltd",
+        "postcode": "WN6 7DD",
+        "contract_number": "0000030960",
+        "units": {
+          "32ft AV": 5
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Wigan and Leigh College, Prescott Street, Wigan, , WN6 7DD | Also on contract: 1x 32ft Anti Vandal Shower/WC Combi; 1x Double Stack/ Erect Staircase; 1x Staircase; 3x Link; 1x GATEHOUSE P/W HIRE; 1x Disposable Sanitary Bins. Pk10",
+        "added_by": "MCS Auto",
+        "timestamp": "04/09/2026 10:12",
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 2,
+            "Office": 2
+          }
+        }
+      }
     ]
   },
   "mcs": {
