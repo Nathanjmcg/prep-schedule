@@ -15475,6 +15475,25 @@
           }
         }
       }
+    ],
+    "2026-09-18": [
+      {
+        "type": "Off Hire",
+        "customer": "Assured Traffic Solutions Ltd",
+        "postcode": "KINGS SCHOOL, MACCLESFIELD, , SK10 4",
+        "contract_number": "0000031353",
+        "units": {
+          "4+2": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Kings School, Macclesfield, , SK10 4",
+        "added_by": "MCS Auto",
+        "timestamp": "04/09/2026 09:31"
+      }
     ]
   },
   "mcs": {
