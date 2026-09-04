@@ -14535,29 +14535,6 @@
       },
       {
         "type": "On Hire",
-        "customer": "Britcab Ltd",
-        "postcode": "",
-        "contract_number": "0000031904",
-        "units": {
-          "2+1": 1,
-          "3+1": 2,
-          "20ft AV": 5,
-          "32ft AV": 3,
-          "24ft AV": 4,
-          "Static Welfare": 1
-        },
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 12ft Anti-Vandal; 1x 12ft Anti-Vandal; 1x 7155 - Gate house; 5x Polyjohn's | Date moved by MCS Auto from 24/08/2026 to 04/09/2026 on 26/08/2026 09:31",
-        "added_by": "MCS Auto",
-        "timestamp": "26/08/2026 09:31",
-        "date_moved_by": "MCS Auto"
-      },
-      {
-        "type": "On Hire",
         "customer": "Winstanley Plumbing",
         "postcode": "",
         "contract_number": "0000031920",
@@ -15435,6 +15412,29 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 20FT Towable Solar Welfare",
         "added_by": "MCS Auto",
         "timestamp": "03/09/2026 09:31"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Britcab Ltd",
+        "postcode": "",
+        "contract_number": "0000031904",
+        "units": {
+          "2+1": 1,
+          "3+1": 2,
+          "20ft AV": 5,
+          "32ft AV": 3,
+          "24ft AV": 4,
+          "Static Welfare": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 12ft Anti-Vandal; 1x 12ft Anti-Vandal; 1x 7155 - Gate house; 5x Polyjohn's | Date moved by MCS Auto from 24/08/2026 to 04/09/2026 on 26/08/2026 09:31 | Date moved by MCS Auto from 04/09/2026 to 11/09/2026 on 04/09/2026 16:26",
+        "added_by": "MCS Auto",
+        "timestamp": "04/09/2026 16:26",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-09-16": [
