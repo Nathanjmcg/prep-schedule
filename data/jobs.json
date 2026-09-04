@@ -14639,6 +14639,32 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: 13 Abbots road, Leek, , ST13 6EX | Also on contract: 1x ReHire Chemi Loo",
         "added_by": "MCS Auto",
         "timestamp": "03/09/2026 11:25"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Perfect Associates Ltd",
+        "postcode": "SK10 4SP",
+        "contract_number": "0000031296",
+        "units": {
+          "32ft AV": 2,
+          "3+1": 1,
+          "Steps": 2,
+          "20ft Store": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Kings School Sports Pavilion, Alderley Road, Macclesfield, , SK10 4SP | Also on contract: 1x 1000G Eflluent Tank; 1x Staircase; 1x Double Stack/ Erect Staircase",
+        "added_by": "MCS Auto",
+        "timestamp": "04/09/2026 11:14",
+        "av_configs": {
+          "32ft AV": {
+            "Office": 1,
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-09-03": [
