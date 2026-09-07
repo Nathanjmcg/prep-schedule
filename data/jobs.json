@@ -15631,6 +15631,25 @@
           }
         }
       }
+    ],
+    "2026-09-21": [
+      {
+        "type": "Off Hire",
+        "customer": "Jones Homes (North West) Ltd",
+        "postcode": "CW10 0TG",
+        "contract_number": "0000030969",
+        "units": {
+          "Solar Loo Single": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Warmingham Park, Warmingham Lane, Middlewich, , CW10 0TG | Also on contract: 1x Chargeable One Off Solar Loo Service ( service aborted due t; 1x Weekly Water Fill; 1x MARRIED TO THE MOP CLEAN; 1x Weekly Water Fill -  addtional 2000 ltr water fill - startin",
+        "added_by": "MCS Auto",
+        "timestamp": "07/09/2026 09:51"
+      }
     ]
   },
   "mcs": {
