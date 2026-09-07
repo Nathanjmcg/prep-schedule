@@ -16587,7 +16587,12 @@
       "notes": "Test Purposes",
       "supplier": "",
       "status": "pending",
-      "created_at": "07/09/2026 10:04"
+      "created_at": "07/09/2026 10:04",
+      "po_number": "02061",
+      "po_supplier": "Manor Coating",
+      "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27969595",
+      "po_order_id": 27969595,
+      "po_status": "awaiting"
     }
   },
   "materials_totals": {
