@@ -16562,7 +16562,15 @@
       "notes": "Test Purposes",
       "supplier": "",
       "status": "pending",
-      "created_at": "07/09/2026 10:04"
+      "created_at": "07/09/2026 10:04",
+      "query": {
+        "candidate_code": "707975",
+        "candidate_name": "Hyco Prism Hand Dryer",
+        "candidate_price": 130.21,
+        "score": 0.82,
+        "mismatch": "the request is for a 'purpose' and the product name does not mention one",
+        "asked_at": "07/09/2026 11:07"
+      }
     },
     "33b7b9a8f176": {
       "requester": "Mitch",
