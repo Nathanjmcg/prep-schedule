@@ -16539,6 +16539,42 @@
       "po_link": "https://myzahara.net/v3/documents/purchase-orders/view/27920961",
       "po_order_id": 27920961,
       "po_status": "awaiting"
+    },
+    "9074a7dfd907": {
+      "requester": "Mitch",
+      "request_id": "503b27fdd183",
+      "item": "5 \u00d7 3x2 CLS Timber",
+      "category": "Timber & Sheet Materials",
+      "item_name": "3x2 CLS Timber",
+      "quantity": 5,
+      "notes": "Test Purposes",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "07/09/2026 10:04"
+    },
+    "7e0b0223d8cd": {
+      "requester": "Mitch",
+      "request_id": "503b27fdd183",
+      "item": "2 \u00d7 Hyco Prism Hand Dryer",
+      "category": "Water Heating",
+      "item_name": "Hyco Prism Hand Dryer",
+      "quantity": 2,
+      "notes": "Test Purposes",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "07/09/2026 10:04"
+    },
+    "33b7b9a8f176": {
+      "requester": "Mitch",
+      "request_id": "503b27fdd183",
+      "item": "2 \u00d7 2\" All Rounder Paint Brush",
+      "category": "Painting & Decorating",
+      "item_name": "2\" All Rounder Paint Brush",
+      "quantity": 2,
+      "notes": "Test Purposes",
+      "supplier": "",
+      "status": "pending",
+      "created_at": "07/09/2026 10:04"
     }
   },
   "materials_totals": {
