@@ -15046,6 +15046,23 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Alderley Homes (Cheadle) Ltd",
+        "postcode": "SK8 3SH",
+        "contract_number": "0000031798",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Hardy Field Lane, off St.Anns Road North, Heald Green, Cheadle, Stockport, SK8 3SH",
+        "added_by": "MCS Auto",
+        "timestamp": "07/09/2026 16:26"
       }
     ],
     "2026-09-09": [
@@ -15707,6 +15724,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: T2 Contractor Compound Car Park, Palma Avenue, Manchester Airport, ///safe.chops.mend, , WA15 | Also on contract: 1x Initial Water Fill; 1x Weekly Water Fill; 1x Pump; 1x Pump; 1x 1000G Eflluent Tank; 1x Chargeable Weekly Tank Empty",
         "added_by": "MCS Auto",
         "timestamp": "07/09/2026 16:15"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Bethell Plant Services Ltd",
+        "postcode": "WA15 8UN",
+        "contract_number": "0000031749",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: T2 Contractor car park, manchester, , WA15 8UN | Also on contract: 7x Upholstered Chair",
+        "added_by": "MCS Auto",
+        "timestamp": "07/09/2026 16:26"
       }
     ]
   },
