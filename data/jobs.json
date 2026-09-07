@@ -15666,6 +15666,47 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Warmingham Park, Warmingham Lane, Middlewich, , CW10 0TG | Also on contract: 1x Chargeable One Off Solar Loo Service ( service aborted due t; 1x Weekly Water Fill; 1x MARRIED TO THE MOP CLEAN; 1x Weekly Water Fill -  addtional 2000 ltr water fill - startin",
         "added_by": "MCS Auto",
         "timestamp": "07/09/2026 09:51"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Bethell Plant Services Ltd",
+        "postcode": "WA15 8UN",
+        "contract_number": "0000031745",
+        "units": {
+          "32ft AV": 2,
+          "3+1": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: T2 Contractor car park, manchester, , WA15 8UN | Also on contract: 1x Staircase; 1x Double Stack/ Erect Staircase; 1x Destack; 2x Move on site of 32ft Office",
+        "added_by": "MCS Auto",
+        "timestamp": "07/09/2026 16:15",
+        "av_configs": {
+          "32ft AV": {
+            "Drying Room": 1
+          }
+        }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Bethell Plant Services Ltd",
+        "postcode": "T2 CONTRACTOR COMPOUND CAR PARK, PALMA AVENUE, MANCHESTER AIRPORT, ///SAFE.CHOPS.MEND, , WA15",
+        "contract_number": "0000031830",
+        "units": {
+          "IBC": 3,
+          "Steps": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: T2 Contractor Compound Car Park, Palma Avenue, Manchester Airport, ///safe.chops.mend, , WA15 | Also on contract: 1x Initial Water Fill; 1x Weekly Water Fill; 1x Pump; 1x Pump; 1x 1000G Eflluent Tank; 1x Chargeable Weekly Tank Empty",
+        "added_by": "MCS Auto",
+        "timestamp": "07/09/2026 16:15"
       }
     ]
   },
