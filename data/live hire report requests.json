@@ -1,15 +1,4 @@
 {
   "requests": [],
-  "history": [
-    {
-      "id": "df86659f07",
-      "customer": "HH Smith",
-      "requested_by": "Nathan McGuinness",
-      "requested_at": "07/09/2026 10:02",
-      "status": "done",
-      "detail": "Emailed to nathan.mcguinness@kensite.co.uk (fuzzy match 62%: H H Smith & Sons  Co Ltd - HHSMI001)",
-      "matched_customer": "H H Smith & Sons  Co Ltd - HHSMI001",
-      "processed_at": "07/09/2026 11:04"
-    }
-  ]
+  "history": []
 }
