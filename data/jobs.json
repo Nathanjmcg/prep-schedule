@@ -15144,6 +15144,21 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "On Hire",
+        "customer": "Richard O'Brien Joinery",
+        "postcode": "",
+        "contract_number": "0000031957",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Event Toilet; 1x Relocation of chemi loo from 55 Rhodesway Wirral CH60 2UA to",
+        "added_by": "MCS Auto",
+        "timestamp": "08/09/2026 09:32"
       }
     ],
     "2026-08-31": [
@@ -15486,6 +15501,30 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: 54 Treen Rd,, Astley, , M29 7HA",
         "added_by": "MCS Auto",
         "timestamp": "07/09/2026 09:32"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Brookhouse Contracting Ltd",
+        "postcode": "",
+        "contract_number": "0000031958",
+        "units": {
+          "20ft AV": 1,
+          "20ft Store": 1,
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "08/09/2026 09:32",
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-09-16": [
@@ -15739,6 +15778,25 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: T2 Contractor car park, manchester, , WA15 8UN | Also on contract: 7x Upholstered Chair",
         "added_by": "MCS Auto",
         "timestamp": "07/09/2026 16:26"
+      }
+    ],
+    "2026-09-29": [
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000031934",
+        "units": {
+          "20ft Store": 4
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "08/09/2026 09:32"
       }
     ]
   },
