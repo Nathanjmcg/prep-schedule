@@ -14874,6 +14874,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Poulton Brookfield SEN KS3 Expansion, Foouldrey Avenue, Poulton, Lancashire, FY6 7HE | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 80x Initial Fuel Fill; 1x One Off Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "03/09/2026 16:25"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "St Roccos Hospice",
+        "postcode": "WA1 1UH",
+        "contract_number": "0000031933",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Bank Par, WARRINGTON, , WA1 1UH | Also on contract: 1x Event Toilet",
+        "added_by": "MCS Auto",
+        "timestamp": "08/09/2026 09:41"
       }
     ],
     "2026-09-10": [
