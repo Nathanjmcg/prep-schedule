@@ -1,15 +1,4 @@
 {
   "requests": [],
-  "history": [
-    {
-      "id": "67b7d44c1d",
-      "customer": "HHSMI001",
-      "requested_by": "Pete Billingham",
-      "requested_at": "08/09/2026 13:02",
-      "status": "done",
-      "detail": "Emailed to peter.billingham@kensite.co.uk",
-      "matched_customer": "H H Smith & Sons  Co Ltd - HHSMI001",
-      "processed_at": "08/09/2026 14:05"
-    }
-  ]
+  "history": []
 }
