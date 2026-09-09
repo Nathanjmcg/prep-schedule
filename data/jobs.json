@@ -14895,24 +14895,6 @@
     ],
     "2026-09-10": [
       {
-        "type": "On Hire",
-        "customer": "Ainscough Environmental Services Ltd",
-        "postcode": "",
-        "contract_number": "0000031532",
-        "units": {
-          "32ft AV": 18,
-          "24ft AV": 2
-        },
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "20/08/2026 09:31"
-      },
-      {
         "type": "Off Hire",
         "customer": "Termrim Construction Ltd",
         "postcode": "LS29 6AR",
@@ -15978,6 +15960,27 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "08/09/2026 09:32"
+      }
+    ],
+    "2026-09-30": [
+      {
+        "type": "On Hire",
+        "customer": "Ainscough Environmental Services Ltd",
+        "postcode": "",
+        "contract_number": "0000031532",
+        "units": {
+          "32ft AV": 18,
+          "24ft AV": 2
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 10/09/2026 to 30/09/2026 on 09/09/2026 09:31",
+        "added_by": "MCS Auto",
+        "timestamp": "09/09/2026 09:31",
+        "date_moved_by": "MCS Auto"
       }
     ]
   },
