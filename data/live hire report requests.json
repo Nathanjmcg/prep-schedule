@@ -1,13 +1,15 @@
 {
-  "requests": [
+  "requests": [],
+  "history": [
     {
       "id": "331e2666eb",
       "customer": "CHELT001",
       "requested_by": "Pete Billingham",
       "requested_at": "10/09/2026 07:58",
-      "status": "pending",
-      "detail": ""
+      "status": "done",
+      "detail": "Emailed to peter.billingham@kensite.co.uk",
+      "matched_customer": "Cheltenham Green Property Ltd - CHELT001",
+      "processed_at": "10/09/2026 09:02"
     }
-  ],
-  "history": []
+  ]
 }
