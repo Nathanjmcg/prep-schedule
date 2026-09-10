@@ -31,8 +31,8 @@
       ],
       "cc_email": "",
       "requested_at": "10/09/2026 09:02",
-      "status": "sending",
-      "detail": "Being processed by the worker",
+      "status": "done",
+      "detail": "7 invoices emailed to fiona.moore@kensite.co.uk",
       "processed_at": "10/09/2026 10:05"
     }
   ]
