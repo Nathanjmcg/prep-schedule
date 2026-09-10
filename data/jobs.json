@@ -16118,6 +16118,23 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "M13 0DH",
+        "contract_number": "0000031240",
+        "units": {
+          "Static Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Rear of Eskdale House, 37 Richmond Grove, Manchester, , M13 0DH",
+        "added_by": "MCS Auto",
+        "timestamp": "10/09/2026 14:41"
       }
     ]
   },
