@@ -15247,6 +15247,23 @@
         "added_by": "MCS Auto",
         "timestamp": "02/09/2026 11:56",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Premier Building Supplies Ltd",
+        "postcode": "",
+        "contract_number": "0000031975",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "10/09/2026 09:31"
       }
     ],
     "2026-09-15": [
@@ -15346,6 +15363,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 3x Relocation of the 3x stores on15.09.2026  from Bolton Cricke",
         "added_by": "MCS Auto",
         "timestamp": "02/09/2026 11:25"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Wright Build Ltd",
+        "postcode": "",
+        "contract_number": "0000031978",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "10/09/2026 09:31"
       }
     ],
     "2026-09-17": [
@@ -16016,6 +16050,30 @@
         "added_by": "MCS Auto",
         "timestamp": "09/09/2026 09:31",
         "date_moved_by": "MCS Auto"
+      }
+    ],
+    "2026-09-23": [
+      {
+        "type": "On Hire",
+        "customer": "Premier Building Supplies Ltd",
+        "postcode": "",
+        "contract_number": "0000031976",
+        "units": {
+          "20ft AV": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Hot wash chemi loo 110volt",
+        "added_by": "MCS Auto",
+        "timestamp": "10/09/2026 09:31",
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ]
   },
