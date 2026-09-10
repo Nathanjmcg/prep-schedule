@@ -15265,6 +15265,23 @@
         "added_by": "MCS Auto",
         "timestamp": "10/09/2026 09:41",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "DLP Services (Northern) Ltd",
+        "postcode": "",
+        "contract_number": "0000031980",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "10/09/2026 15:53"
       }
     ],
     "2026-09-15": [
