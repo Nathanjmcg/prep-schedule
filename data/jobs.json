@@ -15317,6 +15317,29 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: BLOWERS GREEN PRIMARY, BLOWERS GREEN ROAD, DUDLEY, , DY2 8UZ | Also on contract: 1x Staircase",
         "added_by": "MCS Auto",
         "timestamp": "11/09/2026 16:37"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Technicare Ltd t/a Blyth Group Ltd",
+        "postcode": "DY2 8UZ",
+        "contract_number": "0000031988",
+        "units": {
+          "32ft AV": 2
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: BLOWERS GREEN PRIMARY, BLOWERS GREEN ROAD, DUDLEY, , DY2 8UZ",
+        "added_by": "MCS Auto",
+        "timestamp": "11/09/2026 16:47",
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1,
+            "Drying Room": 1
+          }
+        }
       }
     ],
     "2026-09-15": [
@@ -15487,6 +15510,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: -, Liverpool, , L11 9DX | Also on contract: 2x Decals on Office; 1x Pump; 1x Weekly Water Fill; 1x Water Barrel",
         "added_by": "MCS Auto",
         "timestamp": "11/09/2026 13:39"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Exact Property Services Ltd",
+        "postcode": "M25 0AT",
+        "contract_number": "0000030079",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: 19 Hartley Avenue, Prestwich, Manchester, , M25 0AT",
+        "added_by": "MCS Auto",
+        "timestamp": "11/09/2026 16:47"
       }
     ],
     "2026-09-17": [
