@@ -1,25 +1,4 @@
 {
   "requests": [],
-  "history": [
-    {
-      "id": "6378a49d68",
-      "customer": "exact001",
-      "requested_by": "Pete Billingham",
-      "requested_at": "11/09/2026 07:12",
-      "status": "done",
-      "detail": "Emailed to peter.billingham@kensite.co.uk",
-      "matched_customer": "Exact Property Services Ltd - EXACT001",
-      "processed_at": "11/09/2026 08:19"
-    },
-    {
-      "id": "7dc5e5ef18",
-      "customer": "morri001",
-      "requested_by": "Pete Billingham",
-      "requested_at": "11/09/2026 07:14",
-      "status": "done",
-      "detail": "Emailed to peter.billingham@kensite.co.uk",
-      "matched_customer": "Morris Homes (North) Ltd - MORRI001",
-      "processed_at": "11/09/2026 08:19"
-    }
-  ]
+  "history": []
 }
