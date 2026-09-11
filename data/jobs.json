@@ -16267,6 +16267,29 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: North City Family & Fitness Centre, upper Conran Street, Manchester, , M9 4AD",
         "added_by": "MCS Auto",
         "timestamp": "11/09/2026 11:34"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "P Casey & Co Ltd",
+        "postcode": "M3 7FR",
+        "contract_number": "0000030311",
+        "units": {
+          "24ft AV": 1,
+          "2+1": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Greyfriar & Whitefriar, Bridgewater Street, Salford, , M3 7FR | Also on contract: 2x Canteen Table; 12x Poly Chair",
+        "added_by": "MCS Auto",
+        "timestamp": "11/09/2026 11:55",
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ]
   },
