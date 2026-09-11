@@ -15811,6 +15811,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: READING FESTIVAL, READING, , RG1 8EQ | Also on contract: 1x Staircase; 1x Double Stack/ Erect Staircase; 1x Destack",
         "added_by": "MCS Auto",
         "timestamp": "11/09/2026 10:01"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "H H Smith & Sons  Co Ltd",
+        "postcode": "WA12 9BN",
+        "contract_number": "0000031922",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: EARLSTOWN TOWN HALL, MARKET STREET, NEWTON-LE-WILLOWS, , WA12 9BN | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "11/09/2026 15:45"
       }
     ],
     "2026-09-12": [
