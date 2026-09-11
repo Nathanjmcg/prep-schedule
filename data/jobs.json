@@ -15283,6 +15283,23 @@
         "added_by": "MCS Auto",
         "timestamp": "11/09/2026 11:13",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000031985",
+        "units": {
+          "20ft Store": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "11/09/2026 12:16"
       }
     ],
     "2026-09-15": [
