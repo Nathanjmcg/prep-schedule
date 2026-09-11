@@ -15828,6 +15828,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: EARLSTOWN TOWN HALL, MARKET STREET, NEWTON-LE-WILLOWS, , WA12 9BN | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "11/09/2026 15:45"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "H H Smith & Sons  Co Ltd",
+        "postcode": "WA12 9BN",
+        "contract_number": "0000031901",
+        "units": {
+          "Chemiloo": 3
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Earlestown town hall, Market street, Earlestown, WA12 9BN",
+        "added_by": "MCS Auto",
+        "timestamp": "11/09/2026 15:55"
       }
     ],
     "2026-09-12": [
