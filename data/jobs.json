@@ -15265,6 +15265,24 @@
         "added_by": "MCS Auto",
         "timestamp": "10/09/2026 09:41",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000031939",
+        "units": {
+          "20ft Store": 3
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 3x Relocation of the 3x stores on15.09.2026  from Bolton Cricke | Date moved by MCS Auto from 15/09/2026 to 14/09/2026 on 11/09/2026 11:13",
+        "added_by": "MCS Auto",
+        "timestamp": "11/09/2026 11:13",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-09-15": [
@@ -15347,23 +15365,6 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Oldham College, Alderson, , OL9 6AA",
         "added_by": "MCS Auto",
         "timestamp": "02/09/2026 10:01"
-      },
-      {
-        "type": "On Hire",
-        "customer": "A Connolly Limited",
-        "postcode": "",
-        "contract_number": "0000031939",
-        "units": {
-          "20ft Store": 3
-        },
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 3x Relocation of the 3x stores on15.09.2026  from Bolton Cricke",
-        "added_by": "MCS Auto",
-        "timestamp": "02/09/2026 11:25"
       },
       {
         "type": "On Hire",
