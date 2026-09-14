@@ -16405,6 +16405,23 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "On Hire",
+        "customer": "Greenmount Projects Ltd",
+        "postcode": "",
+        "contract_number": "0000031991",
+        "units": {
+          "20ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "14/09/2026 10:02"
       }
     ],
     "2026-09-24": [
