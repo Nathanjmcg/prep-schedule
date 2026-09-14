@@ -16473,6 +16473,21 @@
             "Office": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Rosslee Construction",
+        "postcode": "ST4 6NT",
+        "contract_number": "0000030784",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: St John the Evangelist Church, 122 Newcastle Rd,, Trent Vale,, Stoke-on-Trent, ST4 6NT | Also on contract: 6x Canteen Table; 13x Poly Chair",
+        "added_by": "MCS Auto",
+        "timestamp": "14/09/2026 09:32"
       }
     ]
   },
