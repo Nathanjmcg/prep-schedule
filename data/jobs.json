@@ -16037,6 +16037,23 @@
             "Office": 2
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Exact Property Services Ltd",
+        "postcode": "WA16 7LL",
+        "contract_number": "0000031450",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Mrs Felicity Saunders, Barlow House,New Hall Lane,, Mobberley,, KNUTSFORD,, WA16 7LL",
+        "added_by": "MCS Auto",
+        "timestamp": "14/09/2026 12:27"
       }
     ],
     "2026-09-21": [
