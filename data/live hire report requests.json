@@ -1,13 +1,15 @@
 {
-  "requests": [
+  "requests": [],
+  "history": [
     {
       "id": "c8a84ac336",
       "customer": "exact001",
       "requested_by": "Pete Billingham",
       "requested_at": "14/09/2026 11:59",
-      "status": "pending",
-      "detail": ""
+      "status": "done",
+      "detail": "Emailed to peter.billingham@kensite.co.uk",
+      "matched_customer": "Exact Property Services Ltd - EXACT001",
+      "processed_at": "14/09/2026 13:01"
     }
-  ],
-  "history": []
+  ]
 }
