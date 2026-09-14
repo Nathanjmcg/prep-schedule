@@ -1,4 +1,13 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "c8a84ac336",
+      "customer": "exact001",
+      "requested_by": "Pete Billingham",
+      "requested_at": "14/09/2026 11:59",
+      "status": "pending",
+      "detail": ""
+    }
+  ],
   "history": []
 }
