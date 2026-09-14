@@ -16132,136 +16132,6 @@
       },
       {
         "type": "On Hire",
-        "customer": "John Reilly Civil Engineering Ltd",
-        "postcode": "",
-        "contract_number": "0000031961",
-        "units": {
-          "24ft AV": 1
-        },
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "09/09/2026 09:31",
-        "av_configs": {
-          "24ft AV": {
-            "Office": 1
-          }
-        }
-      },
-      {
-        "type": "On Hire",
-        "customer": "John Reilly Civil Engineering Ltd",
-        "postcode": "",
-        "contract_number": "0000031962",
-        "units": {
-          "24ft AV": 1
-        },
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "09/09/2026 09:31",
-        "av_configs": {
-          "24ft AV": {
-            "Canteen": 1
-          }
-        }
-      },
-      {
-        "type": "On Hire",
-        "customer": "John Reilly Civil Engineering Ltd",
-        "postcode": "",
-        "contract_number": "0000031963",
-        "units": {
-          "Stairs": 1
-        },
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Double Stack/ Erect Staircase; 1x Destack",
-        "added_by": "MCS Auto",
-        "timestamp": "09/09/2026 09:31"
-      },
-      {
-        "type": "On Hire",
-        "customer": "John Reilly Civil Engineering Ltd",
-        "postcode": "",
-        "contract_number": "0000031964",
-        "units": {},
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 12ft Anti-Vandal dry room",
-        "added_by": "MCS Auto",
-        "timestamp": "09/09/2026 09:31"
-      },
-      {
-        "type": "On Hire",
-        "customer": "John Reilly Civil Engineering Ltd",
-        "postcode": "",
-        "contract_number": "0000031965",
-        "units": {
-          "2+1": 1,
-          "Tank": 1,
-          "Steps": 2,
-          "IBC": 1
-        },
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Pump; 1x Initial Water Fill; 1x Weekly Water Fill; 1x Weekly Tank Empty; 1x Disposable Sanitary Bins. Pk10",
-        "added_by": "MCS Auto",
-        "timestamp": "09/09/2026 09:31"
-      },
-      {
-        "type": "On Hire",
-        "customer": "John Reilly Civil Engineering Ltd",
-        "postcode": "",
-        "contract_number": "0000031966",
-        "units": {
-          "20ft Store": 1
-        },
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "09/09/2026 09:31"
-      },
-      {
-        "type": "On Hire",
-        "customer": "John Reilly Civil Engineering Ltd",
-        "postcode": "",
-        "contract_number": "0000031967",
-        "units": {
-          "20ft Store": 1
-        },
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "09/09/2026 09:31"
-      },
-      {
-        "type": "On Hire",
         "customer": "Termrim Construction Ltd",
         "postcode": "",
         "contract_number": "0000031972",
@@ -16522,6 +16392,145 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: St John the Evangelist Church, 122 Newcastle Rd,, Trent Vale,, Stoke-on-Trent, ST4 6NT | Also on contract: 6x Canteen Table; 13x Poly Chair",
         "added_by": "MCS Auto",
         "timestamp": "14/09/2026 09:32"
+      }
+    ],
+    "2026-09-28": [
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031961",
+        "units": {
+          "24ft AV": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 21/09/2026 to 28/09/2026 on 14/09/2026 12:48",
+        "added_by": "MCS Auto",
+        "timestamp": "14/09/2026 12:48",
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1
+          }
+        },
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031962",
+        "units": {
+          "24ft AV": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 21/09/2026 to 28/09/2026 on 14/09/2026 12:48",
+        "added_by": "MCS Auto",
+        "timestamp": "14/09/2026 12:48",
+        "av_configs": {
+          "24ft AV": {
+            "Canteen": 1
+          }
+        },
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031963",
+        "units": {
+          "Stairs": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Double Stack/ Erect Staircase; 1x Destack | Date moved by MCS Auto from 21/09/2026 to 28/09/2026 on 14/09/2026 12:48",
+        "added_by": "MCS Auto",
+        "timestamp": "14/09/2026 12:48",
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031964",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 12ft Anti-Vandal dry room | Date moved by MCS Auto from 21/09/2026 to 28/09/2026 on 14/09/2026 12:48",
+        "added_by": "MCS Auto",
+        "timestamp": "14/09/2026 12:48",
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031965",
+        "units": {
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Pump; 1x Initial Water Fill; 1x Weekly Water Fill; 1x Weekly Tank Empty; 1x Disposable Sanitary Bins. Pk10 | Date moved by MCS Auto from 21/09/2026 to 28/09/2026 on 14/09/2026 12:48",
+        "added_by": "MCS Auto",
+        "timestamp": "14/09/2026 12:48",
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031966",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 21/09/2026 to 28/09/2026 on 14/09/2026 12:48",
+        "added_by": "MCS Auto",
+        "timestamp": "14/09/2026 12:48",
+        "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000031967",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 21/09/2026 to 28/09/2026 on 14/09/2026 12:48",
+        "added_by": "MCS Auto",
+        "timestamp": "14/09/2026 12:48",
+        "date_moved_by": "MCS Auto"
       }
     ]
   },
