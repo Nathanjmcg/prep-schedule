@@ -15527,6 +15527,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: 19 Hartley Avenue, Prestwich, Manchester, , M25 0AT",
         "added_by": "MCS Auto",
         "timestamp": "11/09/2026 16:47"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Chorlton Pride",
+        "postcode": "M21 9AE",
+        "contract_number": "0000031937",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: ST CLEMENTS CHURCH, EDGE LANE, CHORLTON, , M21 9AE | Also on contract: 1x Event Toilet; 1x Event Toilet; 1x Event Toilet; 1x Event Toilet",
+        "added_by": "MCS Auto",
+        "timestamp": "15/09/2026 09:31"
       }
     ],
     "2026-09-17": [
