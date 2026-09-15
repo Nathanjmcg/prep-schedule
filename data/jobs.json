@@ -16106,6 +16106,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Mrs Felicity Saunders, Barlow House,New Hall Lane,, Mobberley,, KNUTSFORD,, WA16 7LL",
         "added_by": "MCS Auto",
         "timestamp": "14/09/2026 12:27"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Elite Access Solutions (EAS) Ltd",
+        "postcode": "WA2 0AN",
+        "contract_number": "0000031604",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: ARRAN CLOSE, WARRINGTON, , WA2 0AN | Also on contract: 56x Initial Fuel",
+        "added_by": "MCS Auto",
+        "timestamp": "15/09/2026 12:06"
       }
     ],
     "2026-09-21": [
