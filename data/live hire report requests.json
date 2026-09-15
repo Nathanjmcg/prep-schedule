@@ -1,4 +1,13 @@
 {
-  "requests": [],
+  "requests": [
+    {
+      "id": "0cfa581113",
+      "customer": "NORTH014",
+      "requested_by": "Mitch Garnett",
+      "requested_at": "15/09/2026 09:30",
+      "status": "pending",
+      "detail": ""
+    }
+  ],
   "history": []
 }
