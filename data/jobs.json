@@ -16051,6 +16051,23 @@
         "added_by": "MCS Auto",
         "timestamp": "15/09/2026 10:22",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "M45 8PP",
+        "contract_number": "0000031998",
+        "units": {
+          "20ft Store": 3
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Grass Verge off 2 Sawley Avenue, Unsworth, , M45 8PP",
+        "added_by": "MCS Auto",
+        "timestamp": "16/09/2026 10:12"
       }
     ],
     "2026-09-25": [
