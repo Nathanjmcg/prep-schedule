@@ -16389,6 +16389,28 @@
             "Canteen": 2
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "WPI Civil Engineering Ltd",
+        "postcode": "SK7 5BP",
+        "contract_number": "0000031312",
+        "units": {
+          "32ft AV": 3
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: MIRRLEES DRIVE, HAZEL GROVE, STOCKPORT, , SK7 5BP | Also on contract: 1x Staircase; 1x Double Stack/ Erect Staircase; 1x Destack",
+        "added_by": "MCS Auto",
+        "timestamp": "16/09/2026 11:04",
+        "av_configs": {
+          "32ft AV": {
+            "Office": 1
+          }
+        }
       }
     ],
     "2026-09-23": [
