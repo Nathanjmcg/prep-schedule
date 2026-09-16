@@ -16175,6 +16175,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: ARRAN CLOSE, WARRINGTON, , WA2 0AN | Also on contract: 56x Initial Fuel",
         "added_by": "MCS Auto",
         "timestamp": "15/09/2026 12:06"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "M31 4LW",
+        "contract_number": "0000031165",
+        "units": {
+          "20ft Store": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Gilmore House, YGH Compound, 95 Wood Lane, Partington, , M31 4LW",
+        "added_by": "MCS Auto",
+        "timestamp": "16/09/2026 13:51"
       }
     ],
     "2026-09-21": [
