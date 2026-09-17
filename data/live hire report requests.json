@@ -5,8 +5,10 @@
       "customer": "PAS",
       "requested_by": "Mitch Garnett",
       "requested_at": "16/09/2026 14:28",
-      "status": "pending",
-      "detail": ""
+      "status": "running",
+      "detail": "Being processed by the worker",
+      "claimed_at": "17/09/2026 07:00",
+      "claimed_by": "01f43fe5"
     }
   ],
   "history": []
