@@ -1,18 +1,4 @@
 {
   "requests": [],
-  "history": [
-    {
-      "id": "f58b1a7683",
-      "customer": "PAS",
-      "requested_by": "Mitch Garnett",
-      "requested_at": "16/09/2026 14:28",
-      "status": "done",
-      "detail": "Emailed to mitch.garnett@kensite.co.uk",
-      "claimed_at": "17/09/2026 07:00",
-      "matched_customer": "PAS (NW) Ltd - PASNW001",
-      "match_confidence": 1.0,
-      "match_exact": true,
-      "processed_at": "17/09/2026 07:00"
-    }
-  ]
+  "history": []
 }
