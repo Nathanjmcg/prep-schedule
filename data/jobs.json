@@ -16390,6 +16390,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x ReHire Welfare Unit. 24ft",
         "added_by": "MCS Auto",
         "timestamp": "17/09/2026 10:02"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000032008",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "17/09/2026 16:26"
       }
     ],
     "2026-09-29": [
