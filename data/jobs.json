@@ -16207,6 +16207,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Gilmore House, YGH Compound, 95 Wood Lane, Partington, , M31 4LW",
         "added_by": "MCS Auto",
         "timestamp": "16/09/2026 13:51"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Wright Build Ltd",
+        "postcode": "ST10 2LY",
+        "contract_number": "0000031978",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: 79 Brookfields Road, Stoke on Trent, , ST10 2LY",
+        "added_by": "MCS Auto",
+        "timestamp": "17/09/2026 11:04"
       }
     ],
     "2026-09-21": [
