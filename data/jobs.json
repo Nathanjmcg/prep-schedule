@@ -16113,6 +16113,23 @@
           }
         },
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Army of Shadows Production Ltd",
+        "postcode": "(NORTH CARPARK BUT ON THE ROAD) SEFTON PARK LIVERPOOL, SCOTTABOCCA,, CROXTETH DR, LIVERPOOL, LIVERPOOL,",
+        "contract_number": "0000031982",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: (North carpark but on the road) Sefton Park Liverpool, Scottabocca,, Croxteth Dr, Liverpool, Liverpool | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "17/09/2026 11:14"
       }
     ],
     "2026-09-22": [
@@ -16818,6 +16835,28 @@
         "added_by": "MCS Auto",
         "timestamp": "14/09/2026 12:48",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Argent Energy Limited",
+        "postcode": "CH65 4EQ",
+        "contract_number": "0000031941",
+        "units": {
+          "32ft AV": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Argent Oil Terminal,, Bridges Road,, Ellesmere Port, , CH65 4EQ",
+        "added_by": "MCS Auto",
+        "timestamp": "17/09/2026 11:14",
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-10-01": [
