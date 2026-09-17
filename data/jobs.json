@@ -16098,6 +16098,24 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "17/09/2026 11:35"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Parklands Services (NW)Ltd",
+        "postcode": "",
+        "contract_number": "0000032004",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 21/09/2026 to 18/09/2026 on 17/09/2026 13:29",
+        "added_by": "MCS Auto",
+        "timestamp": "17/09/2026 13:29",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-09-25": [
@@ -16390,23 +16408,6 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x ReHire Welfare Unit. 24ft",
         "added_by": "MCS Auto",
         "timestamp": "17/09/2026 10:02"
-      },
-      {
-        "type": "On Hire",
-        "customer": "Parklands Services (NW)Ltd",
-        "postcode": "",
-        "contract_number": "0000032004",
-        "units": {
-          "Chemiloo": 1
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "17/09/2026 10:12"
       }
     ],
     "2026-09-29": [
