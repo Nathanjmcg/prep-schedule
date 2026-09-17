@@ -16117,6 +16117,28 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: (North carpark but on the road) Sefton Park Liverpool, Scottabocca,, Croxteth Dr, Liverpool, Liverpool | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "17/09/2026 11:14"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Think Hire",
+        "postcode": "",
+        "contract_number": "0000032009",
+        "units": {
+          "32ft AV": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "17/09/2026 16:57",
+        "av_configs": {
+          "32ft AV": {
+            "Office": 1
+          }
+        }
       }
     ],
     "2026-09-22": [
