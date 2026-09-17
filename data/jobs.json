@@ -16016,24 +16016,6 @@
         "timestamp": "14/09/2026 13:40"
       },
       {
-        "type": "On Hire",
-        "customer": "A Connolly Limited",
-        "postcode": "",
-        "contract_number": "0000031934",
-        "units": {
-          "20ft Store": 4
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 29/09/2026 to 18/09/2026 on 15/09/2026 10:22",
-        "added_by": "MCS Auto",
-        "timestamp": "15/09/2026 10:22",
-        "date_moved_by": "MCS Auto"
-      },
-      {
         "type": "Off Hire",
         "customer": "A Connolly Limited",
         "postcode": "M45 8PP",
@@ -16444,6 +16426,24 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Gilmoor House Annex, Partington, Manchester, , M31 4LW",
         "added_by": "MCS Auto",
         "timestamp": "15/09/2026 16:35"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000031934",
+        "units": {
+          "20ft Store": 4
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 29/09/2026 to 18/09/2026 on 15/09/2026 10:22 | Date moved by MCS Auto from 18/09/2026 to 29/09/2026 on 17/09/2026 16:05",
+        "added_by": "MCS Auto",
+        "timestamp": "17/09/2026 16:05",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-09-30": [
