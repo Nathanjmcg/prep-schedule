@@ -16089,6 +16089,41 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Event Toilet",
         "added_by": "MCS Auto",
         "timestamp": "18/09/2026 09:31"
+      },
+      {
+        "type": "On Hire",
+        "customer": "AIS Vanguard Ltd",
+        "postcode": "",
+        "contract_number": "0000032012",
+        "units": {
+          "3+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Pump; 1x Initial Water Fill; 1x Weekly Water Fill; 1x Chargeable Weekly Tank Empty; 1x Disposable Sanitary Bins. Pk10",
+        "added_by": "MCS Auto",
+        "timestamp": "18/09/2026 09:51"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "AIS Vanguard Ltd",
+        "postcode": "CH2 4LB",
+        "contract_number": "0000031918",
+        "units": {},
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: PLOT 13 - PROTOS, GRINSOME ROAD, INCE, , CH2 4LB | Also on contract: 1x 13600L Waste tank; 1x Sewage Sump Chamber; 1x High Level Alarm",
+        "added_by": "MCS Auto",
+        "timestamp": "18/09/2026 09:51"
       }
     ],
     "2026-09-25": [
