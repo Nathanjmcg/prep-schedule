@@ -16487,6 +16487,24 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "17/09/2026 16:26"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Bellway Homes Ltd Manchester",
+        "postcode": "SK10 3LH",
+        "contract_number": "0000031863",
+        "units": {
+          "Solar Loo Single": 1,
+          "Solar Loo Double": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Weaver Green, Chelford Road, Henbury, Macclesfield, SK10 3LH | Also on contract: 53x Initial Fuel Fill; 1x Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "18/09/2026 10:01"
       }
     ],
     "2026-09-29": [
