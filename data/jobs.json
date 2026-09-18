@@ -16159,23 +16159,6 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Hadbutt Lane, (at the end of the lane), Tyldesley, , M29 7FJ | Also on contract: 1x Initial Water; 56x Initial Fuel",
         "added_by": "MCS Auto",
         "timestamp": "18/09/2026 09:40"
-      },
-      {
-        "type": "On Hire",
-        "customer": "A Connolly Limited",
-        "postcode": "",
-        "contract_number": "0000032015",
-        "units": {
-          "20ft Store": 4
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "18/09/2026 12:27"
       }
     ],
     "2026-09-22": [
@@ -16824,6 +16807,24 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: HALE GATE, WIDNESS, , WA8 8LY | Also on contract: 53x Initial Fuel Fill; 1x Initial Water Fill; 1x Meeting Room  Table 1400x800",
         "added_by": "MCS Auto",
         "timestamp": "18/09/2026 11:45"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000032015",
+        "units": {
+          "20ft Store": 4
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 25/09/2026 to 24/09/2026 on 18/09/2026 14:00",
+        "added_by": "MCS Auto",
+        "timestamp": "18/09/2026 14:00",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-10-02": [
