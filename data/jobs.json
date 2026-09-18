@@ -16790,6 +16790,23 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Chandos Civil Engineering Ltd",
+        "postcode": "WA8 8LY",
+        "contract_number": "0000031887",
+        "units": {
+          "Solar Loo Single": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: HALE GATE, WIDNESS, , WA8 8LY | Also on contract: 53x Initial Fuel Fill; 1x Initial Water Fill; 1x Meeting Room  Table 1400x800",
+        "added_by": "MCS Auto",
+        "timestamp": "18/09/2026 11:45"
       }
     ],
     "2026-10-02": [
