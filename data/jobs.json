@@ -17023,6 +17023,23 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "On Hire",
+        "customer": "John Reilly Civil Engineering Ltd",
+        "postcode": "",
+        "contract_number": "0000032014",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "18/09/2026 11:25"
       }
     ],
     "2026-10-01": [
