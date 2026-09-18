@@ -16317,6 +16317,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "18/09/2026 10:43"
+      },
+      {
+        "type": "On Hire",
+        "customer": "H H Smith",
+        "postcode": "",
+        "contract_number": "0000032018",
+        "units": {},
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x On site move of 8232 10ft store within 100yards on 22/09/202",
+        "added_by": "MCS Auto",
+        "timestamp": "18/09/2026 15:44"
       }
     ],
     "2026-09-21": [
