@@ -16101,6 +16101,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: PLOT 13 - PROTOS, GRINSOME ROAD, INCE, , CH2 4LB | Also on contract: 1x 13600L Waste tank; 1x Sewage Sump Chamber; 1x High Level Alarm",
         "added_by": "MCS Auto",
         "timestamp": "18/09/2026 09:51"
+      },
+      {
+        "type": "On Hire",
+        "customer": "F Parkinson Ltd",
+        "postcode": "",
+        "contract_number": "0000032017",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 4x Office Table",
+        "added_by": "MCS Auto",
+        "timestamp": "18/09/2026 15:03"
       }
     ],
     "2026-09-25": [
@@ -16517,6 +16532,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Weaver Green, Chelford Road, Henbury, Macclesfield, SK10 3LH | Also on contract: 53x Initial Fuel Fill; 1x Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "18/09/2026 10:01"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Redwaters (Astley) Ltd",
+        "postcode": "",
+        "contract_number": "0000032016",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "18/09/2026 15:03"
       }
     ],
     "2026-09-29": [
