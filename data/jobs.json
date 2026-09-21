@@ -16384,6 +16384,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x On site move of 8232 10ft store within 100yards on 22/09/202",
         "added_by": "MCS Auto",
         "timestamp": "18/09/2026 15:44"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Premier Building Supplies Ltd",
+        "postcode": "ST5 5HS",
+        "contract_number": "0000031635",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Heath House, Snape Hall Rd Whitmore Heath, , ST5 5HS | Also on contract: 1x Hot wash chemi loo 110VAT",
+        "added_by": "MCS Auto",
+        "timestamp": "21/09/2026 13:18"
       }
     ],
     "2026-09-21": [
