@@ -16244,6 +16244,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: PLOT 13 - PROTOS, GRINSOME ROAD, INCE, , CH2 4LB | Also on contract: 1x 1000G Eflluent Tank; 1x Pump; 1x Initial Water Fill; 1x Weekly Water Fill; 1x Chargeable Weekly Tank Empty; 1x Disposable Sanitary Bins. Pk10",
         "added_by": "MCS Auto",
         "timestamp": "21/09/2026 11:24"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000032025",
+        "units": {
+          "20ft Store": 5
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "21/09/2026 15:43"
       }
     ],
     "2026-09-22": [
