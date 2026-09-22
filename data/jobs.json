@@ -18435,7 +18435,15 @@
       "notes": "12-290-125 QTECH part code for spray gun ASAP",
       "supplier": "",
       "status": "pending",
-      "created_at": "22/09/2026 13:08"
+      "created_at": "22/09/2026 13:08",
+      "query": {
+        "candidate_code": "553105",
+        "candidate_name": "40 x 12 H-Section Lid White 3.05 Mtr HS062",
+        "candidate_price": 1.83,
+        "score": 0.22,
+        "mismatch": "the request is for a 'asap' and the product name does not mention one",
+        "asked_at": "22/09/2026 14:10"
+      }
     }
   },
   "materials_totals": {
