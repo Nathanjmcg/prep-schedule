@@ -17457,6 +17457,30 @@
         "added_by": "MCS Auto",
         "timestamp": "22/09/2026 09:32"
       }
+    ],
+    "2026-10-09": [
+      {
+        "type": "Off Hire",
+        "customer": "MCI Developments Ltd",
+        "postcode": "OL4 2DQ",
+        "contract_number": "0000032029",
+        "units": {
+          "32ft AV": 2
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Holt Street, Oldham, , OL4 2DQ | Also on contract: 1x Pump; 1x Destack; 1x Pump; 1x Staircase",
+        "added_by": "MCS Auto",
+        "timestamp": "22/09/2026 12:16",
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1
+          }
+        }
+      }
     ]
   },
   "mcs": {
