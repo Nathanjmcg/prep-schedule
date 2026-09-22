@@ -16261,6 +16261,34 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "21/09/2026 15:43"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Jennor",
+        "postcode": "",
+        "contract_number": "0000032027",
+        "units": {
+          "20ft AV": 2,
+          "2+1": 1,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1,
+          "Stairs": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Pump; 1x Initial Water Fill; 1x Weekly Tank Empty; 1x Disposable Sanitary Bins. Pk10; 1x Double Stack/ Erect Staircase; 1x Destack",
+        "added_by": "MCS Auto",
+        "timestamp": "22/09/2026 09:32",
+        "av_configs": {
+          "20ft AV": {
+            "Office": 1,
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-09-22": [
@@ -17372,6 +17400,44 @@
           }
         },
         "date_moved_by": "MCS Auto"
+      }
+    ],
+    "2026-10-08": [
+      {
+        "type": "Off Hire",
+        "customer": "Krol Corlett",
+        "postcode": "BB5 1ER",
+        "contract_number": "0000030688",
+        "units": {
+          "32ft AV": 5,
+          "4+2": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Accrington Market Hall, Peel Street, Accrington, , BB5 1ER | Also on contract: 3x Link; 1x Staircase; 3x Double Stack/ Erect Staircase; 3x Destack",
+        "added_by": "MCS Auto",
+        "timestamp": "22/09/2026 09:32"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Krol Corlett",
+        "postcode": "BB5 1ER",
+        "contract_number": "0000030688#1",
+        "units": {
+          "32ft AV": 5,
+          "4+2": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Split delivery #1 - later drop on this contract | Site: Accrington Market Hall, Peel Street, Accrington, , BB5 1ER | Also on contract: 3x Link; 1x Staircase; 3x Double Stack/ Erect Staircase; 3x Destack",
+        "added_by": "MCS Auto",
+        "timestamp": "22/09/2026 09:32"
       }
     ]
   },
