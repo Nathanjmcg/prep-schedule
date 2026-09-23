@@ -17458,6 +17458,31 @@
           }
         },
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "GRS Contractors",
+        "postcode": "",
+        "contract_number": "0000032035",
+        "units": {
+          "20ft AV": 2,
+          "Tank": 1,
+          "Steps": 2,
+          "IBC": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Grey water barrel; 1x 3 + 1 toilet block with dry room Jacop; 1x Pump; 1x Initial Water Fill; 1x Weekly Water Fill; 1x Chargeable Weekly Tank Empty; 1x Disposable Sanitary Bins. Pk10; 3x Painting  charge  - Unit to be Painted RAL 5002",
+        "added_by": "MCS Auto",
+        "timestamp": "23/09/2026 12:37",
+        "av_configs": {
+          "20ft AV": {
+            "Office": 1
+          }
+        }
       }
     ],
     "2026-10-08": [
