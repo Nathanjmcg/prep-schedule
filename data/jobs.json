@@ -17428,6 +17428,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Derby Raod, Opposite the EVERGLADES HOTEL, Chandos signs are also outside, Widness, WA8 3UJ | Also on contract: 80x Initial Fuel Fill; 1x Initial Water Fill",
         "added_by": "MCS Auto",
         "timestamp": "23/09/2026 14:22"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Persimmon Homes Limited",
+        "postcode": "NG14 5HH",
+        "contract_number": "0000030685",
+        "units": {
+          "Solar Loo Single": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Hallows Rise, Colwick Loop Road, HALLOWS RISE PH3, Gedling, , NG14 5HH",
+        "added_by": "MCS Auto",
+        "timestamp": "23/09/2026 16:27"
       }
     ],
     "2026-10-06": [
