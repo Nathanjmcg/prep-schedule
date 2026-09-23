@@ -16730,6 +16730,28 @@
         "added_by": "MCS Auto",
         "timestamp": "17/09/2026 16:05",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "P Hughes Construction Ltd",
+        "postcode": "",
+        "contract_number": "0000032038",
+        "units": {
+          "20ft AV": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 2x Upholstered Chair; 2x Filing Cabinet",
+        "added_by": "MCS Auto",
+        "timestamp": "23/09/2026 14:42",
+        "av_configs": {
+          "20ft AV": {
+            "Office": 1
+          }
+        }
       }
     ],
     "2026-09-30": [
