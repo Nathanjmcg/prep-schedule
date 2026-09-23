@@ -17371,6 +17371,23 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Chandos Civil Engineering Ltd",
+        "postcode": "WA8 3UJ",
+        "contract_number": "0000031540",
+        "units": {
+          "Static Welfare": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Derby Raod, Opposite the EVERGLADES HOTEL, Chandos signs are also outside, Widness, WA8 3UJ | Also on contract: 80x Initial Fuel Fill; 1x Initial Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "23/09/2026 14:22"
       }
     ],
     "2026-10-06": [
