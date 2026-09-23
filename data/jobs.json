@@ -16176,24 +16176,6 @@
         "timestamp": "18/09/2026 09:40"
       },
       {
-        "type": "On Hire",
-        "customer": "A Connolly Limited",
-        "postcode": "",
-        "contract_number": "0000032015",
-        "units": {
-          "20ft Store": 4
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 25/09/2026 to 24/09/2026 on 18/09/2026 14:00 | Date moved by MCS Auto from 24/09/2026 to 25/09/2026 on 18/09/2026 14:11",
-        "added_by": "MCS Auto",
-        "timestamp": "18/09/2026 14:11",
-        "date_moved_by": "MCS Auto"
-      },
-      {
         "type": "Off Hire",
         "customer": "PAS (NW) Ltd",
         "postcode": "WA2 9HF",
@@ -17131,6 +17113,24 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Levens View, Priory Road, Ulverston, , LA12 9QE | Also on contract: 1x ReHire Chemi Loo",
         "added_by": "MCS Auto",
         "timestamp": "23/09/2026 13:30"
+      },
+      {
+        "type": "On Hire",
+        "customer": "A Connolly Limited",
+        "postcode": "",
+        "contract_number": "0000032015",
+        "units": {
+          "20ft Store": 4
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 25/09/2026 to 24/09/2026 on 18/09/2026 14:00 | Date moved by MCS Auto from 24/09/2026 to 25/09/2026 on 18/09/2026 14:11 | Date moved by MCS Auto from 25/09/2026 to 24/09/2026 on 23/09/2026 16:06",
+        "added_by": "MCS Auto",
+        "timestamp": "23/09/2026 16:06",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-10-02": [
