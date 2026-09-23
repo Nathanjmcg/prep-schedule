@@ -17076,6 +17076,21 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre)",
         "added_by": "MCS Auto",
         "timestamp": "21/09/2026 15:33"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Rowland Homes Ltd",
+        "postcode": "LA12 9QE",
+        "contract_number": "0000029820",
+        "units": {},
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Levens View, Priory Road, Ulverston, , LA12 9QE | Also on contract: 1x ReHire Chemi Loo",
+        "added_by": "MCS Auto",
+        "timestamp": "23/09/2026 13:30"
       }
     ],
     "2026-10-02": [
