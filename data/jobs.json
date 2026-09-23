@@ -16194,23 +16194,6 @@
         "date_moved_by": "MCS Auto"
       },
       {
-        "type": "On Hire",
-        "customer": "Premier Building Supplies Ltd",
-        "postcode": "",
-        "contract_number": "0000032020",
-        "units": {
-          "Chemiloo": 1
-        },
-        "haulage": "Internal Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping.",
-        "added_by": "MCS Auto",
-        "timestamp": "21/09/2026 09:31"
-      },
-      {
         "type": "Off Hire",
         "customer": "PAS (NW) Ltd",
         "postcode": "WA2 9HF",
@@ -16982,6 +16965,24 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre)",
         "added_by": "MCS Auto",
         "timestamp": "21/09/2026 10:01"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Premier Building Supplies Ltd",
+        "postcode": "",
+        "contract_number": "0000032020",
+        "units": {
+          "Chemiloo": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Date moved by MCS Auto from 25/09/2026 to 23/09/2026 on 23/09/2026 10:33",
+        "added_by": "MCS Auto",
+        "timestamp": "23/09/2026 10:33",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-09-24": [
