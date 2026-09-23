@@ -17520,6 +17520,30 @@
             "Canteen": 1
           }
         }
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Bethell Plant Services Ltd",
+        "postcode": "WN7 1ED",
+        "contract_number": "0000030689",
+        "units": {
+          "32ft AV": 4,
+          "20ft Store": 1,
+          "Steps": 2
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Plant Rehire Overhead Contract, Market Place, Leigh, , WN7 1ED | Also on contract: 1x Staircase; 2x Double Stack/ Erect Staircase; 2x Destack; 1x 1000G Eflluent Tank; 1x Chargeable Weekly Tank Empty; 1x Pump; 2x One Off Water Fill",
+        "added_by": "MCS Auto",
+        "timestamp": "23/09/2026 12:06",
+        "av_configs": {
+          "32ft AV": {
+            "Canteen": 1
+          }
+        }
       }
     ]
   },
