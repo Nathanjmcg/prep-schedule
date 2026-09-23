@@ -17498,6 +17498,25 @@
             "Office": 1
           }
         }
+      },
+      {
+        "type": "On Hire",
+        "customer": "MCI Developments Ltd",
+        "postcode": "",
+        "contract_number": "0000032036",
+        "units": {
+          "3+1": 1,
+          "Tank": 1,
+          "IBC": 3
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x 32ft Office / Kitchen / Office; 1x 32ft Canteen inc. Wall Cupboard; 3x Pump; 1x Disposable Sanitary Bins. Pk10; 12x Cushioned Chair; 2x Meeting Table 1800; 1x Filing Cabinet; 2x Bookcase; 4x Canteen Table; 24x Poly Chair; 1x 4 x 50W Floodlights Supplied and Fitted on Site (w 2 x Time; 16x Plastic Wall Organiser",
+        "added_by": "MCS Auto",
+        "timestamp": "23/09/2026 13:40"
       }
     ],
     "2026-10-08": [
