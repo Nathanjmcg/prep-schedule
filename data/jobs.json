@@ -16752,6 +16752,24 @@
             "Office": 1
           }
         }
+      },
+      {
+        "type": "On Hire",
+        "customer": "CBG Construction Ltd",
+        "postcode": "",
+        "contract_number": "0000032039",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "None",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill | Date moved by MCS Auto from 23/09/2026 to 29/09/2026 on 23/09/2026 15:56",
+        "added_by": "MCS Auto",
+        "timestamp": "23/09/2026 15:56",
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-09-30": [
@@ -17022,23 +17040,6 @@
         "added_by": "MCS Auto",
         "timestamp": "23/09/2026 10:33",
         "date_moved_by": "MCS Auto"
-      },
-      {
-        "type": "On Hire",
-        "customer": "CBG Construction Ltd",
-        "postcode": "",
-        "contract_number": "0000032039",
-        "units": {
-          "Mobile Welfare": 1
-        },
-        "haulage": "None",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill",
-        "added_by": "MCS Auto",
-        "timestamp": "23/09/2026 15:45"
       }
     ],
     "2026-09-24": [
