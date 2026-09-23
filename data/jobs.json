@@ -16822,6 +16822,28 @@
         "added_by": "MCS Auto",
         "timestamp": "18/09/2026 12:37",
         "date_moved_by": "MCS Auto"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Proservice Building Services Marketplace Plc",
+        "postcode": "",
+        "contract_number": "0000032032",
+        "units": {
+          "20ft AV": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping.",
+        "added_by": "MCS Auto",
+        "timestamp": "23/09/2026 09:31",
+        "av_configs": {
+          "20ft AV": {
+            "Drying Room": 1
+          }
+        }
       }
     ],
     "2026-09-23": [
