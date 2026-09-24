@@ -16888,28 +16888,6 @@
     ],
     "2026-09-23": [
       {
-        "type": "On Hire",
-        "customer": "Premier Building Supplies Ltd",
-        "postcode": "",
-        "contract_number": "0000031976",
-        "units": {
-          "20ft AV": 1
-        },
-        "haulage": "External Haulage",
-        "haulage_who": "",
-        "livery": "",
-        "livery_note": "",
-        "install_dismantle": false,
-        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Hot wash chemi loo 110volt",
-        "added_by": "MCS Auto",
-        "timestamp": "10/09/2026 09:31",
-        "av_configs": {
-          "20ft AV": {
-            "Canteen": 1
-          }
-        }
-      },
-      {
         "type": "Off Hire",
         "customer": "A Connolly Limited",
         "postcode": "M13 0DH",
@@ -17165,6 +17143,29 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Termrim, Sheffield, London Road, , S2 4FW | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre)",
         "added_by": "MCS Auto",
         "timestamp": "24/09/2026 10:43"
+      },
+      {
+        "type": "On Hire",
+        "customer": "Premier Building Supplies Ltd",
+        "postcode": "",
+        "contract_number": "0000031976",
+        "units": {
+          "20ft AV": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Hot wash chemi loo 110volt | Date moved by MCS Auto from 23/09/2026 to 24/09/2026 on 24/09/2026 12:27",
+        "added_by": "MCS Auto",
+        "timestamp": "24/09/2026 12:27",
+        "av_configs": {
+          "20ft AV": {
+            "Canteen": 1
+          }
+        },
+        "date_moved_by": "MCS Auto"
       }
     ],
     "2026-10-02": [
