@@ -17035,6 +17035,23 @@
         "notes": "Auto-added from MCS. Check details before prepping.",
         "added_by": "MCS Auto",
         "timestamp": "24/09/2026 13:30"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "CLC Contractors Ltd",
+        "postcode": "M6 8HD",
+        "contract_number": "0000031231",
+        "units": {
+          "20ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: MEADOWBROOK, MENTAL HEALTH UNIT, STOTT LANE, SALFORD, , M6 8HD",
+        "added_by": "MCS Auto",
+        "timestamp": "24/09/2026 16:46"
       }
     ],
     "2026-09-23": [
