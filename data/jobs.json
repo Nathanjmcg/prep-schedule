@@ -17148,6 +17148,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Also on contract: 1x Site move from OL10 3EG to BL3 1SU on 24/09 unit number 8897",
         "added_by": "MCS Auto",
         "timestamp": "24/09/2026 09:32"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Termrim Construction Ltd",
+        "postcode": "S2 4FW",
+        "contract_number": "0000031912",
+        "units": {
+          "Mobile Welfare": 1
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Termrim, Sheffield, London Road, , S2 4FW | Also on contract: 56x Initial Fuel Fill; 1x Initial Water Fill; 1x One Off Fuel Delivery (Per Litre)",
+        "added_by": "MCS Auto",
+        "timestamp": "24/09/2026 10:43"
       }
     ],
     "2026-10-02": [
