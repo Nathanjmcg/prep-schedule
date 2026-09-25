@@ -19226,8 +19226,10 @@
       "raised_by": "Alex",
       "raised_at": "22/09/2026 13:10",
       "question": "Is this having a sink in the office?",
-      "status": "open",
-      "answer": ""
+      "status": "answered",
+      "answer": "no",
+      "answered_by": "Mitch",
+      "answered_at": "25/09/2026 14:48"
     }
   }
 }
