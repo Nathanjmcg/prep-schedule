@@ -17697,6 +17697,30 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Hallows Rise, Colwick Loop Road, HALLOWS RISE PH3, Gedling, , NG14 5HH",
         "added_by": "MCS Auto",
         "timestamp": "23/09/2026 16:27"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "PAS (NW) Ltd",
+        "postcode": "WA15 7AL",
+        "contract_number": "0000030571",
+        "units": {
+          "24ft AV": 2,
+          "IBC": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Miller Homes, Thorley Lane, Timperley, , WA15 7AL | Also on contract: 1x Pump; 1x Pump; 1x 1000G Eflluent Tank; 1x initial Water Fill; 1x Weekly Water Fill; 1x Chargeable Weekly Tank Empty; 1x 45kva e4nergy safe running 50hrs; 1x Distribution board with 6 x 32a 1p sockets",
+        "added_by": "MCS Auto",
+        "timestamp": "25/09/2026 12:05",
+        "av_configs": {
+          "24ft AV": {
+            "Office": 1,
+            "Canteen": 1
+          }
+        }
       }
     ],
     "2026-10-06": [
