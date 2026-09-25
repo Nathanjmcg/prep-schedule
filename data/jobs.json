@@ -16389,6 +16389,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Pepper lane, Standish, Wigan, Wn6 0py | Also on contract: 1x 30KVA (STANDALONE) - 50hrs per week; 1x Dist. Board c/w 4x 32amp 230v Outlets; 3x 32amp 230v 20mtr Plug; 1x 1000 Litre Fuel Tank (if required); 250x White Diesel in Tank - 1/4 Sale or Return",
         "added_by": "MCS Auto",
         "timestamp": "24/09/2026 14:01"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Proservice Building Services",
+        "postcode": "CW1 6RT",
+        "contract_number": "0000031477",
+        "units": {
+          "20ft Store": 2
+        },
+        "haulage": "External Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: Mannin House, Gateway, Crewe, , CW1 6RT",
+        "added_by": "MCS Auto",
+        "timestamp": "25/09/2026 09:40"
       }
     ],
     "2026-09-22": [
