@@ -17953,6 +17953,23 @@
         "notes": "Auto-added from MCS. Check details before prepping. | Site: Plant Rehire Overhead Contract, Market Place, Leigh, , WN7 1ED | Also on contract: 1x Fridge",
         "added_by": "MCS Auto",
         "timestamp": "24/09/2026 09:32"
+      },
+      {
+        "type": "Off Hire",
+        "customer": "Bethell Plant Services Ltd",
+        "postcode": "HD2 1WA",
+        "contract_number": "0000030945",
+        "units": {
+          "10ft Store": 1
+        },
+        "haulage": "Internal Haulage",
+        "haulage_who": "",
+        "livery": "",
+        "livery_note": "",
+        "install_dismantle": false,
+        "notes": "Auto-added from MCS. Check details before prepping. | Site: A62 Leeds Road, C/O Bam, Hudderfield, , HD2 1WA",
+        "added_by": "MCS Auto",
+        "timestamp": "25/09/2026 09:51"
       }
     ]
   },
