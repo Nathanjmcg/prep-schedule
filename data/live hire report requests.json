@@ -5,8 +5,10 @@
       "customer": "morris homes",
       "requested_by": "Mitch Garnett",
       "requested_at": "25/09/2026 06:44",
-      "status": "pending",
-      "detail": ""
+      "status": "running",
+      "detail": "Being processed by the worker",
+      "claimed_at": "25/09/2026 07:51",
+      "claimed_by": "123a59d5"
     }
   ],
   "history": []
