@@ -1,15 +1,18 @@
 {
-  "requests": [
+  "requests": [],
+  "history": [
     {
       "id": "53e3b27256",
       "customer": "morris homes",
       "requested_by": "Mitch Garnett",
       "requested_at": "25/09/2026 06:44",
-      "status": "running",
-      "detail": "Being processed by the worker",
+      "status": "done",
+      "detail": "Emailed to mitch.garnett@kensite.co.uk",
       "claimed_at": "25/09/2026 07:51",
-      "claimed_by": "123a59d5"
+      "matched_customer": "Morris Homes (North) Ltd - MORRI001",
+      "match_confidence": 1.0,
+      "match_exact": true,
+      "processed_at": "25/09/2026 07:51"
     }
-  ],
-  "history": []
+  ]
 }
